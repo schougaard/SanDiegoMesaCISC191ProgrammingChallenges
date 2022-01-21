@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text/>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>20</y>
+      <w>290</w>
+      <h>370</h>
+    </coordinates>
+    <panel_attributes>Boat
+--
+--
+Boat()
+Boat(newMake: String, newColor: Color)
+
+getMake(): String
+
+getColor(): Color
+setColor(newColor: Color)
+
+getSpeed(): int
+speedUp(): void
+slowDown(): void
+
+getPrice(): int
+setPrice(newPrice: int)
+
+getSeralNumber(): int
+static createNewSerialNumber(): int
+
+equals(otherBoat: Boat): boolean
+
+toString(): String
+bg=orange
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>440</y>
+      <w>320</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Person
+--
+--
+Person(name: String, phone: String, zip: String)
+
+getName(): String
+toString(): String
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>440</y>
+      <w>310</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Harbor
+--
+--
+Harbor()
+
+getBoatAt(slipNumber: int): Boat
+parkBoatAt(boat: Boat, slipNumber: int): Boat
+getInventory(): Boat[]
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>580</y>
+      <w>560</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>CreditCard
+--
+--
+CreditCard(number: String, expiration:String, securityCode: String,  cardHolder: Person)
+
+toString(): String
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>710</y>
+      <w>760</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>CreditCardCharge
+--
+--
+CreditCardCharge(year: int, month: int, day: int, purchasedBoat: Boat, companyName: String, chargedCard: CreditCard)
+
+toString(): String
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>380</y>
+      <w>30</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>650</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>530</y>
+      <w>30</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>380</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>430</x>
+      <y>80</y>
+      <w>390</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Note on diamonds:
+
+The class at the diamond end of the connector 
+is aggregated by the class on the non-diamond end.
+
+E.g. A CreditCardCharge has-a CreditCard associted with it.
+bg=yellow
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>430</x>
+      <y>200</y>
+      <w>310</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Created using UMLet https://www.umlet.com/</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

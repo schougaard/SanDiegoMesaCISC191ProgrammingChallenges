@@ -1,6 +1,6 @@
 package edu.sdmesa.cisc191;
 
-import static edu.sdmesa.cisc191.ArrayChallenge.*;
+import static edu.sdmesa.cisc191.M1Challenge.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -30,21 +30,26 @@ import org.junit.jupiter.api.Test;
  * Version/date: 2.0  
  * 
  * Responsibilities of class:
- * Test ArrayChallenge implementation
+ * Test M1Challenge implementation
  */
 
 /**
+ * ***********************
+ * I N S T R U C T I O N S
+ * ***********************
+ * 
  * Your mission, should you choose to accept it:
  * 
- * For each of the test methods below create a method in the ArrayChallenge
+ * For each of the test methods below create a method in the M1Challenge
  * class that makes the test run and pass.
  * 
- * Read the test methods to understand what the ArrayChallenge class methods
+ * You run the test methods in this file by selecting the Run menu -> Run as -> JUnit test
+ * testAdd() should pass, but testMax() will fail.
+ * 
+ * Read the test methods below to understand what the M1Challenge class methods
  * should do. The assertEquals methods check to see if the two arguments are
  * equal. If they are equal the test passes; if not, the test will be marked as
  * failed and the execution stops.
- * 
- * To run the tests from the main menu, select Run -> Run.
  * 
  * To implement a test method:
  * 
@@ -52,35 +57,87 @@ import org.junit.jupiter.api.Test;
  * and hold down Ctrl while typing /
  * 
  * 2. To make the test compile and run: implement a method with the correct
- * signature, but returning a fake value, such as -1, null or similar. After
- * this the test method should run but fail.
+ * signature, but returning a fake value, such as -1, null or similar.
+ * See: multiply and max
+ * After this the test method should run (but fail).
  * 
  * 3. To make the tests pass: Then change the method to return the correct value
  * and run the test again.
  * 
  */
 
-class TestArrayChallenge
+class TestM1Challenge
 {
 
 	@Test
-	void testMax()
+	void testAdd()
 	{
-		int[] array1 = { 1 };
-		assertEquals(1, max(array1));
-
-		int[] array2 = { 1, 2, 2147483647 };
-		assertEquals(2147483647, max(array2));
-
-		int[] array3 = { -1, 2, -2147483648 };
-		assertEquals(2, max(array3));
-
-		int[] array4 = { -1, -2, -3 };
-		assertEquals(-1, max(array4));
+		// add(..., ...) adds two numbers
+		// This checks that add(2, 2) returns 4.
+		assertEquals(4, add(2, 2));
+		// This checks that add(2, -2) returns 0.
+		assertEquals(0, add(2, -2));
 	}
-
+	
+	@Test
+	void testMultiply()
+	{
+		// multiply(..., ...) multiplies two numbers
+		// This checks that add(2, 2) returns 4.
+		assertEquals(4, multiply(2, 2));
+		// This checks that add(2, -2) returns 0.
+		assertEquals(-4, multiply(2, -2));
+	}
+	
 // To remove //: select line(s) and type Ctrl-/ 
 	
+//	@Test
+//	void testFirst()
+//	{
+//		int[] array1 = { 1 };
+//		assertEquals(1, getFirst(array1));
+//		int[] array2 = { 0, 1, 2 };
+//		assertEquals(0, getFirst(array2));
+//	}
+//	
+//	@Test
+//	void testLast()
+//	{
+//		int[] array1 = { 1 };
+//		assertEquals(1, getLast(array1));
+//		int[] array2 = { 0, 1, 2 };
+//		assertEquals(2, getLast(array2));
+//	}
+//	
+//	@Test
+//	void testMiddle()
+//	{
+//		int[] array1 = { 1 };
+//		assertEquals(1, getMiddle(array1));
+//		int[] array2 = { 0, 4, 8 };
+//		assertEquals(4, getMiddle(array2));
+//	}
+//	
+//	@Test
+//	void testMax()
+//	{
+//		int[] array1 = { 1 };
+//		// This checks that max returns 1 (the only element)
+//		assertEquals(1, max(array1));
+//
+//		int[] array2 = { 1, 2, 2147483647 };
+//		// This checks that max returns 2147483647, the largest element
+//		assertEquals(2147483647, max(array2));
+//
+//		int[] array3 = { -1, 2, -2147483648 };
+//		// This checks that max returns 2, which is the largest element
+//		assertEquals(2, max(array3));
+//
+//		int[] array4 = { -1, -2, -3 };
+//		// This checks that max returns -1, which is the largest element
+//		assertEquals(-1, max(array4));
+//	}
+//
 //	@Test
 //	void testMin()
 //	{
@@ -135,16 +192,26 @@ class TestArrayChallenge
 //	@Test
 //	void testMedian()
 //	{
+//      // The median of a set of numbers is the "middle" number,
+//      // or the average of the two middle numbers.
+//      // See: https://en.wikipedia.org/wiki/Median
+//      // Assume: the input array is sorted
+//      // Hint: a number is even if: number % 2 == 0
+//      // Hint: one middle element has index: length / 2
+//
 //		int[] array1 = {17};
 //		assertEquals(17.0, median(array1));
 //		
-//		int[] array2 = {1, 2, 3};
+//		int[] array2 = {1, 2, 5};
 //		assertEquals(2.0, median(array2));
 //
 //		int[] array3 = {1, 3};
 //		assertEquals((1+3)/2.0, median(array3));
 //
-//		int[] array4 = {1, 2, 3, 4, 5};
-//		assertEquals(3.0, median(array4));
+//		int[] array4 = {1, 3, 3, 6, 7, 8, 9};
+//		assertEquals(6.0, median(array4));
+//	
+//	    int[] array5 = {1, 2, 3, 4, 5, 6, 8, 9};
+//	    assertEquals((4+5)/2.0, median(array4));
 //	}
 }

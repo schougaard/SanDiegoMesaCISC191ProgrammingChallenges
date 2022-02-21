@@ -264,92 +264,92 @@ class M2TestArrayChallenge
 //	}
 //
 //	@Test
-//	void testSumRow()
+//	void testAddRow()
 //	{
 //		int[][] matrix1 = {{1, 2, 3}, 
 //						   {4, 5, 6},
 //						   {7, 8, 9}};
 //      // Hint: have you implemented a method that can do the sum?
-//		assertEquals(1+2+3, sumRow(matrix1, 0));
-//		assertEquals(4+5+6, sumRow(matrix1, 1));
-//		assertEquals(7+8+9, sumRow(matrix1, 2));
+//		assertEquals(1+2+3, addRow(matrix1, 0));
+//		assertEquals(4+5+6, addRow(matrix1, 1));
+//		assertEquals(7+8+9, addRow(matrix1, 2));
 //		
 //		int[][] matrix2 = {{1, 2, 3, 4}, 
 //				           {5, 6, 7, 8},
 //				           {9, 10, 11, 12}};
-//		assertEquals(1+2+3+4, sumRow(matrix2, 0));
-//		assertEquals(5+6+7+8, sumRow(matrix2, 1));
-//		assertEquals(9+10+11+12, sumRow(matrix2, 2));
+//		assertEquals(1+2+3+4, addRow(matrix2, 0));
+//		assertEquals(5+6+7+8, addRow(matrix2, 1));
+//		assertEquals(9+10+11+12, addRow(matrix2, 2));
 //	}
 //
 //	@Test
-//	void testSumColumn()
+//	void testAddColumn()
 //	{
 //		// Assume that the input arrays are not ragged
 //		int[][] matrix1 = {{1, 2, 3}, 
 //				  		   {4, 5, 6},
 //				  		   {7, 8, 9}};
-//		assertEquals(1+4+7, sumColumn(matrix1, 0));
-//		assertEquals(2+5+8, sumColumn(matrix1, 1));
-//		assertEquals(3+6+9, sumColumn(matrix1, 2));	
+//		assertEquals(1+4+7, addColumn(matrix1, 0));
+//		assertEquals(2+5+8, addColumn(matrix1, 1));
+//		assertEquals(3+6+9, addColumn(matrix1, 2));	
 //		
 //		int[][] matrix2 = {{1, 2, 3}, 
 //				           {4, 5, 6},
 //				           {7, 8, 9},
 //				           {10, 11, 12}};
-//		assertEquals(1+4+7+10, sumColumn(matrix2, 0));
-//		assertEquals(2+5+8+11, sumColumn(matrix2, 1));
-//		assertEquals(3+6+9+12, sumColumn(matrix2, 2));	
+//		assertEquals(1+4+7+10, addColumn(matrix2, 0));
+//		assertEquals(2+5+8+11, addColumn(matrix2, 1));
+//		assertEquals(3+6+9+12, addColumn(matrix2, 2));	
 //	}
 //
 //	@Test
-//	void testSumLeftToRightDiagonal()
+//	void testAddLeftToRightDiagonal()
 //	{
 //		// Assume that the input arrays are square
 //
 //		int[][] array0 = {};
-//		assertEquals(0, sumLeftToRightDiagonal(array0));
+//		assertEquals(0, addLeftToRightDiagonal(array0));
 //		
 //		int[][] matrix1 = {{1, 2, 3}, 
 //						   {4, 5, 6},
 //						   {7, 8, 9}};
-//		assertEquals(1+5+9, sumLeftToRightDiagonal(matrix1));
+//		assertEquals(1+5+9, addLeftToRightDiagonal(matrix1));
 //		
 //		int[][] matrix2 = {{1,   2,  3,  4}, 
 //						   {5,   6,  7,  8},
 //						   {9,  10, 11, 12},
 //						   {13, 14, 15, 20}};
-//		assertEquals(1+6+11+20, sumLeftToRightDiagonal(matrix2));
+//		assertEquals(1+6+11+20, addLeftToRightDiagonal(matrix2));
 //	}
 //
 //	@Test
-//	void testSumRightToLeftDiagonal()
+//	void testAddRightToLeftDiagonal()
 //	{
 //	    // Assume that the input arrays are square
 //
 //		int[][] array0 = {};
-//		assertEquals(0, sumRightToLeftDiagonal(array0));
+//		assertEquals(0, addRightToLeftDiagonal(array0));
 //		
 //		int[][] matrix1 = {{1, 2, 3}, 
 //				   		   {4, 5, 6},
 //				   		   {7, 8, 9}};
-//		assertEquals(3+5+7, sumRightToLeftDiagonal(matrix1));
+//		assertEquals(3+5+7, addRightToLeftDiagonal(matrix1));
 //		
 //		int[][] matrix2 = {{1,   2,  3,  4}, 
 //						   {5,   6,  7,  8},
 //						   {9,  10, 11, 12},
 //						   {13, 14, 15, 20}};
-//		assertEquals(4+7+10+13, sumRightToLeftDiagonal(matrix2));		
+//		assertEquals(4+7+10+13, addRightToLeftDiagonal(matrix2));		
 //	}
 //
 //	@Test
-//	void testSumLastRowElements()
+//	void testAddLastRow()
 //	{
 //		int[][] matrix2 = {{1,   2,  3,  4}, 
 //				           {5,   6,  7},
 //				           {9,  10},
 //				           {13, 14, 15, 16}};
-//		assertEquals(4+7+10+16, sumLastRowElements(matrix2));		
+//		assertEquals(4+7+10+16, addLastRow(matrix2));		
 //		
 //	}
 

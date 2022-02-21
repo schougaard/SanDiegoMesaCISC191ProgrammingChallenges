@@ -26,18 +26,26 @@ import java.awt.Color;
  */
 public class Boat
 {
+	// TODO: Implement and comment all HAS-A relationships
+	// For instance: A boat has a make
+	
 	public String getMake()
 	{
+		// TODO
 		return null;
 	}
 
 	public Color getColor()
 	{
+		// TODO
 		return null;
 	}
 
 	public int getSpeed()
 	{
+		// TODO
 		return -99999;
 	}
+	
+	// TODO: remove all TODOs
 }

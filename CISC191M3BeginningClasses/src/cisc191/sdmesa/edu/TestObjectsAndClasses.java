@@ -90,7 +90,7 @@ class TestObjectsAndClasses
 //	}
 //
 //	@Test
-//	void testAccumulatorMethods()
+//	void testSpeedMethods()
 //	{
 //		Boat boat = new Boat("BHM", Color.BLUE);
 //		assertEquals(0, boat.getSpeed());
@@ -125,8 +125,11 @@ class TestObjectsAndClasses
 //		assertEquals(true, boat1.equals(boat2));
 //		assertEquals(false, boat1.equals(boat3));
 //		assertEquals(false, boat1.equals(boat4));
-//		assertEquals(false, boat1.equals(null));
 //		assertEquals(false, boat1.equals(new Boat()));
+//	    assertEquals(false, boat1.equals(null));
+//      // Hint: the signature for equals is: boolean equals(Object other)
+//      /// This is the one method where you can use type casts and/or instanceof
+//	    assertEquals(false, boat1.equals("Not a Boat");	
 //	}
 //
 //	@Test
@@ -135,21 +138,24 @@ class TestObjectsAndClasses
 //		// The boat class creates unique serial numbers for the boats
 //		assertTrue(Boat.createNewSerialNumber() > 0);
 //      // Serial numbers are monotonically increasing
+//	    assertTrue(Boat.createNewSerialNumber() < Boat.createNewSerialNumber());
 //		assertEquals(Boat.createNewSerialNumber() + 1,  Boat.createNewSerialNumber());
 //	}
 //
 //	@Test
 //	void testSerialNumber()
 //	{
-//		// Every boat gets a unique serial number when they are produced
+//		// Every boat gets a unique immutable serial number when they are produced
 //		Boat boat1 = new Boat("BMC", Color.GREEN);
-//		assertTrue(boat1.getSerialNumber() > 0);
+//      boat1SerialNumber = boat1.getSerialNumber();
+//      assertEquals(boat1SerialNumber, boat1.getSerialNumber());
+//      assertEquals(boat1SerialNumber, boat1.getSerialNumber());
 //		Boat boat2 = new Boat("BMX", Color.RED);
-//		assertEquals(boat1.getSerialNumber() + 1, boat2.getSerialNumber());
+//		assertTrue(boat1.getSerialNumber() < boat2.getSerialNumber());
 //	}
 //
 //	@Test
-//	void testboatStock()
+//	void testBoatInventory()
 //	{
 //		Boat boat1 = new Boat("BMC", Color.GREEN);
 //		Boat boat2 = new Boat("BMX", Color.RED);
@@ -171,7 +177,8 @@ class TestObjectsAndClasses
 //		Boat[] inventory = stock.getInventory();
 //		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory);
 //		stock.parkBoatAt(boat2, 1);
-//		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory); // this is correct!
+//      // The inventory is a carbon copy that is handed out to interested parties.
+//		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory); // This is correct!
 //		assertArrayEquals(new Boat[]{null, boat2, null, boat3, null}, stock.getInventory());
 //	}
 //

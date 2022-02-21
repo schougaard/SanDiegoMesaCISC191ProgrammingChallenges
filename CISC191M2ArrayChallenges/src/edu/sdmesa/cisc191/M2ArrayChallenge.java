@@ -32,6 +32,7 @@ public class M2ArrayChallenge
 	 */
 	public static boolean contains(int[] array, int value)
 	{
+		// TODO: return the correct value
 		return false;
 	}
 	

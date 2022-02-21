@@ -179,7 +179,7 @@ class M2TestArrayChallenge
 //
 //	/**
 //	 * The bubbleSort method sorts an array.
-//	 * Hint: while the elements are not in order, repeatedly use bubbleUp
+//	 * Hint: while the elements are not inOrder, repeatedly use bubbleUp
 //	 */
 //	@Test
 //	void testBubbleSort()
@@ -187,6 +187,7 @@ class M2TestArrayChallenge
 //		int[] array0 = {5, 1, 4, 2, 8};
 //		int[] array2 = {1, 2, 4, 5, 8};
 //		assertArrayEquals(array2, bubbleSort(array0));
+//
 //	    int[] array10 = {4, 3, 2, 1};
 //	    int[] array11 = {1, 2, 3, 4};
 //	    assertArrayEquals(array11, bubbleSort(array10));
@@ -221,9 +222,9 @@ class M2TestArrayChallenge
 //		char[] array1 = {'X'};
 //		assertArrayEquals(array1, backwards(array1));
 //
-//		char[] array2 = {'A', 'B', 'C'};
-//		assertArrayEquals(new char[]{'C', 'B', 'A'}, backwards(array2));
-//		assertArrayEquals(new char[]{'A', 'B', 'C'}, array2);
+//		char[] array2 = {'A', 'B', 'C', 'D'};
+//		assertArrayEquals(new char[]{'D', C', 'B', 'A'}, backwards(array2));
+//		assertArrayEquals(new char[]{'A', 'B', 'C', 'D'}, array2);
 //	}
 //
 //	/**

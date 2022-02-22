@@ -1,7 +1,8 @@
 package edu.sdmesa.cisc191;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,71 @@ import org.junit.jupiter.api.Test;
  */
 class TestThreading
 {
+	/**
+	 * Testing that an engine uses 1 unit of fuel each second after it is started (in almost real-time).
+	 * An engine is a thread that run until it is out of fuel.
+	 * 
+	 * @throws InterruptedException if the Engine is interrupted
+	 */
+	@Test
+	void testEngine() throws InterruptedException
+	{
+		Engine engine1 = new Engine();
+		engine1.setFuelLevel(5);
+		// 3, 2, 1 - start!
+		engine1.start();
+		Thread.sleep(1010);
+		// See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Thread.html#isAlive()
+		assertTrue(engine1.isAlive());
+		assertEquals(4, engine1.getFuelLevel());
+		Thread.sleep(1010);
+		// Engine is running
+		assertTrue(engine1.isAlive());
+		assertEquals(3, engine1.getFuelLevel());
+		Thread.sleep(1010);
+		assertTrue(engine1.isAlive());
+		assertEquals(2, engine1.getFuelLevel());
+		Thread.sleep(1010);
+		assertTrue(engine1.isAlive());
+		assertEquals(1, engine1.getFuelLevel());		
+		Thread.sleep(1010);
+		// Engine has stopped
+		assertFalse(engine1.isAlive());
+		assertEquals(0, engine1.getFuelLevel());
+		
+		// No fuel - no go
+		Engine engine2 = new Engine();
+		engine2.setFuelLevel(0);
+		assertEquals(0, engine2.getFuelLevel());
+		engine2.start();
+		Thread.sleep(10);
+		assertFalse(engine2.isAlive());
+		assertEquals(0, engine2.getFuelLevel());
+		
+		// Running two engines at the same time
+		Engine engine10 = new Engine();
+		engine10.setFuelLevel(5);
+		engine10.start();
+		Engine engine11 = new Engine();
+		engine11.setFuelLevel(3);
+		engine11.start();
+		
+		Thread.sleep(2100);
+		assertTrue(engine10.isAlive());
+		assertEquals(3, engine10.getFuelLevel());
+		assertTrue(engine11.isAlive());
+		assertEquals(1, engine11.getFuelLevel());
+		
+		Thread.sleep(1010);
+		assertTrue(engine10.isAlive());
+		assertEquals(2, engine10.getFuelLevel());
+		assertFalse(engine11.isAlive());
+		assertEquals(0, engine11.getFuelLevel());
+		
+		Thread.sleep(2010);
+		assertFalse(engine10.isAlive());
+		assertEquals(0, engine10.getFuelLevel());
+	}
 
 	/**
 	 * Testing that a warehouse can receive and ship items, and that items are
@@ -26,29 +92,29 @@ class TestThreading
 	 * 
 	 * @throws OutOfStockException if the warehouse is out of stock
 	 */
-	@Test
-	void testWarehouse() throws OutOfStockException
-	{
-		Warehouse warehouse = new Warehouse();
-		Item item1 = new Item();
-		assertEquals(0, warehouse.getNumberOfItemsInStock());
-		warehouse.receive(item1);
-		assertEquals(1, warehouse.getNumberOfItemsInStock());
-		assertEquals(item1, warehouse.ship());
-		assertEquals(0, warehouse.getNumberOfItemsInStock());
-		Item item2 = new Item();
-		Item item3 = new Item();
-		warehouse.receive(item2);
-		warehouse.receive(item3);
-		assertEquals(2, warehouse.getNumberOfItemsInStock());
-		assertEquals(item3, warehouse.ship());
-		assertEquals(item2, warehouse.ship());
-		assertEquals(0, warehouse.getNumberOfItemsInStock());
-		// Throws OutOfStockException when out of stock and asked to ship an item
-		assertThrows(OutOfStockException.class, () -> {
-	        warehouse.ship();
-	    });
-	}
+//	@Test
+//	void testWarehouse() throws OutOfStockException
+//	{
+//		Warehouse warehouse = new Warehouse();
+//		Item item1 = new Item();
+//		assertEquals(0, warehouse.getNumberOfItemsInStock());
+//		warehouse.receive(item1);
+//		assertEquals(1, warehouse.getNumberOfItemsInStock());
+//		assertEquals(item1, warehouse.ship());
+//		assertEquals(0, warehouse.getNumberOfItemsInStock());
+//		Item item2 = new Item();
+//		Item item3 = new Item();
+//		warehouse.receive(item2);
+//		warehouse.receive(item3);
+//		assertEquals(2, warehouse.getNumberOfItemsInStock());
+//		assertEquals(item3, warehouse.ship());
+//		assertEquals(item2, warehouse.ship());
+//		assertEquals(0, warehouse.getNumberOfItemsInStock());
+//		// Throws OutOfStockException when out of stock and asked to ship an item
+//		assertThrows(OutOfStockException.class, () -> {
+//	        warehouse.ship();
+//	    });
+//	}
 
 	/**
 	 * In this test we are simulating many producers creating items sequentially

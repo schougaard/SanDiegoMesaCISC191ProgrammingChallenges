@@ -18,10 +18,10 @@ package edu.sdmesa.cisc191;
  * Class responsibilities:
  * An engine is an independent thread
  * An engine has a fuel level
- * An engine tracks its use of fuel using one unit per second
+ * An engine tracks its use of fuel when it runs, using one unit per second
  * An engine stops when it runs out of fuel
  */
-public class Engine extends Thread
+public class Engine
 {
 	
 	@Override

@@ -92,7 +92,7 @@ class TestM1Challenge
 // To remove //: select line(s) and type Ctrl-/ 
 	
 //	@Test
-//	void testFirst()
+//	void testGetFirst()
 //	{
 //		int[] array1 = { 1 };
 //		assertEquals(1, getFirst(array1));
@@ -101,7 +101,7 @@ class TestM1Challenge
 //	}
 //	
 //	@Test
-//	void testLast()
+//	void testGetLast()
 //	{
 //		int[] array1 = { 1 };
 //		assertEquals(1, getLast(array1));
@@ -110,7 +110,7 @@ class TestM1Challenge
 //	}
 //	
 //	@Test
-//	void testMiddle()
+//	void testGetMiddle()
 //	{
 //		int[] array1 = { 1 };
 //		assertEquals(1, getMiddle(array1));

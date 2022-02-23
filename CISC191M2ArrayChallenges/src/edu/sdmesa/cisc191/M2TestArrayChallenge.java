@@ -152,9 +152,27 @@ class M2TestArrayChallenge
 //	}
 //
 //	/**
+//	 * The swap method exchanges two elements in a given array based on index
+//	 */
+//	@Test
+//	void testSwap()
+//	{
+//		int[] array0 = {2, 3};
+//	    int[] array1 = {3, 2};
+//		assertArrayEquals(array1, swap(array0, 0));
+//
+//		int[] array10 = {6, 5, 4};
+//      int[] array11 = {5, 6, 4};
+//	    assertArrayEquals(array11, swap(array10, 0));
+//      int[] array12 = {5, 4, 6};
+//      assertArrayEquals(array12, swap(array10, 1));
+//	}
+//
+//	/**
 //	 * The bubbleUp method would do one pass of an array in the Bubble sort algorithm
 //	 * See: Section Step-by-step example in https://en.wikipedia.org/wiki/Bubble_sort
 //	 * The bubbleUp method does one pass of an array
+//   * Hint: swap
 //	 */
 //	@Test
 //	void testBubbleUp()

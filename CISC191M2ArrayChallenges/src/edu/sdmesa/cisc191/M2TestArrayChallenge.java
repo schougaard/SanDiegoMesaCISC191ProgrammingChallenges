@@ -107,7 +107,7 @@ class M2TestArrayChallenge
 //	void testCountValues()
 //	{
 //		char[] array0 = {};
-//		assertEquals(0, countValues(array0, 1));
+//		assertEquals(0, countValues(array0, 'Q'));
 //
 //		char[] array1 = {'X'};
 //		assertEquals(1, countValues(array1, 'X'));

@@ -40,7 +40,8 @@ import java.awt.Color;
  * equal. If they are equal the test passes; if not, the test will be marked as
  * failed and the execution stops.
  * 
- * To run the tests from the main menu, select Run -> Run.
+ * To run the tests in this file from the main menu, select Run -> Run As -> JUnit
+ * with the file selected.
  * 
  * To implement a test method:
  * 
@@ -143,7 +144,7 @@ class TestObjectsAndClasses
 //	}
 //
 //	@Test
-//	void testSerialNumber()
+//	void testBoatHasASerialNumber()
 //	{
 //		// Every boat gets a unique immutable serial number when they are produced
 //		Boat boat1 = new Boat("BMC", Color.GREEN);
@@ -155,8 +156,10 @@ class TestObjectsAndClasses
 //	}
 //
 //	@Test
-//	void testBoatInventory()
+//	void testHarbor()
 //	{
+//      // A harbor has many boats
+//
 //		Boat boat1 = new Boat("BMC", Color.GREEN);
 //		Boat boat2 = new Boat("BMX", Color.RED);
 //		Boat boat3 = new Boat("UXB", Color.YELLOW);
@@ -177,7 +180,7 @@ class TestObjectsAndClasses
 //		Boat[] inventory = stock.getInventory();
 //		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory);
 //		stock.parkBoatAt(boat2, 1);
-//      // The inventory is a carbon copy that is handed out to interested parties.
+//      // The inventory is a carbon copy list of boats that is handed out to interested parties.
 //		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory); // This is correct!
 //		assertArrayEquals(new Boat[]{null, boat2, null, boat3, null}, stock.getInventory());
 //	}
@@ -196,6 +199,19 @@ class TestObjectsAndClasses
 //				
 //		CreditCardCharge charge = new CreditCardCharge(2020, 8, 14, boat, "BoatCo", card);
 //		assertEquals("2020/8/14 4444111122223333 12/24 123 Alex Keaton BoatCo SpeedyBoat $19995", charge.toString());
+//	}
+//
+//	@Test
+//	void testBoatHasAnOwner()
+//	{
+//		Person person = new Person("Alexandra Keaton", "858-555-1313", "92123");
+//		Boat boat = new Boat("SailyBoat", Color.MAGENTA);
+//		boat.setPrice(188888);
+//      boat.setOwner(person);
+//      assertEquals("Alexandra Keaton", boat.getOwner().getName());
+//      // Owner changes name
+//      person.setName("Alexandra Smith");
+//      assertEquals("Alexandra Smith", boat.getOwner().getName());
 //	}	
 
 }

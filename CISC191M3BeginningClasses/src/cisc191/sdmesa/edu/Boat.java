@@ -22,30 +22,44 @@ import java.awt.Color;
  * Responsibilities of class:
  * 
  */
+
+//TODO: implement and remove all TODOs
+
 /**
  */
 public class Boat
 {
-	// TODO: Implement and comment all HAS-A relationships
+	// TODO: Implement and comment all HAS-A relationships separately
 	// For instance: A boat has a make
 	
+	/**
+	 * Purpose: // TODO
+	 * @return // TODO
+	 */
 	public String getMake()
 	{
 		// TODO
 		return null;
 	}
 
+	/**
+	 * Purpose: // TODO
+	 * @return // TODO
+	 */
 	public Color getColor()
 	{
 		// TODO
 		return null;
 	}
 
+	/**
+	 * Purpose: // TODO
+	 * @return // TODO
+	 */
 	public int getSpeed()
 	{
 		// TODO
 		return -99999;
 	}
 	
-	// TODO: remove all TODOs
 }

@@ -22,7 +22,7 @@ class TestObjectOrientedDesign
 //   void testOption()
 //   {
 //      Option moonroof = new Option("Moonroof");
-//       assertEquals("Moonroof", moonroof.getDetails());
+//      assertEquals("Moonroof", moonroof.getDetails());
 //      Option leather = new Option("Leather");
 //      assertEquals("Leather", leather.getDetails());
 //      Option[] options = { moonroof, leather };

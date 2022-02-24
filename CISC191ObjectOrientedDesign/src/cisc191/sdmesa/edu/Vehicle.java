@@ -20,14 +20,15 @@ package cisc191.sdmesa.edu;
  * Responsibilities of class:
  * 
  */
-/**
- */
+
+// TODO: Implement and comment all IS-A and IS relationships separately
+
 public class Vehicle
 {
-	// TODO fill in the instance variables/fields
+	// TODO: Implement and comment all HAS-A relationships separately
 
-	// TODO fill in a constructor
+	// TODO Implement a constructor
 
-	// TODO fill in the methods from the UML
+	// TODO Implement all the methods from the UML
 
 }

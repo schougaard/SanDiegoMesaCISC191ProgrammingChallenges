@@ -20,9 +20,10 @@ package cisc191.sdmesa.edu;
  * Responsibilities of class:
  * ElectricMountainBike is a Bicyle that is Movable, Gearable, and Electric
  */
-/**
- */
+
+// TODO: Implement and comment all IS-A (inheritance) and IS (implements) relationships separately
+
 public class ElectricMountainBike
 {
-
+	// TODO: Implement and comment HAS-A relationships separately
 }

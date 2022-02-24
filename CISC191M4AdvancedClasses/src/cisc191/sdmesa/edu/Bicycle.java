@@ -20,9 +20,11 @@ package cisc191.sdmesa.edu;
  * Responsibilities of class:
  * A a Bicycle is a Cycle with two wheels
  */
-/**
- */
+
+// TODO: Implement and comment all IS-A (inheritance) and IS (implements) relationships separately
+
 public class Bicycle
 {
+	// TODO: Implement and comment HAS-A relationships separately
 
 }

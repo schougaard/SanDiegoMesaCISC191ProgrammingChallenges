@@ -20,9 +20,11 @@ package cisc191.sdmesa.edu;
  * Responsibilities of class:
  * A Unicycle is a Cycle with only one wheel
  */
-/**
- */
+
+ // TODO: Implement and comment all IS-A (inheritance) relationships
+ 
 public class Unicycle
 {
-
+	// TODO: Implement and comment HAS-A relationships separately
+	
 }

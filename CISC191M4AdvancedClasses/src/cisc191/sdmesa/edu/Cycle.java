@@ -25,8 +25,13 @@ import java.awt.Color;
 /**
  * Only change sections that are marked with TODO
  */
+
+//TODO: Implement and comment all IS-A (inheritance) relationships
+
 public abstract class Cycle
 {
+	// TODO: Implement and comment HAS-A relationships separately
+	
 	public Cycle(String newMake)
 	{
 		// TODO

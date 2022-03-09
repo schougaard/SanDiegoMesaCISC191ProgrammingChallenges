@@ -24,8 +24,13 @@ package cisc191.sdmesa.edu;
  */
 public class BankAccount
 {
+	// A bank account has a current balance starting at $0.00
 	private double balance = 0;
 
+	/**
+	 * 
+	 * @return the current balance
+	 */
 	public double getBalance()
 	{
 		return balance;
@@ -34,46 +39,38 @@ public class BankAccount
 	/**
 	 * Deposit amount into account
 	 * 
-	 * @param amount
+	 * @param amount to deposit
 	 * @throws InvalidAmountException is thrown if amount is not positive
 	 */
 	public void deposit(double amount)
 	{
+		// TODO
 	}
 
 	/**
 	 * Withdraw amount from account
 	 * 
-	 * @param amount
+	 * @param amount to withdraw
 	 * @throws InvalidAmountException     is thrown if amount is not positive
 	 * @throws InsufficientFundsException is thrown if there is not enough funds in
 	 *                                    the account to make the withdrawal
 	 */
 	public void withdraw(double amount)
 	{
+		// TODO
 	}
 
 	/**
-	 * Deposit and withdraw money
+	 * Withdraw amount requested or the biggest amount possible
 	 * 
-	 * @return the remaining balance
+	 * @return the amount withdrawn
 	 */
-	public static double getOrAsMuchAsPossible(double requestAmount)
+	public double getOrAsMuchAsPossible(double requestAmount)
 	{
-		double amount = 0;
-		BankAccount account = new BankAccount();
-		account.deposit(400);
-
-		// TODO: Try to get requestAmount (method will be called with $500)
-		amount = requestAmount;
-		account.withdraw(requestAmount);
-
-		// TODO: If there are insufficient funds, get as much as you can
-		amount = account.getBalance();
-		account.withdraw(amount);
-
-		// TODO: Return what was withdrawn, no matter what amount was withdrawn
-		return amount;
+		// TODO:
+		// Try to withdraw the requested amount
+		// If it fails, get as much as possible
+		return -1;
 	}
 
 }

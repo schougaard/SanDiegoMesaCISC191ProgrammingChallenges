@@ -115,13 +115,14 @@ class TestExceptions
 //	@Test
 //	void testMain()
 //	{
+//      // main should not allow the program to crash
 //		assertDoesNotThrow(() -> {
 //			CheckoutBill.main(null);
 //		});
 //	}
 
 //	@Test
-//	void testBankAccountDepositWithdraw()
+//	void testBankAccountDepositWithdraw() throws Exception
 //	{
 //		BankAccount account = new BankAccount();
 //		account.deposit(200);
@@ -135,7 +136,7 @@ class TestExceptions
 //	}
 
 //	@Test
-//	void testBankAccountWithdrawException1()
+//	void testBankAccountWithdrawException() throws Exception
 //	{
 //		BankAccount account = new BankAccount();
 //		account.deposit(1000);
@@ -146,7 +147,7 @@ class TestExceptions
 //	}
 
 //	@Test
-//	void testBankAccountDepositException()
+//	void testBankAccountDepositException() throws Exception
 //	{
 //		BankAccount account = new BankAccount();
 //		account.deposit(2000);
@@ -162,15 +163,17 @@ class TestExceptions
 //	}
 
 //	@Test
-//	void testGetOrAsMuchAsPossible()
+//	void testGetOrAsMuchAsPossible() throws Exception
 //	{
+//		BankAccount account = new BankAccount();
+//		account.deposit(400);
 //		assertDoesNotThrow(() -> {
-//			double amount = BankAccount.getOrAsMuchAsPossible(500);
+//			double amount = account.getOrAsMuchAsPossible(500);
 //			assertEquals(400, amount);
 //		});
 //
 //		assertThrows(InvalidAmountException.class, () -> {
-//			BankAccount.getOrAsMuchAsPossible(-500);
+//			account.getOrAsMuchAsPossible(-500);
 //		});
 //
 //	}

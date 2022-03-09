@@ -24,49 +24,50 @@ package cisc191.sdmesa.edu;
  */
 public class CheckoutBill
 {
-	private double billAmount = 0;
-	private double tipPercent = -1;
+	// A bill has an amount
+	private double amount;
+	// A bill has a tip percent
+	private double tipPercent;
 
 	/**
 	 * Set the amount from which to calculate the total bill
 	 * 
-	 * @param amount
+	 * @param billAmount amount on the bill
 	 * @throws IllegalArgumentException is thrown if amount is not positive
 	 */
-	public void setBillAmount(double amount) throws IllegalArgumentException
+	public void setBillAmount(double billAmount) throws IllegalArgumentException
 	{
-		billAmount = amount;
+		// TODO
 	}
 
 	/**
 	 * Set the tip percent from which to calculate the total bill
 	 * 
-	 * @param amount
+	 * @param percent tip given
 	 * @throws IllegalArgumentException is thrown if amount is negative
 	 */
 	public void setTipPercent(double percent) throws IllegalArgumentException
 	{
-		tipPercent = percent;
+		// TODO
 	}
 
 	/**
 	 * Calculate the total bill from the bill amount and tip percentage
-	 * 
-	 * @param amount
-	 * @throws IllegalArgumentException is thrown if bill amount is not positive or
-	 *                                  tip percent is negative
 	 */
-	public double calculateTotalBill() throws IllegalArgumentException
+	public double calculateTotalBill()
 	{
-		return billAmount * (1 + tipPercent / 100);
+		return amount * (1 + tipPercent / 100);
 	}
 
 	public static void main(String[] args)
 	{
 		// TODO: prevent the program from crashing
+		
 		CheckoutBill bill = new CheckoutBill();
-		bill.setTipPercent(18);
+		bill.setTipPercent(-1); 
 		bill.calculateTotalBill();
+		
+		// TODO: Print out any error messages to user
 	}
 
 }

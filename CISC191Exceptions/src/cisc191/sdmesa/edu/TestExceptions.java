@@ -101,13 +101,13 @@ class TestExceptions
 //
 //		CheckoutBill bill2 = new CheckoutBill();
 //		bill2.setBillAmount(200);
-//		assertThrows(IllegalArgumentException.class, () -> {
+//		assertThrows(IllegalStateException.class, () -> {
 //			bill2.calculateTotalBill();
 //		});
 //
 //		CheckoutBill bill3 = new CheckoutBill();
 //		bill3.setTipPercent(20);
-//		assertThrows(IllegalArgumentException.class, () -> {
+//		assertThrows(IllegalStateException.class, () -> {
 //			bill3.calculateTotalBill();
 //		});
 //	}

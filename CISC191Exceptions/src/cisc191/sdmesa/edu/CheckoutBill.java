@@ -25,9 +25,9 @@ package cisc191.sdmesa.edu;
 public class CheckoutBill
 {
 	// A bill has an amount
-	private double amount;
+	private double amount = 0;
 	// A bill has a tip percent
-	private double tipPercent;
+	private double tipPercent = -1;
 
 	/**
 	 * Set the amount from which to calculate the total bill
@@ -44,7 +44,7 @@ public class CheckoutBill
 	 * Set the tip percent from which to calculate the total bill
 	 * 
 	 * @param percent tip given
-	 * @throws IllegalArgumentException is thrown if amount is negative
+	 * @throws IllegalArgumentException is thrown if percent is negative
 	 */
 	public void setTipPercent(double percent) throws IllegalArgumentException
 	{
@@ -53,9 +53,13 @@ public class CheckoutBill
 
 	/**
 	 * Calculate the total bill from the bill amount and tip percentage
+	 * @return total bill amount
+	 * @throws IllegalStateException if bill amount is not positive or tip percent is negative
 	 */
-	public double calculateTotalBill()
+	public double calculateTotalBill() throws IllegalStateException
 	{
+		// TODO
+		
 		return amount * (1 + tipPercent / 100);
 	}
 

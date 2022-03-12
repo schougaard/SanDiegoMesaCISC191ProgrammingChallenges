@@ -63,13 +63,17 @@ public class BankAccount
 	/**
 	 * Withdraw amount requested or the biggest amount possible
 	 * 
-	 * @return the amount withdrawn
+	 * @return the amount actually withdrawn
 	 */
 	public double getOrAsMuchAsPossible(double requestAmount)
 	{
 		// TODO:
 		// Try to withdraw the requested amount
+		
+		withdraw(requestAmount);
+		
 		// If it fails, get as much as possible
+		
 		return -1;
 	}
 

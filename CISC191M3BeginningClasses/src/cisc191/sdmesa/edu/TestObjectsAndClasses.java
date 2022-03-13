@@ -122,14 +122,15 @@ class TestObjectsAndClasses
 //		Boat boat2 = new Boat("BMC", Color.GREEN);
 //		Boat boat3 = new Boat("BMX", Color.GREEN);
 //		Boat boat4 = new Boat("BMC", Color.RED);
+//      // Same make and color
 //		assertEquals(true, boat1.equals(boat1));
 //		assertEquals(true, boat1.equals(boat2));
+//      // Different make or color
 //		assertEquals(false, boat1.equals(boat3));
 //		assertEquals(false, boat1.equals(boat4));
 //		assertEquals(false, boat1.equals(new Boat()));
+//	    assertEquals(false, new Boat().equals(boat1));
 //	    assertEquals(false, boat1.equals(null));
-//      // Hint: the signature for equals is: boolean equals(Object other)
-//      /// This is the one method where you can use type casts and/or instanceof
 //	    assertEquals(false, boat1.equals("Not a Boat");	
 //	}
 //

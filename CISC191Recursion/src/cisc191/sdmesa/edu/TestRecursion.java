@@ -5,22 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
- * Lead Author(s):
- * 
  * @author Tasha Frankie
  * @author Allan Schougaard
  * 
- *         Other contributors: None
- * 
- *         References: Morelli, R., & Walde, R. (2016). Java, Java, Java:
- *         Object-Oriented Problem Solving.
- *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
- * 
- *         Bechtold, S., Brannen, S., Link, J., Merdes, M., Philipp, M.,
- *         Rancourt, J. D., & Stein, C. (n.d.). JUnit 5 user guide. JUnit 5.
- *         https://junit.org/junit5/docs/current/user-guide/
- * 
- *         Version/date: 1.0
+ * @version 1.1
+ * @see Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented
+ *      Problem Solving.
+ *      https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * @see Bechtold, S., Brannen, S., Link, J., Merdes, M., Philipp, M., Rancourt,
+ *      J. D., & Stein, C. (n.d.). JUnit 5 user guide. JUnit 5.
+ *      https://junit.org/junit5/docs/current/user-guide/
  */
 
 class TestRecursion

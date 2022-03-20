@@ -186,12 +186,12 @@ class TestExceptions
 //		assertEquals(400, amount1);
 //
 //		BankAccount account2 = new BankAccount();
-//		account1.deposit(100);
-//		double amount1 = account1.getOrAsMuchAsPossible(200);
-//		assertEquals(100, amount1);
+//		account2.deposit(100);
+//		double amount2 = account2.getOrAsMuchAsPossible(200);
+//		assertEquals(100, amount2);
 //
 //		assertThrows(InvalidAmountException.class, () -> {
-//			account1.getOrAsMuchAsPossible(-500);
+//			account2.getOrAsMuchAsPossible(-500);
 //		});
 //
 //	}

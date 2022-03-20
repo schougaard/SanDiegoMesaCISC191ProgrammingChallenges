@@ -136,29 +136,44 @@ class TestExceptions
 //	}
 
 //	@Test
-//	void testBankAccountWithdrawException() throws Exception
+//	void testBankAccountDepositException() throws Exception
 //	{
+//		InvalidAmountException invalidAmountException = new InvalidAmountException(123.45);
+//		// Test that invalidAmountException is-an Exception
+//		assertTrue(invalidAmountException instanceof Exception);
+//		
 //		BankAccount account = new BankAccount();
-//		account.deposit(1000);
+//		account.deposit(100);
 //		Exception exception = assertThrows(InvalidAmountException.class, () -> {
-//			account.deposit(-1);
+//			account.deposit(-0.01);
 //		});
-//		assertEquals("Negative amount: -1.0 is not allowed", exception.getMessage());
+//		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
 //	}
 
 //	@Test
-//	void testBankAccountDepositException() throws Exception
+//	void testBankAccountWithdrawException1() throws Exception
 //	{
 //		BankAccount account = new BankAccount();
-//		account.deposit(2000);
+//		account.deposit(200);
 //		Exception exception = assertThrows(InvalidAmountException.class, () -> {
-//			account.withdraw(-1);
+//			account.withdraw(-0.01);
 //		});
-//		assertEquals("Negative amount: -1.0 is not allowed", exception.getMessage());
+//		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
+//	}
+
+//	@Test
+//	void testBankAccountWithdrawException2() throws Exception
+//	{
+//		InsufficientFundsException insufficientFundsException = new InsufficientFundsException(123.45);
+//		// Test that insufficientFundsException is-an Exception
+//		assertTrue(insufficientFundsException instanceof Exception);
+//	
+//		BankAccount account = new BankAccount();
+//		account.deposit(200);
 //		Exception exception2 = assertThrows(InsufficientFundsException.class, () -> {
-//			account.withdraw(2001);
+//			account.withdraw(200.01);
 //		});
-//		assertEquals("Withdrawing amount: 2001.0 that is larger than balance: 2000.0 is not allowed",
+//		assertEquals("Withdrawing amount: $200.01 that is larger than balance: $200 is not allowed",
 //				exception2.getMessage());
 //	}
 

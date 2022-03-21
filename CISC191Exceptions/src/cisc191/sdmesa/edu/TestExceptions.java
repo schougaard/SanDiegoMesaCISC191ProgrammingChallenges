@@ -178,12 +178,13 @@ class TestExceptions
 //	}
 
 //	@Test
-//	void testGetOrAsMuchAsPossible() throws Exception
+//	void testGetAsMuchAsPossible() throws Exception
 //	{
 //		BankAccount account1 = new BankAccount();
 //		account1.deposit(400);
 //		double amount1 = account1.getOrAsMuchAsPossible(400);
 //		assertEquals(400, amount1);
+//	    assertEquals(0, amount1.getBalance());
 //
 //		BankAccount account2 = new BankAccount();
 //		account2.deposit(100);

@@ -19,25 +19,57 @@ import org.junit.jupiter.api.Test;
 
 class TestRecursion
 {
-
 	@Test
-	void testCalculateBalance()
+	void testAddLess()
 	{
-		// We are using the format:
-		// calculateBalance(startBalance, interestRate, numberOfPeriods)
-		assertEquals(0.01, Recursion.calculateEndBalance(0.01, 0.05, 0));
-		assertEquals(52.50, Recursion.calculateEndBalance(50.00, 0.05, 1));
-
-		// The last argument in the assertEquals below means verify to within 1 cent
-		// ($0.01) accuracy.
-
-		// What will the stock market do with $100 over 20 and 30 years:
-		assertEquals(386.96, Recursion.calculateEndBalance(100.00, 0.07, 20), 0.01);
-		assertEquals(761.22, Recursion.calculateEndBalance(100.00, 0.07, 30), 0.01);
-
-		// What will a savings account do with $100 over 30 years:
-		assertEquals(100.90, Recursion.calculateEndBalance(100.00, 0.0003, 30), 0.01);
+		assertEquals(0, Recursion.addLess(0));
+		assertEquals(1+0, Recursion.addLess(1));
+		assertEquals(2+1, Recursion.addLess(2));
+		assertEquals(3+2, Recursion.addLess(3));
+		assertEquals(100+Recursion.addLess(99), Recursion.addLess(100));
 	}
+	
+//	@Test
+//	void testMultiplyLess()
+//	{
+//		assertEquals(1, Recursion.multiplyLess(1));
+//		assertEquals(2*1, Recursion.multiplyLess(2));
+//		assertEquals(3*2, Recursion.multiplyLess(3));
+//		assertEquals(100*Recursion.multiplyLess(99), Recursion.multiplyLess(100));
+//	}
+	
+//	@Test
+//	void testLucasNumbers()
+//	{
+//		// See:
+//		// Lucas numbers. (n.d.). Brilliant | Learn interactively. 
+//		// https://brilliant.org/wiki/lucas-numbers/
+//		
+//		assertEquals(2, Recursion.lucas(0));
+//		assertEquals(1, Recursion.lucas(1));
+//		assertEquals(3, Recursion.lucas(2));
+//		assertEquals(4, Recursion.lucas(3));
+//		assertEquals(76, Recursion.addLess(9));
+//	}
+
+//	@Test
+//	void testCalculateBalance()
+//	{
+//		// We are using the format:
+//		// calculateBalance(startBalance, interestRate, numberOfPeriods)
+//		assertEquals(0.01, Recursion.calculateEndBalance(0.01, 0.05, 0));
+//		assertEquals(52.50, Recursion.calculateEndBalance(50.00, 0.05, 1));
+//
+//		// The last argument in the assertEquals below means verify to within 1 cent
+//		// ($0.01) accuracy.
+//
+//		// What will the stock market do with $100 over 20 and 30 years:
+//		assertEquals(386.96, Recursion.calculateEndBalance(100.00, 0.07, 20), 0.01);
+//		assertEquals(761.22, Recursion.calculateEndBalance(100.00, 0.07, 30), 0.01);
+//
+//		// What will a savings account do with $100 over 30 years:
+//		assertEquals(100.90, Recursion.calculateEndBalance(100.00, 0.0003, 30), 0.01);
+//	}
 
 //	@Test
 //	void testCalculatePopulation()

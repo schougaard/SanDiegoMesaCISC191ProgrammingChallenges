@@ -30,7 +30,7 @@ public class Recursion
 	 * @param n
 	 * @return the sum of n+(n-1)+...+1+0
 	 */
-	public static int addLess(int n)
+	public static int addLess(final int n)
 	{
 		if (n == 0)
 		{
@@ -50,7 +50,7 @@ public class Recursion
 	 * @param n
 	 * @return the product n*(n-1)*...*1
 	 */
-//	public static int mulitplyLess(int n)
+//	public static int mulitplyLess(final int n)
 //	{
 //		// TODO
 //		return -17;
@@ -63,11 +63,12 @@ public class Recursion
 	 * @param n the number of the Lucas number
 	 * @return L(n) = L(n-2) + L(n-1)
 	 */
-//	public static int lucas(int n)
+//	public static int lucas(final int n)
 //	{
 //		// TODO:
 //		switch (n)
 //		{
+//          // Base cases
 //			case 0: return -42;
 //			
 //			// case:
@@ -87,8 +88,8 @@ public class Recursion
 	 * @param periods
 	 * @return ending balance
 	 */
-//	public static double calculateEndBalance(double startBalance,
-//			double interestRate, int periods)
+//	public static double calculateEndBalance(final double startBalance,
+//			final double interestRate, final int periods)
 //	{
 //		return 0.0;
 //	}
@@ -102,8 +103,8 @@ public class Recursion
 	 * @param periods
 	 * @return the ending population
 	 */
-//	public static int calculateEndPopulation(int startPopulation,
-//			int maxPopulation, double growthRate, int periods)
+//	public static int calculateEndPopulation(final int startPopulation,
+//			final int maxPopulation, final double growthRate, final int periods)
 //	{
 //		return 0;
 //	}

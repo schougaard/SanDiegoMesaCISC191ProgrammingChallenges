@@ -24,16 +24,92 @@ package edu.sdmesa.cisc191;
  */
 public class NameNode
 {
-	// A NameNode has-a left node
-	// private ??? left = null;
+	// TODO: A NameNode has-a left node
+	
 	// A NameNode has-a name
 	private String name;
-	// A NameNode has-a right node
-	// private ??? right = null;
+	
+	// TODO: A NameNode has-a right node
+	
 
+	/**
+	 * 
+	 * @param newName the String stored in the node
+	 */
 	public NameNode(String newName)
 	{
 		// TODO: store newName in node;
+		
+	}
+	
+	/**
+	 * 
+	 * @return the String stored in the node
+	 */
+	public String getName()
+	{
+		// TODO:
+		return null;
+	}
+	
+	/**
+	 * Set the left node of this node
+	 * @param newLeft
+	 */
+	public void setLeft(NameNode newLeft)
+	{
+		// TODO:
+		
+	}
+	
+	/**
+	 * Set the right node of this node
+	 * @param newRight
+	 */
+	public void setRight(NameNode newRight)
+	{
+		// TODO:
+		
+	}
+	
+	/**
+	 * 
+	 * @return the left node of this node
+	 */
+	public NameNode getLeft()
+	{
+		// TODO:
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @return the right node of this node
+	 */
+	public NameNode getRight()
+	{
+		// TODO:
+		return null;
+	}
+	
+	/**
+	 * Find the least name in the tree
+	 * @return the node with the least name
+	 */
+	public NameNode getLeast()
+	{
+		// TODO:
+		return null;
+	}
+	
+	/**
+	 * Find the largest name in the tree
+	 * @return the node with the largest name
+	 */
+	public NameNode getLargest()
+	{
+		// TODO:
+		return null;
 	}
 
 	/**

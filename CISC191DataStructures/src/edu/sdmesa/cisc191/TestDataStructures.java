@@ -67,36 +67,39 @@ class TestDataStructures
 //	@Test
 //	public void testQueue()
 //	{
+//      // In this scenario we are simulating a food ordering system
 //		Queue<String> queue = new LinkedList<String>();
 //		QueueProducer producer = new QueueProducer(queue);
 //		QueueConsumer consumer = new QueueConsumer(queue);
 //
 //		assertEquals(true, queue.isEmpty());
 //
-//		producer.produce("1st");
-//		producer.produce("2nd");
-//		producer.produce("3rd");
+//		producer.produce("Meal #1");
+//		producer.produce("Meal #2");
+//		producer.produce("Meal #3");
 //
-//		assertEquals("1st", consumer.consume());
-//		assertEquals("2nd", consumer.consume());
+//		assertEquals("Meal #1", consumer.consume());
+//		assertEquals("Meal #2", consumer.consume());
 //
-//		producer.produce("4th");
+//		producer.produce("Meal #4");
 //
-//		assertEquals("3rd", consumer.consume());
-//		assertEquals("4th", consumer.consume());
+//		assertEquals("Meal #3", consumer.consume());
+//		assertEquals("Meal #4", consumer.consume());
 //		assertEquals(true, queue.isEmpty());
 //	}
 
 //	@Test
 //	public void testStack()
 //	{
+//      // In this scenario we are simulating a storage facility 
+//      // where products are stored in stacks
 //		Stack<String> stack = new Stack<String>();
 //		StackProducer producer = new StackProducer(stack);
 //		StackConsumer consumer = new StackConsumer(stack);
 //
 //		assertEquals(true, stack.isEmpty());
 //
-//		producer.produce("1st");
+//		producer.produce("Last");
 //		producer.produce("2nd");
 //		producer.produce("3rd");
 //
@@ -106,8 +109,35 @@ class TestDataStructures
 //		producer.produce("4th");
 //
 //		assertEquals("4th", consumer.consume());
-//		assertEquals("1st", consumer.consume());
+//		assertEquals("Last", consumer.consume());
 //		assertEquals(true, stack.isEmpty());
+//	}
+	
+//	@Test
+//	public void testPhoneDirectory()
+//	{
+//		PhoneDirectory directory = new PhoneDirectory();
+//		directory.setNumberForPerson("Alice", "617-555-1212");	
+//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
+//		assertEquals(null, directory.findNumberForPerson("Bob"));
+//				
+//		directory.setNumberForPerson("Bob", "619-555-1212");	
+//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
+//		assertEquals("619-555-1212", directory.findNumberForPerson("Bob"));
+//		
+//		directory.setNumberForPerson("Bob's cell", "858-555-1212");	
+//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
+//		assertEquals("619-555-1212", directory.findNumberForPerson("Bob"));
+//		assertEquals("858-555-1212", directory.findNumberForPerson("Bob's cell"));
+//
+//		directory.setNumberForPerson("Bob", "760-555-1212");	
+//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
+//		assertEquals("760-555-1212", directory.findNumberForPerson("Bob"));
+//		assertEquals("858-555-1212", directory.findNumberForPerson("Bob's cell"));
+//
+//	    directory.forget("Bob");	
+//	    assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
+//	    assertEquals("858-555-1212", directory.findNumberForPerson("Bob's cell"));
 //	}
 	
 //	@Test
@@ -246,12 +276,12 @@ class TestDataStructures
 //		assertEquals("Noel", tree.toString());
 //		tree.insert("Abe");
 //		assertEquals("AbeNoel", tree.toString());
-//		tree.insert("Alex");
-//		assertEquals("AbeAlexNoel", tree.toString());
-//		tree.insert("Xavier");
-//		assertEquals("AbeAlexNoelXavier", tree.toString());
+//		tree.insert("Alice");
+//		assertEquals("AbeAliceNoel", tree.toString());
+//		tree.insert("Zoe");
+//		assertEquals("AbeAliceNoelZoe", tree.toString());
 //		tree.insert("Aaron");
-//		assertEquals("AaronAbeAlexNoelXavier", tree.toString());
+//		assertEquals("AaronAbeAliceNoelZoe", tree.toString());
 //	}
 
 }

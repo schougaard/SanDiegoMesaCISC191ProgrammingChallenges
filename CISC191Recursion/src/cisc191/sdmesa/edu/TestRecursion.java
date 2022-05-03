@@ -25,7 +25,7 @@ class TestRecursion
 		assertEquals(0, Recursion.addLess(0));
 		assertEquals(1+0, Recursion.addLess(1));
 		assertEquals(2+1, Recursion.addLess(2));
-		assertEquals(3+2+1, Recursion.addLess(3));
+		assertEquals(3+Recursion.addLess(2), Recursion.addLess(3));
 		assertEquals(100+Recursion.addLess(99), Recursion.addLess(100));
 	}
 	

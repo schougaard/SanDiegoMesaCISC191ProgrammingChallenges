@@ -50,7 +50,7 @@ public class Recursion
 	 * @param n
 	 * @return the product n*(n-1)*...*1
 	 */
-//	public static int mulitplyLess(final int n)
+//	public static int multiplyLess(final int n)
 //	{
 //		// TODO
 //		return -17;

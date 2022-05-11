@@ -208,44 +208,44 @@ class TestDataStructures
 //	{
 //		// Hint: where in the tree is the lowest letter in alphabetical order found?
 //		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.getLeast().getName());
+//		assertEquals("M", rootNode.getSmallest());
 //		NameNode h = new NameNode("H");
 //		rootNode.setLeft(h);
-//		assertEquals("H", rootNode.getLeast().getName());
+//		assertEquals("H", rootNode.getSmallest());
 //		NameNode s = new NameNode("S");
 //		rootNode.setRight(s);
-//		assertEquals("H", rootNode.getLeast().getName());
+//		assertEquals("H", rootNode.getSmallest());
 //		NameNode a = new NameNode("A");
 //		h.setLeft(a);
-//		assertEquals("A", rootNode.getLeast().getName());
+//		assertEquals("A", rootNode.getSmallest());
 //		NameNode z = new NameNode("Z");
 //		s.setRight(z);
-//		assertEquals("A", rootNode.getLeast().getName());
+//		assertEquals("A", rootNode.getSmallest());
 //		NameNode r = new NameNode("R");
 //		s.setLeft(r);
-//		assertEquals("A", rootNode.getLeast().getName());
+//		assertEquals("A", rootNode.getSmallest());
 //	}
 
 //	@Test void testLargest()
 //	{
 //		// Hint: where in the tree is the highest letter in alphabetical order found?
 //		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.getLargest().getName());
+//		assertEquals("M", rootNode.getLargest());
 //		NameNode h = new NameNode("H");
 //		rootNode.setLeft(h);
-//		assertEquals("M", rootNode.getLargest().getName());
+//		assertEquals("M", rootNode.getLargest());
 //		NameNode s = new NameNode("S");
 //		rootNode.setRight(s);
-//		assertEquals("S", rootNode.getLargest().getName());
+//		assertEquals("S", rootNode.getLargest());
 //		NameNode a = new NameNode("A");
 //		h.setLeft(a);
-//		assertEquals("S", rootNode.getLargest().getName());
+//		assertEquals("S", rootNode.getLargest());
 //		NameNode z = new NameNode("Z");
 //		s.setRight(z);
-//		assertEquals("Z", rootNode.getLargest().getName());
+//		assertEquals("Z", rootNode.getLargest());
 //		NameNode r = new NameNode("R");
 //		s.setLeft(r);
-//		assertEquals("Z", rootNode.getLargest().getName());
+//		assertEquals("Z", rootNode.getLargest());
 //	}
 	
 //	@Test void testToString()

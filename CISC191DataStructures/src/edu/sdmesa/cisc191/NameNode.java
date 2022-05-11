@@ -96,7 +96,7 @@ public class NameNode
 	 * Find the least name in the tree
 	 * @return the node with the least name
 	 */
-	public NameNode getLeast()
+	public String getSmallest()
 	{
 		// TODO:
 		return null;
@@ -106,7 +106,7 @@ public class NameNode
 	 * Find the largest name in the tree
 	 * @return the node with the largest name
 	 */
-	public NameNode getLargest()
+	public String getLargest()
 	{
 		// TODO:
 		return null;

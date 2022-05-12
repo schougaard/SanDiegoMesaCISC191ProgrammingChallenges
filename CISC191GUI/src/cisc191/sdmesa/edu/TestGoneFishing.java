@@ -1,5 +1,28 @@
 package cisc191.sdmesa.edu;
 
+/**
+ * Lead Author(s):
+ * @author Tasha Frankie
+ * @author Allan Schougaard 
+ * 
+ * Other contributors:
+ * None
+ * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * 
+ * Bechtold, S., Brannen, S., Link, J., Merdes, M., Philipp, M., Rancourt, J. D., & Stein, C. (n.d.). 
+ * JUnit 5 user guide. JUnit 5. 
+ * https://junit.org/junit5/docs/current/user-guide/
+ * 
+ *  
+ * Version/date: 2.0  
+ * 
+ * Responsibilities of class:
+ * Test the Gone Fishing Game's non-visual implementation
+ */
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertNotEquals;
 //import static org.junit.jupiter.api.Assertions.assertTrue;

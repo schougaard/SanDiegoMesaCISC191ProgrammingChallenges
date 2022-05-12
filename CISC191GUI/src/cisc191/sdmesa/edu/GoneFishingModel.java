@@ -5,6 +5,9 @@ package cisc191.sdmesa.edu;
  * @author Tasha Frankie
  * @author Allan Schougaard
  * 
+ * Responsibilities of class:
+ * 
+ * Model and track the non-visual game play
  */
 
 import java.util.Random;

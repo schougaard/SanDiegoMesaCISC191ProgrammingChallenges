@@ -9,6 +9,8 @@ package cisc191.sdmesa.edu;
 
 import java.util.Random;
 
+// TODO: comment each method and each line of code to show you understand how it works
+
 public class GoneFishingModel
 {
 	public static int DIMENSION = 6;
@@ -16,21 +18,30 @@ public class GoneFishingModel
 	private int triesRemaining = 30;
 	private int fishRemaining = 10;
 
+	/**
+	 * TODO
+	 */
 	public GoneFishingModel()
 	{
 		Random randomNumberGenerator = new Random();
 		for (int fishCounter = 0; fishCounter < fishRemaining; fishCounter++)
 		{
-			int x, y;
+			int row, column;
 			do
 			{
-				x = randomNumberGenerator.nextInt(DIMENSION);
-				y = randomNumberGenerator.nextInt(DIMENSION);
-			} while (grid[x][y]);
-			grid[x][y] = true;
+				row = randomNumberGenerator.nextInt(DIMENSION);
+				column = randomNumberGenerator.nextInt(DIMENSION);
+			} while (grid[row][column]);
+			grid[row][column] = true;
 		}
 	}
 
+	/**
+	 * TODO
+	 * @param row
+	 * @param column
+	 * @return
+	 */
 	public boolean fishAt(int row, int column)
 	{
 		boolean foundFish = grid[row][column];
@@ -39,25 +50,40 @@ public class GoneFishingModel
 		{
 			fishRemaining--;
 		}
-
 		return foundFish;
 	}
 
+	/**
+	 * TODO
+	 * @return
+	 */
 	public int getTriesRemaining()
 	{
 		return triesRemaining;
 	}
 
+	/**
+	 * TODO
+	 * @return
+	 */
 	public int getFishRemaining()
 	{
 		return fishRemaining;
 	}
 
+	/**
+	 * TODO
+	 * @return
+	 */
 	public boolean fishWin()
 	{
 		return triesRemaining == 0 && fishRemaining > 0;
 	}
 
+	/**
+	 * TODO
+	 * @return
+	 */
 	public boolean playerWins()
 	{
 		return fishRemaining == 0;

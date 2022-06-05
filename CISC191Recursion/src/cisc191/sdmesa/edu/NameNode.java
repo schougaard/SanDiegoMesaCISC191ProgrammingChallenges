@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package cisc191.sdmesa.edu;
 /**
  * Lead Author(s):
  * 
@@ -142,7 +142,7 @@ public class NameNode
 		String returnValue = "";
 
 		// TODO: in-order traverse tree recursively:
-		// left subtree, then this, then right subtree
+		// traverse and left subtree, then add this, then traverse and add right subtree
 
 		return returnValue;
 	}

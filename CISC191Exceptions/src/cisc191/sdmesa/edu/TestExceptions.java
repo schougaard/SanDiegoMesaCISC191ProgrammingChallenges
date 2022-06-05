@@ -148,6 +148,7 @@ class TestExceptions
 //			account.deposit(-0.01);
 //		});
 //		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
+//      assertEquals(100, account.getBalance());
 //	}
 
 //	@Test
@@ -159,6 +160,7 @@ class TestExceptions
 //			account.withdraw(-0.01);
 //		});
 //		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
+//      assertEquals(200, account.getBalance());
 //	}
 
 //	@Test
@@ -169,12 +171,13 @@ class TestExceptions
 //		assertTrue(insufficientFundsException instanceof Exception);
 //	
 //		BankAccount account = new BankAccount();
-//		account.deposit(200);
+//		account.deposit(300);
 //		Exception exception2 = assertThrows(InsufficientFundsException.class, () -> {
-//			account.withdraw(200.01);
+//			account.withdraw(300.01);
 //		});
-//		assertEquals("Withdrawing amount: $200.01 that is larger than balance: $200 is not allowed",
+//		assertEquals("Withdrawing amount: $300.01 that is larger than balance: $300 is not allowed",
 //				exception2.getMessage());
+//      assertEquals(300, account.getBalance());
 //	}
 
 //	@Test
@@ -184,16 +187,18 @@ class TestExceptions
 //		account1.deposit(400);
 //		double amount1 = account1.getOrAsMuchAsPossible(400);
 //		assertEquals(400, amount1);
-//	    assertEquals(0, amount1.getBalance());
+//	    assertEquals(0, account1.getBalance());
 //
 //		BankAccount account2 = new BankAccount();
 //		account2.deposit(100);
 //		double amount2 = account2.getOrAsMuchAsPossible(200);
 //		assertEquals(100, amount2);
+//      assertEquals(0, account2.getBalance());
 //
 //		assertThrows(InvalidAmountException.class, () -> {
 //			account2.getOrAsMuchAsPossible(-500);
 //		});
+//      assertEquals(0, amount2.getBalance());
 //
 //	}
 

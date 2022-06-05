@@ -28,14 +28,14 @@ public class Recursion
 	/**
 	 * Add n to the sum of all integers less than n (but not negative)
 	 * @param n
-	 * @return the sum of n+(n-1)+...+1+0
+	 * @return the sum of n+(n-1)+...+1
 	 */
 	public static int addLess(final int n)
 	{
-		if (n == 0)
+		if (n == 1)
 		{
 			// Base case
-			return 0;
+			return -1;
 		}
 		else
 		{
@@ -70,13 +70,12 @@ public class Recursion
 //		{
 //          // Base cases
 //			case 0: return -42;
-//			
-//			// case:
-//			// break;
-//			//default:
-//			// break;
+//                  break;
+//			// case ?:
+//			           break;
+//			//default: return -422; 
+//                     break;
 //		}
-//		return -422;
 //	}
 	
 	/**
@@ -91,7 +90,19 @@ public class Recursion
 //	public static double calculateEndBalance(final double startBalance,
 //			final double interestRate, final int periods)
 //	{
-//		return 0.0;
+//		if (periods == 0)
+//		{
+//			// TODO:
+//			return -1;
+//		}
+//		else
+//		{
+//			// TODO:
+//			// Calculate the end balance for the first n-1 periods
+//			// The start balance for the n'th period is the end balance for the first n-1 periods
+//			// Then calculate the end balance for the n'th period
+//			return -2;
+//		}
 //	}
 
 	/**

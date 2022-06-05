@@ -1,6 +1,8 @@
 package edu.sdmesa.cisc191;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,24 +26,24 @@ import org.junit.jupiter.api.Test;
 
 class TestDataStructures
 {
-	@Test
-	public void testLinkedList()
-	{
-		LinkedList<String> list = new LinkedList<String>();
-		LinkedListProducer producer = new LinkedListProducer(list);
-		LinkedListConsumer consumer = new LinkedListConsumer(list);
-
-		assertEquals(true, list.isEmpty());
-
-		producer.produce("1st");
-		producer.produce("2nd");
-		producer.produce("3rd");
-
-		assertEquals("1st", consumer.consumeHead());
-		assertEquals("3rd", consumer.consumeTail());
-		assertEquals("2nd", consumer.consumeTail());
-		assertEquals(true, list.isEmpty());
-	}
+//	@Test
+//	public void testLinkedList()
+//	{
+//		LinkedList<String> list = new LinkedList<String>();
+//		LinkedListProducer producer = new LinkedListProducer(list);
+//		LinkedListConsumer consumer = new LinkedListConsumer(list);
+//
+//		assertEquals(true, list.isEmpty());
+//
+//		producer.produce("1st");
+//		producer.produce("2nd");
+//		producer.produce("3rd");
+//
+//		assertEquals("1st", consumer.consumeHead());
+//		assertEquals("3rd", consumer.consumeTail());
+//		assertEquals("2nd", consumer.consumeTail());
+//		assertEquals(true, list.isEmpty());
+//	}
 
 //	@Test
 //	public void testArrayList()
@@ -99,189 +101,84 @@ class TestDataStructures
 //
 //		assertEquals(true, stack.isEmpty());
 //
-//		producer.produce("Last");
+//		producer.produce("First");
 //		producer.produce("2nd");
 //		producer.produce("3rd");
 //
 //		assertEquals("3rd", consumer.consume());
 //		assertEquals("2nd", consumer.consume());
 //
-//		producer.produce("4th");
+//		producer.produce("Last");
 //
-//		assertEquals("4th", consumer.consume());
 //		assertEquals("Last", consumer.consume());
+//		assertEquals("First", consumer.consume());
 //		assertEquals(true, stack.isEmpty());
+//	}
+	
+//	@Test
+//	public void testPalindrome()
+//	{
+//		// In this scenario, use a queue and a stack 
+//		// to see if a word is a palindrome
+//		
+//		char[] lol = {'l', 'o', 'l'};
+//		assertFalse(Datastructure.isPalindrome(lol));
+//		char[] car = {'c', 'a', 'r'};
+//		assertFalse(Datastructure.isPalindrome(car));
+//		char[] racecar = "racecar".toCharArray();
+//		assertTrue(Datastructure.isPalindrome(racecar));
+//
 //	}
 	
 //	@Test
 //	public void testPhoneDirectory()
 //	{
 //		PhoneDirectory directory = new PhoneDirectory();
-//		directory.setNumberForPerson("Alice", "617-555-1212");	
-//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
+//		directory.setNumberForPerson("Alice", 1111);	
+//		assertEquals(1111, directory.findNumberForPerson("Alice"));
 //		assertEquals(null, directory.findNumberForPerson("Bob"));
 //				
-//		directory.setNumberForPerson("Bob", "619-555-1212");	
-//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
-//		assertEquals("619-555-1212", directory.findNumberForPerson("Bob"));
+//		directory.setNumberForPerson("Bob", 2222);	
+//		assertEquals(1111, directory.findNumberForPerson("Alice"));
+//		assertEquals(2222, directory.findNumberForPerson("Bob"));
 //		
-//		directory.setNumberForPerson("Bob's cell", "858-555-1212");	
-//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
-//		assertEquals("619-555-1212", directory.findNumberForPerson("Bob"));
-//		assertEquals("858-555-1212", directory.findNumberForPerson("Bob's cell"));
+//		directory.setNumberForPerson("Bob's cell", 3333);	
+//		assertEquals(1111, directory.findNumberForPerson("Alice"));
+//		assertEquals(2222, directory.findNumberForPerson("Bob"));
+//		assertEquals(3333, directory.findNumberForPerson("Bob's cell"));
 //
-//		directory.setNumberForPerson("Bob", "760-555-1212");	
-//		assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
-//		assertEquals("760-555-1212", directory.findNumberForPerson("Bob"));
+//		directory.setNumberForPerson("Bob", 4444);	
+//		assertEquals(1111, directory.findNumberForPerson("Alice"));
+//		assertEquals(2222, directory.findNumberForPerson("Bob"));
 //		assertEquals("858-555-1212", directory.findNumberForPerson("Bob's cell"));
 //
 //	    directory.forget("Bob");	
-//	    assertEquals("617-555-1212", directory.findNumberForPerson("Alice"));
-//	    assertEquals("858-555-1212", directory.findNumberForPerson("Bob's cell"));
+//	    assertEquals(1111, directory.findNumberForPerson("Alice"));
+//	    assertEquals(3333, directory.findNumberForPerson("Bob's cell"));
 //	}
 	
 //	@Test
-//	public void testNameNode()
+//	public void testSearchEngine()
 //	{
-//		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.getName());
-//		assertEquals(null, rootNode.getLeft());
-//		assertEquals(null, rootNode.getRight());
+//      // In this scenario we are creating an internet search engine
+//      // which returns multiple results for each keyword
+//      // Hint: this requires multiple data structures collaborating
+//		SearchEngine goggles = new SearchEngine();
 //		
-//		NameNode h = new NameNode("H");
-//		rootNode.setLeft(h);
-//		//    M
-//		//   /
-//		//  H
-//		// H is inserted to the left of M because it comes before M in alphabetical order
-//		assertEquals("H", rootNode.getLeft().getName());
-//		assertEquals(null, rootNode.getRight());
+//		goggles.add("ice cream", "http://mothersicecream.com");
+//		goggles.add("ice cream", "http://notyourmothersicecream.com");
 //		
-//		NameNode s = new NameNode("S");
-//		rootNode.setRight(s);
-//		//    M
-//		//   / \
-//		//  H   S
-//		// S is inserted to the right of M because it comes after M in alphabetical order
-//		assertEquals("H", rootNode.getLeft().getName());
-//		assertEquals("S", rootNode.getRight().getName());
+//		goggles.add("car", "http://foundontheroaddead.com");
+//		goggles.add("car", "http://cashanddrive.com");
+//		goggles.add("car", "http://fancycar.com");
 //		
-//		NameNode a = new NameNode("A");
-//		h.setLeft(a);
-//		//     M
-//		//    / \
-//		//   H   S
-//		//  /
-//		// A
-//		assertEquals("H", rootNode.getLeft().getName());
-//		assertEquals("S", rootNode.getRight().getName());
-//		assertEquals("A", rootNode.getLeft().getLeft().getName());
-//		assertEquals(null, rootNode.getLeft().getRight());
+//		assertTrue(goggles.search("ice cream").contains("http://notyourmothersicecream.com"));
+//		assertTrue(goggles.search("ice cream").contains("http://mothersicecream.com"));
 //		
-//		NameNode z = new NameNode("Z");
-//		s.setRight(z);
-//		//     M
-//		//    / \
-//		//   H   S
-//		//  /     \
-//		// A       Z		
-//	    assertEquals("H", rootNode.getLeft().getName());
-//		assertEquals("S", rootNode.getRight().getName());
-//		assertEquals("A", rootNode.getLeft().getLeft().getName());
-//		assertEquals("Z", rootNode.getRight().getRight().getName());
+//		assertTrue(goggles.search("car").contains("http://foundontheroaddead.com"));
+//		assertTrue(goggles.search("car").contains("http://fancycar.com"));
+//		assertTrue(goggles.search("car").contains("http://cashanddrive.com"));
 //		
-//		NameNode r = new NameNode("R");
-//		s.setLeft(r);
-//		//     M
-//		//    / \
-//		//   H   S
-//		//  /   / \
-//		// A   R   Z
-//		assertEquals("H", rootNode.getLeft().getName());
-//		assertEquals("S", rootNode.getRight().getName());
-//		assertEquals("A", rootNode.getLeft().getLeft().getName());
-//		assertEquals("R", rootNode.getRight().getLeft().getName());
-//		assertEquals("Z", rootNode.getRight().getRight().getName());
 //	}
 	
-//	@Test void testLeast()
-//	{
-//		// Hint: where in the tree is the lowest letter in alphabetical order found?
-//		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.getSmallest());
-//		NameNode h = new NameNode("H");
-//		rootNode.setLeft(h);
-//		assertEquals("H", rootNode.getSmallest());
-//		NameNode s = new NameNode("S");
-//		rootNode.setRight(s);
-//		assertEquals("H", rootNode.getSmallest());
-//		NameNode a = new NameNode("A");
-//		h.setLeft(a);
-//		assertEquals("A", rootNode.getSmallest());
-//		NameNode z = new NameNode("Z");
-//		s.setRight(z);
-//		assertEquals("A", rootNode.getSmallest());
-//		NameNode r = new NameNode("R");
-//		s.setLeft(r);
-//		assertEquals("A", rootNode.getSmallest());
-//	}
-
-//	@Test void testLargest()
-//	{
-//		// Hint: where in the tree is the highest letter in alphabetical order found?
-//		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.getLargest());
-//		NameNode h = new NameNode("H");
-//		rootNode.setLeft(h);
-//		assertEquals("M", rootNode.getLargest());
-//		NameNode s = new NameNode("S");
-//		rootNode.setRight(s);
-//		assertEquals("S", rootNode.getLargest());
-//		NameNode a = new NameNode("A");
-//		h.setLeft(a);
-//		assertEquals("S", rootNode.getLargest());
-//		NameNode z = new NameNode("Z");
-//		s.setRight(z);
-//		assertEquals("Z", rootNode.getLargest());
-//		NameNode r = new NameNode("R");
-//		s.setLeft(r);
-//		assertEquals("Z", rootNode.getLargest());
-//	}
-	
-//	@Test void testToString()
-//	{
-//		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.toString());
-//		NameNode h = new NameNode("H");
-//		rootNode.setLeft(h);
-//		assertEquals("HM", rootNode.toString());
-//		NameNode s = new NameNode("S");
-//		rootNode.setRight(s);
-//		assertEquals("HMS", rootNode.toString());
-//		NameNode a = new NameNode("A");
-//		h.setLeft(a);
-//		assertEquals("AHMS", rootNode.toString());
-//		NameNode z = new NameNode("Z");
-//		s.setRight(z);
-//		assertEquals("AHMSZ", rootNode.toString());
-//		NameNode r = new NameNode("R");
-//		s.setLeft(r);
-//		assertEquals("AHMRSZ", rootNode.toString());
-//	}
-	
-//	@Test
-//	public void testInsert()
-//	{
-//		NameNode tree = new NameNode("Noel");
-//		assertEquals("Noel", tree.toString());
-//		tree.insert("Abe");
-//		assertEquals("AbeNoel", tree.toString());
-//		tree.insert("Alice");
-//		assertEquals("AbeAliceNoel", tree.toString());
-//		tree.insert("Zoe");
-//		assertEquals("AbeAliceNoelZoe", tree.toString());
-//		tree.insert("Aaron");
-//		assertEquals("AaronAbeAliceNoelZoe", tree.toString());
-//	}
-
 }

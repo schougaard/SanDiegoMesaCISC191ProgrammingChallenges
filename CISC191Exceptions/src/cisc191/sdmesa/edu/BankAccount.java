@@ -65,7 +65,7 @@ public class BankAccount
 	 * 
 	 * @return the amount actually withdrawn
 	 */
-	public double getOrAsMuchAsPossible(double requestAmount)
+	public double getAsMuchAsPossible(double requestAmount)
 	{
 		// TODO:
 		// Try to withdraw the requested amount

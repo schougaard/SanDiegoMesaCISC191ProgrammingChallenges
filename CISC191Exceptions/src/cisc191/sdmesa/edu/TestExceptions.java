@@ -185,18 +185,18 @@ class TestExceptions
 //	{
 //		BankAccount account1 = new BankAccount();
 //		account1.deposit(400);
-//		double amount1 = account1.getOrAsMuchAsPossible(400);
+//		double amount1 = account1.getAsMuchAsPossible(400);
 //		assertEquals(400, amount1);
 //	    assertEquals(0, account1.getBalance());
 //
 //		BankAccount account2 = new BankAccount();
 //		account2.deposit(100);
-//		double amount2 = account2.getOrAsMuchAsPossible(200);
+//		double amount2 = account2.getAsMuchAsPossible(200);
 //		assertEquals(100, amount2);
 //      assertEquals(0, account2.getBalance());
 //
 //		assertThrows(InvalidAmountException.class, () -> {
-//			account2.getOrAsMuchAsPossible(-500);
+//			account2.getAsMuchAsPossible(-500);
 //		});
 //      assertEquals(0, amount2.getBalance());
 //

@@ -1,6 +1,9 @@
 package cisc191.sdmesa.edu;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Color;
 
@@ -34,7 +37,7 @@ import org.junit.jupiter.api.Test;
  * For each of the test methods below create a method in the appropriate class that
  * makes the test run and pass.
  * 
- * Read the test methods to understand what the TestObjectsAndClasses class methods
+ * Read the test methods to understand what the TestAdvancedClasses class methods
  * should do. The assertEquals methods check to see if the two arguments are
  * equal. If they are equal the test passes; if not, the test will be marked as
  * failed and the execution stops.
@@ -55,7 +58,7 @@ import org.junit.jupiter.api.Test;
  * 
  */
 
-class TestObjectsAndClasses
+class TestAdvancedClasses
 {
 	@Test
 	void testAbstractInheritance1()
@@ -75,15 +78,63 @@ class TestObjectsAndClasses
 //		assertEquals(2, bike.getNumberOfWheels());
 //		bike.setColor(Color.GREEN);
 //		assertEquals(Color.GREEN, bike.getColor());
-//		assertEquals("BMC 2 wheels java.awt.Color[r=0,g=255,b=0]", bike.getDescription());
 //	}
-
+	
 //	@Test
-//	void testMovable()
+//	void testToString()
 //	{
-//		Movable vehicle1 = new ElectricMountainBike("E1");
-//		assertEquals(0, vehicle1.getSpeed());
-//		assertEquals("E1", ((Cycle) vehicle1).getMake());
+//		Cycle cycle1 = new Unicycle("Uni");
+//		Cycle cycle2 = new Unicycle("Uni");
+//		assertTrue(cycle1.toString().contains("Uni"));
+//		assertTrue(cycle2.toString().contains("Uni"));
+//		assertTrue(cycle1.toString().contains(String.valueOf(cycle1.getFrameNumber())));
+//		assertTrue(cycle2.toString().contains(String.valueOf(cycle2.getFrameNumber())));
+//		assertNotEquals(cycle1.toString(), cycle2.toString());
+//		cycle1.setColor(Color.BLUE);
+//		cycle2.setColor(Color.GREEN);
+//		assertTrue(cycle1.toString().contains("java.awt.Color[r=0,g=0,b=255]"));
+//		assertTrue(cycle2.toString().contains("java.awt.Color[r=0,g=255,b=0]"));
+//		
+//		Bicycle bike1 = new Bicycle("Toony");
+//		Bicycle bike2 = new Bicycle("Toony");
+//		assertTrue(bike1.toString().contains("Uni"));
+//		assertTrue(bike2.toString().contains("Uni"));
+//		assertTrue(bike1.toString().contains(String.valueOf(bike1.getFrameNumber())));
+//		assertTrue(bike2.toString().contains(String.valueOf(bike2.getFrameNumber())));
+//		assertNotEquals(bike1.toString(), bike2.toString());
+//		bike1.setColor(Color.BLUE);
+//		bike2.setColor(Color.RED);
+//		assertTrue(bike1.toString().contains("java.awt.Color[r=0,g=0,b=255]"));
+//		assertTrue(bike2.toString().contains("java.awt.Color[r=255,g=0,b=0]"));
+//	}
+	
+//	@Test
+//	void testEquals()
+//	{
+//		Cycle cycle1 = new Unicycle("Uni");
+//		cycle1.setColor(Color.BLUE);
+//		Cycle cycle2 = new Unicycle("Uni");
+//		cycle2.setColor(Color.BLUE);
+//		
+//		// Cycles are "equal" is they frame number
+//		assertTrue(cycle1.equals(cycle1));
+//		assertFalse(cycle1.equals(cycle2));
+//		assertFalse(cycle2.equals(cycle1));
+//		
+//		Bicycle bike1 = new Bicycle("Toony");
+//		bike1.setColor(Color.RED);
+//		Bicycle bike2 = new Bicycle("Toony");
+//		bike2.setColor(Color.RED);
+//
+//		assertTrue(bike1.equals(bike1));
+//		assertFalse(bike1.equals(bike2));
+//		assertFalse(bike2.equals(bike1));
+//		
+//		assertFalse(cycle1.equals("Not a bike"));
+//		assertFalse(cycle1.equals(null));
+//
+//		assertFalse(bike1.equals("Not a bike"));
+//		assertFalse(bike1.equals(null));
 //	}
 
 //	@Test
@@ -105,28 +156,11 @@ class TestObjectsAndClasses
 //	}
 
 //	@Test
-//	void testToString()
+//	void testMovable()
 //	{
-//		Cycle bike = new ElectricMountainBike("BMC");
-//		bike.setColor(Color.GREEN);
-//		assertEquals("ElectricMountainBike: make: BMC wheels: 2 color: java.awt.Color[r=0,g=255,b=0]", bike.toString());
-//	}
-
-//	@Test
-//	void testEquals()
-//	{
-//		Cycle bike1 = new ElectricMountainBike("BMC", Color.GREEN);
-//		Cycle bike2 = new ElectricMountainBike("BMC", Color.GREEN);
-//		Cycle bike3 = new ElectricMountainBike("BMX", Color.GREEN);
-//		Cycle bike4 = new ElectricMountainBike("BMC", Color.RED);
-//		Cycle cycle = new Unicycle("UniToo");
-//		assertEquals(true, bike1.equals(bike1));
-//		assertEquals(true, bike1.equals(bike2));
-//		assertEquals(false, bike1.equals(bike3));
-//		assertEquals(false, bike1.equals(bike4));
-//		assertEquals(false, bike1.equals(null));
-//		assertEquals(false, bike1.equals("BMC"));
-//		assertEquals(false, bike1.equals(cycle));
+//		Movable vehicle1 = new ElectricMountainBike("E1");
+//		assertEquals(0, vehicle1.getSpeed());
+//		assertEquals("E1", ((Cycle) vehicle1).getMake());
 //	}
 
 }

@@ -56,7 +56,7 @@ import java.awt.Color;
  * and run the test again.
  * 
  */
-class TestObjectsAndClasses
+class TestBeginningClasses
 {
 
 	@Test
@@ -115,29 +115,12 @@ class TestObjectsAndClasses
 //		assertEquals("Boat: make: Marlin color: java.awt.Color[r=255,g=0,b=0]", boat2.toString());
 //	}
 //
-//	@Test
-//	void testEquals()
-//	{
-//		Boat boat1 = new Boat("BMC", Color.GREEN);
-//		Boat boat2 = new Boat("BMC", Color.GREEN);
-//		Boat boat3 = new Boat("BMX", Color.GREEN);
-//		Boat boat4 = new Boat("BMC", Color.RED);
-//      // Same make and color
-//		assertEquals(true, boat1.equals(boat1));
-//		assertEquals(true, boat1.equals(boat2));
-//      // Different make or color
-//		assertEquals(false, boat1.equals(boat3));
-//		assertEquals(false, boat1.equals(boat4));
-//		assertEquals(false, boat1.equals(new Boat()));
-//	    assertEquals(false, new Boat().equals(boat1));
-//	    assertEquals(false, boat1.equals(null));
-//	    assertEquals(false, boat1.equals("Not a Boat");	
-//	}
 //
 //	@Test
 //	void testCreateNewSerialNumber()
 //	{
 //		// The boat class creates unique serial numbers for the boats
+//      // See Java Static Variables in https://beginnersbook.com/2013/04/java-static-class-block-methods-variables/
 //		assertTrue(Boat.createNewSerialNumber() > 0);
 //      // Serial numbers are monotonically increasing
 //	    assertTrue(Boat.createNewSerialNumber() < Boat.createNewSerialNumber());
@@ -152,7 +135,7 @@ class TestObjectsAndClasses
 //      boat1SerialNumber = boat1.getSerialNumber();
 //      assertEquals(boat1SerialNumber, boat1.getSerialNumber());
 //      assertEquals(boat1SerialNumber, boat1.getSerialNumber());
-//		Boat boat2 = new Boat("BMX", Color.RED);
+//		Boat boat2 = new Boat("BMC", Color.GREEN);
 //		assertTrue(boat1.getSerialNumber() < boat2.getSerialNumber());
 //	}
 //

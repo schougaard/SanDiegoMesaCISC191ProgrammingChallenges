@@ -62,16 +62,4 @@ public class Boat
 		return -99999;
 	}
 	
-	/**
-	 * Boats are considered "equal" if they have the same make and color.
-	 * @see https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object other)
-	{
-		// TODO
-		// This is the one method where you have to use type casts and/or instanceof
-		return false;
-	}
-	
 }

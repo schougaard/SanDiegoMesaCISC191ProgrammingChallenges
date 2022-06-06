@@ -32,6 +32,12 @@ public abstract class Cycle
 {
 	// TODO: Implement and comment HAS-A relationships separately
 	
+	// A cycle has a unique frame number, that is immutable
+	private int frameNumber;
+	
+	// A cycle has a make, that is immutable
+	// TODO:
+	
 	public Cycle(String newMake)
 	{
 		// TODO
@@ -61,10 +67,38 @@ public abstract class Cycle
 		// TODO
 		return null;
 	}
-
-	public String getDescription()
+	
+	/**
+	 * 
+	 * @return the unique serial number that was stamped in the frame when the bike was made
+	 * @see https://www.eta.co.uk/bicycle-insurance/frequently-asked-questions/how-to-find-a-bicycle-frame-number/
+	 */
+	final int getFrameNumber()
 	{
 		// TODO
-		return null;
+		return -1;
 	}
+	
+	/**
+	 *  @return true if the frame number are the same
+	 */
+//	@Override
+//	public boolean equals(Object other)
+//	{
+//		// TODO: 
+//		// Hint: use instanceof
+//		// See: https://www.sitepoint.com/implement-javas-equals-method-correctly/
+//		return false;
+//	}
+	
+	/**
+	 * @return String describing the object, including type, make and frame number
+	 */
+//	@Override
+//	public String toString()
+//	{
+//		//TODO:
+//		return "Hello, I'm a Cycle";
+//	}
+
 }

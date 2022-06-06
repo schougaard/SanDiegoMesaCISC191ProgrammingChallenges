@@ -27,5 +27,5 @@ package cisc191.sdmesa.edu;
  */
 public class IO
 {
-
+	// Hint: close operations must happen in a finally clause.
 }

@@ -65,7 +65,7 @@ public class CheckoutBill
 
 	public static void main(String[] args)
 	{
-		// TODO: prevent the program from crashing
+		// TODO: prevent the program from crashing from (almost) any exception
 		
 		CheckoutBill bill = new CheckoutBill();
 		bill.setTipPercent(-1); 

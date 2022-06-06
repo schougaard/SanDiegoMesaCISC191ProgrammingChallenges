@@ -143,6 +143,13 @@ class TestAdvancedClasses
 //		Gearable vehicle2 = new ElectricMountainBike("E2");
 //		assertEquals(1, vehicle2.getGear());
 //		assertEquals("E2", ((Cycle) vehicle2).getMake());
+//		
+//		ElectricMountainBike vehicle2 = new ElectricMountainBike("E3");
+//		assertEquals(1, vehicle2.getGear());
+//		vehicle2.gearUp();
+//		assertEquals(2, vehicle2.getGear());
+//		vehicle2.gearDown();
+//		assertEquals(1, vehicle2.getGear());
 //	}
 
 //	@Test
@@ -161,6 +168,13 @@ class TestAdvancedClasses
 //		Movable vehicle1 = new ElectricMountainBike("E1");
 //		assertEquals(0, vehicle1.getSpeed());
 //		assertEquals("E1", ((Cycle) vehicle1).getMake());
+//		
+//		ElectricMountainBike vehicle2 = new ElectricMountainBike("E2");
+//		assertEquals(0, vehicle2.getSpeed());
+//		vehicle2.speedUp();
+//		assertEquals(1, vehicle2.getSpeed());
+//		vehicle2.speedUp();
+//		assertEquals(2, vehicle2.getSpeed());
 //	}
 
 }

@@ -143,6 +143,7 @@ public class NameNode
 
 		// TODO: in-order traverse tree recursively:
 		// traverse and left subtree, then add this, then traverse and add right subtree
+		// Warning: Minds have been blown during the implementation of this method
 
 		return returnValue;
 	}

@@ -59,6 +59,9 @@ public class Recursion
 	/**
 	 * Calculate the n'th Lucas number.
 	 * @see Lucas numbers. (n.d.). Brilliant | Learn interactively. https://brilliant.org/wiki/lucas-numbers/
+	 * See why Lucas number are better than Fibonacci number, watch:
+	 * @see Parker, M. (n.d.). Lucas Numbers - Numberphile [Video]. YouTube. https://www.youtube.com/watch?v=PeUbRXnbmms
+	 * @see Parker, M. (n.d.). Golden Ratio BURN (Internet Beef) - Numberphile [Video]. YouTube. https://www.youtube.com/watch?v=cjx23aMeBkQ
 	 * 
 	 * @param n the number of the Lucas number
 	 * @return L(n) = L(n-2) + L(n-1)

@@ -61,7 +61,7 @@ import org.junit.jupiter.api.Test;
  * See: multiply and max
  * After this the test method should run (but fail).
  * 
- * 3. To make the tests pass: Then change the method to return the correct value
+ * 3. To make the tests pass: Change the method to return the correct value
  * and run the test again.
  * 
  */

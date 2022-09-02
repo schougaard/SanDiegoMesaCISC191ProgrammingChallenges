@@ -263,7 +263,7 @@ class M2TestArrayChallenge
 //		char[] array3 = "XX".toCharArray();
 //		assertEquals(true, isPalindrome(array3));
 //
-//		char[] array4 = "PALINDROME".toCharArray()
+//		char[] array4 = "PALINDROME".toCharArray();
 //		assertEquals(false, isPalindrome(array4));		
 //
 //		char[] array5 = "RACECAR".toCharArray();

@@ -241,7 +241,7 @@ class M2TestArrayChallenge
 //		assertArrayEquals(array1, backwards(array1));
 //
 //		char[] array2 = {'A', 'B', 'C', 'D'};
-//		assertArrayEquals(new char[]{'D', C', 'B', 'A'}, backwards(array2));
+//		assertArrayEquals(new char[]{'D', 'C', 'B', 'A'}, backwards(array2));
 //		assertArrayEquals(new char[]{'A', 'B', 'C', 'D'}, array2);
 //	}
 //

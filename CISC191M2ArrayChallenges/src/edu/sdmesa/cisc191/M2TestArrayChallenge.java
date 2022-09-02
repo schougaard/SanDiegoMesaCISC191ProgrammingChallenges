@@ -361,13 +361,13 @@ class M2TestArrayChallenge
 //	}
 //
 //	@Test
-//	void testAddLastRow()
+//	void testAddLastRowElement()
 //	{
 //		int[][] matrix2 = {{1,   2,  3,  4}, 
 //				           {5,   6,  7},
 //				           {9,  10},
 //				           {13, 14, 15, 16}};
-//		assertEquals(4+7+10+16, addLastRow(matrix2));		
+//		assertEquals(4+7+10+16, addLastRowElement(matrix2));		
 //		
 //	}
 

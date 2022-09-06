@@ -145,7 +145,7 @@ class TestBeginningClasses
 //	{
 //		// Every boat gets a unique immutable serial number when they are produced
 //		Boat boat1 = new Boat("BMC", Color.GREEN);
-//      boat1SerialNumber = boat1.getSerialNumber();
+//      int boat1SerialNumber = boat1.getSerialNumber();
 //      assertEquals(boat1SerialNumber, boat1.getSerialNumber());
 //      assertEquals(boat1SerialNumber, boat1.getSerialNumber());
 //		Boat boat2 = new Boat("BMC", Color.GREEN);
@@ -168,7 +168,7 @@ class TestBeginningClasses
 //		assertEquals(null, stock.getBoatAt(3));
 //		assertEquals(null, stock.getBoatAt(4));
 //		
-//		// Hint: parkBoatAt is not just a accessor, and not just a mutator
+//		// Hint: parkBoatAt is not just an accessor, and not just a mutator
 //		assertEquals(null, stock.parkBoatAt(boat1, 3));
 //		Boat retrievedBoat = stock.parkBoatAt(boat2, 3);
 //		assertEquals(boat1, retrievedBoat);

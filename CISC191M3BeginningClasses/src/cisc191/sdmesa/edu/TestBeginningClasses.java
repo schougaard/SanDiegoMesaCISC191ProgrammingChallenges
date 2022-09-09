@@ -180,8 +180,6 @@ class TestBeginningClasses
 //      // The inventory is a carbon copy list of boats that is handed out to interested parties.
 //		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory); // This is correct!
 //		assertArrayEquals(new Boat[]{null, boat2, null, boat3, null}, stock.getInventory());
-//      boat2.setColor(Color.BLUE);
-//      assertEquals(Color.RED, stock.getInventory()[1].getColor()); // This is correct!
 //	}
 //
 //	@Test

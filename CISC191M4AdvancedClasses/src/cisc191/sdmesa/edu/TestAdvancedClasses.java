@@ -116,7 +116,7 @@ class TestAdvancedClasses
 //		Cycle cycle2 = new Unicycle("Uni");
 //		cycle2.setColor(Color.BLUE);
 //		
-//		// Cycles are "equal" is they frame number
+//		// Cycles are "equal" if their frame numbers are the same
 //		assertTrue(cycle1.equals(cycle1));
 //		assertFalse(cycle1.equals(cycle2));
 //		assertFalse(cycle2.equals(cycle1));

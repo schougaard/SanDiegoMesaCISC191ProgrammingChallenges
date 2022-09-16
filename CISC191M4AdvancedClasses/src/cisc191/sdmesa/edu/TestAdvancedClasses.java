@@ -140,9 +140,9 @@ class TestAdvancedClasses
 //	@Test
 //	void testGearable()
 //	{
-//		Gearable vehicle2 = new ElectricMountainBike("E2");
-//		assertEquals(1, vehicle2.getGear());
-//		assertEquals("E2", ((Cycle) vehicle2).getMake());
+//		Gearable vehicle1 = new ElectricMountainBike("E2");
+//		assertEquals(1, vehicle1.getGear());
+//		assertEquals("E2", ((Cycle) vehicle1).getMake());
 //		
 //		ElectricMountainBike vehicle2 = new ElectricMountainBike("E3");
 //		assertEquals(1, vehicle2.getGear());

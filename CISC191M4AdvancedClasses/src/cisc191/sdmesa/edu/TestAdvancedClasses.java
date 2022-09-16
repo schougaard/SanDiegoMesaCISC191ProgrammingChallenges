@@ -97,8 +97,8 @@ class TestAdvancedClasses
 //		
 //		Bicycle bike1 = new Bicycle("Toony");
 //		Bicycle bike2 = new Bicycle("Toony");
-//		assertTrue(bike1.toString().contains("Uni"));
-//		assertTrue(bike2.toString().contains("Uni"));
+//		assertTrue(bike1.toString().contains("Toony"));
+//		assertTrue(bike2.toString().contains("Toony"));
 //		assertTrue(bike1.toString().contains(String.valueOf(bike1.getFrameNumber())));
 //		assertTrue(bike2.toString().contains(String.valueOf(bike2.getFrameNumber())));
 //		assertNotEquals(bike1.toString(), bike2.toString());

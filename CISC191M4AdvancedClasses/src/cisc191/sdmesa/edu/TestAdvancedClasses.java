@@ -169,7 +169,7 @@ class TestAdvancedClasses
 //		assertEquals(0, vehicle1.getSpeed());
 //		assertEquals("E1", ((Cycle) vehicle1).getMake());
 //		
-//		ElectricMountainBike vehicle2 = new ElectricMountainBike("E2");
+//		Movable vehicle2 = new ElectricMountainBike("E2");
 //		assertEquals(0, vehicle2.getSpeed());
 //		vehicle2.speedUp();
 //		assertEquals(1, vehicle2.getSpeed());

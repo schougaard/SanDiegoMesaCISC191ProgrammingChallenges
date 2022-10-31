@@ -122,7 +122,7 @@ class TestDataStructures
 //		// to see if a word is a palindrome
 //		
 //		char[] lol = {'l', 'o', 'l'};
-//		assertFalse(Datastructure.isPalindrome(lol));
+//		assertTrue(Datastructure.isPalindrome(lol));
 //		char[] car = {'c', 'a', 'r'};
 //		assertFalse(Datastructure.isPalindrome(car));
 //		char[] racecar = "racecar".toCharArray();

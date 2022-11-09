@@ -198,7 +198,7 @@ class TestExceptions
 //		assertThrows(InvalidAmountException.class, () -> {
 //			account2.getAsMuchAsPossible(-500);
 //		});
-//      assertEquals(0, amount2.getBalance());
+//      assertEquals(0, account2.getBalance());
 //
 //	}
 

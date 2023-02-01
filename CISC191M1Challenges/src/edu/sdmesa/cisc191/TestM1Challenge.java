@@ -135,9 +135,9 @@ class TestM1Challenge
 //		// This checks that max returns 2, which is the largest element
 //		assertEquals(2, max(array3));
 //
-//		int[] array4 = { -1, -2, -3 };
+//		int[] array4 = { -42, -2, -3 };
 //		// This checks that max returns -1, which is the largest element
-//		assertEquals(-1, max(array4));
+//		assertEquals(-2, max(array4));
 //	}
 //
 //	@Test

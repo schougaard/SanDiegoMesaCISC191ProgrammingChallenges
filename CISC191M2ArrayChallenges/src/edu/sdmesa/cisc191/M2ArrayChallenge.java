@@ -25,10 +25,10 @@ package edu.sdmesa.cisc191;
 public class M2ArrayChallenge
 {
 	/**
-	 * Purpose: Find the largest element in the array given
+	 * Purpose: Find a given value in the array given
 	 * 
 	 * @param array to search
-	 * @return largest element
+	 * @return true if the value is in the array, otherwise false
 	 */
 	public static boolean contains(int[] array, int value)
 	{

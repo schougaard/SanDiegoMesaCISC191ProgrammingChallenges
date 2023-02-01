@@ -136,7 +136,7 @@ class TestM1Challenge
 //		assertEquals(2, max(array3));
 //
 //		int[] array4 = { -42, -2, -3 };
-//		// This checks that max returns -1, which is the largest element
+//		// This checks that max returns -2, which is the largest element
 //		assertEquals(-2, max(array4));
 //	}
 //
@@ -181,6 +181,7 @@ class TestM1Challenge
 //		int[] array1 = {17};
 //		assertEquals(17.0, average(array1));
 //		
+//              // hint: can you use sum?
 //		int[] array2 = {2, 3};
 //		assertEquals((2+3)/2.0, average(array2));
 //

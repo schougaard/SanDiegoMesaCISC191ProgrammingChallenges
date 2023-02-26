@@ -33,6 +33,7 @@ public abstract class Cycle
 	// TODO: Implement and comment HAS-A relationships separately
 	
 	// A cycle has a unique frame number, that is immutable
+	// (how are you going to make it immutable, so that it only gets one final number?)
 	private int frameNumber;
 	
 	// A cycle has a make, that is immutable

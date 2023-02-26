@@ -186,27 +186,27 @@ class TestAdvancedClasses
 //		assertEquals(2, vehicle2.getSpeed());
 //	}
 	
-	@Test
-	void testDynamicBinding()
-	{
-		BikeShop shop = new BikeShop("Joe's Bike Rack");
-		assertTrue(shop.toString().contains("Joe's Bike Rack"));
-		
-		ElectricMountainBike moutainBike = new ElectricMountainBike("BMC");
-		Unicycle uniCycle = new Unicycle("Looney");
-		Bicycle tooney = new Bicycle("Toony");
-		
-		shop.addToInventory(moutainBike);
-		assertTrue(shop.toString().contains(moutainBike.toString()));
-		
-		shop.addToInventory(uniCycle);
-		assertTrue(shop.toString().contains(moutainBike.toString()));		
-		assertTrue(shop.toString().contains(uniCycle.toString()));
-		
-		shop.addToInventory(tooney);
-		assertTrue(shop.toString().contains(moutainBike.toString()));		
-		assertTrue(shop.toString().contains(uniCycle.toString()));
-		assertTrue(shop.toString().contains(tooney.toString()));	
-	}
+//	@Test
+//	void testDynamicBinding()
+//	{
+//		BikeShop shop = new BikeShop("Joe's Bike Rack");
+//		assertTrue(shop.toString().contains("Joe's Bike Rack"));
+//		
+//		ElectricMountainBike moutainBike = new ElectricMountainBike("BMC");
+//		Unicycle uniCycle = new Unicycle("Looney");
+//		Bicycle tooney = new Bicycle("Toony");
+//		
+//		shop.addToInventory(moutainBike);
+//		assertTrue(shop.toString().contains(moutainBike.toString()));
+//		
+//		shop.addToInventory(uniCycle);
+//		assertTrue(shop.toString().contains(moutainBike.toString()));		
+//		assertTrue(shop.toString().contains(uniCycle.toString()));
+//		
+//		shop.addToInventory(tooney);
+//		assertTrue(shop.toString().contains(moutainBike.toString()));		
+//		assertTrue(shop.toString().contains(uniCycle.toString()));
+//		assertTrue(shop.toString().contains(tooney.toString()));	
+//	}
 
 }

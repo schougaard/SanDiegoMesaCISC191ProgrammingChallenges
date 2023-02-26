@@ -70,14 +70,20 @@ class TestAdvancedClasses
 		assertEquals(Color.RED, cycle.getColor());
 	}
 
+	// Where is the best class to implement color, so you do not have to repeat code in multiple classes?
 //	@Test
 //	void testAbstractInheritance2()
 //	{
-//		Bicycle bike = new ElectricMountainBike("BMC");
-//		assertEquals("BMC", bike.getMake());
+//		Cycle bike = new Bicycle("Tooney");
+//		assertEquals("Tooney", bike.getMake());
 //		assertEquals(2, bike.getNumberOfWheels());
 //		bike.setColor(Color.GREEN);
 //		assertEquals(Color.GREEN, bike.getColor());
+//	    Cycle bike = new ElectricMountainBike("EMB");
+//	    assertEquals("EMB", bike.getMake());
+//	    assertEquals(2, bike.getNumberOfWheels());
+//	    bike.setColor(Color.RED);
+//	    assertEquals(Color.RED, bike.getColor());
 //	}
 	
 //	@Test
@@ -85,13 +91,16 @@ class TestAdvancedClasses
 //	{
 //		Cycle cycle1 = new Unicycle("Uni");
 //		Cycle cycle2 = new Unicycle("Uni");
+//		// The String returned from toString has to contain "Uni"
 //		assertTrue(cycle1.toString().contains("Uni"));
 //		assertTrue(cycle2.toString().contains("Uni"));
+//	    // The String returned from toString has to contain the frame number
 //		assertTrue(cycle1.toString().contains(String.valueOf(cycle1.getFrameNumber())));
 //		assertTrue(cycle2.toString().contains(String.valueOf(cycle2.getFrameNumber())));
 //		assertNotEquals(cycle1.toString(), cycle2.toString());
 //		cycle1.setColor(Color.BLUE);
 //		cycle2.setColor(Color.GREEN);
+//	    // The String returned from toString has to contain the color as expressed by toString in the Color objects
 //		assertTrue(cycle1.toString().contains("java.awt.Color[r=0,g=0,b=255]"));
 //		assertTrue(cycle2.toString().contains("java.awt.Color[r=0,g=255,b=0]"));
 //		
@@ -176,5 +185,28 @@ class TestAdvancedClasses
 //		vehicle2.speedUp();
 //		assertEquals(2, vehicle2.getSpeed());
 //	}
+	
+	@Test
+	void testDynamicBinding()
+	{
+		BikeShop shop = new BikeShop("Joe's Bike Rack");
+		assertTrue(shop.toString().contains("Joe's Bike Rack"));
+		
+		ElectricMountainBike moutainBike = new ElectricMountainBike("BMC");
+		Unicycle uniCycle = new Unicycle("Looney");
+		Bicycle tooney = new Bicycle("Toony");
+		
+		shop.addToInventory(moutainBike);
+		assertTrue(shop.toString().contains(moutainBike.toString()));
+		
+		shop.addToInventory(uniCycle);
+		assertTrue(shop.toString().contains(moutainBike.toString()));		
+		assertTrue(shop.toString().contains(uniCycle.toString()));
+		
+		shop.addToInventory(tooney);
+		assertTrue(shop.toString().contains(moutainBike.toString()));		
+		assertTrue(shop.toString().contains(uniCycle.toString()));
+		assertTrue(shop.toString().contains(tooney.toString()));	
+	}
 
 }

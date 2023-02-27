@@ -212,7 +212,8 @@ class M2TestArrayChallenge
 //	}
 //
 //	/**
-//	 * The copy method returns a new array with the same elements as the original array
+//	 * The copy method returns a new array with the same elements as the original array.
+//	 * Is that a shallow or a deep copy?
 //	 */
 //	@Test
 //	void testCopy()
@@ -223,12 +224,37 @@ class M2TestArrayChallenge
 //		char[] array1 = {'A'};
 //		char[] array1copy = copy(array1);
 //		assertArrayEquals(array1, array1copy);
+//		assertNotEquals(array1, array1copy);
 //		array1copy[0] = 'B';
 //		assertEquals('B', array1copy[0]);
 //		assertEquals('A', array1[0]);
 //
 //		char[] array2 = {'X', 'Y', 'Z'};
 //		assertNotEquals(array2, copy(array2));
+//	}
+//	
+//	@Test
+//	void testEquals()
+//	{
+//		char[] array0a = {};
+//		assertTrue(equals(array0a, array0a));
+//		char[] array0b = {};
+//		assertTrue(equals(array0a, array0b));
+//
+//		char[] array1 = {'A'};
+//		char[] array2 = copy(array1);
+//		assertTrue(equals(array1, array2));
+//		array2[0] = 'B';
+//		assertEquals('B', array2[0]);
+//		assertEquals('A', array1[0]);
+//		assertFalse(equals(array1, array2));
+//
+//		char[] array3 = {'X', 'Y', 'Z'};
+//		assertFalse(equals(array0, array3));		
+//		assertFalse(equals(array3, array0));		
+//		assertFalse(equals(array1, array3));		
+//		assertFalse(equals(array3, array2));
+//		assertTrue(equals(array3, array3));
 //	}
 //	
 //	@Test
@@ -246,7 +272,7 @@ class M2TestArrayChallenge
 //	}
 //
 //	/**
-//	 * A palindrome is a word that is spelled the same forwards and (hint:) backwards
+//	 * A palindrome is a word that is spelled (hint:) equally forwards and (hint:) backwards
 //	 */
 //	@Test
 //	void testIsPalindrome()

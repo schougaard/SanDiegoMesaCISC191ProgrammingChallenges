@@ -34,15 +34,18 @@ import org.junit.jupiter.api.Test;
 /**
  * Your mission, should you choose to accept it:
  * 
- * For each of the test methods below create a method in the appropriate class that
+ * For each of the test methods below create a method in a class that
  * makes the test run and pass.
  * 
- * Read the test methods to understand what the TestAdvancedClasses class methods
+ * Each class must be in a separate file. Use File -> New -> Class
+ * 
+ * Read the test methods to understand what the classes' methods
  * should do. The assertEquals methods check to see if the two arguments are
  * equal. If they are equal the test passes; if not, the test will be marked as
  * failed and the execution stops.
  * 
- * To run the tests from the main menu, select Run -> Run.
+ * To run the tests in this file from the main menu, select Run -> Run As -> JUnit
+ * with the file selected.
  * 
  * To implement a test method:
  * 

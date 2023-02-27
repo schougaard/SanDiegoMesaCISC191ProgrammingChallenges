@@ -32,10 +32,12 @@ import java.awt.Color;
 /**
  * Your mission, should you choose to accept it:
  * 
- * For each of the test methods below create a method in the boat class that
+ * For each of the test methods below create a method in a class that
  * makes the test run and pass.
  * 
- * Read the test methods to understand what the ArrayChallenge class methods
+ * Each class must be in a separate file. Use File -> New -> Class
+ * 
+ * Read the test methods to understand what the classes' methods
  * should do. The assertEquals methods check to see if the two arguments are
  * equal. If they are equal the test passes; if not, the test will be marked as
  * failed and the execution stops.
@@ -151,6 +153,10 @@ class TestBeginningClasses
 //		Boat boat2 = new Boat("BMC", Color.GREEN);
 //		assertTrue(boat1.getSerialNumber() < boat2.getSerialNumber());
 //	}
+//
+//  // **********************************************************
+// 	// Note: Each class is to be implemented in a separate file
+//  // **********************************************************
 //
 //	@Test
 //	void testHarbor()

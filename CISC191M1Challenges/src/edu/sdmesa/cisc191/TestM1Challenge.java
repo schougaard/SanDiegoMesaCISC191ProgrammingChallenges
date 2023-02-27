@@ -112,6 +112,7 @@ class TestM1Challenge
 //	@Test
 //	void testGetMiddle()
 //	{
+//		// Only solve for the examples given here
 //		int[] array1 = { 1 };
 //		assertEquals(1, getMiddle(array1));
 //		int[] array2 = { 0, 4, 8 };
@@ -126,6 +127,9 @@ class TestM1Challenge
 //		int[] array1 = { 1 };
 //		// This checks that max returns 1 (the only element)
 //		assertEquals(1, max(array1));
+//		
+//		array1[0] = -2147483648;
+//		assertEquals(-2147483648, max(array1));
 //
 //		int[] array2 = { 1, 2, 2147483647 };
 //		// This checks that max returns 2147483647, the largest element
@@ -145,6 +149,9 @@ class TestM1Challenge
 //	{
 //		int[] array1 = {1};
 //		assertEquals(1, min(array1));
+//		
+//		array1[0] = 2147483647;
+//		assertEquals(2147483647, min(array1));
 //		
 //		int[] array2 = {2, 1, 3};
 //		assertEquals(1, min(array2));

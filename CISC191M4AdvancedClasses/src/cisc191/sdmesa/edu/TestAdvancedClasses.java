@@ -82,11 +82,11 @@ class TestAdvancedClasses
 //		assertEquals(2, bike.getNumberOfWheels());
 //		bike.setColor(Color.GREEN);
 //		assertEquals(Color.GREEN, bike.getColor());
-//	    Cycle bike = new ElectricMountainBike("EMB");
-//	    assertEquals("EMB", bike.getMake());
-//	    assertEquals(2, bike.getNumberOfWheels());
-//	    bike.setColor(Color.RED);
-//	    assertEquals(Color.RED, bike.getColor());
+//	    Cycle eBike = new ElectricMountainBike("EMB");
+//	    assertEquals("EMB", eBike.getMake());
+//	    assertEquals(2, eBike.getNumberOfWheels());
+//	    eBike.setColor(Color.RED);
+//	    assertEquals(Color.RED, eBike.getColor());
 //	}
 	
 //	@Test

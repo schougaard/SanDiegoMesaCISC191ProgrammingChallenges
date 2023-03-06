@@ -140,6 +140,7 @@ class TestObjectOrientedDesign
 //   void testHybridCar()
 //   {
 //      HybridCar car = new HybridCar("Toyota", 1000, 63995, 4, null, 2);
+// 		// Hint: is it a GasCar that is also chargeable? or an ElectricCar that is also combustible?
 //
 //      assertEquals("Toyota", car.getManufacturerName());
 //      assertEquals(1000, car.getMilesOnVehicle());

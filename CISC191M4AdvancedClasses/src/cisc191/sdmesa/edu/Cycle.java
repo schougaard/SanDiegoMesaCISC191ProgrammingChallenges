@@ -32,8 +32,9 @@ public abstract class Cycle
 {
 	// TODO: Implement and comment HAS-A relationships separately
 	
-	// A cycle has a unique frame number, that is immutable
-	// (how are you going to make it immutable, so that it only gets one final number?)
+	// A cycle has a unique frame number, that is *immutable*;
+	// How are you going to make it immutable, so that it only gets one final number? 
+	// (Hint: did you see the hint?)
 	private int frameNumber;
 	
 	// A cycle has a make, that is immutable
@@ -63,7 +64,7 @@ public abstract class Cycle
 	 * 
 	 * @return make or brand that was set when the bike was made
 	 */
-	final String getMake()
+	public String getMake()
 	{
 		// TODO
 		return null;
@@ -74,7 +75,7 @@ public abstract class Cycle
 	 * @return the unique serial number that was stamped in the frame when the bike was made
 	 * @see https://www.eta.co.uk/bicycle-insurance/frequently-asked-questions/how-to-find-a-bicycle-frame-number/
 	 */
-	final int getFrameNumber()
+	public int getFrameNumber()
 	{
 		// TODO
 		return -1;

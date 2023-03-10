@@ -195,21 +195,23 @@ class TestAdvancedClasses
 //		BikeShop shop = new BikeShop("Joe's Bike Rack");
 //		assertTrue(shop.toString().contains("Joe's Bike Rack"));
 //		
-//		ElectricMountainBike moutainBike = new ElectricMountainBike("BMC");
-//		Unicycle uniCycle = new Unicycle("Looney");
-//		Bicycle tooney = new Bicycle("Toony");
+//		shop.addToInventory(new ElectricMountainBike("BMC"));
+//		assertTrue(shop.toString().contains("BMC");
 //		
-//		shop.addToInventory(moutainBike);
-//		assertTrue(shop.toString().contains(moutainBike.toString()));
+//		shop.addToInventory(new Unicycle("Looney"));
+//		assertTrue(shop.toString().contains("BMC");		
+//		assertTrue(shop.toString().contains("Looney");
 //		
-//		shop.addToInventory(uniCycle);
-//		assertTrue(shop.toString().contains(moutainBike.toString()));		
-//		assertTrue(shop.toString().contains(uniCycle.toString()));
-//		
-//		shop.addToInventory(tooney);
-//		assertTrue(shop.toString().contains(moutainBike.toString()));		
-//		assertTrue(shop.toString().contains(uniCycle.toString()));
-//		assertTrue(shop.toString().contains(tooney.toString()));	
+//		shop.addToInventory(new Bicycle("Toony"));
+//		assertTrue(shop.toString().contains("BMC");		
+//		assertTrue(shop.toString().contains("Looney");
+//		assertTrue(shop.toString().contains("Tooney");	
+//	
+//		shop.addToInventory(new ElectricMountainBike("EMB"));
+//		assertTrue(shop.toString().contains("BMC");		
+//		assertTrue(shop.toString().contains("Looney");
+//		assertTrue(shop.toString().contains("Tooney");	
+//		assertTrue(shop.toString().contains("EMB");
 //	}
 
 }

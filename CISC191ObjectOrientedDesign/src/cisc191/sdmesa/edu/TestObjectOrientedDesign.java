@@ -41,7 +41,7 @@ class TestObjectOrientedDesign
    }
 
 //   @Test
-//   void testOption()
+//   void testOptions()
 //   {
 //      Option moonroof = new Option("Moonroof");
 //      assertEquals("Moonroof", moonroof.getDetails());
@@ -105,12 +105,20 @@ class TestObjectOrientedDesign
 //   @Test
 //   void testCarIsCombustible()
 //   {
-//      Combustible combustible = new GasCar("VW", 15500, 45995, 4, null, 2);
-//      combustible.tankUp();
-//      assertEquals(100, combustible.getFuelLevel());
-//      GasCar car = new GasCar("VW", 5500, 75995, 4, null, 2);
-//      car.tankUp();
-//      assertEquals(100, car.getFuelLevel());
+//	  GasCar car = new GasCar("VW", 5500, 75995, 4, null, 2);
+//	  assertEquals(0, car.getFuelLevel());
+//	  Combustible combustible = new GasCar("VW", 15500, 45995, 4, null, 2);
+//	  // Fuel capacity is 50 units
+//	  combustible.addFuel(10);
+//	  assertEquals(10, combustible.getFuelLevel());
+//	  combustible.addFuel(10);
+//	  assertEquals(20, combustible.getFuelLevel());
+//	  combustible.addFuel(30);
+//	  assertEquals(50, combustible.getFuelLevel());
+//	  combustible.addFuel(30);
+//	  assertEquals(50, combustible.getFuelLevel());
+//	  combustible.addFuel(30);
+//	  assertEquals(50, combustible.getFuelLevel());
 //   }
 
 //   @Test
@@ -129,10 +137,17 @@ class TestObjectOrientedDesign
 //   void testCarIsChargeable()
 //   {
 //      Chargeable chargeable = new ElectricCar("Nissan", 10000, 35995, 4, null, 2);
-//      chargeable.chargeUp();
+//      assertEquals(0, chargeable.getBatteryCharge());      
+//      chargeable.chargeUp(10);
+//      assertEquals(10, chargeable.getBatteryCharge());
+//      chargeable.chargeUp(10);
+//      assertEquals(20, chargeable.getBatteryCharge());
+//      chargeable.chargeUp(50);
+//      assertEquals(70, chargeable.getBatteryCharge());
+//      chargeable.chargeUp(50);
 //      assertEquals(100, chargeable.getBatteryCharge());
 //      ElectricCar car = new ElectricCar("VW", 5500, 75995, 4, null, 2);
-//      car.chargeUp();
+//      car.chargeUp(100);
 //      assertEquals(100, car.getBatteryCharge());
 //   }
 
@@ -161,7 +176,7 @@ class TestObjectOrientedDesign
 //      Combustible combustible = car;
 //      assertEquals(100, combustible.getFuelLevel());
 //      Chargeable chargeable = car;
-//       assertEquals(100, chargeable.getBatteryCharge());
+//      assertEquals(100, chargeable.getBatteryCharge());
 //   }
 
 }

@@ -69,6 +69,7 @@ class TestAdvancedClasses
 		Cycle cycle = new Unicycle("Uni1");
 		assertEquals("Uni1", cycle.getMake());
 		assertEquals(1, cycle.getNumberOfWheels());
+		assertEquals(1, cycle.getFrameNumber());
 		cycle.setColor(Color.RED);
 		assertEquals(Color.RED, cycle.getColor());
 	}
@@ -80,11 +81,13 @@ class TestAdvancedClasses
 //		Cycle bike = new Bicycle("Tooney");
 //		assertEquals("Tooney", bike.getMake());
 //		assertEquals(2, bike.getNumberOfWheels());
+//		assertEquals(2, cycle.getFrameNumber());
 //		bike.setColor(Color.GREEN);
 //		assertEquals(Color.GREEN, bike.getColor());
 //	    Cycle eBike = new ElectricMountainBike("EMB");
 //	    assertEquals("EMB", eBike.getMake());
 //	    assertEquals(2, eBike.getNumberOfWheels());
+//	    assertEquals(3, cycle.getFrameNumber());
 //	    eBike.setColor(Color.RED);
 //	    assertEquals(Color.RED, eBike.getColor());
 //	}
@@ -195,21 +198,24 @@ class TestAdvancedClasses
 //		BikeShop shop = new BikeShop("Joe's Bike Rack");
 //		assertTrue(shop.toString().contains("Joe's Bike Rack"));
 //		
-//		shop.addToInventory(new ElectricMountainBike("BMC"));
+//		shop.addToInventory(new ElectricMountainBike("BigMountainBike"));
 //		assertTrue(shop.toString().contains("BMC");
 //		
 //		shop.addToInventory(new Unicycle("Looney"));
-//		assertTrue(shop.toString().contains("BMC");		
+//		assertTrue(shop.toString().contains("BigMountainBike");		
 //		assertTrue(shop.toString().contains("Looney");
+//		assertTrue(shop.toString().contains("Uni");
 //		
 //		shop.addToInventory(new Bicycle("Toony"));
-//		assertTrue(shop.toString().contains("BMC");		
+//		assertTrue(shop.toString().contains("BigMountainBike");		
 //		assertTrue(shop.toString().contains("Looney");
+//		assertTrue(shop.toString().contains("Uni");
 //		assertTrue(shop.toString().contains("Tooney");	
 //	
 //		shop.addToInventory(new ElectricMountainBike("EMB"));
-//		assertTrue(shop.toString().contains("BMC");		
+//		assertTrue(shop.toString().contains("BigMountainBike");		
 //		assertTrue(shop.toString().contains("Looney");
+//		assertTrue(shop.toString().contains("Uni");
 //		assertTrue(shop.toString().contains("Tooney");	
 //		assertTrue(shop.toString().contains("EMB");
 //	}

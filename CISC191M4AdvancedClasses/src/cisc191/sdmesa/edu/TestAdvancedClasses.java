@@ -199,23 +199,20 @@ class TestAdvancedClasses
 //		assertTrue(shop.toString().contains("Joe's Bike Rack"));
 //		
 //		shop.addToInventory(new ElectricMountainBike("BigMountainBike"));
-//		assertTrue(shop.toString().contains("BMC");
+//		assertTrue(shop.toString().contains("BigMountainBike");
 //		
 //		shop.addToInventory(new Unicycle("Looney"));
 //		assertTrue(shop.toString().contains("BigMountainBike");		
 //		assertTrue(shop.toString().contains("Looney");
-//		assertTrue(shop.toString().contains("Uni");
 //		
 //		shop.addToInventory(new Bicycle("Toony"));
 //		assertTrue(shop.toString().contains("BigMountainBike");		
 //		assertTrue(shop.toString().contains("Looney");
-//		assertTrue(shop.toString().contains("Uni");
 //		assertTrue(shop.toString().contains("Tooney");	
 //	
 //		shop.addToInventory(new ElectricMountainBike("EMB"));
 //		assertTrue(shop.toString().contains("BigMountainBike");		
 //		assertTrue(shop.toString().contains("Looney");
-//		assertTrue(shop.toString().contains("Uni");
 //		assertTrue(shop.toString().contains("Tooney");	
 //		assertTrue(shop.toString().contains("EMB");
 //	}

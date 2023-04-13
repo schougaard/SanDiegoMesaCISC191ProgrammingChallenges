@@ -1,6 +1,7 @@
 package cisc191.sdmesa.edu;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -31,18 +32,31 @@ class IOTest
 //		String results = IO.readTestResults("IDoNotExist.csv");
 //		assertEquals("", results);
 //	}
+	
+//  @Test
+//  void testStartTestResults()
+//  {
+//     // Note: Be sure to close the files so they can be opened for reading
+//     IO.startTestResults("NewTestResults.csv", "Julie,Brown,100,A");
+//     String results = IO.readTestResults("NewTestResults.csv");
+//     assertTrue(results.startsWith("Julie,Brown,100,A"));
+//     IO.startTestResults("NewTestResults.csv", "Davy,Jones,30,F");
+//     results = IO.readTestResults("NewTestResults.csv");
+//     assertTrue(results.startsWith("Davy,Jones,30,F"));
+//     assertFalse(results.contains("Julie,Brown,100,A"));
+//  }
 
 //   @Test
 //   void testAppendTestResults()
 //   {
 //      // Note: With each run, a new set of data may be appended to the file
-//      IO.appendTestResult("NewTestResults.csv", "Julie,Brown,100,A");
+//      IO.appendTestResult("NewTestResults.csv", "Peter,Jensen,89,B");
 //      String results = IO.readTestResults("NewTestResults.csv");
-//      assertTrue(results.endsWith("Julie,Brown,100,A"));
-//      IO.appendTestResult("NewTestResults.csv", "Davy,Jones,30,F");
+//      assertTrue(results.endsWith("Peter,Jensen,99,A"));
+//      IO.appendTestResult("NewTestResults.csv", "Alice,Westergaard,100,A");
 //      results = IO.readTestResults("NewTestResults.csv");
-//      assertTrue(results.contains("Julie,Brown,100,A"));
-//      assertTrue(results.endsWith("Davy,Jones,30,F"));
+//      assertTrue(results.contains("Peter,Jensen,99,A"));
+//      assertTrue(results.endsWith("Alice,Westergaard,100,A"));
 //   }
 
 //	@Test

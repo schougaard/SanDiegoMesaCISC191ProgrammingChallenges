@@ -166,7 +166,7 @@ class TestExceptions
 //	@Test
 //	void testBankAccountWithdrawException2() throws Exception
 //	{
-//		InsufficientFundsException insufficientFundsException = new InsufficientFundsException(123.45);
+//		InsufficientFundsException insufficientFundsException = new InsufficientFundsException(123.45, 300);
 //		// Test that insufficientFundsException is-an Exception
 //		assertTrue(insufficientFundsException instanceof Exception);
 //	

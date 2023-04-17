@@ -150,7 +150,7 @@ class TestDataStructures
 //		directory.setNumberForPerson("Bob", 4444);	
 //		assertEquals(1111, directory.findNumberForPerson("Alice"));
 //		assertEquals(2222, directory.findNumberForPerson("Bob"));
-//		assertEquals("858-555-1212", directory.findNumberForPerson("Bob's cell"));
+//		assertEquals(3333, directory.findNumberForPerson("Bob's cell"));
 //
 //	    directory.forget("Bob");	
 //	    assertEquals(1111, directory.findNumberForPerson("Alice"));

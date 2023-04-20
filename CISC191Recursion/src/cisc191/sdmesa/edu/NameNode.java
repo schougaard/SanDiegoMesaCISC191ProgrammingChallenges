@@ -94,9 +94,9 @@ public class NameNode
 	
 	/**
 	 * Find the least name in the tree
-	 * @return the node with the least name
+	 * @return the first name of the names in the tree in lexicographical order
 	 */
-	public String getSmallest()
+	public String getFirstName()
 	{
 		// TODO:
 		return null;
@@ -104,9 +104,9 @@ public class NameNode
 	
 	/**
 	 * Find the largest name in the tree
-	 * @return the node with the largest name
+	 * @return the last name of the names in the tree in lexicographical order
 	 */
-	public String getLargest()
+	public String getLastName()
 	{
 		// TODO:
 		return null;
@@ -130,7 +130,7 @@ public class NameNode
 		{
 			// TODO: insert newName on the left or right?
 		}
-		// else the name is already in the tree.
+		// else ???
 
 	}
 
@@ -142,8 +142,8 @@ public class NameNode
 		String returnValue = "";
 
 		// TODO: in-order traverse tree recursively:
-		// traverse and left subtree, then add this, then traverse and add right subtree
-		// Warning: Minds have been blown during the implementation of this method
+		// traverse and add left subtree, then add this, then traverse and add right subtree
+		// Warning: Minds have been blown during the implementation of this method...
 
 		return returnValue;
 	}

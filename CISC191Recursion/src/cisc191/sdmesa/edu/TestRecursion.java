@@ -44,14 +44,18 @@ class TestRecursion
 //		// See:
 //		// Lucas numbers. (n.d.). Brilliant | Learn interactively. 
 //		// https://brilliant.org/wiki/lucas-numbers/
-//      // Lucas number (n.d.) Wikipedia, the free encyclopedia
-//      // https://en.wikipedia.org/wiki/Lucas_number
+//		
+//		// See why Lucas number are better than Fibonacci number, watch:
+//		// Parker, M. (n.d.). Lucas Numbers - Numberphile [Video]. YouTube. 
+//		// https://www.youtube.com/watch?v=PeUbRXnbmms
+//		// Parker, M. (n.d.). Golden Ratio BURN (Internet Beef) - Numberphile [Video]. YouTube. 
+//		// https://www.youtube.com/watch?v=cjx23aMeBkQ
 //		
 //		assertEquals(2, Recursion.lucas(0));
 //		assertEquals(1, Recursion.lucas(1));
 //		assertEquals(3, Recursion.lucas(2));
 //		assertEquals(4, Recursion.lucas(3));
-//		assertEquals(76, Recursion.addLess(9));
+//		assertEquals(76, Recursion.lucas(9));
 //	}
 
 //	@Test
@@ -166,48 +170,48 @@ class TestRecursion
 //		assertEquals("Z", rootNode.getRight().getRight().getName());
 //	}
 	
-//	@Test void testLeast()
+//	@Test void testFirstName()
 //	{
 //		// Hint: where in the tree is the lowest letter in alphabetical order found?
 //		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.getSmallest());
+//		assertEquals("M", rootNode.getFirstName());
 //		NameNode h = new NameNode("H");
 //		rootNode.setLeft(h);
-//		assertEquals("H", rootNode.getSmallest());
+//		assertEquals("H", rootNode.getFirstName());
 //		NameNode s = new NameNode("S");
 //		rootNode.setRight(s);
-//		assertEquals("H", rootNode.getSmallest());
+//		assertEquals("H", rootNode.getFirstName());
 //		NameNode a = new NameNode("A");
 //		h.setLeft(a);
-//		assertEquals("A", rootNode.getSmallest());
+//		assertEquals("A", rootNode.getFirstName());
 //		NameNode z = new NameNode("Z");
 //		s.setRight(z);
-//		assertEquals("A", rootNode.getSmallest());
+//		assertEquals("A", rootNode.getFirstName());
 //		NameNode r = new NameNode("R");
 //		s.setLeft(r);
-//		assertEquals("A", rootNode.getSmallest());
+//		assertEquals("A", rootNode.getFirstName());
 //	}
 
-//	@Test void testLargest()
+//	@Test void testGetLastName()
 //	{
 //		// Hint: where in the tree is the highest letter in alphabetical order found?
 //		NameNode rootNode = new NameNode("M");
-//		assertEquals("M", rootNode.getLargest());
+//		assertEquals("M", rootNode.getLastName());
 //		NameNode h = new NameNode("H");
 //		rootNode.setLeft(h);
-//		assertEquals("M", rootNode.getLargest());
+//		assertEquals("M", rootNode.getLastName());
 //		NameNode s = new NameNode("S");
 //		rootNode.setRight(s);
-//		assertEquals("S", rootNode.getLargest());
+//		assertEquals("S", rootNode.getLastName());
 //		NameNode a = new NameNode("A");
 //		h.setLeft(a);
-//		assertEquals("S", rootNode.getLargest());
+//		assertEquals("S", rootNode.getLastName());
 //		NameNode z = new NameNode("Z");
 //		s.setRight(z);
-//		assertEquals("Z", rootNode.getLargest());
+//		assertEquals("Z", rootNode.getLastName());
 //		NameNode r = new NameNode("R");
 //		s.setLeft(r);
-//		assertEquals("Z", rootNode.getLargest());
+//		assertEquals("Z", rootNode.getLastName());
 //	}
 	
 //	@Test void testToString()

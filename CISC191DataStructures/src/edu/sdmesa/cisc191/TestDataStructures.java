@@ -3,6 +3,7 @@ package edu.sdmesa.cisc191;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -26,32 +27,34 @@ import org.junit.jupiter.api.Test;
 
 class TestDataStructures
 {
-//	@Test
-//	public void testLinkedList()
-//	{
-//		LinkedList<String> list = new LinkedList<String>();
-//		LinkedListProducer producer = new LinkedListProducer(list);
-//		LinkedListConsumer consumer = new LinkedListConsumer(list);
-//
-//		assertEquals(true, list.isEmpty());
-//
-//		producer.produce("1st");
-//		producer.produce("2nd");
-//		producer.produce("3rd");
-//
-//		assertEquals("1st", consumer.consumeHead());
-//		assertEquals("3rd", consumer.consumeTail());
-//		assertEquals("2nd", consumer.consumeTail());
-//		assertEquals(true, list.isEmpty());
-//	}
+	@Test
+	public void testLinkedList()
+	{
+		LinkedList<String> list = new LinkedList<String>();
+		LinkedListProducer producer = new LinkedListProducer(list);
+		LinkedListConsumer consumer = new LinkedListConsumer(list);
+		assertEquals(true, list.isEmpty());
+
+		producer.produce("1st");
+		producer.produce("2nd");
+		producer.produce("3rd");
+
+		assertEquals("1st", consumer.consumeHead());
+		assertEquals("3rd", consumer.consumeTail());
+		assertEquals("2nd", consumer.consumeTail());
+		assertEquals(true, list.isEmpty());
+		
+		assertNull(consumer.consumeHead());
+		assertNull(consumer.consumeTail());
+	}
 
 //	@Test
 //	public void testArrayList()
 //	{
 //		ArrayList<String> list = new ArrayList<String>();
-//
 //		ArrayListProducer producer = new ArrayListProducer(list);
 //		ArrayListConsumer consumer = new ArrayListConsumer(list);
+//		assertEquals(true, list.isEmpty());
 //
 //		producer.produce(0, "1st");
 //		producer.produce(1, "3rd");
@@ -64,6 +67,9 @@ class TestDataStructures
 //		assertEquals("2nd", consumer.consume());
 //		assertEquals("4th", consumer.consume());
 //		assertEquals("3rd", consumer.consume());
+//		assertEquals(true, list.isEmpty());
+//		
+//		assertNull(consumer.consume());
 //	}
 
 //	@Test
@@ -88,6 +94,8 @@ class TestDataStructures
 //		assertEquals("Meal #3", consumer.consume());
 //		assertEquals("Meal #4", consumer.consume());
 //		assertEquals(true, queue.isEmpty());
+//		
+//		assertNull(consumer.consume());
 //	}
 
 //	@Test
@@ -113,6 +121,8 @@ class TestDataStructures
 //		assertEquals("Last", consumer.consume());
 //		assertEquals("First", consumer.consume());
 //		assertEquals(true, stack.isEmpty());
+//		
+//		assertNull(consumer.consume());
 //	}
 	
 //	@Test
@@ -157,13 +167,15 @@ class TestDataStructures
 //	    directory.forget("Bob");	
 //	    assertEquals(1111, directory.findNumberForPerson("Alice"));
 //	    assertEquals(3333, directory.findNumberForPerson("Bob's cell"));
+//	    
+//	    assertNull(directory.findNumberForPerson("Xavier"));
 //	}
 	
 //	@Test
 //	public void testSearchEngine()
 //	{
 //      // In this scenario we are creating an internet search engine
-//      // which returns multiple results for each keyword
+//      // which returns multiple results for each search keyword
 //      // Hint: this requires multiple data structures collaborating
 //		SearchEngine goggles = new SearchEngine();
 //		
@@ -174,13 +186,26 @@ class TestDataStructures
 //		goggles.add("car", "http://cashanddrive.com");
 //		goggles.add("car", "http://fancycar.com");
 //		
+//		assertEquals(2, goggles.search("ice cream").size());	
 //		assertTrue(goggles.search("ice cream").contains("http://notyourmothersicecream.com"));
 //		assertTrue(goggles.search("ice cream").contains("http://mothersicecream.com"));
+//		assertFalse(goggles.search("ice cream").contains("http://foundontheroaddead.com"));
+//		assertFalse(goggles.search("ice cream").contains("http://fancycar.com"));
+//		assertFalse(goggles.search("ice cream").contains("http://cashanddrive.com"));
 //		
+//		assertEquals(3, goggles.search("car").size());
 //		assertTrue(goggles.search("car").contains("http://foundontheroaddead.com"));
 //		assertTrue(goggles.search("car").contains("http://fancycar.com"));
 //		assertTrue(goggles.search("car").contains("http://cashanddrive.com"));
+//		assertFalse(goggles.search("car").contains("http://notyourmothersicecream.com"));
+//		assertFalse(goggles.search("car").contains("http://mothersicecream.com"));
 //		
+//		assertEquals(0, goggles.search("lollipop").size());	
+//
+//		// Make sure malicious hackers cannot break your search engine
+//		// so do not hand out your data structures. Hint: think of Harbor
+//		goggles.search("car").clear();
+//		assertEquals(3, goggles.search("car").size());	
 //	}
 	
 }

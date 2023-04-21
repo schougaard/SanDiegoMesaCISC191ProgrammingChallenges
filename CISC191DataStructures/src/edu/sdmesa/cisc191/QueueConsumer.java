@@ -7,10 +7,6 @@ public class QueueConsumer
 
 	// private ??? queue;
 
-	public QueueConsumer(/* TODO fill in the parameter */)
-	{
-		// TODO complete the constructor
-	}
 
 	public String consume()
 	{

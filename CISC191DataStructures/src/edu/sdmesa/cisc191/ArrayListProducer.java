@@ -28,10 +28,6 @@ public class ArrayListProducer
 {
 	// private ??? list;
 
-	public ArrayListProducer(/* TODO fill in the parameter */)
-	{
-		// TODO complete the constructor
-	}
 
 	public void produce(int i, String string)
 	{

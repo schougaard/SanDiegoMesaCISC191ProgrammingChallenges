@@ -29,10 +29,6 @@ public class QueueProducer
 
 	// private ??? queue;
 
-	public QueueProducer(/* TODO fill in the parameter */)
-	{
-		// TODO complete the constructor
-	}
 
 	public void produce(String string)
 	{

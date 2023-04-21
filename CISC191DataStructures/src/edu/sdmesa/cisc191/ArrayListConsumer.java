@@ -28,11 +28,6 @@ public class ArrayListConsumer
 {
 	// private ??? list;
 
-	public ArrayListConsumer(/* TODO fill in the parameter */)
-	{
-		// TODO complete the constructor
-
-	}
 
 	public String consume()
 	{

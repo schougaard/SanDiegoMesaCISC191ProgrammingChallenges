@@ -28,10 +28,6 @@ public class StackProducer
 {
    // private ??? stack;
 
-	public StackProducer(/* TODO fill in the parameter */)
-	{
-      // TODO complete the constructor
-	}
 
 	public void produce(String string)
 	{

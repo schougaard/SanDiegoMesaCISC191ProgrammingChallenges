@@ -125,6 +125,8 @@ class TestDataStructures
 //		assertTrue(Datastructure.isPalindrome(lol));
 //		char[] car = {'c', 'a', 'r'};
 //		assertFalse(Datastructure.isPalindrome(car));
+//		char[] cabc = {'c', 'a', 'b', 'c'};
+//		assertFalse(Datastructure.isPalindrome(cabc));
 //		char[] racecar = "racecar".toCharArray();
 //		assertTrue(Datastructure.isPalindrome(racecar));
 //

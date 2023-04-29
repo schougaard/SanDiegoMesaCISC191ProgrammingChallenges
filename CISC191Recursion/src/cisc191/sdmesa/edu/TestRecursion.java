@@ -1,6 +1,7 @@
 package cisc191.sdmesa.edu;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -216,23 +217,49 @@ class TestRecursion
 	
 //	@Test void testToString()
 //	{
+//		// Hint: Recursively call toString on the NameNodes
 //		NameNode rootNode = new NameNode("M");
 //		assertEquals("M", rootNode.toString());
+//		assertNull(rootNode.getLeft());
+//		assertNull(rootNode.getRight());
+//		// Hint: 
+//		assertEquals("M", rootNode.getName());
+//		
 //		NameNode h = new NameNode("H");
 //		rootNode.setLeft(h);
 //		assertEquals("HM", rootNode.toString());
+//		assertEquals("H", rootNode.getLeft().toString());
+//		assertNull(rootNode.getRight());
+//		// Hint:
+//		assertEquals("HM", rootNode.getLeft().toString() + rootNode.getName());
+//		
 //		NameNode s = new NameNode("S");
 //		rootNode.setRight(s);
 //		assertEquals("HMS", rootNode.toString());
+//		assertEquals("H", rootNode.getLeft().toString());
+//		assertEquals("S", rootNode.getRight().toString());
+//		// Hint:
+//		assertEquals("HMS", rootNode.getLeft().toString() + rootNode.getName() + rootNode.getRight().toString());
+//		
 //		NameNode a = new NameNode("A");
 //		h.setLeft(a);
 //		assertEquals("AHMS", rootNode.toString());
+//		// Hint:
+//		assertEquals("AHMS", rootNode.getLeft().toString() + rootNode.getName() + rootNode.getRight().toString());
+//		
 //		NameNode z = new NameNode("Z");
 //		s.setRight(z);
 //		assertEquals("AHMSZ", rootNode.toString());
+//		// Hint:
+//		assertEquals("HMSZ", rootNode.getLeft().toString() + rootNode.getName() + rootNode.getRight().toString());
+//		
 //		NameNode r = new NameNode("R");
 //		s.setLeft(r);
 //		assertEquals("AHMRSZ", rootNode.toString());
+//		assertEquals("AH", rootNode.getLeft().toString());
+//		assertEquals("RSZ", rootNode.getRight().toString());
+//		// Hint:
+//		assertEquals("AHMRSZ", rootNode.getLeft().toString() + rootNode.getName() + rootNode.getRight().toString());
 //	}
 	
 //	@Test

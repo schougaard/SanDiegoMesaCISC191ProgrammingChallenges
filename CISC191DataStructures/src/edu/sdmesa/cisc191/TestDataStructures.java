@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -175,9 +176,9 @@ class TestDataStructures
 //	@Test
 //	public void testSearchEngine()
 //	{
-//      // In this scenario we are creating an internet search engine
-//      // which returns multiple results for each search keyword
-//      // Hint: this requires multiple data structures collaborating
+//		// In this scenario we are creating an internet search engine
+//		// which returns multiple results for each search keyword
+//		// Hint: this requires multiple data structures collaborating
 //		SearchEngine goggles = new SearchEngine();
 //		
 //		goggles.add("ice cream", "http://mothersicecream.com");
@@ -187,6 +188,7 @@ class TestDataStructures
 //		goggles.add("car", "http://cashanddrive.com");
 //		goggles.add("car", "http://fancycar.com");
 //		
+//		assertTrue(goggles.search("ice cream") instanceof List);
 //		assertEquals(2, goggles.search("ice cream").size());	
 //		assertTrue(goggles.search("ice cream").contains("http://notyourmothersicecream.com"));
 //		assertTrue(goggles.search("ice cream").contains("http://mothersicecream.com"));

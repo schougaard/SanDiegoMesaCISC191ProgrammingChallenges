@@ -39,6 +39,16 @@ class TestGoneFishing
 		assertEquals(1, button.getRow());
 		assertEquals(2, button.getColumn());
 	}
+	
+//	@Test
+//	void testGoneFishingView()
+//	{
+//		GoneFishingModel goneFishingModel = new GoneFishingModel();
+//		GoneFishingView goneFishingView = new GoneFishingView(goneFishingModel);
+//		goneFishingView.updateUI();
+//		goneFishingModel.fishAt(0, 0);
+//		goneFishingView.updateUI();
+//	}
 
 //	@Test
 //	void testGoneFishingButtonListener()

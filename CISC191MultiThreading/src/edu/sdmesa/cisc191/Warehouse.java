@@ -61,7 +61,7 @@ public class Warehouse
 	{
 		//System.out.println("Warehouse ship() running in Thread: " + Thread.currentThread().getName());
 
-		// TODO: return the first item in the list,
+		// TODO: return the last item in the list,
 		// if there are any items in storage
 		return null;
 		

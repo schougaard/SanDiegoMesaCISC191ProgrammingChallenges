@@ -251,7 +251,7 @@ class TestRecursion
 //		s.setRight(z);
 //		assertEquals("AHMSZ", rootNode.toString());
 //		// Hint:
-//		assertEquals("HMSZ", rootNode.getLeft().toString() + rootNode.getName() + rootNode.getRight().toString());
+//		assertEquals("AHMSZ", rootNode.getLeft().toString() + rootNode.getName() + rootNode.getRight().toString());
 //		
 //		NameNode r = new NameNode("R");
 //		s.setLeft(r);

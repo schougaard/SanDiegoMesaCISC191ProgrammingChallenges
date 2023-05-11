@@ -142,6 +142,15 @@ class TestM1Challenge
 //		int[] array4 = { -42, -2, -3 };
 //		// This checks that max returns -2, which is the largest element
 //		assertEquals(-2, max(array4));
+//		
+//		int[] array5 = { 3, 1, 2 };
+//		assertEquals(3, max(array5));
+//				
+//		int[] array6 = { 2, 1, 3 };
+//		assertEquals(3, max(array6));
+//		
+//		int[] array7 = { 2, 3, 1 };
+//		assertEquals(3, max(array7));
 //	}
 //
 //	@Test
@@ -161,6 +170,12 @@ class TestM1Challenge
 //
 //		int[] array4 = {-1, -2, -2147483648};
 //		assertEquals(-2147483648, min(array4));
+//		
+//		int[] array5 = {1, 2, 3};
+//		assertEquals(1, min(array5));	
+//		
+//		int[] array6 = {3, 2, 1};
+//		assertEquals(1, min(array6));
 //	}
 //
 //	@Test

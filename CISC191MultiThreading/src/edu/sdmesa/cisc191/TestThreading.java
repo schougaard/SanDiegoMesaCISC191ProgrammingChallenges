@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * @author Tasha Frankie
  * @author Allan Schougaard
  * @otherContributors: None
- * @version 2.0
+ * @version 2.1
  * @see Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented
  *      Problem Solving.
  *      https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
@@ -146,6 +146,8 @@ class TestThreading
 	/**
 	 * In this test we are simulating many consumers receiving items sequentially
 	 * from a warehouse.
+	 * Note: When trying to consume, the warehouse may be out of stock,
+	 * in which case the consumer will have to wait and try again.
 	 */
 //	@Test
 //	void testConsumingSequentially()
@@ -261,9 +263,42 @@ class TestThreading
 //		assertEquals(0, store.getNumberOfItemsInStock());
 //	}
 	
+//	@Test
+//	void testConsumingConcurrentlyWithOutOfStock() throws InterruptedException
+//	{
+//		Warehouse store = new Warehouse();
+//
+//		// Produce one item
+//		new Producer("Producer A", store, 1).run();
+//
+//		assertEquals(1, store.getNumberOfItemsInStock());
+//
+//		// Now, consume two items.
+		// But, the producers have only produced one item at this stage so 
+//		// the consumer will have to check again
+//		Consumer consumer = new Consumer("Consumer", store, 2);
+//		consumer.start();
+//		
+//		Thread.currentThread().wait(100);
+//		assertEquals(0, store.getNumberOfItemsInStock());
+//
+//		// Produce one more item so the consumer can get the requested items
+//		new Producer("Producer B", store, 1).run();
+//
+//		// Wait for producer to complete
+//		consumer.join();
+//
+//		// There should be no items at the warehouse
+//		assertEquals(0, store.getNumberOfItemsInStock());
+//	}
+	
 	/**
 	 * In this test we are simulating many consumers receiving items concurrently
-	 * with many producers.
+	 * with many producers. We are running many threads concurrently, so you computer's
+	 * fan may spin up as all the cores in the CPU are being used and therefore
+	 * use more power.
+	 * If you are on MacOS you may have to reduce the number of threads
+	 * as Apple does not allow you to run this many threads.
 	 * 
 	 * @throws InterruptedException if the program is interrupted, which should not
 	 *                              happen
@@ -313,7 +348,7 @@ class TestThreading
 //			producers[i].join();
 //		}
 //
-//		// Wait for producers to complete
+//		// Wait for consumers to complete
 //		for (int i = 0; i < numberOfConsumers; i++)
 //		{
 //			consumers[i].join();

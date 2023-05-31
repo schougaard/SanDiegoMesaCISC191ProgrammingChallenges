@@ -299,6 +299,7 @@ class TestThreading
 	 * use more power.
 	 * If you are on MacOS you may have to reduce the number of threads
 	 * as Apple does not allow you to run this many threads.
+	 * Of course, then issue may not show itself.
 	 * 
 	 * @throws InterruptedException if the program is interrupted, which should not
 	 *                              happen

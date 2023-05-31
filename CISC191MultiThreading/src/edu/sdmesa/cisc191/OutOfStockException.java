@@ -13,5 +13,11 @@ package edu.sdmesa.cisc191;
  */
 public class OutOfStockException extends Exception
 {
-
+	/**
+	 * Contains a message about which thread was running when the exception was thrown.
+	 */
+	public OutOfStockException()
+	{
+		super(Thread.currentThread().getName() + " thread could not get an item shipped");
+	}
 }

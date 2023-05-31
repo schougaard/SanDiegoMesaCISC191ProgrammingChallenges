@@ -279,7 +279,7 @@ class TestThreading
 //		Consumer consumer = new Consumer("Consumer", store, 2);
 //		consumer.start();
 //		
-//		Thread.currentThread().wait(100);
+//		Thread.currentThread().sleep(200);
 //		assertEquals(0, store.getNumberOfItemsInStock());
 //
 //		// Produce one more item so the consumer can get the requested items

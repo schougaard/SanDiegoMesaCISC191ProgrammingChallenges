@@ -1,7 +1,10 @@
 package cisc191.sdmesa.edu;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +60,76 @@ class TestRecursion
 //		assertEquals(3, Recursion.lucas(2));
 //		assertEquals(4, Recursion.lucas(3));
 //		assertEquals(76, Recursion.lucas(9));
+//	}
+	
+	
+//	@Test
+//	void testNextCollatzNumber()
+//	{
+//		// See:
+//		// Collatz conjecture. (2023, May 21). Wikipedia, the free encyclopedia. 
+//		// https://en.wikipedia.org/wiki/Collatz_conjecture
+//		//
+//		// Veritasium. (2021, July 30). The Simplest Math Problem No One Can Solve - Collatz Conjecture [Video]. YouTube. 
+//		// https://www.youtube.com/watch?v=094y1Z2wpJg
+//		
+//		// The next Collatz number is calculated like this:
+//		// if n is even, return n/2.
+//		// if n is odd, return 3n+1.	
+//		
+//		assertEquals(4, Recursion.nextCollatzNumber(1));    // 3n+1
+//		assertEquals(1, Recursion.nextCollatzNumber(2));    // n/2
+//		assertEquals(10, Recursion.nextCollatzNumber(3));   // 3n+1
+//		assertEquals(178, Recursion.nextCollatzNumber(59)); // 3n+1
+//	}
+
+//	@Test
+//	void testCollatzList()
+//	{
+//		// This challenge is to construct the list of Collatz numbers given the first number.
+//		// If you find a list that does get to 1, please contact me immediately!
+//	
+//		LinkedList<Integer> list1 = new LinkedList<Integer>();
+//		list1.add(1); // Stop the recursion at n=1
+//		assertEquals(list1, Recursion.collatzList(1));
+//
+//		LinkedList<Integer> list2 = new LinkedList<Integer>();
+//		list2.add(2);
+//		list2.add(1);
+//		assertEquals(list2, Recursion.collatzList(2));
+//		
+//		LinkedList<Integer> list4 = new LinkedList<Integer>();
+//		list4.add(4);
+//		list4.add(Recursion.nextCollatzNumber(4));
+//		list4.add(1);
+//		assertEquals(list4, Recursion.collatzList(4));
+//		
+//		LinkedList<Integer> list5 = new LinkedList<Integer>();
+//		list5.add(5);
+//		list5.add(16);
+//		list5.add(8);
+//		list5.add(4);
+//		list5.add(2);
+//		list5.add(1);
+//		assertEquals(list5, Recursion.collatzList(5));
+//		
+//		LinkedList<Integer> list27 = new LinkedList<Integer>();
+//		list27.add(27);
+//		list27.addAll(Recursion.collatzList(3*27+1));
+//		assertEquals(list27, Recursion.collatzList(27));
+//		assertEquals(112, Recursion.collatzList(27).size());
+//		
+//		LinkedList<Integer> list28 = new LinkedList<Integer>();
+//		list28.add(28);
+//		list28.addAll(Recursion.collatzList(28/2));
+//		assertEquals(list28, Recursion.collatzList(28));
+//		assertEquals(19, Recursion.collatzList(28).size());
+//		
+//		LinkedList<Integer> list29 = new LinkedList<Integer>();
+//		list29.add(29);
+//		list29.addAll(Recursion.collatzList(Recursion.nextCollatzNumber(29)));
+//		assertEquals(list29, Recursion.collatzList(29));
+//		assertEquals(19, Recursion.collatzList(29).size());
 //	}
 
 //	@Test

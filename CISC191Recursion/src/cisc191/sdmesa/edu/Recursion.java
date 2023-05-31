@@ -1,5 +1,7 @@
 package cisc191.sdmesa.edu;
 
+import java.util.*;
+
 /**
  * Lead Author(s):
  * 
@@ -58,11 +60,6 @@ public class Recursion
 	
 	/**
 	 * Calculate the n'th Lucas number.
-	 * @see Lucas numbers. (n.d.). Brilliant | Learn interactively. https://brilliant.org/wiki/lucas-numbers/
-	 * See why Lucas number are better than Fibonacci number, watch:
-	 * @see Parker, M. (n.d.). Lucas Numbers - Numberphile [Video]. YouTube. https://www.youtube.com/watch?v=PeUbRXnbmms
-	 * @see Parker, M. (n.d.). Golden Ratio BURN (Internet Beef) - Numberphile [Video]. YouTube. https://www.youtube.com/watch?v=cjx23aMeBkQ
-	 * 
 	 * @param n the number of the Lucas number
 	 * @return L(n) = L(n-2) + L(n-1)
 	 */
@@ -82,14 +79,53 @@ public class Recursion
 //	}
 	
 	/**
-	 * Calculate the end balance given a starting balance, and interest rate
-	 * (given as a decimal) and the number of times interest is added.
-	 * 
-	 * @param startBalance
-	 * @param interestRate
-	 * @param periods
-	 * @return ending balance
+	 * Calculate the next Collatz number
+	 * @param n the number to calculate from
+	 * @return the next number in the Collatz sequence
 	 */
+//	public static int nextCollatzNumber(int n)
+//	{
+//		if (n%2==0)
+//		{
+//			return -1;
+//		}
+//		else
+//		{
+//			return -1;
+//		}
+//	}
+	
+	/**
+	 * Calculate an entire Collatz sequence given a starting number
+	 * @param n starting number
+	 * @return list of Collatz numbers starting with n
+	 */
+//	public static List<Integer> collatzList(int n)
+//	{
+//		if (n==1)
+//		{
+//			LinkedList<Integer> list = new LinkedList<Integer>();
+//			//TODO
+//			return list; 
+//		}
+//		else
+//		{
+//			LinkedList<Integer> list = new LinkedList<Integer>();
+//			//TODO
+//			
+//			return list;
+//		}
+//	}
+	
+//	/**
+//	 * Calculate the end balance given a starting balance, and interest rate
+//	 * (given as a decimal) and the number of times interest is added.
+//	 * 
+//	 * @param startBalance for the first period
+//	 * @param interestRate how much interest the money accrues 
+//	 * @param periods how many periods the money is invested (how many times interest is added)
+//	 * @return ending balance how much is returned at the end of the last period
+//	 */
 //	public static double calculateEndBalance(final double startBalance,
 //			final double interestRate, final int periods)
 //	{
@@ -103,7 +139,8 @@ public class Recursion
 //			// TODO:
 //			// Calculate the end balance for the first n-1 periods
 //			// The start balance for the n'th period is the end balance for the first n-1 periods
-//			// Then calculate the end balance for the n'th period
+//			double startBalanceForNthPeriod = calculateEndBalance(???);
+//			// Then calculate the end balance for the n'th period by adding interest for one period.
 //			return -2;
 //		}
 //	}
@@ -113,8 +150,8 @@ public class Recursion
 	 * 
 	 * @param startPopulation the starting population
 	 * @param maxPopulation the maximum population that the environment will sustain
-	 * @param growthRate staring growth rate, 0 < growth rate < 1
-	 * @param periods
+	 * @param growthRate starting growth rate, 0 < growthRate < 1
+	 * @param periods that the population lives
 	 * @return the ending population
 	 */
 //	public static int calculateEndPopulation(final int startPopulation,

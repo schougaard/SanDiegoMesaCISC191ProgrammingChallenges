@@ -23,6 +23,9 @@ package edu.sdmesa.cisc191;
  * Responsibilities of class:
  * 
  */
+
+//TODO: comment the code
+
 public class Producer extends Thread
 {
 	private String name;

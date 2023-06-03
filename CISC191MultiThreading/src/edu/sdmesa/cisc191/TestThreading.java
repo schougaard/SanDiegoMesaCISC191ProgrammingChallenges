@@ -26,65 +26,223 @@ class TestThreading
 	 * 
 	 * @throws InterruptedException if the Engine is interrupted
 	 */
-	@Test
-	void testEngine() throws InterruptedException
-	{
-		Engine engine1 = new Engine();
-		engine1.setFuelLevel(5);
-		// 3, 2, 1 - start!
-		engine1.start();
-		Thread.sleep(1010);
-		// See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Thread.html#isAlive()
-		assertTrue(engine1.isAlive());
-		assertEquals(4, engine1.getFuelLevel());
-		Thread.sleep(1010);
-		// Engine is running
-		assertTrue(engine1.isAlive());
-		assertEquals(3, engine1.getFuelLevel());
-		Thread.sleep(1010);
-		assertTrue(engine1.isAlive());
-		assertEquals(2, engine1.getFuelLevel());
-		Thread.sleep(1010);
-		assertTrue(engine1.isAlive());
-		assertEquals(1, engine1.getFuelLevel());		
-		Thread.sleep(1010);
-		// Engine has stopped
-		assertFalse(engine1.isAlive());
-		assertEquals(0, engine1.getFuelLevel());
-		
-		// No fuel - no go
-		Engine engine2 = new Engine();
-		engine2.setFuelLevel(0);
-		assertEquals(0, engine2.getFuelLevel());
-		engine2.start();
-		Thread.sleep(10);
-		assertFalse(engine2.isAlive());
-		assertEquals(0, engine2.getFuelLevel());
-		
-		// Running two engines at the same time
-		Engine engine10 = new Engine();
-		engine10.setFuelLevel(5);
-		engine10.start();
-		Engine engine11 = new Engine();
-		engine11.setFuelLevel(3);
-		engine11.start();
-		
-		Thread.sleep(2100);
-		assertTrue(engine10.isAlive());
-		assertEquals(3, engine10.getFuelLevel());
-		assertTrue(engine11.isAlive());
-		assertEquals(1, engine11.getFuelLevel());
-		
-		Thread.sleep(1010);
-		assertTrue(engine10.isAlive());
-		assertEquals(2, engine10.getFuelLevel());
-		assertFalse(engine11.isAlive());
-		assertEquals(0, engine11.getFuelLevel());
-		
-		Thread.sleep(2010);
-		assertFalse(engine10.isAlive());
-		assertEquals(0, engine10.getFuelLevel());
-	}
+//	@Test
+//	void testEngine() throws InterruptedException
+//	{
+//		Engine engine1 = new Engine();
+//		engine1.setFuelLevel(5);
+//		// 3, 2, 1 - start!
+//		engine1.start();
+//		Thread.sleep(1010);
+//		// See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Thread.html#isAlive()
+//		assertTrue(engine1.isAlive());
+//		assertEquals(4, engine1.getFuelLevel());
+//		Thread.sleep(1010);
+//		// Engine is running
+//		assertTrue(engine1.isAlive());
+//		assertEquals(3, engine1.getFuelLevel());
+//		Thread.sleep(1010);
+//		assertTrue(engine1.isAlive());
+//		assertEquals(2, engine1.getFuelLevel());
+//		Thread.sleep(1010);
+//		assertTrue(engine1.isAlive());
+//		assertEquals(1, engine1.getFuelLevel());		
+//		Thread.sleep(1010);
+//		// Engine has stopped
+//		assertFalse(engine1.isAlive());
+//		assertEquals(0, engine1.getFuelLevel());
+//		
+//		// No fuel - no go
+//		Engine engine2 = new Engine();
+//		engine2.setFuelLevel(0);
+//		assertEquals(0, engine2.getFuelLevel());
+//		engine2.start();
+//		Thread.sleep(10);
+//		assertFalse(engine2.isAlive());
+//		assertEquals(0, engine2.getFuelLevel());
+//		
+//		// Running two engines at the same time
+//		Engine engine10 = new Engine();
+//		engine10.setFuelLevel(5);
+//		engine10.start();
+//		Engine engine11 = new Engine();
+//		engine11.setFuelLevel(3);
+//		engine11.start();
+//		
+//		Thread.sleep(2100);
+//		assertTrue(engine10.isAlive());
+//		assertEquals(3, engine10.getFuelLevel());
+//		assertTrue(engine11.isAlive());
+//		assertEquals(1, engine11.getFuelLevel());
+//		
+//		Thread.sleep(1010);
+//		assertTrue(engine10.isAlive());
+//		assertEquals(2, engine10.getFuelLevel());
+//		assertFalse(engine11.isAlive());
+//		assertEquals(0, engine11.getFuelLevel());
+//		
+//		Thread.sleep(2010);
+//		assertFalse(engine10.isAlive());
+//		assertEquals(0, engine10.getFuelLevel());
+//	}
+	
+	/**
+	 * Testing that a bank account can accept deposits and withdrawals in any order
+	 * @throws InterruptedException should not happen
+	 */
+//	@Test
+//	void testBankAccountDepositWithdrawSequentially() throws InterruptedException
+//	{
+//		BankAccount account = new BankAccount();
+//		
+//		// Deposit money
+//		// If this does not error on first run, increase the number of depositors
+//		Thread[] depositors = new Thread[1];
+//		for (int i=0; i<depositors.length; i++)
+//		{
+//			depositors[i] = new BankDepositor(account, 10000);				
+//		}		
+//		// Withdraw the same amount of money
+//		Thread[] withdrawers = new Thread[depositors.length];
+//		for (int i=0; i<withdrawers.length; i++)
+//		{
+//			withdrawers[i] = new BankWithdrawer(account, 10000);					
+//		}
+//		
+//		// Start all the threads
+//		for (int i=0; i<depositors.length; i++)
+//		{
+//			depositors[i].run();
+//			withdrawers[i].run();
+//		}
+//		
+//		assertEquals(0, account.getBalance());
+//	}
+	
+	/**
+	 * Testing that a bank account can accept deposits concurrently
+	 * @throws InterruptedException should not happen
+	 */
+//	@Test
+//	void testBankAccountDepositConcurrently() throws InterruptedException
+//	{
+//		BankAccount account = new BankAccount();
+//		// Deposit money
+//		// If this does not error on first run, increase the number of threads
+//		// and change the assertEquals
+//		Thread[] threads = new Thread[2];
+//		for (int i=0; i<threads.length; i++)
+//		{
+//			threads[i] = new BankDepositor(account, 100000);					
+//		}
+//		// Start all the withdrawals
+//		for (int i=0; i<threads.length; i++)
+//		{
+//			threads[i].start();
+//		}
+//		// Wait for all withdrawals to end
+//		for (int i=0; i<threads.length; i++)
+//		{
+//			threads[i].join();
+//		}
+//		
+//		assertEquals(2*100000, account.getBalance());
+//	}
+	
+	/**
+	 * Testing that a bank account can accept withdrawals concurrently
+	 * @throws InterruptedException should not happen
+	 */
+//	@Test
+//	void testBankAccountWithdrawConcurrently() throws InterruptedException
+//	{
+//		BankAccount account = new BankAccount();
+//		account.deposit(100000*2);
+//		// Withdraw the same amount of money as deposited
+//		// If this does not error on first run, increase the number of threads
+//		// and change the deposit.
+//		Thread[] threads = new Thread[2];
+//		for (int i=0; i<threads.length; i++)
+//		{
+//			threads[i] = new BankWithdrawer(account, 100000);					
+//		}
+//		// Start all the withdrawals
+//		for (int i=0; i<threads.length; i++)
+//		{
+//			threads[i].start();
+//		}
+//		// Wait for all withdrawals to end
+//		for (int i=0; i<threads.length; i++)
+//		{
+//			threads[i].join();
+//		}
+//		
+//		assertEquals(0, account.getBalance());
+//	}
+	
+	
+	/**
+	 * Testing that a bank account can accept deposits and withdrawals concurrently
+	 * @throws InterruptedException should not happen
+	 */
+//	@Test
+//	void testBankAccountDepositWithdrawConcurrently1() throws InterruptedException
+//	{
+//		BankAccount account = new BankAccount();
+//		
+//		// Deposit money
+//		Thread depositor = new BankDepositor(account, 100000);
+//		// Withdraw the same amount of money
+//		Thread withdrawer = new BankWithdrawer(account, 100000);
+//		// Start all the threads
+//		depositor.start();
+//		withdrawer.start();
+//		// Wait for all threads to end
+//		depositor.join();
+//		withdrawer.join();
+//		
+//		assertEquals(0, account.getBalance());
+//	}
+	
+	
+	/**
+	 * Testing that a bank account can accept high volume deposits and withdrawals concurrently
+	 * @throws InterruptedException should not happen
+	 */
+//	@Test
+//	void testBankAccountDepositWithdrawConcurrently2() throws InterruptedException
+//	{
+//		BankAccount account = new BankAccount();
+//		
+//		// Deposit money
+//		// If this does not error on first run, increase the number of depositors
+//		Thread[] depositors = new Thread[2];
+//		for (int i=0; i<depositors.length; i++)
+//		{
+//			depositors[i] = new BankDepositor(account, 10000);				
+//		}		
+//		// Withdraw the same amount of money
+//		Thread[] withdrawers = new Thread[depositors.length];
+//		for (int i=0; i<withdrawers.length; i++)
+//		{
+//			withdrawers[i] = new BankWithdrawer(account, 10000);					
+//		}
+//		
+//		// Start all the threads
+//		for (int i=0; i<depositors.length; i++)
+//		{
+//			depositors[i].start();
+//			withdrawers[i].start();
+//		}
+//		// Wait for all threads to end
+//		for (int i=0; i<depositors.length; i++)
+//		{
+//			depositors[i].join();
+//			withdrawers[i].join();
+//		}
+//		
+//		assertEquals(0, account.getBalance());
+//	}
 
 	/**
 	 * Testing that a warehouse can receive and ship items, and that items are

@@ -23,6 +23,9 @@ package edu.sdmesa.cisc191;
  * Responsibilities of class:
  * 
  */
+
+//TODO: comment the code
+
 public class Consumer extends Thread
 {
 	private String name;
@@ -43,6 +46,7 @@ public class Consumer extends Thread
 
 		// TODO: consume numberOfItemsToProduce items
 		
+		// TODO: What happens if you get an OutOfStock exception? Did you actually consume an item?
 
 		System.out.println(name + " ended.");
 	}

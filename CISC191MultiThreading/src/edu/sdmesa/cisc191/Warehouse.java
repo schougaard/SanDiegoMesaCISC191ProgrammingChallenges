@@ -46,8 +46,6 @@ public class Warehouse
 	 */
 	public void receive(Item item)
 	{
-		//System.out.println("Warehouse receive(" + item + ") running in Thread: " + Thread.currentThread().getName());
-
 		// TODO: store item at at the front of the list
 		
 	}
@@ -59,8 +57,6 @@ public class Warehouse
 	 */
 	public Item ship() throws OutOfStockException
 	{
-		//System.out.println("Warehouse ship() running in Thread: " + Thread.currentThread().getName());
-
 		// TODO: return the last item in the list,
 		// if there are any items in storage
 		return null;

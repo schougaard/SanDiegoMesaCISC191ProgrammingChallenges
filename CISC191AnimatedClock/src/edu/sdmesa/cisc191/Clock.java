@@ -25,6 +25,7 @@ public class Clock implements ActionListener
 	public Clock()
 	{
 		// Student TODO: create and start a Swing Timer to update each second
+		// See: Java, Java, Java, section 15.5
 		
 	}
 

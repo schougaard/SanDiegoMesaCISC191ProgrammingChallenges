@@ -47,7 +47,7 @@ public class ClockPanel extends JPanel implements ActionListener
 		clock = new Clock();
 
 		// Student TODO: create and start animation timer (using a Swing Timer) to update at 60 times per second (1000/60)
-
+		// See: Java, Java, Java, section 15.5
 		
 	}
 
@@ -112,7 +112,7 @@ public class ClockPanel extends JPanel implements ActionListener
 	{
 		// Student TODO: Fill in the needed code to animate the clock. 
 
-		
+		repaint();
 	}
 
 }

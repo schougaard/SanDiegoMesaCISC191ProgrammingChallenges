@@ -33,7 +33,7 @@ public class M1Challenge
 	 */
 	public static int add(int a, int b)
 	b
-		return firstIntValue + secondIntValue;
+		return a + b;
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class M1Challenge
 	}
 	
 	/**
-	 * Purpose: Find the first element in the array given
+	 * Purpose: return the first element in the array given
 	 * 
 	 * @param array to search
 	 * @return first element
@@ -61,7 +61,7 @@ public class M1Challenge
 	}
 	
 	/**
-	 * Purpose: Find the last element in the array given
+	 * Purpose: return the last element in the array given
 	 * 
 	 * @param array to search
 	 * @return last element
@@ -73,7 +73,7 @@ public class M1Challenge
 	}
 	
 	/**
-	 * Purpose: Find the middle element in a array with an odd number of elements
+	 * Purpose: return the middle element in an array with an odd number of elements
 	 * 
 	 * @param array to search
 	 * @return middle element

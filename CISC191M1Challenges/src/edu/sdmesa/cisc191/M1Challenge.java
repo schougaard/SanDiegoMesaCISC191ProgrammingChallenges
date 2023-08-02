@@ -31,8 +31,8 @@ public class M1Challenge
 	 * @param b another number
 	 * @return the sum of a and b
 	 */
-	public static int add(int firstIntValue, int secondIntValue)
-	{
+	public static int add(int a, int b)
+	b
 		return firstIntValue + secondIntValue;
 	}
 	
@@ -42,7 +42,7 @@ public class M1Challenge
 	 * @param b another number
 	 * @return the product of a and b
 	 */
-	public static int multiply(int firstIntValue, int secondIntValue)
+	public static int multiply(int a, int b)
 	{
 		// TODO: change this to make the tests pass
 		return -11111;

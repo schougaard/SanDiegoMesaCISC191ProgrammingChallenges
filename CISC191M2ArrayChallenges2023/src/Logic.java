@@ -11,6 +11,7 @@ public class Logic {
 		Pixel[][] pixel2D = picture.getPixels2D();
 		for (int r = 0; r < pixel2D.length; r++) {
 			for (int c = 0; c < pixel2D[r].length; c++) {
+				//Alter this code
 				pixel2D[r][c].setBlue(??? <-- replace);
 			}
 		}
@@ -26,6 +27,8 @@ public class Logic {
 
 		for (int r = 0; r < pixel2D.length; r++) {
 			for (int c = 0; c < pixel2D[r].length; c++) {
+				//Alter the code below - average the value of the colors red, green and blue
+				//each Pixel object has a getter for the color values i.e. getGreen()
 				int avg = ?;
 				pixel2D[r][c].setGreen(avg);
 				pixel2D[r][c].setBlue(???);

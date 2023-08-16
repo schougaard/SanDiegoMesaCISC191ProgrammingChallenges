@@ -62,7 +62,9 @@ public class Logic {
 	 */
 	public static void sepia(DigitalPicture picture) {
 		Pixel[][] pixel2D = picture.getPixels2D();
-		 
+
+		//You now should work on added the nested for-loop in
+		//addition to applying the filter
 
 	}
 	
@@ -73,7 +75,8 @@ public class Logic {
 	 */
 	public static void mirrorHorizontal(DigitalPicture picture) {
 		Pixel[][] pixel2D = picture.getPixels2D();
-		 
+		//You now should work on added the nested for-loop in
+		//addition to applying the filter 
 
 	}
 
@@ -83,7 +86,9 @@ public class Logic {
 	 */
 	public static void mirrorVertical(DigitalPicture picture) {
 		Pixel[][] pixel2D = picture.getPixels2D();
-		 
+		
+		//You now should work on added the nested for-loop in
+		//addition to applying the filter
 		 
 
 	}
@@ -95,7 +100,10 @@ public class Logic {
 	public static void blur(DigitalPicture picture) {
 		System.out.println("blurring");
 		Pixel[][] pixel2D = picture.getPixels2D();
- 
+
+		//You now should work on added the nested for-loop in
+		//addition to applying the filter. You may use a 3x3 window, but it may
+		//not pass the tester which is ok
 
 	}
 

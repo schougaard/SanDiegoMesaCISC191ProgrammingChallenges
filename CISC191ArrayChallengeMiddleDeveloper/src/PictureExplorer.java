@@ -197,13 +197,6 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     scrollPane.setViewportView(imageDisplay);
     pictureFrame.getContentPane().add(scrollPane, BorderLayout.CENTER);
     BufferedImage og = picture.getBufferedImage();
-    CustomButton b = new CustomButton("B&W");
-    b.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent evt) {
-         // Logic.blackAndWhite(picture);
-          repaint();
-        }
-      });
     
     CustomButton zeroBlue = new CustomButton("Zero Blue");
     // handle previous row button press
@@ -214,44 +207,35 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
       }
     });
     
+    CustomButton b = new CustomButton("B&W");
+    b.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+         /* 
+          * Uncomment the following to connect the black and white button in the GUI to your provided solution.
+          */
+         // Logic.blackAndWhite(picture);
+          repaint();
+        }
+      });
+    
+
+    
     CustomButton negative = new CustomButton("Negative");
     // handle previous row button press
     negative.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
+          /* 
+           * Uncomment the following to connect the negative button in the GUI to your provided solution.
+           */
       //  Logic.negative(picture);
         repaint();
       }
     });
     
-    CustomButton blur = new CustomButton("Blur");
+
+    CustomButton sunset = new CustomButton("Sunset");
     // handle previous row button press
-    blur.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-    //    Logic.blur(picture);
-        repaint();
-      }
-    });
-    
-    CustomButton mirrorV = new CustomButton("FlipVertical");
-    // handle previous row button press
-    mirrorV.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-     //   Logic.mirrorVertical(picture);
-        repaint(); 
-      }
-    });
-    CustomButton mirrorH = new CustomButton("FlipHorizontal");
-    // handle previous row button press
-    mirrorH.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-      //  Logic.mirrorHorizontal(picture);
-        repaint();
-      }
-    });
-    
-    CustomButton sepia = new CustomButton("Sunset");
-    // handle previous row button press
-    sepia.addActionListener(new ActionListener() {
+    sunset.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
     	  String red = JOptionPane.showInputDialog(null, "Enter a redIntensity value > 1 such as 1.5 or 1.1");   
     	  String greenBlue = JOptionPane.showInputDialog(null, "Enter a positive greenBlueReduction value < 1 such as .5 or .9 ");  
@@ -267,11 +251,48 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
       }
     });
     
+    CustomButton mirrorV = new CustomButton("FlipVertical");
+    // handle previous row button press
+    mirrorV.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+    	  /* 
+           * Uncomment the following to connect the mirrorVertical button in the GUI to your provided solution.
+           */
+     //   Logic.mirrorVertical(picture);
+        repaint(); 
+      }
+    });
+    CustomButton mirrorH = new CustomButton("FlipHorizontal");
+    // handle previous row button press
+    mirrorH.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+    	  /* 
+           * Uncomment the following to connect the mirrorHorizontal button in the GUI to your provided solution.
+           */
+      //  Logic.mirrorHorizontal(picture);
+        repaint();
+      }
+    });
+    
+    CustomButton blur = new CustomButton("Blur");
+    // handle previous row button press
+    blur.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+    	  /* 
+           * Uncomment the following to connect the blur button in the GUI to your provided solution.
+           */
+    //    Logic.blur(picture);
+        repaint();
+      }
+    });
+    
+
+    
     // create a location panel
     JPanel filters = new JPanel();
     filters.setLayout(new GridLayout(4,4));
     
-    JButton[] buttons = {zeroBlue, b, negative, mirrorH, mirrorV, sepia, blur};
+    JButton[] buttons = {zeroBlue, b, negative, mirrorH, mirrorV, sunset, blur};
     
 	
     for(int i = 0; i < buttons.length; i++) {

@@ -32,7 +32,7 @@ public class M1Challenge
 	 * @return the sum of a and b
 	 */
 	public static int add(int a, int b)
-	b
+	{
 		return a + b;
 	}
 	

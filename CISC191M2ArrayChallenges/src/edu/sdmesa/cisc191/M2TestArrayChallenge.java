@@ -234,27 +234,27 @@ class M2TestArrayChallenge
 //	}
 //	
 //	@Test
-//	void testEquals()
+//	void testArrayElementsEqual()
 //	{
 //		char[] array0a = {};
-//		assertTrue(equals(array0a, array0a));
+//		assertTrue(arrayElementsEqual(array0a, array0a));
 //		char[] array0b = {};
-//		assertTrue(equals(array0a, array0b));
+//		assertTrue(arrayElementsEqual(array0a, array0b));
 //
 //		char[] array1 = {'A'};
 //		char[] array2 = copy(array1);
-//		assertTrue(equals(array1, array2));
+//		assertTrue(arrayElementsEqual(array1, array2));
 //		array2[0] = 'B';
 //		assertEquals('B', array2[0]);
 //		assertEquals('A', array1[0]);
-//		assertFalse(equals(array1, array2));
+//		assertFalse(arrayElementsEqual(array1, array2));
 //
 //		char[] array3 = {'X', 'Y', 'Z'};
-//		assertFalse(equals(array0, array3));		
-//		assertFalse(equals(array3, array0));		
-//		assertFalse(equals(array1, array3));		
-//		assertFalse(equals(array3, array2));
-//		assertTrue(equals(array3, array3));
+//		assertFalse(arrayElementsEqual(array0a, array3));		
+//		assertFalse(arrayElementsEqual(array3, array0a));		
+//		assertFalse(arrayElementsEqual(array1, array3));		
+//		assertFalse(arrayElementsEqual(array3, array2));
+//		assertTrue(arrayElementsEqual(array3, array3));
 //	}
 //	
 //	@Test

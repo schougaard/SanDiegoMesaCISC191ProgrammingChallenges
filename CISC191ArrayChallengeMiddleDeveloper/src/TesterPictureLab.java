@@ -143,7 +143,7 @@ class TesterPictureLab {
 //	}
 //	
 //	/*
-//	 * See canvas for more details on applying sepia tone to a picture
+//	 * See canvas for more details on applying sunset tone to a picture
 //	 */
 //	@Test
 //	void testSunset(){
@@ -164,7 +164,7 @@ class TesterPictureLab {
 //		for(int r = 0; r < pixels.length; r++) {
 //			for(int c = 0; c < pixels[r].length; c++) {
 //				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					String msg = "Your provided solution for Sepia did not match the solution. Check the GUI to see that your filter applies a different color at all to the picture";
+//					String msg = "Your provided solution for sunset did not match the solution. Check the GUI to see that your filter applies a different color at all to the picture";
 //
 //					try {
 //						p.explore();

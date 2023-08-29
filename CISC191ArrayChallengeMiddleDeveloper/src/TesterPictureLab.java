@@ -117,8 +117,8 @@ class TesterPictureLab {
 //		Picture p2 = new Picture("bees.PNG");
 //		
 //		//Apply the student code and solution code
-//		Logic.blackAndWhite(p);
-//		LogicSol.blackAndWhite(p2);
+//		Logic.negative(p);
+//		LogicSol.negative(p2);
 // 		
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();

@@ -158,14 +158,14 @@ class M2TestArrayChallenge
 //	void testSwap()
 //	{
 //		int[] array0 = {2, 3};
-//	    int[] array1 = {3, 2};
+//	    	int[] array1 = {3, 2};
 //		assertArrayEquals(array1, swap(array0, 0));
 //
 //		int[] array10 = {6, 5, 4};
-//      int[] array11 = {5, 6, 4};
-//	    assertArrayEquals(array11, swap(array10, 0));
-//      int[] array12 = {5, 4, 6};
-//      assertArrayEquals(array12, swap(array10, 1));
+//      	int[] array11 = {5, 6, 4};
+//	    	assertArrayEquals(array11, swap(array10, 0));
+//      	int[] array12 = {5, 4, 6};
+//      	assertArrayEquals(array12, swap(array11, 1));
 //	}
 //
 //	/**

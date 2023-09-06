@@ -277,7 +277,7 @@ class TesterPictureLab {
 //		for(int r = 0; r < pixels.length; r++) {
 //			for(int c = 0; c < pixels[r].length; c++) {
 //				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					String msg = "The pixel at row \"+r+\" col \" + c + \" is not the same as the solution";
+//					String msg = "The pixel at row \""+r+"\" col \"" + c + "\" is not the same as the solution";
 //					try {
 //						p.explore();
 //						JOptionPane.showMessageDialog(null, msg);

@@ -94,8 +94,8 @@ class M2TestArrayChallenge
 //		assertEquals(-1, find(array1, 2));
 //		
 //		int[] array2 = {4, 5, 6};
-//	    assertEquals(0, find(array2, 4));
-//	    assertEquals(1, find(array2, 5));
+//	    	assertEquals(0, find(array2, 4));
+//	    	assertEquals(1, find(array2, 5));
 //		assertEquals(2, find(array2, 6));
 //		assertEquals(-1, find(array2, 7));
 //		
@@ -116,8 +116,8 @@ class M2TestArrayChallenge
 //		char[] array2 = "RACECAR".toCharArray();
 //		assertEquals(2, countValues(array2, 'R'));
 //		assertEquals(2, countValues(array2, 'A'));
-//	    assertEquals(2, countValues(array2, 'C'));
-//	    assertEquals(1, countValues(array2, 'E'));
+//	    	assertEquals(2, countValues(array2, 'C'));
+//	    	assertEquals(1, countValues(array2, 'E'));
 //	}
 //
 //	@Test
@@ -138,8 +138,8 @@ class M2TestArrayChallenge
 //		int[] array2 = {1, 2, 3};
 //		assertEquals(true, inOrder(array2));
 //
-//	    int[] array3 = {1, 3, 2};
-//	    assertEquals(false, inOrder(array3));
+//	    	int[] array3 = {1, 3, 2};
+//	    	assertEquals(false, inOrder(array3));
 //
 //		int[] array4 = {-1, -2, 3};
 //		assertEquals(false, inOrder(array4));
@@ -147,8 +147,8 @@ class M2TestArrayChallenge
 //		int[] array5 = {-1, -2, -3};
 //		assertEquals(false, inOrder(array5));
 //
-//	    int[] array6 = {-3, -2, -1};
-//	    assertEquals(true, inOrder(array6));
+//	    	int[] array6 = {-3, -2, -1};
+//	   	 assertEquals(true, inOrder(array6));
 //	}
 //
 //	/**
@@ -178,7 +178,7 @@ class M2TestArrayChallenge
 //	void testBubbleUp()
 //	{
 //		int[] array0 = {2, 3};
-//	    // No change, array is already sorted
+//	    	// No change, array is already sorted
 //		assertArrayEquals(array0, bubbleUp(array0));
 //
 //		int[] array1 = {3, 2};
@@ -236,19 +236,26 @@ class M2TestArrayChallenge
 //	@Test
 //	void testArrayElementsEqual()
 //	{
+//		//An array is equal to itself, expecting true here.
 //		char[] array0a = {};
 //		assertTrue(arrayElementsEqual(array0a, array0a));
+//		
+//		//Two empty arrays are deemed equal! 
 //		char[] array0b = {};
 //		assertTrue(arrayElementsEqual(array0a, array0b));
 //
+//		//two arrays of equal length containing the same elements in the same order are equal
 //		char[] array1 = {'A'};
 //		char[] array2 = copy(array1);
 //		assertTrue(arrayElementsEqual(array1, array2));
+//		
+//		//two arrays of the same length but different contents are NOT equal	
 //		array2[0] = 'B';
 //		assertEquals('B', array2[0]);
 //		assertEquals('A', array1[0]);
 //		assertFalse(arrayElementsEqual(array1, array2));
 //
+//		//two arrays with different contents and size are not equal
 //		char[] array3 = {'X', 'Y', 'Z'};
 //		assertFalse(arrayElementsEqual(array0a, array3));		
 //		assertFalse(arrayElementsEqual(array3, array0a));		

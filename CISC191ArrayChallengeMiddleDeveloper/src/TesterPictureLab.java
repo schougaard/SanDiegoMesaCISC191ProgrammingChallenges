@@ -266,7 +266,7 @@ class TesterPictureLab {
 //		Picture p2 = new Picture("bees.PNG");
 //		
 //		//Apply the student code and solution code
-//		Logic.blur(p);
+//		//Logic.blur(p);
 //		LogicSol.blur(p2);
 // 		
 //		//obtain the 2D Pixel array representation for both objects
@@ -277,16 +277,19 @@ class TesterPictureLab {
 //		for(int r = 0; r < pixels.length; r++) {
 //			for(int c = 0; c < pixels[r].length; c++) {
 //				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					String msg = "The pixel at row \""+r+"\" col \"" + c + "\" is not the same as the solution";
-//					try {
-//						p.explore();
-//						JOptionPane.showMessageDialog(null, msg);
+// 					p.explore();
+//					JOptionPane.showMessageDialog(null, "check that your image is at least blurring");
+//					try
+//					{
 //						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
+//					}
+//					catch (InterruptedException e)
+//					{
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
 //					}
-//					fail(msg);
+// 					assertEquals(p.getPixel(r, c),p2.getPixel(r, c));
+//
 //				}
 //			}
 //		}

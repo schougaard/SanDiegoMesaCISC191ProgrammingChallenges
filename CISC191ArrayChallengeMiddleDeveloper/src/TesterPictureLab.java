@@ -266,7 +266,7 @@ class TesterPictureLab {
 //		Picture p2 = new Picture("bees.PNG");
 //		
 //		//Apply the student code and solution code
-//		//Logic.blur(p);
+//		Logic.blur(p);
 //		LogicSol.blur(p2);
 // 		
 //		//obtain the 2D Pixel array representation for both objects

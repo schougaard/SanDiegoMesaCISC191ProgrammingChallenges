@@ -81,7 +81,7 @@ class TestAdvancedClasses
 //		Cycle bike = new Bicycle("Tooney");
 //		assertEquals("Tooney", bike.getMake());
 //		assertEquals(2, bike.getNumberOfWheels());
-//		assertEquals(2, cycle.getFrameNumber());
+//		assertEquals(2, bike.getFrameNumber());
 //		bike.setColor(Color.GREEN);
 //		assertEquals(Color.GREEN, bike.getColor());
 //	    	Cycle eBike = new ElectricMountainBike("EMB");

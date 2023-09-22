@@ -1,15 +1,6 @@
+package CISC191;
 import java.awt.*;
-import java.awt.font.*;
-import java.awt.geom.*;
 import java.awt.image.BufferedImage;
-import java.text.*;
-import java.util.*;
-import java.util.List; // resolves problem with java.awt.List and java.util.List
-/*
- * 
- * Do NOT alter any code in this class!!!
- * 
- */
 
 /**
  * A class that represents a picture.  This class inherits from 

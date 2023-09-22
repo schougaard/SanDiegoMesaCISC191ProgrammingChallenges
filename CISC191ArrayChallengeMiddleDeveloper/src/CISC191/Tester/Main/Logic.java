@@ -1,4 +1,8 @@
+package CISC191.Tester.Main;
 import java.awt.Color;
+
+import CISC191.DigitalPicture;
+import CISC191.Pixel;
 
 public class Logic {
 	

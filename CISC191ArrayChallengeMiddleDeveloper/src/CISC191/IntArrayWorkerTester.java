@@ -1,3 +1,4 @@
+package CISC191;
 public class IntArrayWorkerTester
 {
   /** method to test setMatrix */

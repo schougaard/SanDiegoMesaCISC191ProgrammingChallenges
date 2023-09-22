@@ -1,3 +1,6 @@
+package CISC191.Tester.Main;
+import CISC191.Picture;
+
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 

@@ -1,8 +1,10 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import javax.swing.JOptionPane;
-
-import org.junit.experimental.theories.ParametersSuppliedBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 
 class TesterPictureLab {
@@ -65,8 +67,6 @@ class TesterPictureLab {
 			}
 		}
 		
-		
-		
 	}
 	
 //	/*
@@ -86,7 +86,13 @@ class TesterPictureLab {
 // 		
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D();
+//		Pixel[][] pixels2 = p2.getPixels2D(); 
+//		
+//		
+//		//check first pixel and 3rd pixel of row 0 for quick messages to Student on issues
+//		assertEquals( pixels[0][0].getRed(), pixels2[0][0].getRed() );
+//		assertEquals( pixels[0][3].getRed() , pixels2[0][3].getRed() );
+//
 //		
 //		//Compare the pixels of student and solution
 //		for(int r = 0; r < pixels.length; r++) {
@@ -123,19 +129,21 @@ class TesterPictureLab {
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();
 //		Pixel[][] pixels2 = p2.getPixels2D();
+//		
 //
 //		//Compare the pixels of student and solution
 //		for(int r = 0; r < pixels.length; r++) {
 //			for(int c = 0; c < pixels[r].length; c++) {
 //				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
 //					try {
-//						JOptionPane.showMessageDialog(null, "The negative value of pixel at row "+r+" col " + c + "was not correct. \n"+ " Check the GUI to see that your solution alters the image at all.");
+//						p.explore();
+//						JOptionPane.showMessageDialog(null, "The negative value of pixel at row "+r+" col " + c + " was not correct. \n"+ " Check the GUI to see that your solution alters the image at all.");
 //						Thread.sleep(5000);
 //					} catch (InterruptedException e) {
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
 //					}
-//					fail("The negative value of pixel at row "+r+" col " + c + "was not correct. \n"+ " Check the GUI to see that your solution alters the image at all.");
+//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
 //				}
 //			}
 //		}
@@ -175,7 +183,8 @@ class TesterPictureLab {
 //						e.printStackTrace();
 //					}
 //					
-//					fail(msg);
+//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
+//
 //				}
 //			}
 //		}
@@ -212,7 +221,7 @@ class TesterPictureLab {
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
 //					}
-//					fail(msg);
+//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
 //				}
 //			}
 //		}
@@ -249,7 +258,7 @@ class TesterPictureLab {
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
 //					}
-//					fail(msg);
+//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
 //				}
 //			}
 //		}
@@ -277,35 +286,31 @@ class TesterPictureLab {
 //		for(int r = 0; r < pixels.length; r++) {
 //			for(int c = 0; c < pixels[r].length; c++) {
 //				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-// 					p.explore();
-//					JOptionPane.showMessageDialog(null, "check that your image is at least blurring");
-//					try
-//					{
+// 					try {
+//						p.explore();
+//						JOptionPane.showMessageDialog(null, "Check that the image blurred in the GUI");
 //						Thread.sleep(5000);
-//					}
-//					catch (InterruptedException e)
-//					{
+//					} catch (InterruptedException e) {
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
 //					}
-// 					assertEquals(p.getPixel(r, c),p2.getPixel(r, c));
-//
+//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
 //				}
 //			}
 //		}
 //		
 //	}
-	
-	/** 
-	 * Helper method to check that the red, green, and blue channel values of two pixels are the same
-	 * @param a, the first Pixel object to check
-	 * @param b, the second Pixel object to check
-	 * @return true if two Pixel objects' red, green, and blue values are the same
-	 */
-	public boolean compPixelColors(Pixel a, Pixel b) {
-		return a.getBlue()!=b.getBlue() 
-				&& a.getRed()!=b.getRed() 
-					&& a.getGreen()!=b.getGreen();
-	}
+//	
+//	/** 
+//	 * Helper method to check that the red, green, and blue channel values of two pixels are the same
+//	 * @param a, the first Pixel object to check
+//	 * @param b, the second Pixel object to check
+//	 * @return true if two Pixel objects' red, green, and blue values are the same
+//	 */
+//	public boolean compPixelColors(Pixel a, Pixel b) {
+//		return a.getBlue()!=b.getBlue() 
+//				&& a.getRed()!=b.getRed() 
+//					&& a.getGreen()!=b.getGreen();
+//	}
 
 }

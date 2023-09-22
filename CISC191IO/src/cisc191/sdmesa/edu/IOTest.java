@@ -52,10 +52,10 @@ class IOTest
 //      // Note: With each run, a new set of data may be appended to the file
 //      IO.appendTestResult("NewTestResults.csv", "Peter,Jensen,89,B");
 //      String results = IO.readTestResults("NewTestResults.csv");
-//      assertTrue(results.endsWith("Peter,Jensen,99,A"));
+//      assertTrue(results.endsWith("Peter,Jensen,89,B"));
 //      IO.appendTestResult("NewTestResults.csv", "Alice,Westergaard,100,A");
 //      results = IO.readTestResults("NewTestResults.csv");
-//      assertTrue(results.contains("Peter,Jensen,99,A"));
+//      assertTrue(results.contains("Peter,Jensen,89,A"));
 //      assertTrue(results.endsWith("Alice,Westergaard,100,A"));
 //   }
 

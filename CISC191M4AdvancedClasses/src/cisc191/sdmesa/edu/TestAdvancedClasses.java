@@ -7,7 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Color;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 /**
  * Lead Author(s):
@@ -60,10 +63,12 @@ import org.junit.jupiter.api.Test;
  * and run the test again.
  * 
  */
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TestAdvancedClasses
 {
+	
 	@Test
+    @Order(1)
 	void testAbstractInheritance1()
 	{
 		Cycle cycle = new Unicycle("Uni1");
@@ -75,6 +80,7 @@ class TestAdvancedClasses
 	}
 
 	// Where is the best class to implement color, so you do not have to repeat code in multiple classes?
+ // @Order(2)
 //	@Test
 //	void testAbstractInheritance2()
 //	{
@@ -91,7 +97,7 @@ class TestAdvancedClasses
 //	    	eBike.setColor(Color.RED);
 //	    	assertEquals(Color.RED, eBike.getColor());
 //	}
-	
+//  @Order(3)
 //	@Test
 //	void testToString()
 //	{
@@ -123,6 +129,7 @@ class TestAdvancedClasses
 //		assertTrue(bike2.toString().contains("java.awt.Color[r=255,g=0,b=0]"));
 //	}
 	
+//  @Order(4)	
 //	@Test
 //	void testEquals()
 //	{
@@ -152,6 +159,7 @@ class TestAdvancedClasses
 //		assertFalse(bike1.equals(null));
 //	}
 
+//  @Order(5)
 //	@Test
 //	void testGearable()
 //	{
@@ -167,6 +175,7 @@ class TestAdvancedClasses
 //		assertEquals(1, vehicle2.getGear());
 //	}
 
+//  @Order(6)
 //	@Test
 //	void testElectric()
 //	{
@@ -177,6 +186,7 @@ class TestAdvancedClasses
 //		assertEquals("E3", ((Cycle) vehicle3).getMake());
 //	}
 
+//  @Order(7)
 //	@Test
 //	void testMovable()
 //	{
@@ -192,6 +202,7 @@ class TestAdvancedClasses
 //		assertEquals(2, vehicle2.getSpeed());
 //	}
 	
+//  @Order(8)	
 //	@Test
 //	void testDynamicBinding()
 //	{

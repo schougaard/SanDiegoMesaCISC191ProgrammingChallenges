@@ -1,5 +1,6 @@
 package CISC191.Tester.Main;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.swing.JOptionPane;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import CISC191.Picture;
 import CISC191.Pixel;
 
-class TesterPictureLab {
+public class TesterPictureLab {
 
 	/**
 	 * Check to see if the blue value of each pixel in an image has been set to 0
@@ -71,10 +72,10 @@ class TesterPictureLab {
 		
 	}
 	
-//	/*
-//	 * Checks to see if BW is applied to image by taking the average of all the pixels colors (red, green, blue) 
-//	 * and see it that to be the value of each color channel
-//	 */
+	/*
+	 * Checks to see if BW is applied to image by taking the average of all the pixels colors (red, green, blue) 
+	 * and see it that to be the value of each color channel
+	 */
 //	@Test
 //	void testBW(){
 //		
@@ -83,7 +84,7 @@ class TesterPictureLab {
 //		Picture p2 = new Picture("bees.PNG");
 //		
 //		//Apply the student code and solution code
-//		Logic.blackAndWhite(p);
+//		//Logic.blackAndWhite(p);
 //		LogicSol.blackAndWhite(p2);
 // 		
 //		//obtain the 2D Pixel array representation for both objects
@@ -193,11 +194,21 @@ class TesterPictureLab {
 //		
 //	}
 //	
-//	/*
-//	 * Checks to see if the image was flipped horizontally
-//	 */
-//	@Test
-//	void testFlipHor(){
+//
+	/*
+	 * Checks to see if the image was flipped horizontally
+	 */
+	@Test
+	void testFlipHor(){
+//	  |  __ \              | |
+//	  | |__) |___  __ _  __| |
+//	  |  _  // _ \/ _` |/ _` |
+//	  | | \ \  __/ (_| | (_| |
+//	  |_|  \_\___|\__,_|\__,_|
+//	                          
+//	  The method name should be mirrorHorizontal and will Flip the image Horizontally or from left to right.
+//	 
+//	
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
 //		Picture p2 = new Picture("bees.PNG");
@@ -235,6 +246,16 @@ class TesterPictureLab {
 //	 */
 //	@Test
 //	void testFlipVer(){
+//	
+////	  _____                _ 
+////	  |  __ \              | |
+////	  | |__) |___  __ _  __| |
+////	  |  _  // _ \/ _` |/ _` |
+////	  | | \ \  __/ (_| | (_| |
+////	  |_|  \_\___|\__,_|\__,_|
+////	                          
+////	  The method name should be mirrorVertical and will Flip the image Vertically (from top to bottom).
+//	                          
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
 //		Picture p2 = new Picture("bees.PNG");
@@ -278,41 +299,47 @@ class TesterPictureLab {
 //		
 //		//Apply the student code and solution code
 //		Logic.blur(p);
-//		LogicSol.blur(p2);
 // 		
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();
 //		Pixel[][] pixels2 = p2.getPixels2D();
 //
-//		//Compare the pixels of student and solution
-//		for(int r = 0; r < pixels.length; r++) {
-//			for(int c = 0; c < pixels[r].length; c++) {
-//				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-// 					try {
-//						p.explore();
-//						JOptionPane.showMessageDialog(null, "Check that the image blurred in the GUI");
-//						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
-//				}
-//			}
-//		}
+//		//last row of pixels should be skipped to prevent out of bound issues and
+//		//algorithm does not account for it
+//		assertEquals( pixels[pixels.length-1][0].getRed(), pixels2[pixels.length-1][0].getRed() );
+//
+//		//last column is also skipped
+//		assertEquals( pixels[0][pixels[0].length-1].getRed(), pixels2[0][pixels[0].length-1].getRed() );
+//
+//		
+//		//first pixel (top-left corner) red value should be the average of the four pixels
+//		//the first 2x2 red values are: 196, 195, 194, 193
+//		assertEquals(pixels[0][0].getRed(), 194);
+//		 
+//		//check blue just in case for pixel at [0][0]
+//		assertEquals(pixels[0][0].getBlue(), 195);
+//		
+//		
+//		//check middle pixel
+//		assertEquals(pixels[pixels.length/2][pixels[0].length/2].getRed(), 63);
+//		assertEquals(pixels[pixels.length/2][pixels[0].length/2].getBlue(), 78);
+//		assertEquals(pixels[pixels.length/2][pixels[0].length/2].getGreen(), 33);
 //		
 //	}
-//	
-//	/** 
-//	 * Helper method to check that the red, green, and blue channel values of two pixels are the same
-//	 * @param a, the first Pixel object to check
-//	 * @param b, the second Pixel object to check
-//	 * @return true if two Pixel objects' red, green, and blue values are the same
-//	 */
-//	public boolean compPixelColors(Pixel a, Pixel b) {
-//		return a.getBlue()!=b.getBlue() 
-//				&& a.getRed()!=b.getRed() 
-//					&& a.getGreen()!=b.getGreen();
-//	}
+	
+	
+	
+	
+	/** 
+	 * Helper method to check that the red, green, and blue channel values of two pixels are the same
+	 * @param a, the first Pixel object to check
+	 * @param b, the second Pixel object to check
+	 * @return true if two Pixel objects' red, green, and blue values are the same
+	 */
+	public boolean compPixelColors(Pixel a, Pixel b) {
+		return a.getBlue()!=b.getBlue() 
+				&& a.getRed()!=b.getRed() 
+					&& a.getGreen()!=b.getGreen();
+	}
 
 }

@@ -2,6 +2,7 @@ package CISC191.Tester.Main;
 import java.awt.Color;
 
 import CISC191.DigitalPicture;
+import CISC191.Picture;
 import CISC191.Pixel;
 
 public class Logic {
@@ -21,6 +22,7 @@ public class Logic {
 		}
 		
 	}
+
 
 //	/**
 //	 * Alters the picture so that is is black and white by setting each pixels color value to be the average

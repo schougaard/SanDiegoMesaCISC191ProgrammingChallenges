@@ -1,9 +1,7 @@
-package CISC191;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
-
-import CISC191.Tester.Main.PictureExplorer;
 
 import java.awt.*;
 import java.io.*;

@@ -1,4 +1,4 @@
-package CISC191.Tester.Main;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -6,9 +6,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import javax.swing.JOptionPane;
 
 import org.junit.jupiter.api.Test;
-
-import CISC191.Picture;
-import CISC191.Pixel;
 
 public class TesterPictureLab {
 

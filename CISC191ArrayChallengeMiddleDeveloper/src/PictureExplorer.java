@@ -1,15 +1,10 @@
-package CISC191.Tester.Main;
+
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.image.*;
 import javax.swing.border.*;
-
-import CISC191.DigitalPicture;
-import CISC191.ImageDisplay;
-import CISC191.Picture;
-import CISC191.Pixel;
 /**
  * Displays a picture and lets you explore the picture by displaying the row, column, red,
  * green, and blue values of the pixel at the cursor when you click a mouse button or

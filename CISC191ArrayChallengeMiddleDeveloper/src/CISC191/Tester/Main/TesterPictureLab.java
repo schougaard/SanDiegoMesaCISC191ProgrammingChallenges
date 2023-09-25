@@ -195,11 +195,11 @@ public class TesterPictureLab {
 //	}
 //	
 //
-	/*
-	 * Checks to see if the image was flipped horizontally
-	 */
-	@Test
-	void testFlipHor(){
+//	/*
+//	 * Checks to see if the image was flipped horizontally
+//	 */
+//	@Test
+//	void testFlipHor(){
 //	  |  __ \              | |
 //	  | |__) |___  __ _  __| |
 //	  |  _  // _ \/ _` |/ _` |

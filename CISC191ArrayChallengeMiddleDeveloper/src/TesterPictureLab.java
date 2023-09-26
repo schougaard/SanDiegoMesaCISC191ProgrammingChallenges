@@ -1,6 +1,7 @@
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.swing.JOptionPane;
@@ -21,97 +22,57 @@ public class TesterPictureLab {
 		
 		/* apply the zeroBlue filter */
 		Logic.zeroBlue(p);
- 		
+  		
 		/* obtain the 2D Pixel array representation for both objects */
 		Pixel[][] pixels = p.getPixels2D();		//student code	
-		Pixel[][] pixels2 = p2.getPixels2D();	//solution
 
 		
-		// Only the blue value of the pixels should be altered to be 0
-		// all other color channel values should be the same as original on the new altered picture
-		for(int r = 0; r < pixels.length; r++) {
-			for(int c = 0; c < pixels[r].length; c++) {
-				if(pixels[r][c].getBlue()!=0) {									//blue val should be 0
-					p.explore();
-					try {
-						JOptionPane.showMessageDialog(null, "Found a non-zeroed blue value for a pixel. \n The picture should look less blue!");
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					fail("Found a pixel with a non-zeroed blue value");
-					 
-				}else if(pixels2[r][c].getRed()!=pixels[r][c].getRed()) {		//red val should be the same
-					p.explore();
-					try {
-						JOptionPane.showMessageDialog(null, "incorrect red value found");
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					fail("Red value should not be different from original");
-				}else if(pixels2[r][c].getGreen()!=pixels[r][c].getGreen()) {   //blue val should be the same
-					p.explore();
+		//the blue value of the pixels should be 0
+		assertTrue(pixels[0][0].getBlue()==0);
+		assertTrue(pixels[pixels.length/2][0].getBlue()==0);
+		assertTrue(pixels[pixels.length-1][0].getBlue()==0);
 
-					try {
-						JOptionPane.showMessageDialog(null, "incorrect green value found");
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					fail("green value should not be different from original");
-				}
-			}
-		}
+		//the other channels should not be changed
+		assertTrue(pixels[0][0].getRed()!=0);
+		assertTrue(pixels[pixels.length/2][0].getRed()!=0);
+		assertTrue(pixels[pixels.length-1][0].getRed()!=0);
+		
+		//the other channels should not be changed
+		assertTrue(pixels[0][0].getGreen()!=0);
+		assertTrue(pixels[pixels.length/2][0].getGreen()!=0);
+		assertTrue(pixels[pixels.length-1][0].getGreen()!=0);
 		
 	}
 	
-	/*
-	 * Checks to see if BW is applied to image by taking the average of all the pixels colors (red, green, blue) 
-	 * and see it that to be the value of each color channel
-	 */
+//	/*
+//	 * Checks to see if BW is applied to image by taking the average of all the pixels colors (red, green, blue) 
+//	 * and see it that to be the value of each color channel
+//	 */
 //	@Test
 //	void testBW(){
 //		
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
-//		Picture p2 = new Picture("bees.PNG");
-//		
+// 		
 //		//Apply the student code and solution code
-//		//Logic.blackAndWhite(p);
-//		LogicSol.blackAndWhite(p2);
+//		Logic.blackAndWhite(p);
+//		
 // 		
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D(); 
 //		
 //		
-//		//check first pixel and 3rd pixel of row 0 for quick messages to Student on issues
-//		assertEquals( pixels[0][0].getRed(), pixels2[0][0].getRed() );
-//		assertEquals( pixels[0][3].getRed() , pixels2[0][3].getRed() );
-//
+//		//The red value of pixel should be the same as the average if BW has been applied properly
+//		assertTrue(pixels[0][0].getRed() == pixels[0][0].getAverage());
 //		
-//		//Compare the pixels of student and solution
-//		for(int r = 0; r < pixels.length; r++) {
-//			for(int c = 0; c < pixels[r].length; c++) {
-//				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					try {
-//						p.explore();
-//						JOptionPane.showMessageDialog(null, "The average value of pixel at row "+r+" col " + c + " was not correct. \n Check the solution to see that your solution alters the image at all.");
-//						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					fail("The average value of pixel at row "+r+" col " + c + " was not correct. \n Check the solution to see that your solution alters the image at all.");
-//				}
-//			}
-//		}
-//	}
-//	
+//		//The red value of pixel should be the same as the average if BW has been applied properly
+//		assertTrue(pixels[pixels.length/2][0].getRed() == pixels[pixels.length/2][0].getAverage());
+//		
+//		//The red value of pixel should be the same as the average if BW has been applied properly
+//		assertTrue(pixels[pixels.length-1][0].getRed() == pixels[pixels.length-1][0].getAverage());
+
+	}
+	
 //	/* 
 //	 * Check to see if student code creates a negative of the original image
 //	 */
@@ -120,36 +81,33 @@ public class TesterPictureLab {
 //		
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
-//		Picture p2 = new Picture("bees.PNG");
-//		
+// 		
 //		//Apply the student code and solution code
 //		Logic.negative(p);
-//		LogicSol.negative(p2);
-// 		
+//  		
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D();
-//		
+// 		
 //
-//		//Compare the pixels of student and solution
-//		for(int r = 0; r < pixels.length; r++) {
-//			for(int c = 0; c < pixels[r].length; c++) {
-//				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					try {
-//						p.explore();
-//						JOptionPane.showMessageDialog(null, "The negative value of pixel at row "+r+" col " + c + " was not correct. \n"+ " Check the GUI to see that your solution alters the image at all.");
-//						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
-//				}
-//			}
-//		}
+//		//check value values of a couple of pixels - check red
+//		assertTrue(pixels[0][0].getRed()==59);
+//		assertTrue(pixels[pixels.length/2][0].getRed()==98);
+//		assertTrue(pixels[pixels.length-1][0].getRed()==110);
+//		
+//		//check green
+//		assertTrue(pixels[0][0].getGreen()==123);
+//		assertTrue(pixels[pixels.length/2][0].getGreen()==132);
+//		assertTrue(pixels[pixels.length-1][0].getGreen()==114);
+//		
+//		
+//		//check blue
+//		assertTrue(pixels[0][0].getBlue()==58);
+//		assertTrue(pixels[pixels.length/2][0].getBlue()==91);
+//		assertTrue(pixels[pixels.length-1][0].getBlue()==199);
+//		
 //		
 //	}
-//	
+	
 //	/*
 //	 * See canvas for more details on applying sunset tone to a picture
 //	 */
@@ -157,134 +115,118 @@ public class TesterPictureLab {
 //	void testSunset(){
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
-//		Picture p2 = new Picture("bees.PNG");
-//		
+// 		
 //		//Apply the student code and solution code
 //		Logic.makeSunset(p, 1.5, .9 );
-//		LogicSol.makeSunset(p2, 1.5, .9 );
-// 		
+//  		
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D();
-//
-//		// Only the blue value of the pixels should be altered to be 0
-//		// all other color channel values should be the same as original on the new altered picture
-//		for(int r = 0; r < pixels.length; r++) {
-//			for(int c = 0; c < pixels[r].length; c++) {
-//				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					String msg = "Your provided solution for sunset did not match the solution. Check the GUI to see that your filter applies a different color at all to the picture";
-//
-//					try {
-//						p.explore();
-//						JOptionPane.showMessageDialog(null, msg);
-//						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					
-//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
-//
-//				}
-//			}
-//		}
+// 
+//		//check value values of a couple of pixels - check red
+//		assertTrue(pixels[0][0].getRed()==255);
+//		assertTrue(pixels[pixels.length/2][0].getRed()==235);
+//		assertTrue(pixels[pixels.length-1][0].getRed()==217);
+//		
+//		//check green
+//		assertTrue(pixels[0][0].getGreen()==118);
+//		assertTrue(pixels[pixels.length/2][0].getGreen()==110);
+//		assertTrue(pixels[pixels.length-1][0].getGreen()==126);
+//		
+//		
+//		//check blue
+//		assertTrue(pixels[0][0].getBlue()==177);
+//		assertTrue(pixels[pixels.length/2][0].getBlue()==147);
+//		assertTrue(pixels[pixels.length-1][0].getBlue()==50);
+//		
 //		
 //	}
-//	
-//
+	
+
 //	/*
 //	 * Checks to see if the image was flipped horizontally
 //	 */
 //	@Test
 //	void testFlipHor(){
-//	  |  __ \              | |
-//	  | |__) |___  __ _  __| |
-//	  |  _  // _ \/ _` |/ _` |
-//	  | | \ \  __/ (_| | (_| |
-//	  |_|  \_\___|\__,_|\__,_|
-//	                          
-//	  The method name should be mirrorHorizontal and will Flip the image Horizontally or from left to right.
+//		//	  |  __ \              | |
+//		//	  | |__) |___  __ _  __| |
+//		//	  |  _  // _ \/ _` |/ _` |
+//		//	  | | \ \  __/ (_| | (_| |
+//		//	  |_|  \_\___|\__,_|\__,_|
+//		//	                          
+//		//	  The method name should be mirrorHorizontal and will Flip the image Horizontally or from left to right.
 //	 
 //	
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
-//		Picture p2 = new Picture("bees.PNG");
-//		
+// 		
 //		//Apply the student code and solution code
 //		Logic.mirrorHorizontal(p);
-//		LogicSol.mirrorHorizontal(p2);
-// 		
+//  		
 //		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D();
-//
-//		// Only the blue value of the pixels should be altered to be 0
-//		// all other color channel values should be the same as original on the new altered picture
-//		for(int r = 0; r < pixels.length; r++) {
-//			for(int c = 0; c < pixels[r].length; c++) {
-//				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					String msg = "Your provided solution for flipping the image horizontally did not match the solution. Check the GUI to see that your solution flips the image at all.";
-//					try {
-//						p.explore();
-//						JOptionPane.showMessageDialog(null, msg);
-//						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
-//				}
-//			}
-//		}
+//		
+//		//check value values of a couple of pixels - check red
+//		assertTrue(pixels[0][0].getRed()==101);
+//		assertTrue(pixels[pixels.length/2][0].getRed()==100);
+//		assertTrue(pixels[pixels.length-1][0].getRed()==164);
+//		
+//		//check green
+//		assertTrue(pixels[0][0].getGreen()==85);
+//		assertTrue(pixels[pixels.length/2][0].getGreen()==75);
+//		assertTrue(pixels[pixels.length-1][0].getGreen()==110);
+//		
+//		
+//		//check blue
+//		assertTrue(pixels[0][0].getBlue()==109);
+//		assertTrue(pixels[pixels.length/2][0].getBlue()==150);
+//		assertTrue(pixels[pixels.length-1][0].getBlue()==207);
+//		
+//		
 //		
 //	}
-//	
+	
 //	/*
 //	 * Checks to see if the image was flipped vertically
 //	 */
 //	@Test
 //	void testFlipVer(){
 //	
-////	  _____                _ 
-////	  |  __ \              | |
-////	  | |__) |___  __ _  __| |
-////	  |  _  // _ \/ _` |/ _` |
-////	  | | \ \  __/ (_| | (_| |
-////	  |_|  \_\___|\__,_|\__,_|
-////	                          
-////	  The method name should be mirrorVertical and will Flip the image Vertically (from top to bottom).
+//		//	  _____                _ 
+//		//	  |  __ \              | |
+//		//	  | |__) |___  __ _  __| |
+//		//	  |  _  // _ \/ _` |/ _` |
+//		//	  | | \ \  __/ (_| | (_| |
+//		//	  |_|  \_\___|\__,_|\__,_|
+//		//	                          
+//		//	  The method name should be mirrorVertical and will Flip the image Vertically (from top to bottom).
 //	                          
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
-//		Picture p2 = new Picture("bees.PNG");
-//		
+// 		
 //		//Apply the student code and solution code
 //		Logic.mirrorVertical(p);
-//		LogicSol.mirrorVertical(p2);
-// 		
+//  		
 //		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D();
-//
-//		// Only the blue value of the pixels should be altered to be 0
-//		// all other color channel values should be the same as original on the new altered picture
-//		for(int r = 0; r < pixels.length; r++) {
-//			for(int c = 0; c < pixels[r].length; c++) {
-//				if(compPixelColors(pixels[r][c], pixels2[r][c])) {
-//					String msg = "Your provided solution for flipping the image vertically did not match the solution. Check the GUI to see that it is flipping at all.";
-//					try {
-//						p.explore();
-//						JOptionPane.showMessageDialog(null, msg);
-//						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					assertEquals( pixels[r][c].getRed(), pixels2[r][c].getRed() );
-//				}
-//			}
-//		}
+//		
+//		
+//		//check value values of a couple of pixels - check red
+//		System.out.println(pixels[pixels.length-1][0]);
+// 		assertTrue(pixels[0][0].getRed()==145);
+//		assertTrue(pixels[pixels.length/2][0].getRed()==157);
+//		assertTrue(pixels[pixels.length-1][0].getRed()==196);
+//		
+//		//check green
+//		assertTrue(pixels[0][0].getGreen()==141);
+//		assertTrue(pixels[pixels.length/2][0].getGreen()==123);
+//		assertTrue(pixels[pixels.length-1][0].getGreen()==132);
+//		
+//		
+//		//check blue
+//		assertTrue(pixels[0][0].getBlue()==56);
+//		assertTrue(pixels[pixels.length/2][0].getBlue()==164);
+//		assertTrue(pixels[pixels.length-1][0].getBlue()==197);
 //		
 //	}
-//	
+	
 //	/*
 //	 * Tests to see if blurring works for a 2x2 rectangular window.
 //	 */

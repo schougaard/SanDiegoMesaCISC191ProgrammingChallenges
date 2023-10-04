@@ -169,12 +169,12 @@ class TestObjectOrientedDesign
 //   {
 //      HybridCar car = new HybridCar("Toyota", 1000, 63995, 4, null, 2);
 //      car.tankUp();
-//      assertEquals(100, car.getFuelLevel());
+//      assertEquals(50, car.getFuelLevel());
 //      car.chargeUp();
 //      assertEquals(100, car.getBatteryCharge());
 //
 //      Combustible combustible = car;
-//      assertEquals(100, combustible.getFuelLevel());
+//      assertEquals(50, combustible.getFuelLevel());
 //      Chargeable chargeable = car;
 //      assertEquals(100, chargeable.getBatteryCharge());
 //   }

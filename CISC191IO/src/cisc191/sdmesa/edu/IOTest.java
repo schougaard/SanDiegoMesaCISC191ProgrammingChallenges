@@ -55,7 +55,7 @@ class IOTest
 //      assertTrue(results.endsWith("Peter,Jensen,89,B"));
 //      IO.appendTestResult("NewTestResults.csv", "Alice,Westergaard,100,A");
 //      results = IO.readTestResults("NewTestResults.csv");
-//      assertTrue(results.contains("Peter,Jensen,89,A"));
+//      assertTrue(results.contains("Peter,Jensen,89,B"));
 //      assertTrue(results.endsWith("Alice,Westergaard,100,A"));
 //   }
 

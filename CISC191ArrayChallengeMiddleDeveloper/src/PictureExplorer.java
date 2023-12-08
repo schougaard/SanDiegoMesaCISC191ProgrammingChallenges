@@ -305,7 +305,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     }
     
     
-    pictureFrame.getContentPane().add(filters, BorderLayout.SOUTH);
+    pictureFrame.getContentPane().add(filters, BorderLayout.EAST);
 
   }
   

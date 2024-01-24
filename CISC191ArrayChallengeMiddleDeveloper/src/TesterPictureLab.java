@@ -70,8 +70,8 @@ public class TesterPictureLab {
 //		
 //		//The red value of pixel should be the same as the average if BW has been applied properly
 //		assertTrue(pixels[pixels.length-1][0].getRed() == pixels[pixels.length-1][0].getAverage());
-
-	}
+//
+//	}
 	
 //	/* 
 //	 * Check to see if student code creates a negative of the original image

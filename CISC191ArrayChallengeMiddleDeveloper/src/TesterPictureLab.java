@@ -13,74 +13,76 @@ public class TesterPictureLab {
 	/**
 	 * Check to see if the blue value of each pixel in an image has been set to 0
 	 */
-	@Test
-	void testZeroBlue() {
-		
-		/* Create two identical Picture objects from the same picture */
-		Picture p = new Picture("bees.PNG");
-		Picture p2 = new Picture("bees.PNG");
-		
-		/* apply the zeroBlue filter */
-		Logic.zeroBlue(p);
-  		
-		/* obtain the 2D Pixel array representation for both objects */
-		Pixel[][] pixels = p.getPixels2D();		//student code	
-
-		
-		//the blue value of the pixels should be 0
-		assertTrue(pixels[0][0].getBlue()==0);
-		assertTrue(pixels[pixels.length/2][0].getBlue()==0);
-		assertTrue(pixels[pixels.length-1][0].getBlue()==0);
-
-		//the other channels should not be changed
-		assertTrue(pixels[0][0].getRed()!=0);
-		assertTrue(pixels[pixels.length/2][0].getRed()!=0);
-		assertTrue(pixels[pixels.length-1][0].getRed()!=0);
-		
-		//the other channels should not be changed
-		assertTrue(pixels[0][0].getGreen()!=0);
-		assertTrue(pixels[pixels.length/2][0].getGreen()!=0);
-		assertTrue(pixels[pixels.length-1][0].getGreen()!=0);
-		
-	}
-	
-//	/*
-//	 * Checks to see if BW is applied to image by taking the average of all the pixels colors (red, green, blue) 
-//	 * and see it that to be the value of each color channel
-//	 */
 //	@Test
-//	void testBW(){
+//	void testZeroBlue() {
 //		
-//		//Create two Picture image objects using the same image file
+//		/* Create two identical Picture objects from the same picture */
 //		Picture p = new Picture("bees.PNG");
-// 		
-//		//Apply the student code and solution code
-//		Logic.blackAndWhite(p);
+//		Picture p2 = new Picture("bees.PNG");
 //		
-// 		
-//		//obtain the 2D Pixel array representation for both objects
-//		Pixel[][] pixels = p.getPixels2D();
-//		
-//		
-//		//The red value of pixel should be the same as the average if BW has been applied properly
-//		assertTrue(pixels[0][0].getRed() == pixels[0][0].getAverage());
-//		
-//		//The red value of pixel should be the same as the average if BW has been applied properly
-//		assertTrue(pixels[pixels.length/2][0].getRed() == pixels[pixels.length/2][0].getAverage());
-//		
-//		//The red value of pixel should be the same as the average if BW has been applied properly
-//		assertTrue(pixels[pixels.length-1][0].getRed() == pixels[pixels.length-1][0].getAverage());
+//		/* apply the zeroBlue filter */
+//		Logic.zeroBlue(p);
+//  		
+//		/* obtain the 2D Pixel array representation for both objects */
+//		Pixel[][] pixels = p.getPixels2D();		//student code	
 //
+//		
+//		//the blue value of the pixels should be 0
+//		assertTrue(pixels[0][0].getBlue()==0);
+//		assertTrue(pixels[pixels.length/2][0].getBlue()==0);
+//		assertTrue(pixels[pixels.length-1][0].getBlue()==0);
+//
+//		//the other channels should not be changed
+//		assertTrue(pixels[0][0].getRed()!=0);
+//		assertTrue(pixels[pixels.length/2][0].getRed()!=0);
+//		assertTrue(pixels[pixels.length-1][0].getRed()!=0);
+//		
+//		//the other channels should not be changed
+//		assertTrue(pixels[0][0].getGreen()!=0);
+//		assertTrue(pixels[pixels.length/2][0].getGreen()!=0);
+//		assertTrue(pixels[pixels.length-1][0].getGreen()!=0);
+//		
 //	}
 	
-//	/* 
-//	 * Check to see if student code creates a negative of the original image
-//	 */
+	
+	
+	/*
+	 * Checks to see if BW is applied to image by taking the average of all the pixels colors (red, green, blue) 
+	 * and see it that to be the value of each color channel
+	 */
+	@Test
+	void testBW(){
+		
+		//Create two Picture image objects using the same image file
+		Picture p = new Picture("bees.PNG");
+ 		
+		//Apply the student code and solution code
+		Logic.blackAndWhite(p);
+		
+ 		
+		//obtain the 2D Pixel array representation for both objects
+		Pixel[][] pixels = p.getPixels2D();
+		
+		
+		//The red value of pixel should be the same as the average if BW has been applied properly
+		assertTrue(pixels[0][0].getRed() == pixels[0][0].getAverage());
+		
+		//The red value of pixel should be the same as the average if BW has been applied properly
+		assertTrue(pixels[pixels.length/2][0].getRed() == pixels[pixels.length/2][0].getAverage());
+		
+		//The red value of pixel should be the same as the average if BW has been applied properly
+		assertTrue(pixels[pixels.length-1][0].getRed() == pixels[pixels.length-1][0].getAverage());
+
+	}
+	
+	/* 
+	 * Check to see if student code creates a negative of the original image
+	 */
 //	@Test
 //	void testNegative(){
 //		
 //		//Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.PNG");
+//		Picture p = new Picture("bees.PNG"); //make sure you're using this image as the tester needs it
 // 		
 //		//Apply the student code and solution code
 //		Logic.negative(p);
@@ -90,53 +92,53 @@ public class TesterPictureLab {
 // 		
 //
 //		//check value values of a couple of pixels - check red
-//		assertTrue(pixels[0][0].getRed()==59);
-//		assertTrue(pixels[pixels.length/2][0].getRed()==98);
-//		assertTrue(pixels[pixels.length-1][0].getRed()==110);
+//		assertTrue(pixels[0][0].getRed()==60);
+//		assertTrue(pixels[50][0].getRed()==40);
+//		assertTrue(pixels[100][0].getRed()==93);
 //		
-//		//check green
-//		assertTrue(pixels[0][0].getGreen()==123);
-//		assertTrue(pixels[pixels.length/2][0].getGreen()==132);
-//		assertTrue(pixels[pixels.length-1][0].getGreen()==114);
+//		//check blue of 3 different pixels
+//		assertTrue(pixels[0][0].getGreen()==125);
+//		assertTrue(pixels[50][0].getGreen()==101);
+//		assertTrue(pixels[100][0].getGreen()==167);
 //		
 //		
-//		//check blue
-//		assertTrue(pixels[0][0].getBlue()==58);
-//		assertTrue(pixels[pixels.length/2][0].getBlue()==91);
-//		assertTrue(pixels[pixels.length-1][0].getBlue()==199);
+//		//check blue of 3 different pixels
+//		assertTrue(pixels[0][0].getBlue()==59);
+//		assertTrue(pixels[50][0].getBlue()==95);
+//		assertTrue(pixels[100][0].getBlue()==57);
 //		
 //		
 //	}
 	
-//	/*
-//	 * See canvas for more details on applying sunset tone to a picture
-//	 */
+	/*
+	 * See canvas for more details on applying sunset tone to a picture
+	 */
 //	@Test
 //	void testSunset(){
 //		//Create two Picture image objects using the same image file
 //		Picture p = new Picture("bees.PNG");
 // 		
 //		//Apply the student code and solution code
-//		Logic.makeSunset(p, 1.5, .9 );
+//		Logic.makeSunset(p, 1.5, .9 ); 
 //  		
 //		//obtain the 2D Pixel array representation for both objects
 //		Pixel[][] pixels = p.getPixels2D();
 // 
 //		//check value values of a couple of pixels - check red
 //		assertTrue(pixels[0][0].getRed()==255);
-//		assertTrue(pixels[pixels.length/2][0].getRed()==235);
-//		assertTrue(pixels[pixels.length-1][0].getRed()==217);
+//		assertTrue(pixels[50][0].getRed()==255);
+//		assertTrue(pixels[100][0].getRed()==243);
 //		
 //		//check green
-//		assertTrue(pixels[0][0].getGreen()==118);
-//		assertTrue(pixels[pixels.length/2][0].getGreen()==110);
-//		assertTrue(pixels[pixels.length-1][0].getGreen()==126);
+//		assertTrue(pixels[0][0].getGreen()==117);
+//		assertTrue(pixels[50][0].getGreen()==138);
+//		assertTrue(pixels[100][0].getGreen()==79);
 //		
 //		
 //		//check blue
-//		assertTrue(pixels[0][0].getBlue()==177);
-//		assertTrue(pixels[pixels.length/2][0].getBlue()==147);
-//		assertTrue(pixels[pixels.length-1][0].getBlue()==50);
+//		assertTrue(pixels[0][0].getBlue()==176);
+//		assertTrue(pixels[50][0].getBlue()==144);
+//		assertTrue(pixels[100][0].getBlue()==178);
 //		
 //		
 //	}

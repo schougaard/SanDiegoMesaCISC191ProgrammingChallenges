@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * @author Dom David
  * 
  */
-public class TesterPictureLab
+public class PictureLabTester
 {
 
 	/**

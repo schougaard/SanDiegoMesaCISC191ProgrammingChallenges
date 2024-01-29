@@ -16,7 +16,7 @@ public class TesterPictureLab
 	/**
 	 * Check to see if the blue value of each pixel in an image has been set to 0
 	 */
-	@Test
+	@Test 
 	void testZeroBlue()
 	{
 

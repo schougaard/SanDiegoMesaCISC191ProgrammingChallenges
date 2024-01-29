@@ -8,6 +8,12 @@ bin/
 # BlueJ files
 *.ctxt
 
+# MacOS files
+.DS_Store
+
+# Windows files
+thumbs.db
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

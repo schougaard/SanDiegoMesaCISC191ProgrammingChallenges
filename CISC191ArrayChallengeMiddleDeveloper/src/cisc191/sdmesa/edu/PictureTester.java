@@ -1,3 +1,4 @@
+package cisc191.sdmesa.edu;
 
 /**
  * This class contains class (static) methods that will help you test the
@@ -17,12 +18,6 @@ public class PictureTester
 		Picture beach = new Picture("dragonFly.PNG");
 
 		/**
-		 * _____ _ __ __ _____ _ | __ \ | | | \/ | | __ \| | | |__) |___ __ _ __| | | \
-		 * / | ___ | |__) | | ___ __ _ ___ ___ | _ // _ \/ _` |/ _` | | |\/| |/ _ \ |
-		 * ___/| |/ _ \/ _` / __|/ _ \ | | \ \ __/ (_| | (_| | | | | | __/ | | | | __/
-		 * (_| \__ \ __/ |_| \_\___|\__,_|\__,_| |_| |_|\___| |_|
-		 * |_|\___|\__,_|___/\___|
-		 * 
 		 * Instructions: As you complete a given filter, you must enable the button in
 		 * the GUI under PictureExplorer.java.
 		 * 

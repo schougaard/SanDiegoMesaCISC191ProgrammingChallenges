@@ -1,3 +1,4 @@
+package cisc191.sdmesa.edu;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * @author Dom David
  * 
  */
-public class TesterPictureLab
+public class PictureLabTester
 {
 
 	/**
@@ -20,14 +21,13 @@ public class TesterPictureLab
 	{
 
 		/* Create two identical Picture objects from the same picture */
-		Picture p = new Picture("bees.PNG");
-		Picture p2 = new Picture("bees.PNG");
+		Picture studentSol = new Picture("bees.PNG");
 
 		/* apply the zeroBlue filter */
-		Logic.zeroBlue(p);
+		Logic.zeroBlue(studentSol);
 
 		/* obtain the 2D Pixel array representation for both objects */
-		Pixel[][] pixels = p.getPixels2D(); // student code
+		Pixel[][] pixels = studentSol.getPixels2D(); // student code
 
 		// the blue value of the pixels should be 0
 		assertTrue(pixels[0][0].getBlue() == 0);

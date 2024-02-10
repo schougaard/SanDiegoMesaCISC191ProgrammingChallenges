@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.image.*;
+import java.nio.file.FileSystems;
+
 import javax.swing.border.*;
 
 import edu.sdmesa.cisc191.Logic;
@@ -24,6 +26,8 @@ import edu.sdmesa.cisc191.Logic;
  */
 public class PictureExplorer implements MouseMotionListener, ActionListener, MouseListener
 {
+	// Folder where images, icons are kept
+	public static final String imageFolderName = "images" + FileSystems.getDefault().getSeparator();;
 
 	// current indicies
 	/** row index */
@@ -380,8 +384,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	private void setUpNextAndPreviousButtons()
 	{
 		// create the image icons for the buttons
-		Icon prevIcon = new ImageIcon("leftArrow.gif", "previous index");
-		Icon nextIcon = new ImageIcon(("rightArrow.gif"), "next index");
+		Icon prevIcon = new ImageIcon(PictureExplorer.imageFolderName + "leftArrow.gif", "previous index");
+		Icon nextIcon = new ImageIcon(PictureExplorer.imageFolderName + "rightArrow.gif", "next index");
 		// create the arrow buttons
 		colPrevButton = new JButton(prevIcon);
 		colNextButton = new JButton(nextIcon);
@@ -1000,25 +1004,25 @@ class CustomButton extends JButton
 		switch (name)
 		{
 		case "B&W":
-			this.setIcon(new ImageIcon(name + ".png"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + name + ".png"));
 			break;
 		case "Zero Blue":
-			this.setIcon(new ImageIcon("iconZeroBlue.png"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconZeroBlue.png"));
 			break;
 		case "Negative":
-			this.setIcon(new ImageIcon("iconNegative.png"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconNegative.png"));
 			break;
 		case "Blur":
-			this.setIcon(new ImageIcon("iconBlur.jpg"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconBlur.jpg"));
 			break;
 		case "FlipVertical":
-			this.setIcon(new ImageIcon("iconMirrorVertical.png"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorVertical.png"));
 			break;
 		case "FlipHorizontal":
-			this.setIcon(new ImageIcon("iconMirrorHorizontal.png"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorHorizontal.png"));
 			break;
 		case "Sunset":
-			this.setIcon(new ImageIcon("iconSepia.png"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconSepia.png"));
 			break;
 		}
 	}

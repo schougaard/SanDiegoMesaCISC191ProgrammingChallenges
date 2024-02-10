@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.image.*;
 import javax.swing.border.*;
 
+import edu.sdmesa.cisc191.Logic;
+
 /**
  * Displays a picture and lets you explore the picture by displaying the row,
  * column, red, green, and blue values of the pixel at the cursor when you click

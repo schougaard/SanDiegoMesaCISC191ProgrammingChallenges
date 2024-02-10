@@ -32,7 +32,6 @@ import edu.gatech.cc.Pixel;
  * 
  */
 
-
 public class TestLogic
 {
 

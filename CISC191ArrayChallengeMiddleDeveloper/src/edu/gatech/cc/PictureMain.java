@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package edu.gatech.cc;
 
 /**
  * This class contains class (static) methods that will help you test the

@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package edu.gatech.cc;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;

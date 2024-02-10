@@ -4,13 +4,36 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
+
+import edu.gatech.cc.Picture;
+import edu.gatech.cc.Pixel;
+
 /**
  * Lead Author(s):
  * 
  * @author Dom David
  * 
+ * Other contributors:
+ * 
+ * Allan Schougaard
+ * 
+ * References:
+ * @see Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented
+ *      Problem Solving.
+ *      https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * @see Bechtold, S., Brannen, S., Link, J., Merdes, M., Philipp, M., Rancourt,
+ *      J. D., & Stein, C. (n.d.). JUnit 5 user guide. JUnit 5.
+ *      https://junit.org/junit5/docs/current/user-guide/
+ * 
+ * Version/date 1.0
+ * 
+ * Responsibilities of class:
+ * Test the function of Logic.java
+ * 
  */
-public class PictureLabTester
+
+
+public class TestLogic
 {
 
 	/**

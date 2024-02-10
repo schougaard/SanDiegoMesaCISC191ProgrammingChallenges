@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package edu.gatech.cc;
 
 import javax.swing.*;
 

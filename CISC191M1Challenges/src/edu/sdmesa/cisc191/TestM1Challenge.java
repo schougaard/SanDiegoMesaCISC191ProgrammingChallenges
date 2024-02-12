@@ -55,6 +55,8 @@ import org.junit.jupiter.api.Test;
  * 
  * 1. Uncomment the entire test method. To uncomment a block, select the block
  * and hold down Ctrl while typing /
+ * @Test indicates that the next method is a test method, and
+ * it must be in the source code, and not be commented out.
  * 
  * 2. To make the test compile and run: implement a method with the correct
  * signature, but returning a fake value, such as -1, null or similar.
@@ -69,7 +71,7 @@ import org.junit.jupiter.api.Test;
 class TestM1Challenge
 {
 
-	@Test
+	@Test // This indicates that the next method is a test method
 	void testAdd()
 	{
 		// add(..., ...) adds two numbers
@@ -79,7 +81,7 @@ class TestM1Challenge
 		assertEquals(0, add(2, -2));
 	}
 	
-	@Test
+	@Test // @Test must not in a comment
 	void testMultiply()
 	{
 		// multiply(..., ...) multiplies two numbers

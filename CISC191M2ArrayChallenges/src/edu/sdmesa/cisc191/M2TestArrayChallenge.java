@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
  */
 
 /**
+ * *** INSTRUCTIONS ***
  * Your mission, should you choose to accept it:
  * 
  * For each of the test methods below create a method in the M2ArrayChallenge
@@ -48,14 +49,14 @@ import org.junit.jupiter.api.Test;
  * 
  * To implement a test method:
  * 
- * 1. Uncomment the entire test method. To uncomment a block, select the block
- * and hold down Ctrl while typing /
+ * 1. Uncomment the entire test method, including @Test. 
+ * To uncomment a block, select the block and hold down Ctrl while typing /
  * 
  * 2. To make the test compile and run: implement a method with the correct
  * signature, but returning a fake value, such as -1, null or similar. After
  * this the test method should run but fail.
  * 
- * 3. To make the tests pass: Then change the method to return the correct value
+ * 3. Make the tests pass: Change the method to return the correct value
  * and run the test again.
  * 
  */
@@ -65,16 +66,18 @@ class M2TestArrayChallenge
 	@Test
 	void testContains()
 	{
-		int[] array0 = {};
-		assertEquals(false, contains(array0, 1));
+		char[] array0 = {};
+		assertEquals(false, contains(array0, 'z'));
 
-		int[] array1 = {1};
-		assertEquals(true, contains(array1, 1));
-		assertEquals(false, contains(array1, 2));
+		char[] array1 = {'A'};
+		assertEquals(true, contains(array1, 'A'));
+		assertEquals(false, contains(array1, 'B'));
 		
-		int[] array2 = {1, 2, 3};
-		assertEquals(true, contains(array2, 2));
-		assertEquals(false, contains(array2, 4));
+		char[] array2 = {'A', 'B', 'C'};
+		assertEquals(true, contains(array2, 'A'));
+		assertEquals(true, contains(array2, 'B'));
+		assertEquals(true, contains(array2, 'C'));
+		assertEquals(false, contains(array2, 'c'));
 	}
 
 // To remove //: select line(s) and type Ctrl-/ 
@@ -86,20 +89,20 @@ class M2TestArrayChallenge
 //	@Test
 //	void testFind()
 //	{
-//		int[] array0 = {};
-//		assertEquals(-1, find(array0, 1));
+//		char[] array0 = {};
+//		assertEquals(-1, find(array0, 'A'));
 //
-//		int[] array1 = {1};
-//		assertEquals(0, find(array1, 1));
+//		char[] array1 = {'A'};
+//		assertEquals(0, find(array1, 'A'));
 //		assertEquals(-1, find(array1, 2));
 //		
-//		int[] array2 = {4, 5, 6};
-//	    	assertEquals(0, find(array2, 4));
-//	    	assertEquals(1, find(array2, 5));
-//		assertEquals(2, find(array2, 6));
-//		assertEquals(-1, find(array2, 7));
+//		char[] array2 = {'A', 'Z', 'B'};
+//		assertEquals(0, find(array2, 'A'));
+//    	assertEquals(1, find(array2, 'Z'));
+//		assertEquals(2, find(array2, 'B'));
+//		assertEquals(-1, find(array2, 'C'));
 //		
-//		int[] array3 = {1, 1, 3};
+//		char[] array3 = {'A', 'A', 'C'};
 //		assertEquals(0, find(array3, 1));
 //	}
 //
@@ -114,10 +117,12 @@ class M2TestArrayChallenge
 //		assertEquals(0, countValues(array1, 'A'));
 //		
 //		char[] array2 = "RACECAR".toCharArray();
-//		assertEquals(2, countValues(array2, 'R'));
 //		assertEquals(2, countValues(array2, 'A'));
-//	    	assertEquals(2, countValues(array2, 'C'));
-//	    	assertEquals(1, countValues(array2, 'E'));
+//		assertEquals(0, countValues(array2, 'B'));
+//		assertEquals(2, countValues(array2, 'C'));
+//		assertEquals(0, countValues(array2, 'D'));
+//		assertEquals(1, countValues(array2, 'E'));
+//		assertEquals(2, countValues(array2, 'R'));
 //	}
 //
 //	@Test
@@ -138,8 +143,8 @@ class M2TestArrayChallenge
 //		int[] array2 = {1, 2, 3};
 //		assertEquals(true, inOrder(array2));
 //
-//	    	int[] array3 = {1, 3, 2};
-//	    	assertEquals(false, inOrder(array3));
+//	    int[] array3 = {1, 3, 2};
+//	    assertEquals(false, inOrder(array3));
 //
 //		int[] array4 = {-1, -2, 3};
 //		assertEquals(false, inOrder(array4));
@@ -147,8 +152,8 @@ class M2TestArrayChallenge
 //		int[] array5 = {-1, -2, -3};
 //		assertEquals(false, inOrder(array5));
 //
-//	    	int[] array6 = {-3, -2, -1};
-//	   	 assertEquals(true, inOrder(array6));
+//	    int[] array6 = {-3, -2, -1};
+//	   	assertEquals(true, inOrder(array6));
 //	}
 //
 //	/**
@@ -158,14 +163,14 @@ class M2TestArrayChallenge
 //	void testSwap()
 //	{
 //		int[] array0 = {2, 3};
-//	    	int[] array1 = {3, 2};
+//	    int[] array1 = {3, 2};
 //		assertArrayEquals(array1, swap(array0, 0));
 //
 //		int[] array10 = {6, 5, 4};
-//      	int[] array11 = {5, 6, 4};
-//	    	assertArrayEquals(array11, swap(array10, 0));
-//      	int[] array12 = {5, 4, 6};
-//      	assertArrayEquals(array12, swap(array11, 1));
+//      int[] array11 = {5, 6, 4};
+//	    assertArrayEquals(array11, swap(array10, 0));
+//      int[] array12 = {5, 4, 6};
+//      assertArrayEquals(array12, swap(array11, 1));
 //	}
 //
 //	/**
@@ -178,7 +183,7 @@ class M2TestArrayChallenge
 //	void testBubbleUp()
 //	{
 //		int[] array0 = {2, 3};
-//	    	// No change, array is already sorted
+//	    // No change, array is already sorted
 //		assertArrayEquals(array0, bubbleUp(array0));
 //
 //		int[] array1 = {3, 2};
@@ -280,6 +285,7 @@ class M2TestArrayChallenge
 //
 //	/**
 //	 * A palindrome is a word that is spelled (hint:) equally forwards and (hint:) backwards
+//	 * Hint: use methods that you have already implemented
 //	 */
 //	@Test
 //	void testIsPalindrome()

@@ -30,7 +30,7 @@ public class M2ArrayChallenge
 	 * @param array to search
 	 * @return true if the value is in the array, otherwise false
 	 */
-	public static boolean contains(int[] array, int value)
+	public static boolean contains(char[] array, char value)
 	{
 		// TODO: return the correct value
 		return false;

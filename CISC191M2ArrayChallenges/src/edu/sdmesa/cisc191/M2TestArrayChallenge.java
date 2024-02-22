@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
  */
 
 /**
+ * *** INSTRUCTIONS ***
  * Your mission, should you choose to accept it:
  * 
  * For each of the test methods below create a method in the M2ArrayChallenge
@@ -48,14 +49,14 @@ import org.junit.jupiter.api.Test;
  * 
  * To implement a test method:
  * 
- * 1. Uncomment the entire test method. To uncomment a block, select the block
- * and hold down Ctrl while typing /
+ * 1. Uncomment the entire test method, including @Test. 
+ * To uncomment a block, select the block and hold down Ctrl while typing /
  * 
  * 2. To make the test compile and run: implement a method with the correct
  * signature, but returning a fake value, such as -1, null or similar. After
  * this the test method should run but fail.
  * 
- * 3. To make the tests pass: Then change the method to return the correct value
+ * 3. Make the tests pass: Change the method to return the correct value
  * and run the test again.
  * 
  */
@@ -65,16 +66,18 @@ class M2TestArrayChallenge
 	@Test
 	void testContains()
 	{
-		int[] array0 = {};
-		assertEquals(false, contains(array0, 1));
+		char[] array0 = {};
+		assertEquals(false, contains(array0, 'z'));
 
-		int[] array1 = {1};
-		assertEquals(true, contains(array1, 1));
-		assertEquals(false, contains(array1, 2));
+		char[] array1 = {'A'};
+		assertEquals(true, contains(array1, 'A'));
+		assertEquals(false, contains(array1, 'B'));
 		
-		int[] array2 = {1, 2, 3};
-		assertEquals(true, contains(array2, 2));
-		assertEquals(false, contains(array2, 4));
+		char[] array2 = {'A', 'B', 'C'};
+		assertEquals(true, contains(array2, 'A'));
+		assertEquals(true, contains(array2, 'B'));
+		assertEquals(true, contains(array2, 'C'));
+		assertEquals(false, contains(array2, 'c'));
 	}
 
 // To remove //: select line(s) and type Ctrl-/ 
@@ -86,20 +89,20 @@ class M2TestArrayChallenge
 //	@Test
 //	void testFind()
 //	{
-//		int[] array0 = {};
-//		assertEquals(-1, find(array0, 1));
+//		char[] array0 = {};
+//		assertEquals(-1, find(array0, 'A'));
 //
-//		int[] array1 = {1};
-//		assertEquals(0, find(array1, 1));
+//		char[] array1 = {'A'};
+//		assertEquals(0, find(array1, 'A'));
 //		assertEquals(-1, find(array1, 2));
 //		
-//		int[] array2 = {4, 5, 6};
-//	    	assertEquals(0, find(array2, 4));
-//	    	assertEquals(1, find(array2, 5));
-//		assertEquals(2, find(array2, 6));
-//		assertEquals(-1, find(array2, 7));
+//		char[] array2 = {'A', 'Z', 'B'};
+//		assertEquals(0, find(array2, 'A'));
+//    	assertEquals(1, find(array2, 'Z'));
+//		assertEquals(2, find(array2, 'B'));
+//		assertEquals(-1, find(array2, 'C'));
 //		
-//		int[] array3 = {1, 1, 3};
+//		char[] array3 = {'A', 'A', 'C'};
 //		assertEquals(0, find(array3, 1));
 //	}
 //
@@ -114,85 +117,94 @@ class M2TestArrayChallenge
 //		assertEquals(0, countValues(array1, 'A'));
 //		
 //		char[] array2 = "RACECAR".toCharArray();
-//		assertEquals(2, countValues(array2, 'R'));
 //		assertEquals(2, countValues(array2, 'A'));
-//	    	assertEquals(2, countValues(array2, 'C'));
-//	    	assertEquals(1, countValues(array2, 'E'));
+//		assertEquals(0, countValues(array2, 'B'));
+//		assertEquals(2, countValues(array2, 'C'));
+//		assertEquals(0, countValues(array2, 'D'));
+//		assertEquals(1, countValues(array2, 'E'));
+//		assertEquals(2, countValues(array2, 'R'));
 //	}
 //
+//	/**
+//	 * Test that inOrder returns false even if one element is in the wrong place
+//	 * Hint: compare pair-wise
+//	 */
 //	@Test
 //	void testInOrder()
 //	{
-//		int[] array0 = {};
+//		// All the elements of an empty array are sorted; all none of them.
+//		char[] array0 = {};
 //		assertEquals(true, inOrder(array0));
 //
-//		int[] array1 = {1};
+//		char[] array1 = {'A'};
 //		assertEquals(true, inOrder(array1));
 //
-//		int[] array12 = {1, 2};
+//		char[] array12 = {'A', 'B'};
 //		assertEquals(true, inOrder(array12));
 //
-//		int[] array21 = {2, 1};
+//		char[] array21 = {'B', 'A'};
 //		assertEquals(false, inOrder(array21));
 //		
-//		int[] array2 = {1, 2, 3};
+//		char[] array2 = {'A', 'B', 'C'};
 //		assertEquals(true, inOrder(array2));
 //
-//	    	int[] array3 = {1, 3, 2};
-//	    	assertEquals(false, inOrder(array3));
+//		char[] array3 = {'C', 'B', 'A'};
+//	    assertEquals(false, inOrder(array3));
 //
-//		int[] array4 = {-1, -2, 3};
+//	    char[] array4 = {'B', 'C', 'A'};
 //		assertEquals(false, inOrder(array4));
-//
-//		int[] array5 = {-1, -2, -3};
-//		assertEquals(false, inOrder(array5));
-//
-//	    	int[] array6 = {-3, -2, -1};
-//	   	 assertEquals(true, inOrder(array6));
 //	}
 //
 //	/**
 //	 * The swap method exchanges two elements in a given array based on index
 //	 */
 //	@Test
-//	void testSwap()
+//	void testSwapElements()
 //	{
-//		int[] array0 = {2, 3};
-//	    	int[] array1 = {3, 2};
-//		assertArrayEquals(array1, swap(array0, 0));
-//
-//		int[] array10 = {6, 5, 4};
-//      	int[] array11 = {5, 6, 4};
-//	    	assertArrayEquals(array11, swap(array10, 0));
-//      	int[] array12 = {5, 4, 6};
-//      	assertArrayEquals(array12, swap(array11, 1));
+//		char[] array0 = {'A', 'B'};
+//		char[] array1 = {'B', 'A'};
+//	    // Swap elements in-situ/in-place: make changes in the array
+//	    swapElements(array0, 0);
+//		assertArrayEquals(array1, array0);
+//		// Note how C "bubbles" to the top
+//		char[] array10 = {'C', 'B', 'A'};
+//		char[] array11 = {'B', 'C', 'A'};
+//		swapElements(array10, 0);
+//	    assertArrayEquals(array11, array10);
+//	    char[] array12 = {'B', 'A', 'C'};
+//	    swapElements(array10, 1);
+//	    assertArrayEquals(array12, array10);
+//	    char[] array13 = {'A', 'B', 'C'};
+//	    swapElements(array10, 0);
+//	    assertArrayEquals(array13, array10);
 //	}
 //
 //	/**
 //	 * The bubbleUp method would do one pass of an array in the Bubble sort algorithm
 //	 * See: Section Step-by-step example in https://en.wikipedia.org/wiki/Bubble_sort
 //	 * The bubbleUp method does one pass of an array
-//   * Hint: swap
+//   * Hint: use swapElements
 //	 */
 //	@Test
 //	void testBubbleUp()
 //	{
-//		int[] array0 = {2, 3};
-//	    	// No change, array is already sorted
-//		assertArrayEquals(array0, bubbleUp(array0));
+//		char[] array0 = {'A', 'B'};
+//		bubbleUp(array0);
+//	    // No change, array is already sorted
+//		assertArrayEquals("AB".toCharArray(), array0);
 //
-//		int[] array1 = {3, 2};
-//		assertArrayEquals(new int[] {array1[1], array1[0]}, bubbleUp(array1));
+//		char[] array1 = {'B', 'A'};
+//		bubbleUp(array1);
+//		assertArrayEquals("AB".toCharArray(), array1);
 //		
-//		int[] array10 = {5, 1, 4, 2, 8};
-//		int[] array11 = {1, 4, 2, 5, 8};
-//		assertArrayEquals(array11, bubbleUp(array10));
-//
-//		int[] array12 = {1, 2, 4, 5, 8};
-//		assertArrayEquals(array12, bubbleUp(array11));
-//
-//		// No change, array is already sorted
-//		assertArrayEquals(array12, bubbleUp(array12));
+//		char[] array3 = {'C', 'B', 'A'};
+//		bubbleUp(array3);
+//		assertArrayEquals("BAC".toCharArray(), array3);
+//		bubbleUp(array3);
+//		assertArrayEquals("ABC".toCharArray(), array3);
+//		bubbleUp(array3);
+//		// No change
+//		assertArrayEquals("ABC".toCharArray(), array3);
 //	}
 //
 //	/**
@@ -202,13 +214,12 @@ class M2TestArrayChallenge
 //	@Test
 //	void testBubbleSort()
 //	{
-//		int[] array0 = {5, 1, 4, 2, 8};
-//		int[] array2 = {1, 2, 4, 5, 8};
-//		assertArrayEquals(array2, bubbleSort(array0));
+//		int[] array0 = {'C', 'B', 'A'};
+//		assertArrayEquals("ABC".toCharArray(), array0);
 //
-//	    int[] array10 = {4, 3, 2, 1};
-//	    int[] array11 = {1, 2, 3, 4};
-//	    assertArrayEquals(array11, bubbleSort(array10));
+//	    int[] array10 = "LKJHGFDSA".toCharArray();
+//	    bubbleSort(array10);
+//	    assertArrayEquals("ADFGHJKLS".toCharArray(), array10);
 //	}
 //
 //	/**
@@ -264,22 +275,26 @@ class M2TestArrayChallenge
 //		assertTrue(arrayElementsEqual(array3, array3));
 //	}
 //	
-//	@Test
-//	void testBackwards()
-//	{
-//		char[] array0 = {};
-//		assertArrayEquals(array0, backwards(array0));
-//
-//		char[] array1 = {'X'};
-//		assertArrayEquals(array1, backwards(array1));
-//
-//		char[] array2 = {'A', 'B', 'C', 'D'};
-//		assertArrayEquals(new char[]{'D', 'C', 'B', 'A'}, backwards(array2));
-//		assertArrayEquals(new char[]{'A', 'B', 'C', 'D'}, array2);
-//	}
+	@Test
+	void testBackwards()
+	{
+		char[] array0 = {};
+		assertArrayEquals(array0, backwards(array0));
+
+		char[] array1 = {'X'};
+		assertArrayEquals(array1, backwards(array1));
+
+		char[] array2 = {'A', 'B', 'C', 'D'};
+		assertArrayEquals(new char[]{'D', 'C', 'B', 'A'}, backwards(array2));
+		assertArrayEquals(new char[]{'A', 'B', 'C', 'D'}, array2);
+		
+		assertArrayEquals("SPOTS".toCharArray(), backwards("STOPS".toCharArray()));
+		assertArrayEquals("DESSERTS".toCharArray(), backwards("STRESSED".toCharArray()));
+	}
 //
 //	/**
 //	 * A palindrome is a word that is spelled (hint:) equally forwards and (hint:) backwards
+//	 * Hint: use methods that you have already implemented
 //	 */
 //	@Test
 //	void testIsPalindrome()

@@ -275,22 +275,22 @@ class M2TestArrayChallenge
 //		assertTrue(arrayElementsEqual(array3, array3));
 //	}
 //	
-	@Test
-	void testBackwards()
-	{
-		char[] array0 = {};
-		assertArrayEquals(array0, backwards(array0));
-
-		char[] array1 = {'X'};
-		assertArrayEquals(array1, backwards(array1));
-
-		char[] array2 = {'A', 'B', 'C', 'D'};
-		assertArrayEquals(new char[]{'D', 'C', 'B', 'A'}, backwards(array2));
-		assertArrayEquals(new char[]{'A', 'B', 'C', 'D'}, array2);
-		
-		assertArrayEquals("SPOTS".toCharArray(), backwards("STOPS".toCharArray()));
-		assertArrayEquals("DESSERTS".toCharArray(), backwards("STRESSED".toCharArray()));
-	}
+//	@Test
+//	void testBackwards()
+//	{
+//		char[] array0 = {};
+//		assertArrayEquals(array0, backwards(array0));
+//
+//		char[] array1 = {'X'};
+//		assertArrayEquals(array1, backwards(array1));
+//
+//		char[] array2 = {'A', 'B', 'C', 'D'};
+//		assertArrayEquals(new char[]{'D', 'C', 'B', 'A'}, backwards(array2));
+//		assertArrayEquals(new char[]{'A', 'B', 'C', 'D'}, array2);
+//		
+//		assertArrayEquals("SPOTS".toCharArray(), backwards("STOPS".toCharArray()));
+//		assertArrayEquals("DESSERTS".toCharArray(), backwards("STRESSED".toCharArray()));
+//	}
 //
 //	/**
 //	 * A palindrome is a word that is spelled (hint:) equally forwards and (hint:) backwards

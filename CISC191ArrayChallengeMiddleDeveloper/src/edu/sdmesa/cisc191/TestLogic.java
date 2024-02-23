@@ -182,7 +182,7 @@ public class TestLogic
 //		// Horizontally or from left to right.
 //
 //		// Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.PNG");
+//		Picture p = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
 //		Picture original = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
 //
 //		// Apply the student code and solution code

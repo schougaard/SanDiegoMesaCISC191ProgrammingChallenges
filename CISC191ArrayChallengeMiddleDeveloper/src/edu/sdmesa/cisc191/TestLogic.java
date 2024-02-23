@@ -69,11 +69,11 @@ public class TestLogic
 
 	}
 
-	/*
-	 * Checks to see if BW is applied to image by taking the average of all the
-	 * pixels colors (red, green, blue) and see it that to be the value of each
-	 * color channel
-	 */
+//	/*
+//	 * Checks to see if BW is applied to image by taking the average of all the
+//	 * pixels colors (red, green, blue) and see it that to be the value of each
+//	 * color channel
+//	 */
 //	@Test
 //	void testBW()
 //	{
@@ -100,10 +100,10 @@ public class TestLogic
 //		assertTrue(pixels[pixels.length - 1][0].getRed() == pixels[pixels.length - 1][0].getAverage());
 //
 //	}
-
-	/*
-	 * Check to see if student code creates a negative of the original image
-	 */
+//
+//	/*
+//	 * Check to see if student code creates a negative of the original image
+//	 */
 //	@Test
 //	void testNegative()
 //	{
@@ -133,10 +133,10 @@ public class TestLogic
 //		assertTrue(pixels[100][0].getBlue() == 57);
 //
 //	}
-
-	/*
-	 * See canvas for more details on applying sunset tone to a picture
-	 */
+//
+//	/*
+//	 * See canvas for more details on applying sunset tone to a picture
+//	 */
 //	@Test
 //	void testSunset()
 //	{
@@ -165,10 +165,10 @@ public class TestLogic
 //		assertTrue(pixels[100][0].getBlue() == 178);
 //
 //	}
-
-	/*
-	 * Checks to see if the image was flipped horizontally
-	 */
+//
+//	/*
+//	 * Checks to see if the image was flipped horizontally
+//	 */
 //	@Test
 //	void testFlipHor()
 //	{
@@ -188,25 +188,36 @@ public class TestLogic
 //		// Apply the student code and solution code
 //		Logic.mirrorHorizontal(p);
 //
-//		Pixel[][] studentSol = original.getPixels2D();
-//		Pixel[][] pixels = p.getPixels2D();
+//		Pixel[][] pixels = original.getPixels2D();
+//		Pixel[][] solution = p.getPixels2D();
 //
 //		// The left-most and right-most pixel colors should be swapped if flipped was
 //		// successful
 //		// check value values of a couple of pixels - check red
-//		assertTrue(pixels[0][0].getRed() == studentSol[0][studentSol[0].length - 1].getRed());
+//		assertTrue(pixels[0][0].getRed() == solution[0][solution[0].length - 1].getRed());
 //
 //		// check green
-//		assertTrue(pixels[0][0].getGreen() == studentSol[0][studentSol[0].length - 1].getGreen());
+//		assertTrue(pixels[0][0].getGreen() == solution[0][solution[0].length - 1].getGreen());
 //
 //		// check blue
-//		assertTrue(pixels[0][0].getBlue() == studentSol[0][studentSol[0].length - 1].getBlue());
+//		assertTrue(pixels[0][0].getBlue() == solution[0][solution[0].length - 1].getBlue());
 //
+//		
+//		// check all four corners
+//		int top = 0;
+//		int bottom = pixels.length-1;
+//		int left = 0;
+//		int right = pixels[0].length-1;
+//		
+//		assertTrue(compPixelColors(pixels[top][left], solution[top][right]));
+//		assertTrue(compPixelColors(pixels[top][right], solution[top][left]));
+//		assertTrue(compPixelColors(pixels[bottom][left], solution[bottom][right]));
+//		assertTrue(compPixelColors(pixels[bottom][right], solution[bottom][left]));
 //	}
-
-	/*
-	 * Checks to see if the image was flipped vertically
-	 */
+//
+//	/*
+//	 * Checks to see if the image was flipped vertically
+//	 */
 //	@Test
 //	void testFlipVer()
 //	{
@@ -240,11 +251,21 @@ public class TestLogic
 //		// check blue
 //		assertTrue(pixels[0][0].getBlue() == pixels2[pixels2.length - 1][0].getBlue());
 //
+//		// check all four corners
+//		int top = 0;
+//		int bottom = pixels.length-1;
+//		int left = 0;
+//		int right = pixels[0].length-1;
+//		
+//		assertTrue(compPixelColors(pixels[top][left], pixels2[bottom][left]));
+//		assertTrue(compPixelColors(pixels[bottom][left], pixels2[top][left]));
+//		assertTrue(compPixelColors(pixels[top][right], pixels2[bottom][right]));
+//		assertTrue(compPixelColors(pixels[bottom][right], pixels2[top][right]));
 //	}
-
-	/*
-	 * Tests to see if blurring works for a 2x2 rectangular window.
-	 */
+//
+//	/*
+//	 * Tests to see if blurring works for a 2x2 rectangular window.
+//	 */
 //	@Test
 //	void testBlur()
 //	{
@@ -279,7 +300,7 @@ public class TestLogic
 	 */
 	public boolean compPixelColors(Pixel a, Pixel b)
 	{
-		return a.getBlue() != b.getBlue() && a.getRed() != b.getRed() && a.getGreen() != b.getGreen();
+		return a.getBlue() == b.getBlue() && a.getRed() == b.getRed() && a.getGreen() == b.getGreen();
 	}
 
 }

@@ -80,8 +80,8 @@ class M2TestArrayChallenge
 		assertEquals(false, contains(array2, 'c'));
 	}
 
-// To remove //: select line(s) and type Ctrl-/ 
-//
+ //To remove //: select line(s) and type Ctrl-/ 
+
 //	/**
 //	 * find returns the first index of a value in an array,
 //	 * or -1 if the value is not in the array
@@ -94,7 +94,7 @@ class M2TestArrayChallenge
 //
 //		char[] array1 = {'A'};
 //		assertEquals(0, find(array1, 'A'));
-//		assertEquals(-1, find(array1, 2));
+//		assertEquals(-1, find(array1, '2'));
 //		
 //		char[] array2 = {'A', 'Z', 'B'};
 //		assertEquals(0, find(array2, 'A'));
@@ -103,7 +103,7 @@ class M2TestArrayChallenge
 //		assertEquals(-1, find(array2, 'C'));
 //		
 //		char[] array3 = {'A', 'A', 'C'};
-//		assertEquals(0, find(array3, 1));
+//		assertEquals(0, find(array3, 'A'));
 //	}
 //
 //	@Test
@@ -214,10 +214,11 @@ class M2TestArrayChallenge
 //	@Test
 //	void testBubbleSort()
 //	{
-//		int[] array0 = {'C', 'B', 'A'};
+//		char[] array0 = {'C', 'B', 'A'};
+//	    bubbleSort(array0);
 //		assertArrayEquals("ABC".toCharArray(), array0);
 //
-//	    int[] array10 = "LKJHGFDSA".toCharArray();
+//	    char[] array10 = "LKJHGFDSA".toCharArray();
 //	    bubbleSort(array10);
 //	    assertArrayEquals("ADFGHJKLS".toCharArray(), array10);
 //	}

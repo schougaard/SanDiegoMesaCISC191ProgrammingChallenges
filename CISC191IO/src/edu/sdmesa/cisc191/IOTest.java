@@ -62,13 +62,23 @@ class IOTest
 //	@Test
 //	void testReadDateTime()
 //	{
+//		// In this test you will "read" the current time from a time server on the internet.
 //		// You can see that the server responds with by entering the URL in a browser
-//		// and selecting Raw Data
-//		String dateTime = IO.readDateTime("http://worldtimeapi.org/api/ip");
+//		// and selecting Raw Data. The timestamps alwasy have the same length.
+//		String dateTimeBefore = IO.readDateTime("http://worldtimeapi.org/api/ip");
+//		// Hint: use URL: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URL.html
+//		// or URI: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URI.html
 //		// Hint: use String's indexOf("\"datetime\":\", 0)
-//		assertTrue(dateTime.startsWith("202"));
-//		assertTrue(dateTime.contains("T"));
-//		assertTrue(dateTime.endsWith("-07:00")); // unless you are on a different timezone
+//		assertTrue(dateTimeBefore.startsWith("202"));
+//		assertTrue(dateTimeBefore.contains("T"));
+//		assertTrue(dateTimeBefore.endsWith(":00")); // depending on your timezone
+//		// Wait a sec...
+//		Thread.sleep(1000);
+//		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");
+//		long timeBefore = java.sql.Timestamp.valueOf(dateTimeBefore).getTime();
+//		long timeAfter = java.sql.Timestamp.valueOf(dateTimeAfter).getTime();
+//		// Check that time moves forward
+//		assertTrue(timeAfter > timeBefore);
 //	}
 
 }

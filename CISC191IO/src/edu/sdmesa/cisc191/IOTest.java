@@ -64,7 +64,7 @@ class IOTest
 //	{
 //		// In this test you will "read" the current time from a time server on the internet.
 //		// You can see that the server responds with by entering the URL in a browser
-//		// and selecting Raw Data. The timestamps alwasy have the same length.
+//		// and selecting Raw Data. The timestamps always have the same length: 32 characters.
 //		String dateTimeBefore = IO.readDateTime("http://worldtimeapi.org/api/ip");
 //		// Hint: use URL: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URL.html
 //		// or URI: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URI.html
@@ -72,6 +72,7 @@ class IOTest
 //		assertTrue(dateTimeBefore.startsWith("202"));
 //		assertTrue(dateTimeBefore.contains("T"));
 //		assertTrue(dateTimeBefore.endsWith(":00")); // depending on your timezone
+//	    assertTrue(dataTimeBefore.length() == 32);
 //		// Wait a sec...
 //		Thread.sleep(1000);
 //		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");

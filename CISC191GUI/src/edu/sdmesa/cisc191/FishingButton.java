@@ -23,7 +23,7 @@ import javax.swing.JButton;
  * 
  */
 
-public class FishingButton extends JButton
+public class FishingButton
 {
 
 	/**

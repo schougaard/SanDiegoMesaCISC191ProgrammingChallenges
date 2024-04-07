@@ -40,8 +40,8 @@ public class GoneFishingView extends JFrame
 	}
 
 	/**
-	 * TODO
-	 * @param args
+	 * Starts the game
+	 * @param args not used
 	 */
 	public static void main(String[] args)
 	{

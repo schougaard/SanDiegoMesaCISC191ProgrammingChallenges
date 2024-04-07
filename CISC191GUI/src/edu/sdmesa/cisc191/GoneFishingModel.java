@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class GoneFishingModel
 {
-	public static int DIMENSION = 6;
+	public static final int DIMENSION = 6;
 	private boolean[][] grid = new boolean[DIMENSION][DIMENSION];
 	private int triesRemaining = 30;
 	private int fishRemaining = 10;
@@ -47,8 +47,8 @@ public class GoneFishingModel
 	 */
 	public boolean fishAt(int row, int column)
 	{
-		boolean foundFish = grid[row][column];
 		triesRemaining--;
+		boolean foundFish = grid[row][column];
 		if (foundFish)
 		{
 			fishRemaining--;

@@ -28,16 +28,19 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import javax.swing.*;
+import java.awt.event.*;
 
 class TestGoneFishing
 {
 
 	@Test
-	void testGoneFishingButton()
+	void testFishingButton()
 	{
 		FishingButton button = new FishingButton(1, 2);
 		assertEquals(1, button.getRow());
 		assertEquals(2, button.getColumn());
+		assertTrue(button instanceof JButton);
 	}
 	
 //	@Test
@@ -48,6 +51,7 @@ class TestGoneFishing
 //		goneFishingView.updateUI();
 //		goneFishingModel.fishAt(0, 0);
 //		goneFishingView.updateUI();
+//	    assertTrue(goneFishingView instanceof JFrame);
 //	}
 
 //	@Test
@@ -65,6 +69,7 @@ class TestGoneFishing
 //		assertEquals(29, goneFishingModel.getTriesRemaining());
 //		// There should be nine or ten fish remaining depending on whether we caught anything.
 //		assertTrue(goneFishingModel.getFishRemaining() == 10 || goneFishingModel.getFishRemaining() == 9);
+//	    assertTrue(listener instanceof ActionListener);
 //	}
 
 }

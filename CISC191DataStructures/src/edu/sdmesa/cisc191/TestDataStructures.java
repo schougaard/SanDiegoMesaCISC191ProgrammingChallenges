@@ -176,20 +176,21 @@ class TestDataStructures
 //	@Test
 //	public void testSearchEngine()
 //	{
-//		// In this scenario we are creating an internet search engine
+//		// In this scenario we are creating an Internet search engine
 //		// which returns multiple results for each search keyword
 //		// Hint: this requires multiple data structures collaborating
 //		SearchEngine goggles = new SearchEngine();
 //		
 //		goggles.add("ice cream", "http://mothersicecream.com");
+//		assertTrue(goggles.search("ice cream") instanceof List);
+//		assertEquals(1, goggles.search("ice cream").size());
 //		goggles.add("ice cream", "http://notyourmothersicecream.com");
+//		assertEquals(2, goggles.search("ice cream").size());
 //		
 //		goggles.add("car", "http://foundontheroaddead.com");
 //		goggles.add("car", "http://cashanddrive.com");
 //		goggles.add("car", "http://fancycar.com");
 //		
-//		assertTrue(goggles.search("ice cream") instanceof List);
-//		assertEquals(2, goggles.search("ice cream").size());	
 //		assertTrue(goggles.search("ice cream").contains("http://notyourmothersicecream.com"));
 //		assertTrue(goggles.search("ice cream").contains("http://mothersicecream.com"));
 //		assertFalse(goggles.search("ice cream").contains("http://foundontheroaddead.com"));
@@ -203,10 +204,15 @@ class TestDataStructures
 //		assertFalse(goggles.search("car").contains("http://notyourmothersicecream.com"));
 //		assertFalse(goggles.search("car").contains("http://mothersicecream.com"));
 //		
-//		assertEquals(0, goggles.search("lollipop").size());	
+//		assertNotEquals(null, goggles.search("404"));
+//		assertTrue(goggles.search("404") instanceof List);
+//		assertEquals(0, goggles.search("404").size());
+//		assertNotEquals(null, goggles.search("404"));
+//		assertTrue(goggles.search("404") instanceof List);
 //
 //		// Make sure malicious hackers cannot break your search engine
 //		// so do not hand out your data structures. Hint: think of Harbor
+//		// Hint: use a list constructor
 //		goggles.search("car").clear();
 //		assertEquals(3, goggles.search("car").size());	
 //	}

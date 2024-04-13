@@ -210,7 +210,7 @@ class TestAdvancedClasses
 //		assertTrue(shop.toString().contains("Joe's Bike Rack"));
 //		
 //		shop.addToInventory(new ElectricMountainBike("BigMountainBike"));
-//		assertTrue(shop.toString().contains("BigMountainBike");
+//		assertTrue(shop.toString().contains("BigMountainBike"));
 //		
 //		shop.addToInventory(new Unicycle("Looney"));
 //		assertTrue(shop.toString().contains("BigMountainBike"));		

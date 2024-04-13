@@ -204,10 +204,10 @@ class TestDataStructures
 //		assertFalse(goggles.search("car").contains("http://notyourmothersicecream.com"));
 //		assertFalse(goggles.search("car").contains("http://mothersicecream.com"));
 //		
-//		assertNotEquals(null, goggles.search("404"));
+//		assertNotNull(goggles.search("404"));
 //		assertTrue(goggles.search("404") instanceof List);
 //		assertEquals(0, goggles.search("404").size());
-//		assertNotEquals(null, goggles.search("404"));
+//		assertNotNull(goggles.search("404"));
 //		assertTrue(goggles.search("404") instanceof List);
 //
 //		// Make sure malicious hackers cannot break your search engine

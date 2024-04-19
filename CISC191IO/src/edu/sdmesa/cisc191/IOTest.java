@@ -72,7 +72,7 @@ class IOTest
 //		assertTrue(dateTimeBefore.startsWith("202"));
 //		assertTrue(dateTimeBefore.contains("T"));
 //		assertTrue(dateTimeBefore.endsWith(":00")); // depending on your timezone
-//	    assertTrue(dataTimeBefore.length() == 32);
+//	    assertTrue(dateTimeBefore.length() == 32);
 //		// Wait a sec...
 //		Thread.sleep(1000);
 //		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");

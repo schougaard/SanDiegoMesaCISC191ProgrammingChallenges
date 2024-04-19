@@ -60,7 +60,7 @@ class IOTest
 //   }
 
 //	@Test
-//	void testReadDateTime()
+//	void testReadDateTime()  throws InterruptedException
 //	{
 //		// In this test you will "read" the current time from a time server on the internet.
 //		// You can see that the server responds with by entering the URL in a browser
@@ -74,7 +74,7 @@ class IOTest
 //		assertTrue(dateTimeBefore.endsWith(":00")); // depending on your timezone
 //	    assertTrue(dateTimeBefore.length() == 32);
 //		// Wait a sec...
-//		Thread.sleep(1000);
+//		Thread.sleep(1000);  // throws InterruptedException
 //		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");
 //		long timeBefore = java.sql.Timestamp.valueOf(dateTimeBefore).getTime();
 //		long timeAfter = java.sql.Timestamp.valueOf(dateTimeAfter).getTime();

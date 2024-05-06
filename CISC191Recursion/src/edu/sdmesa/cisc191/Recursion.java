@@ -112,20 +112,21 @@ public class Recursion
 //		{
 //			LinkedList<Integer> list = new LinkedList<Integer>();
 //			//TODO
+//          // Hint: use addAll
 //			
 //			return list;
 //		}
 //	}
 	
-//	/**
-//	 * Calculate the end balance given a starting balance, and interest rate
-//	 * (given as a decimal) and the number of times interest is added.
-//	 * 
-//	 * @param startBalance for the first period
-//	 * @param interestRate how much interest the money accrues 
-//	 * @param periods how many periods the money is invested (how many times interest is added)
-//	 * @return ending balance how much is returned at the end of the last period
-//	 */
+	/**
+	 * Calculate the end balance given a starting balance, and interest rate
+	 * (given as a decimal) and the number of times interest is added.
+	 * 
+	 * @param startBalance for the first period
+	 * @param interestRate how much interest the money accrues 
+	 * @param periods how many periods the money is invested (how many times interest is added)
+	 * @return ending balance how much is returned at the end of the last period
+	 */
 //	public static double calculateEndBalance(final double startBalance,
 //			final double interestRate, final int periods)
 //	{
@@ -138,10 +139,10 @@ public class Recursion
 //		{
 //			// TODO:
 //			// Calculate the end balance for the first n-1 periods
-//			// The start balance for the n'th period is the end balance for the first n-1 periods
-//			double startBalanceForNthPeriod = calculateEndBalance(???);
+//			// The *start* balance for the n'th period is the *end* balance for the n-1'th period
+//			double startBalanceForNthPeriod = calculateEndBalance(?, ?, ?);
 //			// Then calculate the end balance for the n'th period by adding interest for one period.
-//			return -2;
+//			return ...startBalanceForNthPeriod...;
 //		}
 //	}
 
@@ -155,9 +156,25 @@ public class Recursion
 	 * @return the ending population
 	 */
 //	public static int calculateEndPopulation(final int startPopulation,
-//			final int maxPopulation, final double growthRate, final int periods)
+//											 final int maxPopulation, final double growthRate, final int periods)
 //	{
-//		return 0;
+//		if (periods == 0)
+//		{
+//			// TODO:
+//			return -1;
+//		}
+//		else
+//		{
+//			// TODO:
+//			// Calculate the end population for the first n-1 periods
+//			// The *start* population for the n'th period is the *end* population for the n-1'th period
+//			int startPopulationForNthPeriod = calculateEndPopulation(?, ?, ?, ?);
+//			// Calculate the growth rate for the n'th period
+//			double newGrowthRate = 0;
+//			// Then calculate the end balance for the n'th period by adding interest for one period.
+//			// Hint: make sure all calculations are done with doubles, otherwise there will be rounding errors
+//			return ...startPopulationForNthPeriod...newGrowthRate...;
+//		}
 //	}
 
 }

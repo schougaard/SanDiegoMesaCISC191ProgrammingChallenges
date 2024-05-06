@@ -64,8 +64,9 @@ public class BankAccount
 	 * Withdraw amount requested or the biggest amount possible
 	 * 
 	 * @return the amount actually withdrawn
+	 * @throws InvalidAmountException     is thrown if amount is not positive
 	 */
-	public double getAsMuchAsPossible(double requestAmount)
+	public double withdrawAsPossible(double requestAmount)
 	{
 		// TODO:
 		// Try to withdraw the requested amount

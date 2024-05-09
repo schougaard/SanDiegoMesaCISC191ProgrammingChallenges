@@ -1,5 +1,8 @@
 package edu.sdmesa.cisc191;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -80,7 +83,7 @@ class IOTest
 //		LocalDateTime time_0 = LocalDateTime.parse(dateTimeBefore,fmt); // strip timezone data
 //		LocalDateTime time_1 = LocalDateTime.parse(dateTimeAfter,fmt);
 //		// Check that time moves forward
-//		assertTrue(timeAfter > timeBefore);
+//		assertTrue(time_1.isAfter(time_0));
 //	}
 
 }

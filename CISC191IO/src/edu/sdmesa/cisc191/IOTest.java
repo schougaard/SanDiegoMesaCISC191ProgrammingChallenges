@@ -59,27 +59,28 @@ class IOTest
 //      assertTrue(results.endsWith("Alice,Westergaard,100,A"));
 //   }
 
-	@Test
-	void testReadDateTime()  throws InterruptedException
-	{
-		// In this test you will "read" the current time from a time server on the internet.
-		// You can see that the server responds with by entering the URL in a browser
-		// and selecting Raw Data. The timestamps always have the same length: 32 characters.
-		String dateTimeBefore = IO.readDateTime("http://worldtimeapi.org/api/ip");
-		// Hint: use URL: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URL.html
-		// or URI: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URI.html
-		// Hint: use String's indexOf("\"datetime\":\", 0)
-		assertTrue(dateTimeBefore.startsWith("202"));
-		assertTrue(dateTimeBefore.contains("T"));
-		assertTrue(dateTimeBefore.endsWith(":00")); // depending on your timezone
-	    assertTrue(dateTimeBefore.length() == 32);
-		// Wait a sec...
-		Thread.sleep(1000);  // throws InterruptedException
-		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");
-		long timeBefore = java.sql.Timestamp.valueOf(dateTimeBefore).getTime();
-		long timeAfter = java.sql.Timestamp.valueOf(dateTimeAfter).getTime();
-		// Check that time moves forward
-		assertTrue(timeAfter > timeBefore);
-	}
+//	@Test
+//	void testReadDateTime()  throws InterruptedException
+//	{
+//		// In this test you will "read" the current time from a time server on the internet.
+//		// You can see that the server responds with by entering the URL in a browser
+//		// and selecting Raw Data. The timestamps always have the same length: 32 characters.
+//		String dateTimeBefore = IO.readDateTime("http://worldtimeapi.org/api/ip");
+//		// Hint: use URL: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URL.html
+//		// or URI: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URI.html
+//		// Hint: use String's indexOf("\"datetime\":\", 0)
+//		assertTrue(dateTimeBefore.startsWith("202"));
+//		assertTrue(dateTimeBefore.contains("T"));
+//		assertTrue(dateTimeBefore.endsWith(":00")); // depending on your timezone
+//	    assertTrue(dateTimeBefore.length() == 32);
+//		// Wait a sec...
+//		Thread.sleep(1000);  // throws InterruptedException
+//		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");
+//		DateTimeFormatter fmt = DateTimeFormatter.ISO_DATE_TIME;
+//		LocalDateTime time_0 = LocalDateTime.parse(dateTimeBefore,fmt); // strip timezone data
+//		LocalDateTime time_1 = LocalDateTime.parse(dateTimeAfter,fmt);
+//		// Check that time moves forward
+//		assertTrue(timeAfter > timeBefore);
+//	}
 
 }

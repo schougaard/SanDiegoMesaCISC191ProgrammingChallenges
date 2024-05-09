@@ -76,8 +76,9 @@ class IOTest
 //		// Wait a sec...
 //		Thread.sleep(1000);  // throws InterruptedException
 //		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");
-//		long timeBefore = java.sql.Timestamp.valueOf(dateTimeBefore).getTime();
-//		long timeAfter = java.sql.Timestamp.valueOf(dateTimeAfter).getTime();
+//		DateTimeFormatter fmt = DateTimeFormatter.ISO_DATE_TIME;
+//		LocalDateTime time_0 = LocalDateTime.parse(dateTimeBefore,fmt); // strip timezone data
+//		LocalDateTime time_1 = LocalDateTime.parse(dateTimeAfter,fmt);
 //		// Check that time moves forward
 //		assertTrue(timeAfter > timeBefore);
 //	}

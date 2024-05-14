@@ -96,7 +96,6 @@ class TestThreading
 //		BankAccount account = new BankAccount();
 //		
 //		// Deposit money
-//		// If this does not error on first run, increase the number of depositors
 //		Thread[] depositors = new Thread[1];
 //		for (int i=0; i<depositors.length; i++)
 //		{

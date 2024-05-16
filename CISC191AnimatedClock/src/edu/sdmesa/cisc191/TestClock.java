@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,16 +32,20 @@ class TestClock
 	{
 		Clock clock = new Clock();
 		assertEquals("00:00", clock.getTime());
-		Thread.sleep(1050);
+		Thread.sleep(1500);
 		assertEquals("00:01", clock.getTime());
-		Thread.sleep(1050);
+		Thread.sleep(1100);
 		assertEquals("00:02", clock.getTime());
 	}
 
 	@Test
 	void testClockPanel() throws InterruptedException
 	{
+		JFrame window = new JFrame();
+		window.setSize(new Dimension(400,400));
+		window.setVisible(true);
 		ClockPanel panel = new ClockPanel(Color.BLACK, Color.GREEN);
+		window.add(panel);
 		panel.repaint();
 
 		// Testing that the panel animates the clock

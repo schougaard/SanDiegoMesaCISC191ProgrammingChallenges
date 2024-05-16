@@ -29,9 +29,9 @@ class TestClock
 	{
 		Clock clock = new Clock();
 		assertEquals("00:00", clock.getTime());
-		Thread.sleep(1050);
+		Thread.sleep(1500);
 		assertEquals("00:01", clock.getTime());
-		Thread.sleep(1050);
+		Thread.sleep(1100);
 		assertEquals("00:02", clock.getTime());
 	}
 

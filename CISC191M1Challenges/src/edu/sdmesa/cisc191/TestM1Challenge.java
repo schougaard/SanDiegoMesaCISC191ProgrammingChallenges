@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Lead Author(s):
- * @author Tasha Frankie test
+ * @author Tasha Frankie
  * @author Allan Schougaard 
  * 
  * Other contributors:

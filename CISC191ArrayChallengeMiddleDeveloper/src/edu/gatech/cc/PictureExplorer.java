@@ -27,7 +27,7 @@ import edu.sdmesa.cisc191.Logic;
 public class PictureExplorer implements MouseMotionListener, ActionListener, MouseListener
 {
 	// Folder where images, icons are kept
-	public static final String imageFolderName = "images" + FileSystems.getDefault().getSeparator();;
+	public static final String imageFolderName = "images" + FileSystems.getDefault().getSeparator();
 
 	// current indicies
 	/** row index */
@@ -1004,7 +1004,7 @@ class CustomButton extends JButton
 		switch (name)
 		{
 		case "B&W":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + name + ".png"));
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "B&W2.png"));
 			break;
 		case "Zero Blue":
 			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconZeroBlue.png"));
@@ -1024,6 +1024,8 @@ class CustomButton extends JButton
 		case "Sunset":
 			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconSepia.png"));
 			break;
+		default:
+			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + name));
 		}
 	}
 }

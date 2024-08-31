@@ -33,7 +33,7 @@ public class Picture extends SimplePicture
 	public Picture(String fileName)
 	{
 		// let the parent class handle this fileName
-		super(fileName);
+		super(PictureExplorer.imageFolderName + fileName);
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class Picture extends SimplePicture
 	 */
 	public static void main(String[] args)
 	{
-		Picture beach = new Picture("beach.jpg");
+		Picture beach = new Picture("bees.png");
 		beach.explore();
 		beach.zeroBlue();
 		beach.explore();

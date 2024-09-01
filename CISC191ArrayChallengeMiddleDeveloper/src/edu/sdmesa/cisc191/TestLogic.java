@@ -79,7 +79,7 @@ public class TestLogic
 //	{
 //
 //		// Create two Picture image objects using the same image file
-//		Picture p = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
+//		Picture p = new Picture("bees.PNG");
 //
 //		// Apply the student code and solution code
 //		Logic.blackAndWhite(p);
@@ -109,7 +109,7 @@ public class TestLogic
 //	{
 //
 //		// Create two Picture image objects using the same image file
-//		Picture p = new Picture(PictureExplorer.imageFolderName + "bees.PNG"); // make sure you're using this image as the tester needs it
+//		Picture p = new Picture("bees.png"); // make sure you're using this image as the tester needs it
 //
 //		// Apply the student code and solution code
 //		Logic.negative(p);
@@ -141,7 +141,7 @@ public class TestLogic
 //	void testSunset()
 //	{
 //		// Create two Picture image objects using the same image file
-//		Picture p = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
+//		Picture p = new Picture("bees.png");
 //
 //		// Apply the student code and solution code
 //		Logic.makeSunset(p, 1.5, .9);
@@ -182,8 +182,8 @@ public class TestLogic
 //		// Horizontally or from left to right.
 //
 //		// Create two Picture image objects using the same image file
-//		Picture p = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
-//		Picture original = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
+//		Picture p = new Picture("bees.png");
+//		Picture original = new Picture("bees.png");
 //
 //		// Apply the student code and solution code
 //		Logic.mirrorHorizontal(p);
@@ -233,8 +233,8 @@ public class TestLogic
 //		// (from top to bottom).
 //
 //		// Create two Picture image objects using the same image file
-//		Picture p = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
-//		Picture p2 = new Picture(PictureExplorer.imageFolderName + "bees.PNG"); // original
+//		Picture p = new Picture("bees.png");
+//		Picture p2 = new Picture("bees.png"); // original
 //
 //		// Apply the student code and solution code
 //		Logic.mirrorVertical(p);
@@ -270,8 +270,8 @@ public class TestLogic
 //	void testBlur()
 //	{
 //		// Create two Picture image objects using the same image file
-//		Picture p = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
-//		Picture p2 = new Picture(PictureExplorer.imageFolderName + "bees.PNG"); // original
+//		Picture p = new Picture("bees.png");
+//		Picture p2 = new Picture("bees.png"); // original
 //
 //		// Apply the student code and solution code
 //		Logic.blur(p);

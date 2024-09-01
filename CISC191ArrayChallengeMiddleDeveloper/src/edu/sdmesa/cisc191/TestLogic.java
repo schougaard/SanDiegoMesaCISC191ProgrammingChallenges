@@ -44,7 +44,7 @@ public class TestLogic
 	{
 
 		/* Create two identical Picture objects from the same picture */
-		Picture studentSol = new Picture(PictureExplorer.imageFolderName + "bees.PNG");
+		Picture studentSol = new Picture("bees.png");
 
 		/* apply the zeroBlue filter */
 		Logic.zeroBlue(studentSol);

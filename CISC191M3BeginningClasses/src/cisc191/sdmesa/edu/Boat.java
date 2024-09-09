@@ -30,7 +30,7 @@ import java.awt.Color;
 public class Boat
 {
 	// TODO: Implement and comment all HAS-A relationships separately
-	// For instance: A boat has a make
+	// For instance: A boat has-a make
 	
 	/**
 	 * Purpose: // TODO

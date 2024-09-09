@@ -94,7 +94,7 @@ class TestBeginningClasses
 //	}
 //
 //	@Test
-//	void testMutators()
+//	void testAccessorsAndMutators()
 //	{
 //		Boat boat = new Boat();
 //		boat.setColor(Color.GREEN);
@@ -116,8 +116,10 @@ class TestBeginningClasses
 //		assertEquals(2, boat.getSpeed());
 //		boat.slowDown();
 //		assertEquals(1, boat.getSpeed());
-//		boat.slowDown();
-//		assertEquals(0, boat.getSpeed());
+//	    boat.slowDown();
+//	    assertEquals(0, boat.getSpeed());
+//	    boat.slowDown();
+//	    assertEquals(0, boat.getSpeed());
 //	}
 //
 //	@Test
@@ -171,15 +173,44 @@ class TestBeginningClasses
 // 	// Note: Each class is to be implemented in a separate file
 //  // **********************************************************
 //
+//
+//	@Test
+//	void testBoatHasAnOwner()
+//	{
+//		Person owner = new Person("Alexandra Keaton", "858-555-1313", "92123");
+//		Boat boat = new Boat("SailyBoat", Color.MAGENTA);
+//		boat.setPrice(188888);
+//		boat.setOwner(owner);
+//		assertEquals("Alexandra Keaton", boat.getOwner().getName());
+//		// Owner changes name
+//		owner.setName("Alexandra Smith");
+//	    assertEquals("Alexandra Smith", boat.getOwner().getName());
+//	}	
+//
+//	@Test
+//	void testBoatHasACaptain()
+//	{ 
+//		Person owner = new Person("Alexandra Keaton", "858-555-1313", "92123");
+//		Person captain = new Person("Cappy Tain", "858-555-999", "92101");
+//		Boat boat = new Boat("McBoatFace", Color.BLUE);
+//		boat.setCaptain(captain);
+//		assertEquals("Cappy Tain", boat.getCaptain().getName());
+//      // Captain changes name
+//		captain.setName("Haddock");
+//		assertEquals("Haddock", boat.getCaptain().getName());
+//		assertEquals("Alexandra Keaton", boat.getOwner().getName());
+//	}	
+//
 //	@Test
 //	void testHarbor()
 //	{
-//      // A harbor has many boats
+//      // A harbor has-many boats
 //
 //		Boat boat1 = new Boat("BMC", Color.GREEN);
 //		Boat boat2 = new Boat("BMX", Color.RED);
 //		Boat boat3 = new Boat("UXB", Color.YELLOW);
 //		
+//      // Harbor is empty when just created
 //		Harbor stock = new Harbor(5);
 //		assertEquals(null, stock.getBoatAt(0));
 //		assertEquals(null, stock.getBoatAt(1));
@@ -188,6 +219,7 @@ class TestBeginningClasses
 //		assertEquals(null, stock.getBoatAt(4));
 //		
 //		// Hint: parkBoatAt is not just an accessor, and not just a mutator
+//      // Park new boat, and return the boat the was parked there
 //		assertEquals(null, stock.parkBoatAt(boat1, 3));
 //		Boat retrievedBoat = stock.parkBoatAt(boat2, 3);
 //		assertEquals(boat1, retrievedBoat);
@@ -197,6 +229,7 @@ class TestBeginningClasses
 //		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory);
 //		stock.parkBoatAt(boat2, 1);
 //      // The inventory is a carbon copy list of boats that is handed out to interested parties.
+//      // But these parties cannot change the inventory, only the harbor can do that.
 //		assertArrayEquals(new Boat[]{null, null, null, boat3, null}, inventory); // This is correct!
 //		assertArrayEquals(new Boat[]{null, boat2, null, boat3, null}, stock.getInventory());
 //	}
@@ -216,18 +249,5 @@ class TestBeginningClasses
 //		CreditCardCharge charge = new CreditCardCharge(2020, 8, 14, boat, "BoatCo", card);
 //		assertEquals("2020/8/14 4444111122223333 12/24 123 Alex Keaton BoatCo SpeedyBoat $19995", charge.toString());
 //	}
-//
-//	@Test
-//	void testBoatHasAnOwner()
-//	{
-//		Person person = new Person("Alexandra Keaton", "858-555-1313", "92123");
-//		Boat boat = new Boat("SailyBoat", Color.MAGENTA);
-//		boat.setPrice(188888);
-//      boat.setOwner(person);
-//      assertEquals("Alexandra Keaton", boat.getOwner().getName());
-//      // Owner changes name
-//      person.setName("Alexandra Smith");
-//      assertEquals("Alexandra Smith", boat.getOwner().getName());
-//	}	
 
 }

@@ -193,11 +193,13 @@ class TestBeginningClasses
 //		Person owner = new Person("Alexandra Keaton", "858-555-1313", "92123");
 //		Person captain = new Person("Cappy Tain", "858-555-999", "92101");
 //		Boat boat = new Boat("McBoatFace", Color.BLUE);
+//		boat.setOwner(owner);
 //		boat.setCaptain(captain);
 //		assertEquals("Cappy Tain", boat.getCaptain().getName());
-//      // Captain changes name
+//		// Captain changes name
 //		captain.setName("Haddock");
 //		assertEquals("Haddock", boat.getCaptain().getName());
+//		// Owner stays the same
 //		assertEquals("Alexandra Keaton", boat.getOwner().getName());
 //	}	
 //

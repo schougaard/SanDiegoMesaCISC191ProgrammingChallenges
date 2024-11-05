@@ -35,7 +35,7 @@ class IOTest
 //		String results = IO.readTestResults("IDoNotExist.csv");
 //		assertEquals("", results);
 //	}
-	
+//	
 //  @Test
 //  void testStartTestResults()
 //  {
@@ -48,7 +48,7 @@ class IOTest
 //     assertTrue(results.startsWith("Davy,Jones,30,F"));
 //     assertFalse(results.contains("Julie,Brown,100,A"));
 //  }
-
+//
 //   @Test
 //   void testAppendTestResults()
 //   {
@@ -61,27 +61,33 @@ class IOTest
 //      assertTrue(results.contains("Peter,Jensen,89,B"));
 //      assertTrue(results.endsWith("Alice,Westergaard,100,A"));
 //   }
-
+//
 //	@Test
-//	void testReadDateTime()  throws InterruptedException
+//	void testReadDateTime_timeapi()  throws InterruptedException
 //	{
+//		final String API_URL = "https://timeapi.io/api/time/current/zone?timeZone=utc";
+//		final String TIMESTAMP = "YYYY-MM-DDThh:mm:ss.tttttt"; //-hh:mm";
+//	
 //		// In this test you will "read" the current time from a time server on the internet.
 //		// You can see that the server responds with by entering the URL in a browser
-//		// and selecting Raw Data. The timestamps always have the same length: 32 characters.
-//		String dateTimeBefore = IO.readDateTime("http://worldtimeapi.org/api/ip");
-//		// Hint: use URL: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URL.html
-//		// or URI: https://docs.oracle.com/en%2Fjava%2Fjavase%2F21%2Fdocs%2Fapi%2F%2F/java.base/java/net/URI.html
-//		// Hint: use String's indexOf("\"datetime\":\", 0)
+//		// and selecting Raw Data. The timestamps always have the same length and format.
+//		String dateTimeBefore = IO.readDateTime(API_URL);
+//	
+//		// Hint: read  URL: https://docs.oracle.com/javase/tutorial//networking/urls/readingURL.html
+//		// Hint: use  URL url = new URI(api).toURL();
+//		// Hint: use String's indexOf("\"dateTime\":\", 0)
 //		assertTrue(dateTimeBefore.startsWith("202"));
 //		assertTrue(dateTimeBefore.contains("T"));
-//		assertTrue(dateTimeBefore.endsWith(":00")); // depending on your timezone
-//	    assertTrue(dateTimeBefore.length() == 32);
-//		// Wait a sec...
+//	    	assertTrue(dateTimeBefore.length() == TIMESTAMP.length());
+//	
+//		// Wait a second
 //		Thread.sleep(1000);  // throws InterruptedException
-//		String dateTimeAfter = IO.readDateTime("http://worldtimeapi.org/api/ip");
-//		DateTimeFormatter fmt = DateTimeFormatter.ISO_DATE_TIME;
+//		String dateTimeAfter = IO.readDateTime(API_URL);
+//
+//		DateTimeFormatter fmt = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 //		LocalDateTime time_0 = LocalDateTime.parse(dateTimeBefore,fmt); // strip timezone data
 //		LocalDateTime time_1 = LocalDateTime.parse(dateTimeAfter,fmt);
+//
 //		// Check that time moves forward
 //		assertTrue(time_1.isAfter(time_0));
 //	}

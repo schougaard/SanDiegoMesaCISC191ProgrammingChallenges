@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
  * 
  * @author Tasha Frankie
  * @author Allan Schougaard
+ * @author Daniel Sullivan
  * 
  */
 
@@ -63,10 +64,10 @@ class IOTest
 //   }
 //
 //	@Test
-//	void testReadDateTime_timeapi()  throws InterruptedException
+//	void testReadDateTimeApi()  throws InterruptedException
 //	{
 //		final String API_URL = "https://timeapi.io/api/time/current/zone?timeZone=utc";
-//		final String TIMESTAMP = "YYYY-MM-DDThh:mm:ss.tttttt"; //-hh:mm";
+//		final String TIMESTAMP_FORMAT = "YYYY-MM-DDThh:mm:ss.tttttt"; //-hh:mm";
 //	
 //		// In this test you will "read" the current time from a time server on the internet.
 //		// You can see that the server responds with by entering the URL in a browser
@@ -78,18 +79,18 @@ class IOTest
 //		// Hint: use String's indexOf("\"dateTime\":\", 0)
 //		assertTrue(dateTimeBefore.startsWith("202"));
 //		assertTrue(dateTimeBefore.contains("T"));
-//	    	assertTrue(dateTimeBefore.length() == TIMESTAMP.length());
+//	    	assertTrue(dateTimeBefore.length() == TIMESTAMP_FORMAT.length());
 //	
 //		// Wait a second
 //		Thread.sleep(1000);  // throws InterruptedException
 //		String dateTimeAfter = IO.readDateTime(API_URL);
 //
-//		DateTimeFormatter fmt = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-//		LocalDateTime time_0 = LocalDateTime.parse(dateTimeBefore,fmt); // strip timezone data
-//		LocalDateTime time_1 = LocalDateTime.parse(dateTimeAfter,fmt);
+//		DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+//		LocalDateTime time0 = LocalDateTime.parse(dateTimeBefore,formatter); // strip timezone data
+//		LocalDateTime time1 = LocalDateTime.parse(dateTimeAfter,formatter);
 //
 //		// Check that time moves forward
-//		assertTrue(time_1.isAfter(time_0));
+//		assertTrue(time1.isAfter(time0));
 //	}
 
 }

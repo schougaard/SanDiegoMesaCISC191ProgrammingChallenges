@@ -90,7 +90,7 @@ class TestExceptions
 //			bill.setTipPercent(-0.1);
 //		});
 //	}
-
+//
 //	@Test
 //	void testCheckoutBillCalculateTotalBill()
 //	{
@@ -111,7 +111,7 @@ class TestExceptions
 //			bill3.calculateTotalBill();
 //		});
 //	}
-
+//
 //	@Test
 //	void testMain()
 //	{
@@ -120,7 +120,7 @@ class TestExceptions
 //			CheckoutBill.main(null);
 //		});
 //	}
-
+//
 //	@Test
 //	void testBankAccountDepositWithdraw() throws Exception
 //	{
@@ -134,7 +134,7 @@ class TestExceptions
 //		account.withdraw(250);
 //		assertEquals(0, account.getBalance());
 //	}
-
+//
 //	@Test
 //	void testBankAccountDepositException() throws Exception
 //	{
@@ -150,7 +150,7 @@ class TestExceptions
 //		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
 //      assertEquals(100, account.getBalance());
 //	}
-
+//
 //	@Test
 //	void testBankAccountWithdrawException1() throws Exception
 //	{
@@ -162,11 +162,11 @@ class TestExceptions
 //		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
 //      assertEquals(200, account.getBalance());
 //	}
-
+//
 //	@Test
 //	void testBankAccountWithdrawException2() throws Exception
 //	{
-//		InsufficientFundsException insufficientFundsException = new InsufficientFundsException(923.45, 300);
+//		InsufficientFundsException insufficientFundsException = new InsufficientFundsException(923.45, 300.0);
 //		// Test that insufficientFundsException is-an Exception
 //		assertTrue(insufficientFundsException instanceof Exception);
 //	
@@ -175,11 +175,11 @@ class TestExceptions
 //		Exception exception2 = assertThrows(InsufficientFundsException.class, () -> {
 //			account.withdraw(300.01);
 //		});
-//		assertEquals("Withdrawing amount: $300.01 that is larger than balance: $300 is not allowed",
+//		assertEquals("Withdrawing amount: $300.01 that is larger than balance: $300.00 is not allowed",
 //				exception2.getMessage());
-//      assertEquals(300, account.getBalance());
+//              assertEquals(300, account.getBalance());
 //	}
-
+//
 //	@Test
 //	void testWithdrawAsPossible() throws Exception
 //	{

@@ -46,27 +46,25 @@ public class TestLogic
 
 		/* Create two identical Picture objects from the same picture */
 		Picture studentSol = new Picture("bees.png");
+		Picture solution = new Picture("beesZeroBlue.png");
 
-		/* apply the zeroBlue filter */
+		/* apply the filter */
 		Logic.zeroBlue(studentSol);
-
+ 
 		/* obtain the 2D Pixel array representation for both objects */
-		Pixel[][] pixels = studentSol.getPixels2D(); // student code
+		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 
-		// the blue value of the pixels should be 0
-		assertTrue(pixels[0][0].getBlue() == 0);
-		assertTrue(pixels[pixels.length / 2][0].getBlue() == 0);
-		assertTrue(pixels[pixels.length - 1][0].getBlue() == 0);
-
-		// the other channels should not be changed
-		assertTrue(pixels[0][0].getRed() != 0);
-		assertTrue(pixels[pixels.length / 2][0].getRed() != 0);
-		assertTrue(pixels[pixels.length - 1][0].getRed() != 0);
-
-		// the other channels should not be changed
-		assertTrue(pixels[0][0].getGreen() != 0);
-		assertTrue(pixels[pixels.length / 2][0].getGreen() != 0);
-		assertTrue(pixels[pixels.length - 1][0].getGreen() != 0);
+		//visit every row
+		for(int row = 0; row < pixelsStudentSol.length; row++)
+		{
+			//visit every column in the row
+			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+			{
+				//Pixel values of student and solution should be the same
+				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
+			}
+		}
 
 	}
 
@@ -79,26 +77,28 @@ public class TestLogic
 //	void testBW()
 //	{
 //
-//		// Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.PNG");
+//		/* Create two identical Picture objects from the same picture */
+//		Picture studentSol = new Picture("bees.png");
+//		Picture solution = new Picture("beesBlackAndWhite.png");
 //
-//		// Apply the student code and solution code
-//		Logic.blackAndWhite(p);
+//		/* apply the filter */
+//		Logic.blackAndWhite(studentSol);
+// 
+//		/* obtain the 2D Pixel array representation for both objects */
+//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		// obtain the 2D Pixel array representation for both objects
-//		Pixel[][] pixels = p.getPixels2D();
+//		//visit every row
+//		for(int row = 0; row < pixelsStudentSol.length; row++)
+//		{
+//			//visit every column in the row
+//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+//			{
+//				//Pixel values of student and solution should be the same
+//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
+//			}
+//		}
 //
-//		// The red value of pixel should be the same as the average if BW has been
-//		// applied properly
-//		assertTrue(pixels[0][0].getRed() == pixels[0][0].getAverage());
-//
-//		// The red value of pixel should be the same as the average if BW has been
-//		// applied properly
-//		assertTrue(pixels[pixels.length / 2][0].getRed() == pixels[pixels.length / 2][0].getAverage());
-//
-//		// The red value of pixel should be the same as the average if BW has been
-//		// applied properly
-//		assertTrue(pixels[pixels.length - 1][0].getRed() == pixels[pixels.length - 1][0].getAverage());
 //
 //	}
 //
@@ -109,31 +109,33 @@ public class TestLogic
 //	void testNegative()
 //	{
 //
-//		// Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.png"); // make sure you're using this image as the tester needs it
 //
-//		// Apply the student code and solution code
-//		Logic.negative(p);
+//		/* Create two identical Picture objects from the same picture */
+//		Picture studentSol = new Picture("bees.png");
+//		Picture solution = new Picture("beesNegative.png");
 //
-//		// obtain the 2D Pixel array representation for both objects
-//		Pixel[][] pixels = p.getPixels2D();
+//		/* apply the filter */
+//		Logic.negative(studentSol);
+// 
+//		/* obtain the 2D Pixel array representation for both objects */
+//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		// check value values of a couple of pixels - check red
-//		assertTrue(pixels[0][0].getRed() == 60);
-//		assertTrue(pixels[50][0].getRed() == 40);
-//		assertTrue(pixels[100][0].getRed() == 93);
-//
-//		// check blue of 3 different pixels
-//		assertTrue(pixels[0][0].getGreen() == 125);
-//		assertTrue(pixels[50][0].getGreen() == 101);
-//		assertTrue(pixels[100][0].getGreen() == 167);
-//
-//		// check blue of 3 different pixels
-//		assertTrue(pixels[0][0].getBlue() == 59);
-//		assertTrue(pixels[50][0].getBlue() == 95);
-//		assertTrue(pixels[100][0].getBlue() == 57);
+//		//visit every row
+//		for(int row = 0; row < pixelsStudentSol.length; row++)
+//		{
+//			//visit every column in the row
+//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+//			{
+//				//Pixel values of student and solution should be the same
+//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
+//			}
+//		}
 //
 //	}
+//	
+//	
+//	
 //
 //	/*
 //	 * See canvas for more details on applying sunset tone to a picture
@@ -141,29 +143,27 @@ public class TestLogic
 //	@Test
 //	void testSunset()
 //	{
-//		// Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.png");
+//		/* Create two identical Picture objects from the same picture */
+//		Picture studentSol = new Picture("fireFall.png");
+//		Picture solution = new Picture("fireFallMakeSunset.png");
 //
-//		// Apply the student code and solution code
-//		Logic.makeSunset(p, 1.5, .9);
+//		/* apply the filter */
+//		Logic.makeSunset(studentSol, 1.5, .9);
+// 
+//		/* obtain the 2D Pixel array representation for both objects */
+//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		// obtain the 2D Pixel array representation for both objects
-//		Pixel[][] pixels = p.getPixels2D();
-//
-//		// check value values of a couple of pixels - check red
-//		assertTrue(pixels[0][0].getRed() == 255);
-//		assertTrue(pixels[50][0].getRed() == 255);
-//		assertTrue(pixels[100][0].getRed() == 243);
-//
-//		// check green
-//		assertTrue(pixels[0][0].getGreen() == 117);
-//		assertTrue(pixels[50][0].getGreen() == 138);
-//		assertTrue(pixels[100][0].getGreen() == 79);
-//
-//		// check blue
-//		assertTrue(pixels[0][0].getBlue() == 176);
-//		assertTrue(pixels[50][0].getBlue() == 144);
-//		assertTrue(pixels[100][0].getBlue() == 178);
+//		//visit every row
+//		for(int row = 0; row < pixelsStudentSol.length; row++)
+//		{
+//			//visit every column in the row
+//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+//			{
+//				//Pixel values of student and solution should be the same
+//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
+//			}
+//		}
 //
 //	}
 //
@@ -173,47 +173,29 @@ public class TestLogic
 //	@Test
 //	void testFlipHor()
 //	{
-//		// | __ \ | |
-//		// | |__) |___ __ _ __| |
-//		// | _ // _ \/ _` |/ _` |
-//		// | | \ \ __/ (_| | (_| |
-//		// |_| \_\___|\__,_|\__,_|
-//		//
-//		// The method name should be mirrorHorizontal and will Flip the image
-//		// Horizontally or from left to right.
 //
-//		// Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.png");
-//		Picture original = new Picture("bees.png");
+//		/* Create two identical Picture objects from the same picture */
+//		Picture studentSol = new Picture("fireFall.png");
+//		Picture solution = new Picture("fireFallFlipHorizontal.png");
 //
-//		// Apply the student code and solution code
-//		Logic.mirrorHorizontal(p);
+//		/* apply the filter */
+//		Logic.flipHorizontal(studentSol);
+// 
+//		/* obtain the 2D Pixel array representation for both objects */
+//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		Pixel[][] pixels = original.getPixels2D();
-//		Pixel[][] solution = p.getPixels2D();
-//
-//		// The left-most and right-most pixel colors should be swapped if flipped was
-//		// successful
-//		// check value values of a couple of pixels - check red
-//		assertTrue(pixels[0][0].getRed() == solution[0][solution[0].length - 1].getRed());
-//
-//		// check green
-//		assertTrue(pixels[0][0].getGreen() == solution[0][solution[0].length - 1].getGreen());
-//
-//		// check blue
-//		assertTrue(pixels[0][0].getBlue() == solution[0][solution[0].length - 1].getBlue());
-//
+//		//visit every row
+//		for(int row = 0; row < pixelsStudentSol.length; row++)
+//		{
+//			//visit every column in the row
+//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+//			{
+//				//Pixel values of student and solution should be the same
+//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
+//			}
+//		}
 //		
-//		// check all four corners
-//		int top = 0;
-//		int bottom = pixels.length-1;
-//		int left = 0;
-//		int right = pixels[0].length-1;
-//		
-//		assertTrue(compPixelColors(pixels[top][left], solution[top][right]));
-//		assertTrue(compPixelColors(pixels[top][right], solution[top][left]));
-//		assertTrue(compPixelColors(pixels[bottom][left], solution[bottom][right]));
-//		assertTrue(compPixelColors(pixels[bottom][right], solution[bottom][left]));
 //	}
 //
 //	/*
@@ -223,45 +205,27 @@ public class TestLogic
 //	void testFlipVer()
 //	{
 //
-//		// _____ _
-//		// | __ \ | |
-//		// | |__) |___ __ _ __| |
-//		// | _ // _ \/ _` |/ _` |
-//		// | | \ \ __/ (_| | (_| |
-//		// |_| \_\___|\__,_|\__,_|
-//		//
-//		// The method name should be mirrorVertical and will Flip the image Vertically
-//		// (from top to bottom).
+//		/* Create two identical Picture objects from the same picture */
+//		Picture studentSol = new Picture("fireFall.png");
+//		Picture solution = new Picture("fireFallFlipVertical.png");
 //
-//		// Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.png");
-//		Picture p2 = new Picture("bees.png"); // original
+//		/* apply the filter */
+//		Logic.flipVertical(studentSol);
+// 
+//		/* obtain the 2D Pixel array representation for both objects */
+//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		// Apply the student code and solution code
-//		Logic.mirrorVertical(p);
-//
-//		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D(); // original
-//
-//		// check value values of a couple of pixels - check red
-//		assertTrue(pixels[0][0].getRed() == pixels2[pixels2.length - 1][0].getRed());
-//
-//		// check green
-//		assertTrue(pixels[0][0].getGreen() == pixels2[pixels2.length - 1][0].getGreen());
-//
-//		// check blue
-//		assertTrue(pixels[0][0].getBlue() == pixels2[pixels2.length - 1][0].getBlue());
-//
-//		// check all four corners
-//		int top = 0;
-//		int bottom = pixels.length-1;
-//		int left = 0;
-//		int right = pixels[0].length-1;
-//		
-//		assertTrue(compPixelColors(pixels[top][left], pixels2[bottom][left]));
-//		assertTrue(compPixelColors(pixels[bottom][left], pixels2[top][left]));
-//		assertTrue(compPixelColors(pixels[top][right], pixels2[bottom][right]));
-//		assertTrue(compPixelColors(pixels[bottom][right], pixels2[top][right]));
+//		//visit every row
+//		for(int row = 0; row < pixelsStudentSol.length; row++)
+//		{
+//			//visit every column in the row
+//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+//			{
+//				//Pixel values of student and solution should be the same
+//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
+//			}
+//		}
 //	}
 //
 //	/*
@@ -270,38 +234,29 @@ public class TestLogic
 //	@Test
 //	void testBlur()
 //	{
-//		// Create two Picture image objects using the same image file
-//		Picture p = new Picture("bees.png");
-//		Picture p2 = new Picture("bees.png"); // original
+//		/* Create two identical Picture objects from the same picture */
+//		Picture studentSol = new Picture("fireFall.png");
+//		Picture solution = new Picture("fireFallBlur.png");
 //
-//		// Apply the student code and solution code
-//		Logic.blur(p);
+//		/* apply the filter */
+//		Logic.blur(studentSol);
+// 
+//		/* obtain the 2D Pixel array representation for both objects */
+//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		// obtain the 2D Pixel array representation for both objects
-//		Pixel[][] pixels = p.getPixels2D();
-//		Pixel[][] pixels2 = p2.getPixels2D(); // original
-//
-//		// check that the formula was applied to a couple of pixels
-//		int avgRed00 = (int) ((pixels2[0][0].getRed() + pixels2[1][0].getRed() + pixels2[0][1].getRed()
-//				+ pixels2[1][1].getRed()) / 4.0);
-//		assert (avgRed00 == pixels[0][0].getRed());
-//
-//		int avgRed01 = (int) ((pixels2[0][1].getRed() + pixels2[1][1].getRed() + pixels2[0][2].getRed()
-//				+ pixels2[1][2].getRed()) / 4.0);
-//		assert (avgRed01 == pixels[0][1].getRed());
+//		//visit every row
+//		for(int row = 0; row < pixelsStudentSol.length; row++)
+//		{
+//			//visit every column in the row
+//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+//			{
+//				//Pixel values of student and solution should be the same
+//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
+//			}
+//		}
 //	}
 
-	/**
-	 * Helper method to check that the red, green, and blue channel values of two
-	 * pixels are the same
-	 * 
-	 * @param a, the first Pixel object to check
-	 * @param b, the second Pixel object to check
-	 * @return true if two Pixel objects' red, green, and blue values are the same
-	 */
-	public boolean compPixelColors(Pixel a, Pixel b)
-	{
-		return a.getBlue() == b.getBlue() && a.getRed() == b.getRed() && a.getGreen() == b.getGreen();
-	}
+
 
 }

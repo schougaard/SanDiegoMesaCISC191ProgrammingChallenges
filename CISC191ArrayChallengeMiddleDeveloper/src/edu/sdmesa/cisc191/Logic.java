@@ -42,16 +42,22 @@ public class Logic
 		// Create a myPicture object from the provided file name. 
 		// If you use your own image, be sure to place it in the images folder of this project 
 		DigitalPicture myPicture = new Picture("bees.png");
+		myPicture.setTitle("Original Image");
 		
 		//Use the explore method of the object to view the picture.
 		myPicture.explore();
 		
+		/*
+		 * Apply the filter then invoke explorer again to view the changes. :)
+		 * ------------------------------------------------------------------------------------
+		 */
+		
 		//Apply one of the filters then view the image again with explore!
 		zeroBlue(myPicture); //<----- Change this to one of the other filters that you have written
+		myPicture.setTitle("After Filter"); //change the title of the JFrame
 		myPicture.explore();
 		
 	}
-	
 	
 	
 	/**
@@ -81,15 +87,5 @@ public class Logic
 	}
 
 
-//	/**
-//	 * Alters the picture so that is is black and white by setting each pixels color value to be the average
-//	 * of the pixels red, green, and blue channel. 
-//	 * @param picture,  the image to be altered
-//	 */
-//	public static void ????(??? ???) {
-//		
-//		
-//		
-//	}
-
+	
 }

@@ -52,7 +52,7 @@ public class TestLogic
 		Logic.zeroBlue(studentSol);
  
 		/* obtain the 2D Pixel array representation for both objects */
-		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 
 		//visit every row
@@ -85,7 +85,7 @@ public class TestLogic
 //		Logic.blackAndWhite(studentSol);
 // 
 //		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
@@ -118,7 +118,7 @@ public class TestLogic
 //		Logic.negative(studentSol);
 // 
 //		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
@@ -151,7 +151,7 @@ public class TestLogic
 //		Logic.makeSunset(studentSol, 1.5, .9);
 // 
 //		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
@@ -182,7 +182,7 @@ public class TestLogic
 //		Logic.flipHorizontal(studentSol);
 // 
 //		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
@@ -213,7 +213,7 @@ public class TestLogic
 //		Logic.flipVertical(studentSol);
 // 
 //		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsStudentSol = studentSol.getPixels2D(); 		// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
@@ -242,7 +242,7 @@ public class TestLogic
 //		Logic.blur(studentSol);
 // 
 //		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol= studentSol.getPixels2D(); 	// student code
+//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row

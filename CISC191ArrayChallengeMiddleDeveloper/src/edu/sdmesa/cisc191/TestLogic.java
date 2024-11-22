@@ -36,6 +36,7 @@ import edu.gatech.cc.Pixel;
 public class TestLogic
 {
 
+	
 	/**
 	 * Check to see if the blue value of each pixel in an image has been set to 0
 	 */

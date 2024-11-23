@@ -55,16 +55,8 @@ public class TestLogic
 		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 
-		//visit every row
-		for(int row = 0; row < pixelsStudentSol.length; row++)
-		{
-			//visit every column in the row
-			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-			{
-				//Pixel values of student and solution should be the same
-				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
-			}
-		}
+		//the resulting student image should be pixel by pixel equivalent to the solution image
+		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
 
 	}
 
@@ -88,16 +80,7 @@ public class TestLogic
 //		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		//visit every row
-//		for(int row = 0; row < pixelsStudentSol.length; row++)
-//		{
-//			//visit every column in the row
-//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-//			{
-//				//Pixel values of student and solution should be the same
-//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
-//			}
-//		}
+//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
 //
 //
 //	}
@@ -121,16 +104,7 @@ public class TestLogic
 //		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		//visit every row
-//		for(int row = 0; row < pixelsStudentSol.length; row++)
-//		{
-//			//visit every column in the row
-//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-//			{
-//				//Pixel values of student and solution should be the same
-//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
-//			}
-//		}
+//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol))
 //
 //	}
 //	
@@ -154,16 +128,7 @@ public class TestLogic
 //		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		//visit every row
-//		for(int row = 0; row < pixelsStudentSol.length; row++)
-//		{
-//			//visit every column in the row
-//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-//			{
-//				//Pixel values of student and solution should be the same
-//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
-//			}
-//		}
+//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
 //
 //	}
 //
@@ -186,15 +151,7 @@ public class TestLogic
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
-//		for(int row = 0; row < pixelsStudentSol.length; row++)
-//		{
-//			//visit every column in the row
-//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-//			{
-//				//Pixel values of student and solution should be the same
-//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
-//			}
-//		}
+//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
 //		
 //	}
 //
@@ -217,15 +174,7 @@ public class TestLogic
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
-//		for(int row = 0; row < pixelsStudentSol.length; row++)
-//		{
-//			//visit every column in the row
-//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-//			{
-//				//Pixel values of student and solution should be the same
-//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
-//			}
-//		}
+//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
 //	}
 //
 //	/*
@@ -246,16 +195,25 @@ public class TestLogic
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
 //		//visit every row
-//		for(int row = 0; row < pixelsStudentSol.length; row++)
-//		{
-//			//visit every column in the row
-//			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-//			{
-//				//Pixel values of student and solution should be the same
-//				assert(pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor()));
-//			}
-//		}
+//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
 //	}
+	
+	public static boolean compare(Pixel[][] pixelsStudentSol, Pixel[][] pixelsFilteredSol) {
+		//visit every row
+		for(int row = 0; row < pixelsStudentSol.length; row++)
+		{
+			//visit every column in the row
+			for(int col = 0; col < pixelsStudentSol[row].length; col++)
+			{
+				//Pixel values of student and solution should be the same
+				if(!pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor())) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
 
 
 

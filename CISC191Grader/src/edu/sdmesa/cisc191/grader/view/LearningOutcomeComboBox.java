@@ -3,6 +3,7 @@
  */
 package edu.sdmesa.cisc191.grader.view;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,16 +35,14 @@ import edu.sdmesa.cisc191.grader.model.LearningOutcome;
 */
 public class LearningOutcomeComboBox extends JPanel
 {
-	
+	private final JComboBox<Achievement> comboBox = new JComboBox<Achievement>(Achievement.values());
 	public LearningOutcomeComboBox(GradeView gradeView, LearningOutcome learningOutcome)
 	{
 		String labelString = learningOutcome.toString() + ": " + learningOutcome.getTitle();
 		JLabel label = new JLabel(labelString);
-		
-		final JComboBox<Achievement> comboBox = new JComboBox<Achievement>(Achievement.values());
 		label.setLabelFor(comboBox);
 		
-		setLayout(new FlowLayout(FlowLayout.LEFT));
+		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(label);
 		add(new JSeparator());
 		add(comboBox);
@@ -56,6 +55,11 @@ public class LearningOutcomeComboBox extends JPanel
 				gradeView.updateUI();
 			}
 		});	
+	}
+	
+	public void reset()
+	{
+		comboBox.setSelectedItem(Achievement.NOT_YET);
 	}
 
 }

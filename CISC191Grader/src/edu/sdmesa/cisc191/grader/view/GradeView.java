@@ -6,8 +6,13 @@ package edu.sdmesa.cisc191.grader.view;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.LinkedList;
+
 import javax.swing.*;
 
+import edu.sdmesa.cisc191.grader.model.Achievement;
 import edu.sdmesa.cisc191.grader.model.Grader;
 import edu.sdmesa.cisc191.grader.model.LearningOutcome;
 
@@ -30,6 +35,9 @@ import edu.sdmesa.cisc191.grader.model.LearningOutcome;
 public class GradeView extends JFrame
 {
 	private final Grader grader;
+	
+	private final LinkedList<LearningOutcomeComboBox> learningOutcomeComboBoxes = new LinkedList<>();
+	
 	private final JTextField currentGradeField;
 	private final JTextField finalGradeField;
 	
@@ -45,39 +53,57 @@ public class GradeView extends JFrame
 		
 		JPanel inputPanel = new JPanel();
 		inputPanel.setLayout(new GridLayout(grader.getLearningOutcomes().length, 1));
-		//inputPanel.setAlignmentX(LEFT_ALIGNMENT);
 		inputPanel.setBorder(BorderFactory.createTitledBorder("Achievement Levels"));
 		for (LearningOutcome outcome : grader.getLearningOutcomes())
 		{
 			LearningOutcomeComboBox box = new LearningOutcomeComboBox(this, outcome);
+			learningOutcomeComboBoxes.add(box);
 			inputPanel.add(box);
 		}
 		add(inputPanel);
 		
 		JPanel currentGradePanel = new JPanel();
+		currentGradePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		currentGradePanel.setBorder(BorderFactory.createTitledBorder("Current Grade"));
-		currentGradePanel.add(new JLabel("Based on current submissions  "));
+		currentGradePanel.add(new JLabel("Based on current submissions "));
 		currentGradeField = new JTextField(grader.calculateCurrentGrade(), 5); 
 		currentGradeField.setHorizontalAlignment(JTextField.CENTER);
 		currentGradeField.setEditable(false);
-		currentGradeField.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		currentGradeField.setFont(new Font("Dialog", Font.BOLD, 16));
 		currentGradePanel.add(currentGradeField);
 		
 		JPanel finalGradePanel = new JPanel();
+		finalGradePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		finalGradePanel.setBorder(BorderFactory.createTitledBorder("Final Grade"));
-		finalGradePanel.add(new JLabel("Based on all LOs    "));
+		finalGradePanel.add(new JLabel("Based on all LOs "));
 		finalGradeField = new JTextField(grader.calculateFinalGrade(), 5);
 		finalGradeField.setHorizontalAlignment(JTextField.CENTER);
 		finalGradeField.setEditable(false);
-		finalGradeField.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		finalGradeField.setFont(new Font("Dialog", Font.BOLD, 16));
 		finalGradePanel.add(finalGradeField);
 		
+		JButton resetButton = new JButton("Reset");
+		resetButton.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				for (LearningOutcomeComboBox box : learningOutcomeComboBoxes)
+				{
+					box.reset();
+				}
+				updateUI();
+			}
+		});
+		
 		JPanel outputPanel = new JPanel();
-		outputPanel.setLayout(new BoxLayout(outputPanel, BoxLayout.Y_AXIS)); 
+		outputPanel.setLayout(new GridLayout(3, 1, 0, 20));
 		outputPanel.add(currentGradePanel);
 		outputPanel.add(finalGradePanel);
+		outputPanel.add(resetButton);
 		add(outputPanel);
 		pack();
+		validate();
 		setMinimumSize(inputPanel.getSize());
 		setVisible(true);
 	}

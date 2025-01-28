@@ -26,7 +26,7 @@ import edu.gatech.cc.Pixel;
  *      J. D., & Stein, C. (n.d.). JUnit 5 user guide. JUnit 5.
  *      https://junit.org/junit5/docs/current/user-guide/
  * 
- * Version/date 1.0
+ * @version 2025.01.25.001
  * 
  * Responsibilities of class:
  * Test the function of Logic.java
@@ -104,7 +104,7 @@ public class TestLogic
 //		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
 //		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
 //
-//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol))
+//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
 //
 //	}
 //	

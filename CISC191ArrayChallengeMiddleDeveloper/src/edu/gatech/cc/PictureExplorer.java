@@ -207,8 +207,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		imageDisplay.setToolTipText("Click a mouse button on a pixel to see the pixel information");
 		scrollPane.setViewportView(imageDisplay);
 		pictureFrame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-		BufferedImage og = picture.getBufferedImage();
-
+ 
 	}
 
  

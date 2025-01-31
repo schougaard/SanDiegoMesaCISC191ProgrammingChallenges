@@ -73,12 +73,12 @@ public class Logic
 		Pixel[][] pixel2D = picture.getPixels2D();
 		
 		//Traverse the 2D array
-		for (int r = 0; r < pixel2D.length; r++)
+		for (int row = 0; row < pixel2D.length; row++)
 		{
-			for (int c = 0; c < pixel2D[r].length; c++)
+			for (int col = 0; col < pixel2D[row].length; col++)
 			{
 				//invoke the setBlue method on each Pixel object
-				pixel2D[r][c].setBlue(0);
+				pixel2D[row][col].setBlue(0);
 			}
 		}
 		

@@ -12,7 +12,7 @@ import edu.sdmesa.cisc191.Logic;
 
 /**
  * Displays a picture and lets you explore the picture by displaying the row,
- * column, red, green, and blue values of the pixel at the cursor when you click
+ * column, red, green, and Logic.blur values of the pixel at the cursor when you click
  * a mouse button or press and hold a mouse button while moving the cursor. It
  * also lets you zoom in or out. You can also type in a row and column value to
  * see the color at that location.
@@ -207,152 +207,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		imageDisplay.setToolTipText("Click a mouse button on a pixel to see the pixel information");
 		scrollPane.setViewportView(imageDisplay);
 		pictureFrame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-		BufferedImage og = picture.getBufferedImage();
-
-		CustomButton zeroBlue = new CustomButton("Zero Blue");
-		// handle previous row button press
-		zeroBlue.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				Logic.zeroBlue(picture);
-				repaint();
-			}
-		});
-
-		CustomButton b = new CustomButton("B&W");
-		b.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				/*
-				 * Uncomment the following to connect the black and white button in the GUI to
-				 * your provided solution.
-				 */
-				// Logic.blackAndWhite(picture);
-				repaint();
-			}
-		});
-
-		CustomButton negative = new CustomButton("Negative");
-		// handle previous row button press
-		negative.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				/*
-				 * Uncomment the following to connect the negative button in the GUI to your
-				 * provided solution.
-				 */
-				// Logic.negative(picture);
-				repaint();
-			}
-		});
-
-		CustomButton sunset = new CustomButton("Sunset");
-		// handle previous row button press
-		sunset.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				String red = JOptionPane.showInputDialog(null, "Enter a redIntensity value > 1 such as 1.5 or 1.1");
-				String greenBlue = JOptionPane.showInputDialog(null,
-						"Enter a positive greenBlueReduction value < 1 such as .5 or .9 ");
-
-				try
-				{
-					double r = Double.valueOf(red);
-					double gb = Double.valueOf(greenBlue);
-					// Logic.makeSunset(picture, r, gb);
-				} catch (Exception e)
-				{
-					System.out.println("You entered invalid values for the makeSunset filter");
-				}
-				repaint();
-			}
-		});
-
-		CustomButton mirrorV = new CustomButton("FlipVertical");
-		// handle previous row button press
-		mirrorV.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				/*
-				 * Uncomment the following to connect the mirrorVertical button in the GUI to
-				 * your provided solution.
-				 */
-				// Logic.mirrorVertical(picture);
-				repaint();
-			}
-		});
-		CustomButton mirrorH = new CustomButton("FlipHorizontal");
-		// handle previous row button press
-		mirrorH.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				/*
-				 * Uncomment the following to connect the mirrorHorizontal button in the GUI to
-				 * your provided solution.
-				 */
-				// Logic.mirrorHorizontal(picture);
-				repaint();
-			}
-		});
-
-		CustomButton blur = new CustomButton("Blur");
-		// handle previous row button press
-		blur.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				/*
-				 * Uncomment the following to connect the blur button in the GUI to your
-				 * provided solution.
-				 */
-				// Logic.blur(picture);
-				repaint();
-			}
-		});
-
-		// create a location panel
-		JPanel filters = new JPanel();
-		filters.setLayout(new GridLayout(4, 4));
-
-		JButton[] buttons =
-		{ zeroBlue, b, negative, mirrorH, mirrorV, sunset, blur };
-
-		for (int i = 0; i < buttons.length; i++)
-		{
-			Box hBox = Box.createHorizontalBox();
-			hBox.setSize(50, 500);
-			hBox.add(buttons[i]);
-			filters.add(hBox);
-
-		}
-
-		pictureFrame.getContentPane().add(filters, BorderLayout.EAST);
-
+ 
 	}
 
-	private void blackAndWhite()
-	{
-		System.out.println("Inside Method");
-		Pixel[][] pixel2D = picture.getPixels2D();
-		for (int r = 0; r < pixel2D.length; r++)
-		{
-			for (int c = 0; c < pixel2D[r].length; c++)
-			{
-
-				int avg = (pixel2D[r][c].getRed() + pixel2D[r][c].getGreen() + pixel2D[r][c].getBlue()) / 3;
-				pixel2D[r][c].setGreen(avg);
-				pixel2D[r][c].setBlue(avg);
-				pixel2D[r][c].setRed(avg);
-			}
-		}
-		repaint();
-	}
+ 
 
 	/**
 	 * Creates the JFrame and sets everything up
@@ -1000,32 +858,31 @@ class CustomButton extends JButton
 		this.setBorderPainted(false);
 		this.setFocusPainted(false);
 		this.setContentAreaFilled(false);
-
 		switch (name)
 		{
-		case "B&W":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "B&W2.png"));
-			break;
-		case "Zero Blue":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconZeroBlue.png"));
-			break;
-		case "Negative":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconNegative.png"));
-			break;
-		case "Blur":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconBlur.jpg"));
-			break;
-		case "FlipVertical":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorVertical.png"));
-			break;
-		case "FlipHorizontal":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorHorizontal.png"));
-			break;
-		case "Sunset":
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconSepia.png"));
-			break;
-		default:
-			this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + name));
+			case "B&W":
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "B&W2.png"));
+				break;
+			case "Zero Blue":
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconZeroBlue.png"));
+				break;
+			case "Negative":
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconNegative.png"));
+				break;
+			case "Blur":
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconBlur.jpg"));
+				break;
+			case "FlipVertical":
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorVertical.png"));
+				break;
+			case "FlipHorizontal":
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorHorizontal.png"));
+				break;
+			case "Sunset":
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconSepia.png"));
+				break;
+			default:
+				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + name));
 		}
 	}
 }

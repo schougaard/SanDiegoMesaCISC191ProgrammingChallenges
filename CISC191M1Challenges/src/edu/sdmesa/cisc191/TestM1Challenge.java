@@ -85,9 +85,9 @@ class TestM1Challenge
 	void testMultiply()
 	{
 		// multiply(..., ...) multiplies two numbers
-		// This checks that add(2, 2) returns 4.
+		// This checks that multiply(2, 2) returns 4.
 		assertEquals(4, multiply(2, 2));
-		// This checks that add(2, -2) returns 0.
+		// This checks that multiply(2, -2) returns -4.
 		assertEquals(-4, multiply(2, -2));
 	}
 	

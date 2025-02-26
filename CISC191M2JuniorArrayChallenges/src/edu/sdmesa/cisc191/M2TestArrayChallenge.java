@@ -102,7 +102,7 @@ class M2TestArrayChallenge
 //		assertEquals(2, find(array2, 'B'));
 //		assertEquals(-1, find(array2, 'C'));
 //		
-//		char[] array3 = {'A', 'A', 'C'};
+//		char[] array3 = {'A', 'A', 'A'};
 //		assertEquals(0, find(array3, 'A'));
 //	}
 //
@@ -325,6 +325,8 @@ class M2TestArrayChallenge
 //		int[][] matrix = {{1, 2, 3}, 
 //						  {4, 5, 6},
 //						  {7, 8, 9}};
+//
+//      // Use row and column for parameter names
 //		assertEquals(1, getElement(matrix, 0, 0));
 //		assertEquals(2, getElement(matrix, 0, 1));
 //		assertEquals(4, getElement(matrix, 1, 0));
@@ -412,12 +414,28 @@ class M2TestArrayChallenge
 //	@Test
 //	void testAddLastRowElement()
 //	{
+//		// Use row and column (if needed) for index variable names
+//
 //		int[][] matrix2 = {{1,   2,  3,  4}, 
 //				           {5,   6,  7},
 //				           {9,  10},
 //				           {13, 14, 15, 16}};
-//		assertEquals(4+7+10+16, addLastRowElement(matrix2));		
-//		
+//		assertEquals(4+7+10+16, addLastRowElement(matrix2));			
+//	}
+//
+//	@Test
+//	void testAddAll()
+//	{
+//		int[][] array0 = {};
+//		assertEquals(0, addAll(array0));
+//
+//  	// Use row and column for index variable names
+//
+//		int[][] matrix2 = {{1,   2,  3,  4}, 
+//				           {5,   6,  7},
+//				           {9,  10},
+//				           {13, 14, 15, 16}};
+//		assertEquals(1+2+3+4+5+6+7+9+10+13+14+15+16, addAll(matrix2));
 //	}
 
 }

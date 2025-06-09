@@ -36,6 +36,11 @@ public class Grader
 		
 		return levelCountTable;
 	}
+	
+	public int getLevel(Achievement achievement)
+	{
+		return calculateAchievementLevelCountTable()[achievement.getlevel()];
+	}
 
 	public String calculateCurrentGrade()
 	{

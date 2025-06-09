@@ -18,16 +18,16 @@ package edu.sdmesa.cisc191.grader.model;
  */
 public enum LearningOutcome
 {
-	LO1("Employ design principles of object oriented programming"),
-	LO2("Construct programs utilizing single and multidimensional arrays"),
-	LO3("Construct programs utilizing objects and classes in object-oriented programming"),
-	LO4("Construct programs utilizing inheritance and polymorphism"),
-	LO5("Construct programs utilizing generic collections and data structures"),
-	LO6("Construct programs utilizing graphical user interfaces with event-driven programming"),
-	LO7("Construct programs utilizing exception handling"),
-	LO8("Construct programs utilizing text file I/O"),
-	LO9("Construct programs utilizing recursion"),
-	LO10("Construct programs utilizing multiple threads");
+	LO2("M2 Arrays"),
+	LO3("M3 Beginning Classes"),
+	LO4("M4 Advanced Classes"),
+	LO5("M5 Generic Collections"),
+	LO1("M6 Object Oriented Design"),
+	LO6("M7 GUI"),
+	LO7("M8 Exceptions"),
+	LO8("M9 File I/O"),
+	LO9("M10 Recursion"),
+	LO10("M11 Multithreading");
 	
 	// A learning outcome has a title for presentation
 	private final String title;

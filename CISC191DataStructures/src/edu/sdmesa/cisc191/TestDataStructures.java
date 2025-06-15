@@ -2,6 +2,7 @@ package edu.sdmesa.cisc191;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -29,124 +30,168 @@ import org.junit.jupiter.api.Test;
 
 class TestDataStructures
 {
+
 	@Test
-	public void testLinkedList()
+	public void testArrayListProducerConsumer()
 	{
-		LinkedList<String> list = new LinkedList<String>();
-		LinkedListProducer producer = new LinkedListProducer(list);
-		LinkedListConsumer consumer = new LinkedListConsumer(list);
-		assertEquals(true, list.isEmpty());
-
-		producer.produce("1st");
-		producer.produce("2nd");
-		producer.produce("3rd");
-
-		assertEquals("1st", consumer.consumeHead());
-		assertEquals("3rd", consumer.consumeTail());
-		assertEquals("2nd", consumer.consumeTail());
-		assertEquals(true, list.isEmpty());
+		ArrayList<String> list = new ArrayList<String>();
+		// stringProducer is-a Producer (interface) of Strings
+		Producer<String> stringProducer =  new StringArrayListProducer(list);
+		// stringConsumer  is-a Consumer (interface) of Strings
+		Consumer<String> stringConsumer = new StringArrayListConsumer(list);
 		
-		assertNull(consumer.consumeHead());
-		assertNull(consumer.consumeTail());
+		assertEquals(true, list.isEmpty());
+		// Produce two items inserted in order on the list
+		stringProducer.produce("1st");
+		stringProducer.produce("2nd");
+
+		// Consume (and remove) the 1st element on the list
+		assertEquals("1st", stringConsumer.consume());
+
+		stringProducer.produce("3rd");
+
+		assertEquals("2nd", stringConsumer.consume());
+		assertEquals("3rd", stringConsumer.consume());
+		assertNull(stringConsumer.consume());
+		
+		assertEquals(true, list.isEmpty());
 	}
 
 //	@Test
 //	public void testArrayList()
 //	{
-//		ArrayList<String> list = new ArrayList<String>();
-//		ArrayListProducer producer = new ArrayListProducer(list);
-//		ArrayListConsumer consumer = new ArrayListConsumer(list);
-//		assertEquals(true, list.isEmpty());
-//
-//		producer.produce(0, "1st");
-//		producer.produce(1, "3rd");
-//		producer.produce(1, "2nd");
-//
-//		assertEquals("1st", consumer.consume());
-//
-//		producer.produce(1, "4th");
-//
-//		assertEquals("2nd", consumer.consume());
-//		assertEquals("4th", consumer.consume());
-//		assertEquals("3rd", consumer.consume());
-//		assertEquals(true, list.isEmpty());
+//		// In this scenario we are going to to test that ArrayLists can insert elements at a specific index
 //		
-//		assertNull(consumer.consume());
+//		ArrayList<String> list = new ArrayList<String>();
+//		StringArrayListProducer listProducer = new StringArrayListProducer(list);
+//		StringArrayListConsumer listConsumer = new StringArrayListConsumer(list);
+//		
+//		assertEquals(true, list.isEmpty());
+//		listProducer.produce("1st");
+//		// Insert at index
+//		listProducer.produce(1, "3rd");
+//		listProducer.produce(1, "2nd");
+//
+//		// Consume (and remove) the 1st element on the list
+//		assertEquals("1st", listConsumer.consume());
+//
+//		listProducer.produce(1, "4th");
+//		listProducer.produce("5th");
+//
+//		assertEquals("2nd", listConsumer.consume());
+//		assertEquals("4th", listConsumer.consume());
+//		assertEquals("3rd", listConsumer.consume());
+//		assertEquals("5th", listConsumer.consume());
+//		
+//		assertEquals(true, list.isEmpty());
+//		assertNull(listConsumer.consume());
 //	}
-
+//
+//	@Test
+//	public void testLinkedListProducerConsumert()
+//	{
+//		LinkedList<String> list = new LinkedList<String>();
+//		// stringProducer is-a Producer (interface) of Strings
+//		Producer<String> stringProducer =  new StringLinkedListProducer(list);
+//		// stringConsumer  is-a Consumer (interface) of Strings
+//		Consumer<String> stringConsumer = new StringLinkedListConsumer(list);
+//		
+//		assertEquals(true, list.isEmpty());
+//		// Produce two items inserted in order on the list
+//		stringProducer.produce("1st");
+//		stringProducer.produce("2nd");
+//
+//		// Consume (and remove) the 1st element on the list
+//		assertEquals("1st", stringConsumer.consume());
+//
+//		stringProducer.produce("3rd");
+//
+//		assertEquals("2nd", stringConsumer.consume());
+//		assertEquals("3rd", stringConsumer.consume());
+//		assertNull(stringConsumer.consume());
+//		
+//		assertEquals(true, list.isEmpty());
+//	}
+//
 //	@Test
 //	public void testQueue()
 //	{
-//      // In this scenario we are simulating a food ordering system
+//		// In this scenario we are simulating a food ordering system
+//		
 //		Queue<String> queue = new LinkedList<String>();
-//		QueueProducer producer = new QueueProducer(queue);
-//		QueueConsumer consumer = new QueueConsumer(queue);
+//		Producer<String> producer = new StringQueueProducer(queue);
+//		Consumer<String> consumer = new StringQueueConsumer(queue);
 //
 //		assertEquals(true, queue.isEmpty());
 //
-//		producer.produce("Meal #1");
-//		producer.produce("Meal #2");
-//		producer.produce("Meal #3");
+//		// Produce at the back end of the queue
+//		producer.produce("Meal #1: Apple Pie");
+//		producer.produce("Meal #2: Burger");
+//		producer.produce("Meal #3: Caesar Salad");
 //
-//		assertEquals("Meal #1", consumer.consume());
-//		assertEquals("Meal #2", consumer.consume());
+//		// Consume at the front of the queue
+//		assertEquals("Meal #1: Apple Pie", consumer.consume());
+//		assertEquals("Meal #2: Burger", consumer.consume());
 //
-//		producer.produce("Meal #4");
+//		producer.produce("Meal #4: Dumplings");
 //
-//		assertEquals("Meal #3", consumer.consume());
-//		assertEquals("Meal #4", consumer.consume());
+//		assertEquals("Meal #3: Caesar Salad", consumer.consume());
+//		assertEquals("Meal #4: Dumplings", consumer.consume());
 //		assertEquals(true, queue.isEmpty());
 //		
 //		assertNull(consumer.consume());
 //	}
-
+//
 //	@Test
 //	public void testStack()
 //	{
-//      // In this scenario we are simulating a storage facility 
-//      // where products are stored in stacks
+//		// In this (contrived) scenario we are making burgers by stacking ingredients 
+//		
 //		Stack<String> stack = new Stack<String>();
-//		StackProducer producer = new StackProducer(stack);
-//		StackConsumer consumer = new StackConsumer(stack);
-//
+//		Producer<String> producer = new StringStackProducer(stack);
+//		Consumer<String> consumer = new StringStackConsumer(stack);
+//		
 //		assertEquals(true, stack.isEmpty());
-//
-//		producer.produce("First");
-//		producer.produce("2nd");
-//		producer.produce("3rd");
-//
-//		assertEquals("3rd", consumer.consume());
-//		assertEquals("2nd", consumer.consume());
-//
-//		producer.produce("Last");
-//
-//		assertEquals("Last", consumer.consume());
-//		assertEquals("First", consumer.consume());
+//		
+//		// Produce places items on top of the stack
+//		producer.produce("Bottom bun");
+//		producer.produce("Lettuce");
+//		producer.produce("Two patties");
+//		
+//		// Consume removes items from the top of the stack
+//		assertEquals("Two patties", consumer.consume());
+//		assertEquals("Lettuce", consumer.consume());
+//		
+//		producer.produce("Top bun");
+//		
+//		assertEquals("Top bun", consumer.consume());
+//		assertEquals("Buttom bun", consumer.consume());
 //		assertEquals(true, stack.isEmpty());
 //		
 //		assertNull(consumer.consume());
 //	}
-	
+//	
 //	@Test
 //	public void testPalindrome()
 //	{
 //		// In this scenario, use a queue and a stack 
-//		// to see if a word is a palindrome
+//		// to see if a word is a palindrome: https://en.wikipedia.org/wiki/Palindrome
 //		
 //		char[] lol = {'l', 'o', 'l'};
-//		assertTrue(Datastructure.isPalindrome(lol));
+//		assertTrue(Palindrome.isPalindrome(lol));
 //		char[] car = {'c', 'a', 'r'};
-//		assertFalse(Datastructure.isPalindrome(car));
+//		assertFalse(Palindrome.isPalindrome(car));
 //		char[] cabc = {'c', 'a', 'b', 'c'};
-//		assertFalse(Datastructure.isPalindrome(cabc));
+//		assertFalse(Palindrome.isPalindrome(cabc));
 //		char[] racecar = "racecar".toCharArray();
-//		assertTrue(Datastructure.isPalindrome(racecar));
+//		assertTrue(Palindrome.isPalindrome(racecar));
 //
 //	}
-	
+//	
 //	@Test
 //	public void testPhoneDirectory()
 //	{
+//		// This challenge is to implement a phone book that has-many name-phone number relations
 //		PhoneDirectory directory = new PhoneDirectory();
 //		directory.setNumberForPerson("Alice", 1111);	
 //		assertEquals(1111, directory.findNumberForPerson("Alice"));
@@ -173,12 +218,13 @@ class TestDataStructures
 //	    
 //	    assertNull(directory.findNumberForPerson("Xavier"));
 //	}
-	
+//	
 //	@Test
 //	public void testSearchEngine()
 //	{
 //		// In this scenario we are creating an Internet search engine
-//		// which returns multiple results for each search keyword
+//		// which returns multiple results for each search keyword.
+//		// This implies that a search engine has many search results.
 //		// Hint: this requires multiple data structures collaborating
 //		SearchEngine goggles = new SearchEngine();
 //		
@@ -204,15 +250,15 @@ class TestDataStructures
 //		assertTrue(goggles.search("car").contains("http://cashanddrive.com"));
 //		assertFalse(goggles.search("car").contains("http://notyourmothersicecream.com"));
 //		assertFalse(goggles.search("car").contains("http://mothersicecream.com"));
-//		
+//
+//		// If there are not search results for a given keyword, the engine returns an empty list
 //		assertNotNull(goggles.search("404"));
 //		assertTrue(goggles.search("404") instanceof List);
-//		assertEquals(0, goggles.search("404").size());
-//		assertNotNull(goggles.search("404"));
-//		assertTrue(goggles.search("404") instanceof List);
+//		assertTrue(goggles.search("404").isEmpty());
 //
 //		// Make sure malicious hackers cannot break your search engine
-//		// so do not hand out your data structures. Hint: think of Harbor
+//		// so do not hand out your data structures.
+//		// Hint: think of Harbor
 //		// Hint: use a list constructor
 //		goggles.search("car").clear();
 //		assertEquals(3, goggles.search("car").size());	

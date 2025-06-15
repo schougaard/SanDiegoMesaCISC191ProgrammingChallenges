@@ -22,28 +22,24 @@ package edu.sdmesa.cisc191;
  * Responsibilities of class:
  * 
  */
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-public class LinkedListConsumer
+public class StringArrayListConsumer implements Consumer<String>
 {
-	// A LinkedListConsumer has-a list
-	// private ??? list;
+	// An ArrayListConsumer has-many Strings
+	// private TODO
 
-	public LinkedListConsumer(/* TODO fill in the parameter */)
+	public StringArrayListConsumer(ArrayList<String> initialStrings) 
 	{
-	   // TODO complete the constructor
+		// TODO
 	}
 
-	public String consumeHead()
+	@Override
+	public String consume() 
 	{
-	   // TODO change the returned value
-      return "";
-	}
+		// TODO: Remove a String from collection
+		return null;
 
-	public String consumeTail()
-	{
-	   // TODO change the returned value
-      return "";
 	}
 
 }

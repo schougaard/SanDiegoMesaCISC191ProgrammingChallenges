@@ -22,16 +22,27 @@ package edu.sdmesa.cisc191;
  * Responsibilities of class:
  * 
  */
-import java.util.Stack;
+import java.util.ArrayList;
 
-public class StackProducer
+public class StringArrayListProducer implements Producer<String>
 {
-   // private ??? stack;
+	// An ArrayListConsumer has-many Strings
+	// private TODO
 
-
-	public void produce(String string)
+	public StringArrayListProducer(ArrayList<String> initialStrings) 
 	{
-      // TODO implement the method
+		// TODO 
+	}
+
+	@Override
+	public void produce(String item)
+	{
+		// TODO Add item to collection
+	}
+
+	public void produce(int index, String string)
+	{
+		// TODO 
 	}
 
 }

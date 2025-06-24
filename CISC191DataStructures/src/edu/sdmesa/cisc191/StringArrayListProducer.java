@@ -40,7 +40,7 @@ public class StringArrayListProducer implements Producer<String>
 		// TODO Add item to collection
 	}
 
-	public void produce(int index, String string)
+	public void produce(int index, String newString)
 	{
 		// TODO 
 	}

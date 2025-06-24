@@ -3,7 +3,7 @@ package edu.sdmesa.cisc191;
 import java.util.Queue;
 import java.util.Stack;
 
-public class Datastructure
+public class Palindrome
 {
 	public static boolean isPalindrome(char[] letters)
 	{
@@ -15,5 +15,5 @@ public class Datastructure
 		
 		return false;
 	}
-
+	
 }

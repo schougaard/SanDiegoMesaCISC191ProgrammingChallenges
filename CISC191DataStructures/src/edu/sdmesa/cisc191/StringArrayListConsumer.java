@@ -22,16 +22,24 @@ package edu.sdmesa.cisc191;
  * Responsibilities of class:
  * 
  */
-import java.util.Stack;
+import java.util.ArrayList;
 
-public class StackProducer
+public class StringArrayListConsumer implements Consumer<String>
 {
-   // private ??? stack;
+	// An ArrayListConsumer has-many Strings
+	// private TODO
 
-
-	public void produce(String string)
+	public StringArrayListConsumer(ArrayList<String> initialStrings) 
 	{
-      // TODO implement the method
+		// TODO
+	}
+
+	@Override
+	public String consume() 
+	{
+		// TODO: Remove a String from collection
+		return null;
+
 	}
 
 }

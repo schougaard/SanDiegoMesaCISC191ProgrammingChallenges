@@ -112,8 +112,8 @@ public class Recursion
 	 * (given as a decimal) and the number of times interest is added.
 	 * 
 	 * @param startBalance for the first period
-	 * @param interestRate how much interest the money accrues 
-	 * @param periods how many periods the money is invested (how many times interest is added)
+	 * @param interestRate how much interest the money accrues each period; constant for all periods
+	 * @param periods how many periods the money is invested (how many times interest is added; measured in months or years)
 	 * @return ending balance how much is returned at the end of the last period
 	 */
 //	public static double calculateEndBalance(final double startBalance,
@@ -141,11 +141,11 @@ public class Recursion
 	 * @param startPopulation the starting population
 	 * @param maxPopulation the maximum population that the environment will sustain
 	 * @param growthRate starting growth rate, 0 < growthRate < 1
-	 * @param periods that the population lives
+	 * @param periods that the population lives (number of days, months, or years)
 	 * @return the ending population
 	 */
 //	public static int calculateEndPopulation(final int startPopulation,
-//											 final int maxPopulation, final double growthRate, final int periods)
+//											 final int maxPopulation, final double startGrowthRate, final int periods)
 //	{
 //		if (periods == 0)
 //		{
@@ -158,11 +158,11 @@ public class Recursion
 //			// Calculate the end population for the first n-1 periods:
 //			// The *start* population for the n'th period is the *end* population for the previous period
 //			int startPopulationForNthPeriod = calculateEndPopulation(?, ?, ?, ?);
-//			// Calculate the growth rate for the n'th period
-//			double newGrowthRate = -1;
+//			// Calculate the growth rate for the current period (growth rate changes for each period)
+//			double currentGrowthRate = -1;
 //			// Then calculate the end population for the current period by adding the growth for the current period.
 //			// Hint: make sure all calculations are done with doubles, otherwise there will be rounding errors
-//			return ...startPopulationForNthPeriod...newGrowthRate...;
+//			return ...startPopulationForNthPeriod...currentGrowthRate...;
 //		}
 //	}
 

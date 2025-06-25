@@ -48,17 +48,6 @@ public class Recursion
 	}
 	
 	/**
-	 * Multiply all integers n and less (but not negative)
-	 * @param n
-	 * @return the product n*(n-1)*...*1
-	 */
-//	public static int multiplyLess(final int n)
-//	{
-//		// TODO
-//		return -17;
-//	}
-	
-	/**
 	 * Calculate the n'th Lucas number.
 	 * @param n the number of the Lucas number
 	 * @return L(n) = L(n-2) + L(n-1)
@@ -123,8 +112,8 @@ public class Recursion
 	 * (given as a decimal) and the number of times interest is added.
 	 * 
 	 * @param startBalance for the first period
-	 * @param interestRate how much interest the money accrues 
-	 * @param periods how many periods the money is invested (how many times interest is added)
+	 * @param interestRate how much interest the money accrues each period; constant for all periods
+	 * @param periods how many periods the money is invested (how many times interest is added; measured in months or years)
 	 * @return ending balance how much is returned at the end of the last period
 	 */
 //	public static double calculateEndBalance(final double startBalance,
@@ -139,9 +128,9 @@ public class Recursion
 //		{
 //			// TODO:
 //			// Calculate the end balance for the first n-1 periods
-//			// The *start* balance for the n'th period is the *end* balance for the n-1'th period
+//			// The *start* balance for the current period is the *end* balance for the previous  period (meaning periods-1)
 //			double startBalanceForNthPeriod = calculateEndBalance(?, ?, ?);
-//			// Then calculate the end balance for the n'th period by adding interest for one period.
+//			// Then calculate the end balance for the current period by adding interest for to the start balance
 //			return ...startBalanceForNthPeriod...;
 //		}
 //	}
@@ -152,11 +141,11 @@ public class Recursion
 	 * @param startPopulation the starting population
 	 * @param maxPopulation the maximum population that the environment will sustain
 	 * @param growthRate starting growth rate, 0 < growthRate < 1
-	 * @param periods that the population lives
+	 * @param periods that the population lives (number of days, months, or years)
 	 * @return the ending population
 	 */
 //	public static int calculateEndPopulation(final int startPopulation,
-//											 final int maxPopulation, final double growthRate, final int periods)
+//											 final int maxPopulation, final double startGrowthRate, final int periods)
 //	{
 //		if (periods == 0)
 //		{
@@ -166,14 +155,14 @@ public class Recursion
 //		else
 //		{
 //			// TODO:
-//			// Calculate the end population for the first n-1 periods
-//			// The *start* population for the n'th period is the *end* population for the n-1'th period
+//			// Calculate the end population for the first n-1 periods:
+//			// The *start* population for the n'th period is the *end* population for the previous period
 //			int startPopulationForNthPeriod = calculateEndPopulation(?, ?, ?, ?);
-//			// Calculate the growth rate for the n'th period
-//			double newGrowthRate = 0;
-//			// Then calculate the end balance for the n'th period by adding interest for one period.
+//			// Calculate the growth rate for the current period (growth rate changes for each period)
+//			double currentGrowthRate = -1;
+//			// Then calculate the end population for the current period by adding the growth for the current period.
 //			// Hint: make sure all calculations are done with doubles, otherwise there will be rounding errors
-//			return ...startPopulationForNthPeriod...newGrowthRate...;
+//			return ...startPopulationForNthPeriod...currentGrowthRate...;
 //		}
 //	}
 

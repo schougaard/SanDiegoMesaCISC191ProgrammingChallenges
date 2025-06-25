@@ -62,6 +62,86 @@ class TestRecursion
 //		assertEquals(76, Recursion.lucas(9));
 //	}
 	
+//	@Test
+//	void testRange()
+//	{
+//		// Range returns a list with a range of values
+//		// based on  an ending value ( incl.)
+//		// Hint: make a linked list with the first element, 
+//		// then addAll with the rest of the list computed recursively.
+//		
+//		LinkedList<Integer> list1 = new LinkedList<Integer>();
+//		list1.add(0);
+//		list1.add(1);
+//		list1.add(2);
+//		list1.add(3);
+//		assertEquals(list1, Recursion.range(3));
+//		
+//		LinkedList<Integer> list0 = new LinkedList<Integer>();
+//		list0.add(0);
+//		assertEquals(list0, Recursion.range(0));
+//		
+//		LinkedList<Integer> emptyList = new LinkedList<Integer>();
+//		assertEquals(emptyList, Recursion.range(-1));
+//	}
+	
+//	@Test
+//	void testRangeFromTo()
+//	{
+//		// Range returns a list with a range of values
+//		// based on a starting value and an ending value (both incl.)
+//		// Hint: make a linked list with the first element, 
+//		// then addAll with the rest of the list computed recursively.
+//		
+//		LinkedList<Integer> list1 = new LinkedList<Integer>();
+//		list1.add(10);
+//		list1.add(11);
+//		list1.add(12);
+//		assertEquals(list1, Recursion.range(10, 12));
+//		
+//		LinkedList<Integer> list0 = new LinkedList<Integer>();
+//		list0.add(0);
+//		assertEquals(list0, Recursion.range(0, 0));
+//		
+//		LinkedList<Integer> emptyList = new LinkedList<Integer>();
+//		assertEquals(emptyList, Recursion.range(2, 1));
+//	}
+	
+//	@Test
+//	void testReverse()
+//	{
+//		// Reverse the order of the elements on a list
+//		// Hint: implement one assertion at a time (recurse on the length of the list)
+//		
+//		LinkedList<Integer> emptyList = new LinkedList<Integer>();
+//		assertEquals(emptyList, Recursion.reverse(emptyList));
+//		
+//		LinkedList<Integer> list1 = new LinkedList<Integer>();
+//		list1.add(1);
+//		assertEquals(list1, Recursion.reverse(list1));
+//	
+//		LinkedList<Integer> list2 = new LinkedList<Integer>();
+//		list2.add(2);
+//		list2.add(3);
+//		LinkedList<Integer> list2Reverse= new LinkedList<Integer>();
+//		list2Reverse.add(3);
+//		list2Reverse.add(2);
+//		assertEquals(list2Reverse, Recursion.reverse(list2));
+//		
+//		// For longer lists use that:
+//		// reverse(1, 2, 3, 4, 5) is 5 and reverse(1. 2, 3, 4)
+//		// Hint: use subList to create the list without the last element: subList(0, 4)
+//		
+//		LinkedList<Integer> list3 = new LinkedList<Integer>();
+//		list3.add(12);
+//		list3.add(13);
+//		list3.add(14);
+//		LinkedList<Integer> list3Reverse= new LinkedList<Integer>();
+//		list3Reverse.add(14);
+//		list3Reverse.add(13);
+//		list3Reverse.add(12);
+//		assertEquals(list3Reverse, Recursion.reverse(list3));
+//	}
 	
 //	@Test
 //	void testNextCollatzNumber()
@@ -349,6 +429,5 @@ class TestRecursion
 //		tree.insert("Aaron");
 //		assertEquals("AaronAbeAliceNoelZoe", tree.toString());
 //	}
-
 
 }

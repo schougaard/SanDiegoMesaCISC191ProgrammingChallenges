@@ -164,6 +164,7 @@ public class MazeController
 	public void nextStep() 
 	{
 		stepSemaphore.release(); // call this on "Next" button click
+		gui.waitForGUI();
 	}
 	
 	/**

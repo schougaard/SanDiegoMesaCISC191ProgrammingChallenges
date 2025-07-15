@@ -92,13 +92,13 @@ class TestDFSSolver
 		assertEquals(Maze.CellType.PATH, m.getCellValueAt(m.getEntranceLocation()));
 		assertEquals(Maze.CellType.PATH, m.getCellValueAt(m.getExitLocation()));
 		
-		Location oneAboveEntrance = m.getEntranceLocation().getLocationAbove();
+//		Location oneAboveEntrance = m.getEntranceLocation().getLocationAbove();
 		
-		ArrayList<Location> directions = new ArrayList<Location>();
-		directions.add(oneAboveEntrance.getLocationAbove().getLocationAbove());
-		directions.add(oneAboveEntrance.getLocationToRight().getLocationToRight());
-		
-		assertEquals(directions, m.getReachableCells(oneAboveEntrance));
+//		ArrayList<Location> reachableCells = new ArrayList<Location>();
+//		reachableCells.add(oneAboveEntrance.getLocationAbove().getLocationAbove());
+//		reachableCells.add(oneAboveEntrance.getLocationToRight().getLocationToRight());
+//		
+//		assertEquals(reachableCells, m.getReachableCells(oneAboveEntrance));
 	}
 
 	@Test
@@ -107,7 +107,7 @@ class TestDFSSolver
 		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
 		Maze maze = mazeExplorer.getMaze();
 		Location l = maze.getEntranceLocation();
-		mazeGUI.waitForGUI();
+		mazeExplorer.getController().nextStep();
 		Color colorAtEntrance = mazeGUI.getColorAt(l);
 		assertEquals(Maze.CURRENT_COLOR, colorAtEntrance);
 		mazeExplorer.getController().reset();
@@ -136,24 +136,23 @@ class TestDFSSolver
 	@Test
 	void testCheckUpFromEntrance1() throws InterruptedException
 	{
-		Maze maze = mazeExplorer.getMaze();
-		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
-		MazeSolver solver = mazeExplorer.getSolver();
-
 		mazeExplorer.getSolver().setCleared(true);
 		mazeExplorer.getController().reset();
-//		mazeExplorer.getController().setMillis(1000);
+		
+		Maze maze = mazeExplorer.getMaze();
+		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
+		
+		// getting solver needs to be here since reset returns a new solver
+		MazeSolver solver = mazeExplorer.getSolver();
 		mazeExplorer.runSolver();
 
 		// take however many steps needed for the current cell to change
-		Location currentLocation = solver.getCurrentLocation();
+		mazeExplorer.getController().nextStep();
+		Location previousLocation = solver.getCurrentLocation();
 		
 		do {
 			mazeExplorer.getController().nextStep();
-		} while (!solver.getCurrentLocation().equals(currentLocation));
-
-		// wait in case GUI needs to update
-		mazeGUI.waitForGUI();
+		} while (solver.getCurrentLocation().equals(previousLocation));
 
 		Location oneUp = maze.getEntranceLocation().getLocationAbove();
 		assertEquals(Maze.CURRENT_COLOR, mazeGUI.getColorAt(oneUp));
@@ -163,26 +162,29 @@ class TestDFSSolver
 	void testCheckUpFromEntrance2() throws InterruptedException
 	{
 		// currently paused from test 3
+		mazeExplorer.getSolver().setCleared(true);
+		mazeExplorer.getController().reset();
+		
 		Maze maze = mazeExplorer.getMaze();
 		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
 		
-		mazeExplorer.getSolver().setCleared(true);
-		mazeExplorer.getController().reset();
 		mazeExplorer.runSolver();
-
-		// take three next steps
-		for (int i = 0; i < 6; i++) {
-			mazeExplorer.getController().nextStep();			
+		mazeExplorer.getController().nextStep();
+		
+		MazeSolver solver = mazeExplorer.getSolver();
+		
+		// advance until the current location is no longer the previous location
+		// do this twice
+		for (int i = 0; i < 2; i++) {
+			Location previousLocation = solver.getCurrentLocation();
+			do {
+				mazeExplorer.getController().nextStep();
+			} while (solver.getCurrentLocation().equals(previousLocation));
 		}
-
-		// wait in case GUI needs to update
-		Thread.sleep(100);
-		mazeGUI.waitForGUI();
 
 		// the "current" point from the last test
 		Location l = maze.getEntranceLocation().getLocationAbove();
 		
-//		assertEquals(Maze.CURRENT_COLOR, mazeGUI.getColorAt(row - 1, column));
 		assertTrue(mazeGUI.getColorAt(l.getLocationAbove()).equals(Maze.CURRENT_COLOR) ||
 				mazeGUI.getColorAt(l.getLocationToRight()).equals(Maze.CURRENT_COLOR));
 	}

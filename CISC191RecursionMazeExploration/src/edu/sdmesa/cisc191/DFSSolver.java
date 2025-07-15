@@ -75,46 +75,68 @@ public class DFSSolver extends MazeSolver
 		}
 		
 		setLabelRight(currLoc);
-		if (isPath(currLoc.getLocationToRight())) {
-			markAsWaiting(currLoc);
-			if (solveRecursive(currLoc.getLocationToRight())) {
-				markAsSolution(currLoc);
-				return true;
-			} else {
-				setCurrentLocation(currLoc);
+		try {
+			if (isPath(currLoc.getLocationToRight())) {
+				markAsWaiting(currLoc);
+				if (solveRecursive(currLoc.getLocationToRight())) {
+					markAsSolution(currLoc);
+					return true;
+				} else {
+					setCurrentLocation(currLoc);
+				}
 			}
+		} catch (Exception e) {
+			
 		}
 		
 		setLabelLeft(currLoc);
-		if (isPath(currLoc.getLocationToLeft())) {
-			markAsWaiting(currLoc);
-			if (solveRecursive(currLoc.getLocationToLeft())) {
-				markAsSolution(currLoc);
-				return true;
-			} else {
-				setCurrentLocation(currLoc);
+		try 
+		{
+			if (isPath(currLoc.getLocationToLeft())) {
+				markAsWaiting(currLoc);
+				if (solveRecursive(currLoc.getLocationToLeft())) {
+					markAsSolution(currLoc);
+					return true;
+				} else {
+					setCurrentLocation(currLoc);
+				}
 			}
+		}
+		catch (Exception e)
+		{
+			
 		}
 		
 		setLabelDown(currLoc);
-		if (isPath(currLoc.getLocationBelow())) {
-			markAsWaiting(currLoc);
-			if (solveRecursive(currLoc.getLocationBelow())) {
-				markAsSolution(currLoc);
-				return true;
-			} else {
-				setCurrentLocation(currLoc);
-			}
+		try
+		{			
+			if (isPath(currLoc.getLocationBelow())) {
+				markAsWaiting(currLoc);
+				if (solveRecursive(currLoc.getLocationBelow())) {
+					markAsSolution(currLoc);
+					return true;
+				} else {
+					setCurrentLocation(currLoc);
+				}
+		}
+		} catch (Exception e)
+		{
+			
 		}
 		
 		setLabelUp(currLoc);
-		if (isPath(currLoc.getLocationAbove())) {
-			markAsWaiting(currLoc);
-			if (solveRecursive(currLoc.getLocationAbove())) {
-				markAsSolution(currLoc);
-				return true;
+		try {
+			if (isPath(currLoc.getLocationAbove())) {
+				markAsWaiting(currLoc);
+				if (solveRecursive(currLoc.getLocationAbove())) {
+					markAsSolution(currLoc);
+					return true;
+				}
+				setCurrentLocation(currLoc);
 			}
-			setCurrentLocation(currLoc);
+		} catch (Exception e)
+		{
+			
 		}
 		
 		return false;

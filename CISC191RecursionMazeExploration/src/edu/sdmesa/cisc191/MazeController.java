@@ -72,9 +72,10 @@ public class MazeController
 	 * @param col the cell column to mark
 	 * @param cellType the cell type to mark the cell with
 	 */
-	public void markAsAndUpdateGUI(int row, int col, Maze.CellType cellType) {
-		maze.markAs(row, col, cellType);
-		gui.updateCell(maze, row, col);
+	public void markAsAndUpdateGUI(Location location, Maze.CellType cellType)
+	{
+		maze.markAs(location, cellType);
+		gui.updateCell(maze, location);
 		
 		waitForNextStep();
 	}
@@ -85,11 +86,9 @@ public class MazeController
 	 * @param col the cell column to color
 	 * @param color the color
 	 */
-	public void colorCell(int row, int col, Color color) {
-		if (maze.isValidCell(row, col))
-		{
-			gui.colorCell(row, col, color);
-		}
+	public void colorCell(Location location, Color color) 
+	{
+		gui.colorCell(location, color);
 		waitForNextStep();
 	}
 	
@@ -99,15 +98,17 @@ public class MazeController
 	 * @param col the cell column to color
 	 * @param cellType the cell type to color the cell with
 	 */
-	public void colorCell(int row, int col, Maze.CellType cellType) {
-		colorCell(row, col, gui.getColorFromCellType(cellType));
+	public void colorCell(Location location, Maze.CellType cellType) 
+	{
+		colorCell(location, gui.getColorFromCellType(cellType));
 	}
 	
 	/**
 	 * "Pause" this thread by acquiring a semaphore, or wait for some time
 	 * if currently playing with some wait time amount.
 	 */
-	public void waitForNextStep() {
+	public void waitForNextStep() 
+	{
 		if (waitMillis == 0) {
 			return;
 		}
@@ -123,6 +124,7 @@ public class MazeController
 			catch (InterruptedException e)
 			{
 				// preserve the interrupted status
+//				System.out.println("waitForNextStep interrupt");
 	            Thread.currentThread().interrupt();
 			}
 		}
@@ -134,29 +136,33 @@ public class MazeController
 	 * @param col the cell column
 	 * @return the color of the cell
 	 */
-	public Color getColorAt(int row, int col) {
-		return gui.getColorAt(row, col);
+	public Color getColorAt(Location location) 
+	{
+		return gui.getColorAt(location);
 	}
 	
 	/**
 	 * Make this thread sleep for a specified amount of time.
 	 * @param millis the time to wait in milliseconds
 	 */
-	private void sleep(int millis) {
+	private void sleep(int millis) 
+	{
 		try
 		{
 			Thread.sleep(millis);
 		}
 		catch (InterruptedException e)
 		{
-			e.printStackTrace();
+			System.out.println("Sleep interrupt");
+//			e.printStackTrace();
 		}
 	}
 	
 	/**
 	 * Proceed to the next step by releasing the semaphore.
 	 */
-	public void nextStep() {
+	public void nextStep() 
+	{
 		stepSemaphore.release(); // call this on "Next" button click
 	}
 	
@@ -166,22 +172,25 @@ public class MazeController
 	 * @param col the cell column
 	 * @param dir the direction as a String
 	 */
-	public void setLabelAt(int row, int col, String dir) {
-		gui.setLabelAt(maze, row, col, dir);
+	public void setLabelAt(Location location, String dir) 
+	{
+		gui.setLabelAt(maze, location, dir);
 	}
 	
 	/**
 	 * Set the time to wait in milliseconds.
 	 * @param millis the time in milliseconds
 	 */
-	public void setMillis(int millis) {
+	public void setMillis(int millis) 
+	{
 		waitMillis = millis;
 	}
 	
 	/**
 	 * Both logically toggle pausing and also update the GUI correspondingly.
 	 */
-	public void togglePause() {
+	public void togglePause() 
+	{
 		paused = !paused;
 		if (!paused) {
 			controlsGUI.disableButton(controlsGUI.getResetButton());
@@ -198,7 +207,8 @@ public class MazeController
 	 * Return whether the app is paused.
 	 * @return true if paused; false otherwise
 	 */
-	public boolean isPaused() {
+	public boolean isPaused() 
+	{
 		return paused;
 	}
 	
@@ -206,7 +216,8 @@ public class MazeController
 	 * Reset the explorer. This resets the semaphore permits and also the
 	 * explorer (reset all coloring, cell types, states, etc.)
 	 */
-	public void reset() {
+	public void reset() 
+	{
 		stepSemaphore.drainPermits();
 		explorer.reset();
 	}
@@ -232,7 +243,8 @@ public class MazeController
 	/**
 	 * Returns whether the maze has been cleared.
 	 */
-	public void mazeCleared() {
+	public void mazeCleared() 
+	{
 		controlsGUI.disableButton(controlsGUI.getStepButton());
 		controlsGUI.disableButton(controlsGUI.getPauseButton());
 	}

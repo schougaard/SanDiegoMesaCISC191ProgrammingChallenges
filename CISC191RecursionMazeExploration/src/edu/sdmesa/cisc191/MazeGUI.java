@@ -2,6 +2,7 @@ package edu.sdmesa.cisc191;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,9 +30,11 @@ public class MazeGUI extends JPanel
 {
 	// the grid of panels for maze
 	private JPanel[][] grid;
+	private Maze maze;
 	
 	public MazeGUI(Maze maze)
-	{		
+	{
+		this.maze = maze;
 		setPreferredSize(new Dimension(600, 600));
 		setupMazeGUI(maze);
 	}
@@ -59,7 +62,7 @@ public class MazeGUI extends JPanel
 				
 				// add cell to both the internal grid and the panel
 				grid[row][col] = cell;
-				updateCell(maze, row, col);
+				updateCell(maze, new Location(row, col));
 				add(cell);
 			}
 		}
@@ -72,21 +75,24 @@ public class MazeGUI extends JPanel
 	 * @param row the cell row
 	 * @param col the cell column
 	 */
-	public void updateCell(Maze maze, int row, int col) {
-		if (!maze.isValidCell(row, col)) return;
+	public void updateCell(Maze maze, Location location)
+	{		
+		Color cellColor = getColorFromCellType(maze.getCellValueAt(location));
 		
-		Color cellColor = getColorFromCellType(maze.getCellValueAt(row, col));
-		grid[row][col].setBackground(cellColor);
+		invokeAndWait(() -> {
+			grid[location.getRow()][location.getColumn()].setBackground(cellColor);
+		});
 	}
 	
 	/**
 	 * Update by redrawing all cells.
 	 * @param maze the maze to update cells
 	 */
-	public void updateAllCells(Maze maze) {
+	public void updateAllCells(Maze maze)
+	{
 		for (int row = 0; row < maze.getHeight(); row++) {
 			for (int col = 0; col < maze.getWidth(); col++) {
-				updateCell(maze, row, col);
+				updateCell(maze, new Location(row, col));
 			}
 		}
 	}
@@ -95,8 +101,9 @@ public class MazeGUI extends JPanel
 	 * Clear all labels/texts.
 	 * @param maze the maze to clear all labels
 	 */
-	public void clearAllLabels(Maze maze) {
-		SwingUtilities.invokeLater(() -> {
+	public void clearAllLabels(Maze maze)
+	{
+		invokeAndWait(() -> {
 			for (int row = 0; row < maze.getHeight(); row++) {
 				for (int col = 0; col < maze.getWidth(); col++) {
 					((JLabel)grid[row][col].getComponent(0)).setText("");
@@ -110,7 +117,8 @@ public class MazeGUI extends JPanel
 	 * @param cellType the cell type
 	 * @return the color corresponding to the given cell type.
 	 */
-	public Color getColorFromCellType(Maze.CellType cellType) {
+	public Color getColorFromCellType(Maze.CellType cellType)
+	{
 		switch (cellType){
 			case WALL:
 				return Maze.WALL_COLOR;
@@ -138,12 +146,11 @@ public class MazeGUI extends JPanel
 	 * @param col cell column to color
 	 * @param color the color
 	 */
-	public void colorCell(int row, int col, Color color) {
-		if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) {
-			return;
-		}
-		
-		grid[row][col].setBackground(color);
+	public void colorCell(Location location, Color color)
+	{
+		invokeAndWait(() -> {
+			grid[location.getRow()][location.getColumn()].setBackground(color);
+		});
 	}
 	
 	/**
@@ -152,8 +159,9 @@ public class MazeGUI extends JPanel
 	 * @param col cell column to color
 	 * @param cellType the cell type
 	 */
-	public void colorCell(int row, int col, Maze.CellType cellType) {
-		colorCell(row, col, getColorFromCellType(cellType));
+	public void colorCell(Location location, Maze.CellType cellType)
+	{
+		colorCell(location, getColorFromCellType(cellType));
 	}
 	
 	/**
@@ -162,8 +170,9 @@ public class MazeGUI extends JPanel
 	 * @param col cell column
 	 * @return the cell Color
 	 */
-	public Color getColorAt(int row, int col) {
-		return grid[row][col].getBackground();
+	public Color getColorAt(Location location)
+	{
+		return grid[location.getRow()][location.getColumn()].getBackground();
 	}
 	
 	/**
@@ -173,10 +182,48 @@ public class MazeGUI extends JPanel
 	 * @param col cell column
 	 * @param dir the direction String ("L", "R", "U", "D")
 	 */
-	public void setLabelAt(Maze maze, int row, int col, String dir) {
-		if (!maze.isValidCell(row, col)) return;
+	public void setLabelAt(Maze maze, Location location, String dir)
+	{
+		JLabel label = (JLabel)grid[location.getRow()][location.getColumn()].getComponent(0);
 		
-		JLabel label = (JLabel)grid[row][col].getComponent(0);
-		label.setText(dir);
+		invokeAndWait(() -> {
+			label.setText(dir);
+		});
+	}
+	
+	public void waitForGUI()
+	{
+		try
+		{
+			SwingUtilities.invokeAndWait(() -> {});
+		}
+		catch (InvocationTargetException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void invokeAndWait(Runnable r)
+	{
+		SwingUtilities.invokeLater(r);
+//		try
+//		{
+//		}
+//		catch (InvocationTargetException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		catch (InterruptedException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }

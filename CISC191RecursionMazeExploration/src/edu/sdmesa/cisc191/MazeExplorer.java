@@ -32,13 +32,13 @@ public class MazeExplorer
 
 	public MazeExplorer()
 	{
-		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM, 20);
+		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM);
 		setup();
 	}
 
 	public MazeExplorer(int seed)
 	{
-		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM, 20, seed);
+		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM, seed);
 		setup();
 	}
 	
@@ -139,7 +139,8 @@ public class MazeExplorer
 	/**
 	 * Reset the whole app.
 	 */
-	public void reset() {
+	public void reset()
+	{
 		if (solverThread != null) {
 			solverThread.interrupt();
 		}
@@ -169,7 +170,8 @@ public class MazeExplorer
 	/**
 	 * Solve the maze.
 	 */
-	public void runSolver() {
+	public void runSolver()
+	{
 		if (solver == null) {
 			return;
 		}
@@ -184,9 +186,11 @@ public class MazeExplorer
 	/**
 	 * Exit the app.
 	 */
-	public void exit() {
+	public void exit()
+	{
 		solverThread.interrupt();
-		gui.window.dispose();
+		gui.getWindow().dispose();
+		System.exit(0);
 	}
 	
 	public static void main(String[] args)

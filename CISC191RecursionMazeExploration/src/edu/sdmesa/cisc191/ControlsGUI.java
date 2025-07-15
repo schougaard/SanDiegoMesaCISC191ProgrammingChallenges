@@ -92,7 +92,8 @@ public class ControlsGUI extends JPanel
 	/**
 	 * The callback function that resets the GUI as necessary.
 	 */
-	private void reset() {
+	private void reset()
+	{
 		disableButton(resetButton);
 		enableButton(pauseButton);
 		enableButton(stepButton);
@@ -112,7 +113,8 @@ public class ControlsGUI extends JPanel
 	/**
 	 * Updates the button to say pause or play at the GUI level.
 	 */
-	public void togglePause() {
+	public void togglePause()
+	{
 		if (controller.isPaused()) {
 			pauseButton.setText("Play");
 		} else {
@@ -145,7 +147,8 @@ public class ControlsGUI extends JPanel
 	 * Disables a JButton.
 	 * @param button the button to disable
 	 */
-	public void disableButton(JButton button) {
+	public void disableButton(JButton button)
+	{
 		if (button == null) return;
 		button.setEnabled(false);
 	}
@@ -154,7 +157,8 @@ public class ControlsGUI extends JPanel
 	 * Enables a JButton.
 	 * @param button the button to enable
 	 */
-	public void enableButton(JButton button) {
+	public void enableButton(JButton button)
+	{
 		if (button == null) return;
 		button.setEnabled(true);
 	}
@@ -189,7 +193,8 @@ public class ControlsGUI extends JPanel
 	/**
 	 * The helper method to set up the speed slider.
 	 */
-	private void setupSlider() {
+	private void setupSlider()
+	{
 		slider = new JSlider();
 		slider.setPreferredSize(new Dimension(400, 100));
 		slider.setMinimum(controller.minWait);

@@ -24,11 +24,11 @@ import javax.swing.JPanel;
  */
 public class MazeExplorerGUI
 {
-	JFrame window;
-	JPanel mainContainer;
+	private JFrame window;
+	private JPanel mainContainer;
 	
-	MazeGUI mazeGUI;			// has-a maze GUI
-	ControlsGUI controlsGUI;	// has-a control panel GUI
+	private MazeGUI mazeGUI;			// has-a maze GUI
+	private ControlsGUI controlsGUI;	// has-a control panel GUI
 	
 	public MazeExplorerGUI(MazeGUI mazeGUI, ControlsGUI controlsGUI)
 	{
@@ -37,6 +37,39 @@ public class MazeExplorerGUI
 		
 		setupMainContainer();
 		setupWindow();
+	}
+
+	/**
+	 * Gets the main window of the app.
+	 * @return the main window
+	 */
+	public JFrame getWindow() {
+		return window;
+	}
+
+	/**
+	 * Gets the main container of the app, which contains the maze GUI and
+	 * the control panel GUI.
+	 * @return the main container
+	 */
+	public JPanel getMainContainer() {
+		return mainContainer;
+	}
+
+	/**
+	 * Gets the interactive maze GUI.
+	 * @return the maze GUI
+	 */
+	public MazeGUI getMazeGUI() {
+		return mazeGUI;
+	}
+
+	/**
+	 * Gets the control panel GUI.
+	 * @return the control panel GUI
+	 */
+	public ControlsGUI getControlsGUI() {
+		return controlsGUI;
 	}
 
 	/**
@@ -62,5 +95,4 @@ public class MazeExplorerGUI
 		mainContainer.add(mazeGUI, BorderLayout.CENTER);
 		mainContainer.add(controlsGUI, BorderLayout.EAST);
 	}
-	
 }

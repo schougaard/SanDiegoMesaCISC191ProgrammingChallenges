@@ -1,6 +1,6 @@
 package edu.sdmesa.cisc191;
 import java.awt.Color;
-import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author Alex Chow
  * 
  * Other contributors:
- * None
+ * Allan Schougaard
  * 
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
@@ -25,8 +25,8 @@ import java.util.Arrays;
 public class Maze
 {
 	private CellType[][] maze;
-	private int width;
-	private int height;
+	public final static int WIDTH = 19;
+	public final static int HEIGHT = 19;
 	
 	public static enum CellType {
 		WALL,		// if this cell represents a wall
@@ -46,6 +46,8 @@ public class Maze
 	public final static Color SOLUTION_COLOR = Color.green;
 	public final static Color CHECKING_COLOR = Color.lightGray;
 	public final static Color WAITING_COLOR = Color.darkGray;
+	public final Location entranceLocation;
+	public final Location exitLocation;
 	
 	/**
 	 * A setter constructor.
@@ -54,20 +56,21 @@ public class Maze
 	public Maze(CellType[][] maze)
 	{
 		this.maze = maze;
-		this.width = maze[0].length;
-		this.height = maze.length;
+		entranceLocation = new Location(HEIGHT - 1, 1);
+		exitLocation = new Location(0, WIDTH - 2);
 	}
 	
 	/**
 	 * Copy constructor.
 	 * @param maze the maze to copy
 	 */
-	public Maze(Maze maze) {
+	public Maze(Maze maze)
+	{
 		this(new CellType[maze.getHeight()][maze.getWidth()]);
 		
 		for (int row = 0; row < this.maze.length; row++) {
 			for (int col = 0; col < this.maze[0].length; col++) {
-				this.maze[row][col] = maze.getCellValueAt(row, col);
+				this.maze[row][col] = maze.getCellValueAt(new Location(row, col));
 			}
 		}
 	}
@@ -76,35 +79,28 @@ public class Maze
 	 * Gets the width of the maze.
 	 * @return width of the maze
 	 */
-	public int getWidth() {
-		return maze[0].length;
+	public int getWidth()
+	{
+		return WIDTH;
 	}
 	
 	/**
 	 * Gets the height of the maze.
 	 * @return height of the maze
 	 */
-	public int getHeight() {
-		return maze.length;
-	}
-	
-	/**
-	 * Get the cell type at the specified row and column.
-	 * @param row the cell row
-	 * @param col the cell column
-	 * @return the cell type
-	 */
-	public CellType getCellValueAt(int row, int col) {
-		return maze[row][col];
+	public int getHeight()
+	{
+		return HEIGHT;
 	}
 
 	/**
 	 * Convenience method to get the cell type at a specific point.
-	 * @param point the point (column, row)
+	 * @param location the location
 	 * @return the cell type
 	 */
-	public CellType getCellValueAt(Point point) {
-		return getCellValueAt(point.y, point.x);
+	public CellType getCellValueAt(Location location)
+	{
+		return maze[location.getRow()][location.getColumn()];
 	}
 	
 	/**
@@ -112,67 +108,78 @@ public class Maze
 	 * 2D array to the specified value. If the operation was not successful,
 	 * (e.g., because the point is invalid), then nothing will be done and
 	 * the method will return false. Otherwise, return true.
-	 * @param point the point that represents the column and row of a cell
+	 * @param location the location
 	 * @param cellType the cell type to set
 	 * @return whether the operation was successful
 	 */
-	public boolean markAs(Point point, CellType cellType) {
-		return markAs(point.y, point.x, cellType);
+	public boolean markAs(Location location, CellType cellType)
+	{		
+		maze[location.getRow()][location.getColumn()] = cellType;
+		return true;
 	}
 	
 	/**
-	 * Mark a cell as some cell type. Namely, set the value of a cell in a
-	 * 2D array to the specified value. If the operation was not successful,
-	 * (e.g., because the point is invalid), then nothing will be done and
-	 * the method will return false. Otherwise, return true.
-	 * @param row the cell row
-	 * @param col the cell column
-	 * @param cellType the cell type to set
-	 * @return whether the operation was successful
+	 * A helper method to get a list of reachable cells from a point
+	 * in a maze.
+	 * @param maze the maze
+	 * @param point the point
+	 * @return the list of points
 	 */
-	public boolean markAs(int row, int col, CellType cellType) {
-		if (!isValidCell(row, col)) return false;
+	public ArrayList<Location> getReachableCells(Location location)
+	{
+		ArrayList<Location> reachableCells = new ArrayList<>();
+		ArrayList<Location> directions = new ArrayList<>();
 		
-		maze[row][col] = cellType;
-		return true;
-	}
-	
-	/**
-	 * Returns whether the cell at the specified point is valid (i.e.,
-	 * outside of range or not). 
-	 * @param point the point
-	 * @return true if the cell is valid, false otherwise
-	 */
-	public boolean isValidCell(Point point) {
-		return isValidCell(point.y, point.x);
-	}
-	
-	/**
-	 * Returns whether the cell at the specified point is valid (i.e.,
-	 * outside of range or not). 
-	 * @param row the cell row
-	 * @param col the cell column
-	 * @return true if the cell is valid, false otherwise
-	 */
-	public boolean isValidCell(int row, int col) {
-		if (col < 0 || col >= width || row < 0 || row >= height) {
-			return false;
+		// check each direction. Note how it's 2 units since each cell could be a wall as well
+		try
+		{
+			directions.add(location.getLocationToLeft().getLocationToLeft());
+		} 
+		catch (IllegalArgumentException e)
+		{
+//			e.printStackTrace();
 		}
+		
+		try
+		{
+			directions.add(location.getLocationToRight().getLocationToRight());
+		} 
+		catch (IllegalArgumentException e)
+		{
+//			e.printStackTrace();
+		}
+		
+		try
+		{
+			directions.add(location.getLocationAbove().getLocationAbove());
+		} 
+		catch (IllegalArgumentException e)
+		{
+//			e.printStackTrace();
+		}
+		
+		try
+		{
+			directions.add(location.getLocationBelow().getLocationBelow());
+		} 
+		catch (IllegalArgumentException e)
+		{
+//			e.printStackTrace();
+		}
+		
+		// shuffle to make random paths
+//		Collections.shuffle(Arrays.asList(directions));
+		
+		// check in each direction
+		for (Location direction : directions) {
+			if (canBeAPath(direction) && getCellValueAt(direction) != Maze.CellType.PATH) {
+				reachableCells.add(direction);
+			}
+		}
+		
+		return reachableCells;
+	}
 
-		return true;
-	}
-	
-	/**
-	 * Returns whether the cell at the specified point can be marked as a
-	 * path. Takes a point as a parameter. See
-	 * {@link #canBeAPath(int, int) canBeAPath}.
-	 * @param point the point
-	 * @return true if the cell can be a path; false otherwise.
-	 */
-	public boolean canBeAPath(Point point) {
-		return canBeAPath(point.y, point.x);
-	}
-	
 	/**
 	 * Returns whether the cell at the specified point can be marked as a
 	 * path. Takes row and column as parameters. The checks are:
@@ -183,14 +190,16 @@ public class Maze
 	 * @param col the cell column
 	 * @return true if the cell can be a path; false otherwise
 	 */
-	public boolean canBeAPath(int row, int col)
+	public boolean canBeAPath(Location location)
 	{
-		if (!isValidCell(row, col)) return false;		// coords even in the maze?
-		if (row == height - 1 && col == 1) return true;	// entrance
-		if (row == 0 && col == width - 2) return true;	// exit
+		int row = location.getRow();
+		int col = location.getColumn();
+		
+		if (row == HEIGHT - 1 && col == 1) return true;	// entrance
+		if (row == 0 && col == WIDTH - 2) return true;	// exit
 		
 		// no borders besides exit and entrance can be a path
-		if (row == 0 || col == 0 || row == height - 1 || col == width - 1) return false;
+		if (row == 0 || col == 0 || row == HEIGHT - 1 || col == WIDTH - 1) return false;
 		
 		return true;
 	}
@@ -198,69 +207,50 @@ public class Maze
 	/**
 	 * A convenience method to print the maze grid.
 	 */
-	public void print() {
+	public void print()
+	{
 		System.out.println("-----------");
-		for (int row = 0; row < height; row++) {
+		for (int row = 0; row < HEIGHT; row++) {
 			System.out.println(Arrays.toString(maze[row]));
 		}
 	}
 	
 	/**
-	 * Gets the entrance point.
-	 * @return the entrance point
+	 * Gets the entrance location.
+	 * @return the entrance location
 	 */
-	public Point getEntrancePoint() {
-		return new Point(1, height - 1);
-	}
-	
-	/**
-	 * Gets the exit point.
-	 * @return the exit point
-	 */
-	public Point getExitPoint() {
-		return new Point(width - 2, 0);
-	}
-	
-	/**
-	 * Returns whether the cell at the specified point is an exit.
-	 * @param point the point
-	 * @return true if the cell is an exit; false otherwise
-	 */
-	public boolean isExit(Point point) {
-		return isExit(point.y, point.x);
-	}
-
-	/**
-	 * Returns whether the cell at the specified point is an exit.
-	 * @param row the cell row
-	 * @param col the cell column
-	 * @return true if the cell is an exit; false otherwise
-	 */
-	public boolean isExit(int row, int col)
+	public Location getEntranceLocation()
 	{
-		Point exitPoint = getExitPoint();
-		return exitPoint.y == row && exitPoint.x == col;
+		return entranceLocation;
+	}
+	
+	/**
+	 * Gets the exit location.
+	 * @return the exit location
+	 */
+	public Location getExitLocation()
+	{
+		return exitLocation;
+	}
+	
+	/**
+	 * Returns whether the cell at the specified location is an exit.
+	 * @param location the location
+	 * @return true if the cell is an exit; false otherwise
+	 */
+	public boolean isExit(Location location)
+	{
+		return exitLocation.equals(location);
 	}
 
 	/**
-	 * Returns whether the cell at the specified point is an entrance.
-	 * @param point
+	 * Returns whether the cell at the specified location is an entrance.
+	 * @param location the location
 	 * @return true if the cell is an entrance; false otherwise
 	 */
-	public boolean isEntrance(Point point) {
-		return isEntrance(point.y, point.x);
-	}
-
-	/**
-	 * Returns whether the cell at the specified point is an entrance.
-	 * @param row
-	 * @param col
-	 * @return true if the cell is an exit; false otherwise
-	 */
-	public boolean isEntrance(int row, int col)
+	public boolean isEntrance(Location location)
 	{
-		Point entrancePoint = getEntrancePoint();
-		return entrancePoint.y == row && entrancePoint.x == col;
+		return entranceLocation.equals(location);
 	}
 	
 	/**
@@ -269,7 +259,8 @@ public class Maze
 	 * @param col the cell column
 	 * @return true if the cell is a path; false otherwise
 	 */
-	public boolean isPath(int row, int col) {
-		return isValidCell(row, col) && maze[row][col] == CellType.PATH;
+	public boolean isLocationOnPath(Location location)
+	{
+		return getCellValueAt(location) == CellType.PATH;
 	}
 }

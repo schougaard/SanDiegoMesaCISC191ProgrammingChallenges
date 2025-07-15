@@ -34,14 +34,13 @@ public class DFSSolver extends MazeSolver
 	/**
 	 * The high-level method to get a path in maze from entrance to exit.
 	 */
-	public void solve() {
-		Point startPoint = getMaze().getEntrancePoint();
-		int startRow = startPoint.y;
-		int startCol = startPoint.x;
+	public void solve()
+	{
+		Location startLoc = getMaze().getEntranceLocation();
 		
 		/////// DO NOT TOUCH ANY LINES ABOVE
 		// TODO: call the recursive method
-
+		solveRecursive(startLoc);
 		
 		/////// DO NOT TOUCH ANY LINES BELOW
 		
@@ -59,16 +58,64 @@ public class DFSSolver extends MazeSolver
 	 * @param col the column to start solving the maze from
 	 * @return true if a path can be found. false if not
 	 */
-	public boolean solveRecursive(int row, int col) {
+	public boolean solveRecursive(Location currLoc)
+	{
 		if (Thread.currentThread().isInterrupted()) {
 	        return false;
 	    }
 		
 		// mark as currently on this cell
-		colorAsCurrent(row, col);
+		setCurrentLocation(currLoc);
 		
 		/////// DO NOT TOUCH ANY LINES ABOVE
 		// TODO: complete the recursive algorithm below
+		if (isExit(currLoc)) {
+			markAsSolution(currLoc);
+			return true;
+		}
+		
+		setLabelRight(currLoc);
+		if (isPath(currLoc.getLocationToRight())) {
+			markAsWaiting(currLoc);
+			if (solveRecursive(currLoc.getLocationToRight())) {
+				markAsSolution(currLoc);
+				return true;
+			} else {
+				setCurrentLocation(currLoc);
+			}
+		}
+		
+		setLabelLeft(currLoc);
+		if (isPath(currLoc.getLocationToLeft())) {
+			markAsWaiting(currLoc);
+			if (solveRecursive(currLoc.getLocationToLeft())) {
+				markAsSolution(currLoc);
+				return true;
+			} else {
+				setCurrentLocation(currLoc);
+			}
+		}
+		
+		setLabelDown(currLoc);
+		if (isPath(currLoc.getLocationBelow())) {
+			markAsWaiting(currLoc);
+			if (solveRecursive(currLoc.getLocationBelow())) {
+				markAsSolution(currLoc);
+				return true;
+			} else {
+				setCurrentLocation(currLoc);
+			}
+		}
+		
+		setLabelUp(currLoc);
+		if (isPath(currLoc.getLocationAbove())) {
+			markAsWaiting(currLoc);
+			if (solveRecursive(currLoc.getLocationAbove())) {
+				markAsSolution(currLoc);
+				return true;
+			}
+			setCurrentLocation(currLoc);
+		}
 		
 		return false;
 	}

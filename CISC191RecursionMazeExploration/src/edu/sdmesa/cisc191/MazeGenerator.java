@@ -1,9 +1,5 @@
 package edu.sdmesa.cisc191;
-import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -44,24 +40,12 @@ public class MazeGenerator
 	 * @param dimension the size of one side of the maze
 	 * @return a Maze object
 	 */
-	public static Maze generateMaze(Algorithm algo, int dimension) {
+	public static Maze generateMaze(Algorithm algo)
+	{
 		int seed = (int)(Math.random() * Integer.MAX_VALUE);
 		randomIndexPicker = new Random(seed);
 		
-		return generateMaze(algo, dimension, seed);
-	}
-	
-	/**
-	 * Generate a maze with a given algorithm, dimension, and seed
-	 * @param algo the algorithm
-	 * @param dimension the size of one side of the maze
-	 * @param seed the random seed
-	 * @return a Maze object
-	 */
-	public static Maze generateMaze(Algorithm algo, int dimension, int seed) {
-		randomIndexPicker = new Random(seed);
-		
-		return generateMaze(algo, dimension, dimension, seed);
+		return generateMaze(algo, seed);
 	}
 	
 	/**
@@ -72,14 +56,11 @@ public class MazeGenerator
 	 * @param seed the random seed
 	 * @return a Maze object
 	 */
-	public static Maze generateMaze(Algorithm algo, int width, int height, int seed) {
-		if (width < 5) {
-			throw new IllegalArgumentException("Width must be at least 5!");
-		}
-		
-		if (height < 5) {
-			throw new IllegalArgumentException("Height must be at least 5!");
-		}
+	public static Maze generateMaze(Algorithm algo, int seed)
+	{
+		int width = Maze.WIDTH;
+		int height = Maze.HEIGHT;
+		randomIndexPicker = new Random(seed);
 		
 		// make width an odd number
 		if (width % 2 == 0) {
@@ -105,8 +86,8 @@ public class MazeGenerator
 		}
 		
 		// carve out the entrance and exit
-		maze.markAs(maze.getEntrancePoint(), Maze.CellType.PATH);
-		maze.markAs(maze.getExitPoint(), Maze.CellType.PATH);
+		maze.markAs(maze.getEntranceLocation(), Maze.CellType.PATH);
+		maze.markAs(maze.getExitLocation(), Maze.CellType.PATH);
 		
 		return maze;
 	}
@@ -145,26 +126,26 @@ public class MazeGenerator
 		//    means nothing there. We start out with the maze being all 1s.
 		Maze.CellType[][] mazeData = initMazeWithWalls(width, height);
 		Maze maze = new Maze(mazeData);
-		ArrayList<Point> frontierSet = new ArrayList<>();
+		ArrayList<Location> frontierList = new ArrayList<>();
 		
 		// 2. Start from a random cell in the maze. Mark it as a passage (0), 
 		//    and add the cell to the "frontier" list (the list of candidate cells
 		//    to be picked in next iterations of this while loop)
-		Point startCell = new Point(1, height - 2);  // second-to-last row, 2nd from left
+		Location startCell = maze.getEntranceLocation().getLocationAbove();  // second-to-last row, 2nd from left
 		maze.markAs(startCell, Maze.CellType.PATH);
-		frontierSet.add(startCell);
+		frontierList.add(startCell);
 		
 		// 3. While there are frontier cells in the list:
-		while (!frontierSet.isEmpty()) {
+		while (!frontierList.isEmpty()) {
 			// 3.1 Pick a random wall from the list. If the frontier cell can expand,
 			//     then get the cells that the frontier cell can expand to.
-			Point frontierCell = (Point)pickRandomFromList(frontierSet);
-			ArrayList<Point> cellsToBeMarked = getReachableCells(maze, frontierCell);
+			Location frontierCell = pickRandomFromList(frontierList);
+			ArrayList<Location> cellsToBeMarked = maze.getReachableCells(frontierCell);
 			
 			// 3.2. For each cell to be marked, mark them as passage (0).
 			//      In reality, it would probably only pick one cell at a time,
 			//      so this is poorly named.
-			for (Point cellToBeMarked : cellsToBeMarked) {
+			for (Location cellToBeMarked : cellsToBeMarked) {
 				// first mark the reachable cell
 				maze.markAs(cellToBeMarked, Maze.CellType.PATH);
 				
@@ -174,10 +155,10 @@ public class MazeGenerator
 				
 			// we only remove the frontier path if it can't be expanded
 			if (cellsToBeMarked.isEmpty()) {
-				frontierSet.remove(frontierCell);
+				frontierList.remove(frontierCell);
 			} else {
 				// otherwise, add all frontier cells to frontier list
-				frontierSet.addAll(cellsToBeMarked);
+				frontierList.addAll(cellsToBeMarked);
 			}
 		}
 		
@@ -190,9 +171,9 @@ public class MazeGenerator
 	 * @param b second point
 	 * @return the middle point
 	 */
-	private static Point getCellBetween(Point a, Point b)
+	private static Location getCellBetween(Location a, Location b)
 	{
-		return new Point((a.x + b.x) / 2, (a.y + b.y) / 2);
+		return new Location((a.getRow() + b.getRow()) / 2, (a.getColumn() + b.getColumn()) / 2);
 	}
 
 	/**
@@ -201,11 +182,12 @@ public class MazeGenerator
 	 * @param height height of the maze
 	 * @return a 2D array of cell types
 	 */
-	private static Maze.CellType[][] initMazeWithWalls(int width, int height) {
+	private static Maze.CellType[][] initMazeWithWalls(int width, int height)
+	{
 		Maze.CellType[][] maze = new Maze.CellType[height][width];
 		
-		for (int row = 0; row < maze[0].length; row++) {
-			for (int col = 0; col < maze.length; col++) {
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
 				maze[row][col] = Maze.CellType.WALL;
 			}
 		}
@@ -218,7 +200,8 @@ public class MazeGenerator
 	 * @param set the generic typed set
 	 * @return an object of type T from the set
 	 */
-	private static <T> T pickRandomFromSet(Set<T> set) {
+	private static <T> T pickRandomFromSet(Set<T> set)
+	{
 		if (set.size() == 0) {
 			return null;
 		}
@@ -240,43 +223,13 @@ public class MazeGenerator
 	 * @param list the generic typed list
 	 * @return an object of type T from the list
 	 */
-	private static <T> T pickRandomFromList(List<T> list) {
+	private static <T> T pickRandomFromList(List<T> list)
+	{
 		if (list.size() == 0) {
 			return null;
 		}
 		
 		int index = (int)(randomIndexPicker.nextInt(list.size()));
 		return list.get(index);
-	}
-	
-	/**
-	 * A helper method to get a list of reachable cells from a point
-	 * in a maze.
-	 * @param maze the maze
-	 * @param point the point
-	 * @return the list of points
-	 */
-	private static ArrayList<Point> getReachableCells(Maze maze, Point point) {
-		ArrayList<Point> reachableCells = new ArrayList<>();
-		
-		// check each direction. Note how it's 2 units since each cell could be a wall as well
-		Point[] directions = {
-			new Point(point.x - 2, point.y),	// left
-			new Point(point.x + 2, point.y),	// right
-			new Point(point.x, point.y - 2),	// up
-			new Point(point.x, point.y + 2)		// down
-		};
-		
-		// shuffle to make random paths
-//		Collections.shuffle(Arrays.asList(directions));
-		
-		// check in each direction
-		for (Point direction : directions) {
-			if (maze.canBeAPath(direction) && maze.getCellValueAt(direction) != Maze.CellType.PATH) {
-				reachableCells.add(direction);
-			}
-		}
-		
-		return reachableCells;
 	}
 }

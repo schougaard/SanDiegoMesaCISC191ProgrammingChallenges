@@ -1,5 +1,6 @@
 package edu.sdmesa.cisc191;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -140,7 +141,7 @@ public class MazeGenerator
 			// 3.1 Pick a random wall from the list. If the frontier cell can expand,
 			//     then get the cells that the frontier cell can expand to.
 			Location frontierCell = pickRandomFromList(frontierList);
-			ArrayList<Location> cellsToBeMarked = maze.getReachableCells(frontierCell);
+			LinkedList<Location> cellsToBeMarked = maze.getReachableCells(frontierCell);
 			
 			// 3.2. For each cell to be marked, mark them as passage (0).
 			//      In reality, it would probably only pick one cell at a time,

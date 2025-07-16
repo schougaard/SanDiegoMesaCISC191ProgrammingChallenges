@@ -96,18 +96,6 @@ public abstract class MazeSolver
 	}
 
 	/**
-	 * Check if the cell at row, col is the exit.
-	 * 
-	 * @param row The row of the cell to check
-	 * @param col The column of the cell to check
-	 * @return true if the cell is the exit; false if not.
-	 */
-	public boolean isExit(Location location)
-	{
-		return maze.isExit(location);
-	}
-
-	/**
 	 * Check if the cell at row, col is a path. This means it's not a wall,
 	 * and it's not waiting for further exploration, and we haven't walked
 	 * here before.

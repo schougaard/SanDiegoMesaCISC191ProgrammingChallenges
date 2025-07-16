@@ -1,11 +1,47 @@
 package edu.sdmesa.cisc191;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Lead Author(s):
+ * @author Alex Chow
+ * 
+ * Other contributors:
+ * Allan Schougaard
+ * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ *  
+ * Version/date: 1.0
+ */
+
+/**
+ * 
+ * Purpose: The responsibility of Location is to represent a location inside of the maze.
+ * Locations are non-mutable, and only valid locations to be created.
+ */
 public class Location
 {
+	/**
+	 * A location has-a row index
+	 */
 	private final int row;
+	
+	/**
+	 * A location has-a column index
+	 */
 	private final int column;
 	
-	public Location(int initRow, int initColumn)
+	/**
+	 * Purpose: Create a new location in a maze
+	 * @param initRow the row index of the location; counting from top to bottom; 0 ≤ row < number of rows in maze
+	 * @param initColumn the column index of the location; counting from left to right; ; 0 ≤ column < number of columns in maze
+	 * @throws IllegalArgumentException if initRow or initColumn are either negative or beyond the index in a given direction
+	 */
+	public Location(int initRow, int initColumn) throws IllegalArgumentException
 	{
 		if (initRow < 0 || initRow >= Maze.HEIGHT)
 		{
@@ -21,31 +57,99 @@ public class Location
 		column = initColumn;
 	}
 
-	public Location getLocationToRight()
+	/**
+	 * @return the location to the right
+	 * @throws IllegalArgumentException if there is no valid location to the right
+	 */
+	public Location getLocationToRight() throws IllegalArgumentException
 	{
 		return new Location(row, column + 1);
 	}
 	
-	public Location getLocationToLeft()
+	/**
+	 * @return the location to the left
+	 * @throws IllegalArgumentException if there is no valid location to the left
+	 */
+	public Location getLocationToLeft() throws IllegalArgumentException
 	{
 		return new Location(row, column - 1);
 	}
 
-	public Location getLocationAbove()
+	/**
+	 * @return the location above
+	 * @throws IllegalArgumentException if there is no valid location above
+	 */
+	public Location getLocationAbove() throws IllegalArgumentException
 	{
 		return new Location(row - 1, column);
 	}
 	
-	public Location getLocationBelow()
+	/**
+	 * @return the location below
+	 * @throws IllegalArgumentException if there is no valid location below
+	 */
+	public Location getLocationBelow() throws IllegalArgumentException
 	{
 		return new Location(row + 1, column);
 	}
 	
+	/**
+	 * @return all valid locations surrounding this location 
+	 */
+	public LinkedList<Location> getSourroundingLocations()
+	{
+		LinkedList<Location> locations = new LinkedList<Location>();
+		
+		try
+		{
+			locations.add(getLocationToLeft());
+		}
+		catch (IllegalArgumentException e)
+		{
+			// Ignore
+		}
+		
+		try
+		{
+			locations.add(getLocationAbove());
+		}
+		catch (IllegalArgumentException e)
+		{
+			// Ignore
+		}
+		
+		try
+		{
+			locations.add(getLocationToRight());
+		}
+		catch (IllegalArgumentException e)
+		{
+			// Ignore
+		}
+		
+		try
+		{
+			locations.add(getLocationBelow());
+		}
+		catch (IllegalArgumentException e)
+		{
+			// Ignore
+		}
+
+		return locations;
+	}
+	
+	/**
+	 * @return row index of the location
+	 */
 	public int getRow()
 	{
 		return row;
 	}
 
+	/**
+	 * @return column index of the location
+	 */
 	public int getColumn()
 	{
 		return column;

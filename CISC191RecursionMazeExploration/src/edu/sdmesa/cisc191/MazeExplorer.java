@@ -164,7 +164,7 @@ public class MazeExplorer
 		mazeGUI.updateAllCells(maze);
 		mazeGUI.clearAllLabels(maze);
 		
-		solver = new DFSSolver(maze, controller);
+		solver = new DepthFirstSolver(maze, controller);
 	}
 	
 	/**

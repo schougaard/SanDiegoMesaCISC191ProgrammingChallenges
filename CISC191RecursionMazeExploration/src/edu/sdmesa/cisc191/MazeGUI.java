@@ -29,7 +29,9 @@ import javax.swing.SwingUtilities;
 public class MazeGUI extends JPanel
 {
 	// the grid of panels for maze
+	// TODO: use GUICell
 	private JPanel[][] grid;
+	
 	private Maze maze;
 	
 	public MazeGUI(Maze maze)
@@ -54,6 +56,8 @@ public class MazeGUI extends JPanel
 		
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
+				// TODO: use GUICell
+				
 				// create a new JPanel to represent each cell in GUI
 				JPanel cell = new JPanel();
 				JLabel label = new JLabel("");

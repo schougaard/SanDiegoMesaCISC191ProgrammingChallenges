@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.view;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.Hashtable;

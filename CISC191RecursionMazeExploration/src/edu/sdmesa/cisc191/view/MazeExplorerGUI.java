@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.view;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
@@ -27,10 +27,10 @@ public class MazeExplorerGUI
 	private JFrame window;
 	private JPanel mainContainer;
 	
-	private MazeGUI mazeGUI;			// has-a maze GUI
+	private MazePanel mazeGUI;			// has-a maze GUI
 	private ControlsGUI controlsGUI;	// has-a control panel GUI
 	
-	public MazeExplorerGUI(MazeGUI mazeGUI, ControlsGUI controlsGUI)
+	public MazeExplorerGUI(MazePanel mazeGUI, ControlsGUI controlsGUI)
 	{
 		this.mazeGUI = mazeGUI;
 		this.controlsGUI = controlsGUI;
@@ -60,7 +60,7 @@ public class MazeExplorerGUI
 	 * Gets the interactive maze GUI.
 	 * @return the maze GUI
 	 */
-	public MazeGUI getMazeGUI() {
+	public MazePanel getMazeGUI() {
 		return mazeGUI;
 	}
 

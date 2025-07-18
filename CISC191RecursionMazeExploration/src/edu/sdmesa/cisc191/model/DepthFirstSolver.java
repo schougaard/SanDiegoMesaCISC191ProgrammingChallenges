@@ -1,6 +1,8 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.model;
 
 import java.awt.Point;
+
+import edu.sdmesa.cisc191.view.MazeController;
 
 /**
  * Lead Author(s):
@@ -41,11 +43,11 @@ public class DepthFirstSolver extends MazeSolver
 	 */
 	public void solve()
 	{
-		Location startLoc = getMaze().getEntranceLocation();
+		Location startLocation = getMaze().getEntranceCell().getLocation();
 
 		/////// DO NOT TOUCH ANY LINES ABOVE
 		// TODO: call the recursive method
-		solveRecursive(startLoc);
+		solveRecursive(startLocation);
 
 		/////// DO NOT TOUCH ANY LINES BELOW
 

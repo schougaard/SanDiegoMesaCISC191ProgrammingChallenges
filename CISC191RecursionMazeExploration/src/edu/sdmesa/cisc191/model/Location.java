@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.model;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -93,10 +93,15 @@ public class Location
 		return new Location(row + 1, column);
 	}
 	
+	public boolean isOuterPerimeter()
+	{
+		return row == 0 || column == 0 || row == Maze.HEIGHT-1 || column == Maze.WIDTH-1;
+	}
+	
 	/**
-	 * @return all valid locations surrounding this location 
+	 * @return all possible locations surrounding this location 
 	 */
-	public LinkedList<Location> getSourroundingLocations()
+	public LinkedList<Location> getAdjacentLocations()
 	{
 		LinkedList<Location> locations = new LinkedList<Location>();
 		

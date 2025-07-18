@@ -1,4 +1,4 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.view;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +14,12 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import edu.sdmesa.cisc191.MazeGenerator.Algorithm;
+import edu.sdmesa.cisc191.model.Cell;
+import edu.sdmesa.cisc191.model.Location;
+import edu.sdmesa.cisc191.model.Maze;
+import edu.sdmesa.cisc191.model.MazeGenerator;
+import edu.sdmesa.cisc191.model.MazeSolver;
+import edu.sdmesa.cisc191.model.MazeGenerator.Algorithm;
 
 /**
  * Lead Author(s):
@@ -85,18 +90,19 @@ class TestDFSSolver
 	@Test
 	void testMazeConstructor1()
 	{
-		Maze m = new Maze(MazeGenerator.generateMaze(Algorithm.PRIM, 0));
-		assertEquals(new Location(18, 1), m.getEntranceLocation());
-		assertEquals(new Location(0, 17), m.getExitLocation());
-		assertEquals(Maze.CellType.WALL, m.getCellValueAt(new Location(0, 0)));
-		assertEquals(Maze.CellType.PATH, m.getCellValueAt(m.getEntranceLocation()));
-		assertEquals(Maze.CellType.PATH, m.getCellValueAt(m.getExitLocation()));
+		//Maze m = new Maze(MazeGenerator.generateMaze(Algorithm.PRIM, 0));
+		Maze maze = new Maze();
+		assertEquals(new Cell(new Location(18, 1), Cell.Type.PATH), maze.getEntranceCell());
+		assertEquals(new Cell(new Location(0, 17), Cell.Type.PATH), maze.getExitCell());
+		assertEquals(Cell.Type.WALL, maze.getCellAtLocation(new Location(0, 0)));
+		assertEquals(Cell.Type.PATH, maze.getCellAtLocation(maze.getEntranceCell().getLocation()));
+		assertEquals(Cell.Type.PATH, maze.getCellAtLocation(maze.getExitCell().getLocation()));
 		
-//		Location oneAboveEntrance = m.getEntranceLocation().getLocationAbove();
+//		Cell oneAboveEntrance = m.getEntranceCell().getCellAbove();
 		
-//		ArrayList<Location> reachableCells = new ArrayList<Location>();
-//		reachableCells.add(oneAboveEntrance.getLocationAbove().getLocationAbove());
-//		reachableCells.add(oneAboveEntrance.getLocationToRight().getLocationToRight());
+//		ArrayList<Cell> reachableCells = new ArrayList<Cell>();
+//		reachableCells.add(oneAboveEntrance.getCellAbove().getCellAbove());
+//		reachableCells.add(oneAboveEntrance.getCellToRight().getCellToRight());
 //		
 //		assertEquals(reachableCells, m.getReachableCells(oneAboveEntrance));
 	}
@@ -104,9 +110,9 @@ class TestDFSSolver
 	@Test
 	void testColorEntranceAsCurrent() throws InterruptedException
 	{
-		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
+		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 		Maze maze = mazeExplorer.getMaze();
-		Location l = maze.getEntranceLocation();
+		Cell l = maze.getEntranceCell();
 		mazeExplorer.getController().nextStep();
 		Color colorAtEntrance = mazeGUI.getColorAt(l);
 		assertEquals(Maze.CURRENT_COLOR, colorAtEntrance);
@@ -119,8 +125,8 @@ class TestDFSSolver
 	void testCheckExit()
 	{
 		Maze maze = mazeExplorer.getMaze();
-		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
-		Location l = maze.getExitLocation();
+		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
+		Cell l = maze.getExitCell();
 		mazeExplorer.getController().setMillis(0);
 		mazeExplorer.getController().togglePause(); // unpause
 
@@ -140,7 +146,7 @@ class TestDFSSolver
 		mazeExplorer.getController().reset();
 		
 		Maze maze = mazeExplorer.getMaze();
-		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
+		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 		
 		// getting solver needs to be here since reset returns a new solver
 		MazeSolver solver = mazeExplorer.getSolver();
@@ -148,13 +154,13 @@ class TestDFSSolver
 
 		// take however many steps needed for the current cell to change
 		mazeExplorer.getController().nextStep();
-		Location previousLocation = solver.getCurrentLocation();
+		Cell previousCell = solver.getCurrentCell();
 		
 		do {
 			mazeExplorer.getController().nextStep();
-		} while (solver.getCurrentLocation().equals(previousLocation));
+		} while (solver.getCurrentCell().equals(previousCell));
 
-		Location oneUp = maze.getEntranceLocation().getLocationAbove();
+		Cell oneUp = maze.getEntranceCell().getCellAbove();
 		assertEquals(Maze.CURRENT_COLOR, mazeGUI.getColorAt(oneUp));
 	}
 	
@@ -166,27 +172,27 @@ class TestDFSSolver
 		mazeExplorer.getController().reset();
 		
 		Maze maze = mazeExplorer.getMaze();
-		MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
+		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 		
 		mazeExplorer.runSolver();
 		mazeExplorer.getController().nextStep();
 		
 		MazeSolver solver = mazeExplorer.getSolver();
 		
-		// advance until the current location is no longer the previous location
+		// advance until the current Cell is no longer the previous Cell
 		// do this twice
 		for (int i = 0; i < 2; i++) {
-			Location previousLocation = solver.getCurrentLocation();
+			Cell previousCell = solver.getCurrentCell();
 			do {
 				mazeExplorer.getController().nextStep();
-			} while (solver.getCurrentLocation().equals(previousLocation));
+			} while (solver.getCurrentCell().equals(previousCell));
 		}
 
 		// the "current" point from the last test
-		Location l = maze.getEntranceLocation().getLocationAbove();
+		Cell l = maze.getEntranceCell().get.getCellAbove();
 		
-		assertTrue(mazeGUI.getColorAt(l.getLocationAbove()).equals(Maze.CURRENT_COLOR) ||
-				mazeGUI.getColorAt(l.getLocationToRight()).equals(Maze.CURRENT_COLOR));
+		assertTrue(mazeGUI.getColorAt(l.getCellAbove()).equals(Maze.CURRENT_COLOR) ||
+				mazeGUI.getColorAt(l.getCellToRight()).equals(Maze.CURRENT_COLOR));
 	}
 
 	// @Test
@@ -194,7 +200,7 @@ class TestDFSSolver
 	// {
 	// // paused at this point
 	// Maze maze = mazeExplorer.getMaze();
-	// MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
+	// MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 	// mazeExplorer.getSolver().setCleared(true);
 	// mazeExplorer.getController().reset();
 	// mazeExplorer.getController().setMillis(1000);
@@ -214,7 +220,7 @@ class TestDFSSolver
 	// int row = maze.getEntrancePoint().y;
 	// int column = maze.getEntrancePoint().x;
 	// while (row >= 0 && maze.getCellValueAt(row - 1, column) !=
-	// Maze.CellType.WALL) {
+	// Cell.Type.WALL) {
 	// assertTrue(mazeGUI.getColorAt(row, column).equals(Maze.WAITING_COLOR));
 	// row--;
 	// }
@@ -230,7 +236,7 @@ class TestDFSSolver
 	// @Test
 	// void testAll() throws InterruptedException
 	// {
-	// MazeGUI mazeGUI = mazeExplorer.getMazeGUI();
+	// MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 	// mazeExplorer.getSolver().setCleared(true);
 	// mazeExplorer.getController().reset();
 	// mazeExplorer.getController().setMillis(0);

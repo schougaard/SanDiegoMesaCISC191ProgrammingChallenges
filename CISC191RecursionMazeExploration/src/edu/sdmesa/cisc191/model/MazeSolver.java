@@ -1,4 +1,6 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.model;
+
+import edu.sdmesa.cisc191.view.MazeController;
 
 /**
  * Lead Author(s):
@@ -27,6 +29,7 @@ public abstract class MazeSolver
 
 	private Maze maze;
 	private Maze ogMaze;
+	// TODO: does not belong here, should be in the view
 	private MazeController controller;
 	private Location currentLocation;
 
@@ -45,7 +48,13 @@ public abstract class MazeSolver
 
 	public abstract void solve();
 
-	public abstract boolean solveRecursive(Location currLoc);
+	/**
+	 * 
+	 * Find a way from the currentLocation to the exit of the maze
+	 * @param currentLocation
+	 * @return true if a way can be found
+	 */
+	public abstract boolean solveRecursive(Location currentLocation);
 
 	/**
 	 * Color a cell as currently being checked to see if the cell is a path.
@@ -58,7 +67,9 @@ public abstract class MazeSolver
 	 */
 	public void colorAsChecking(Location location)
 	{
-		controller.colorCell(location, Maze.CHECKING_COLOR);
+		maze.getCellAtLocation(location).setType(Cell.Type.CHECKING);
+		controller.update(location);
+		//controller.colorCell(location, Maze.CHECKING_COLOR);
 	}
 
 	/**
@@ -72,7 +83,9 @@ public abstract class MazeSolver
 	 */
 	public void colorAsCurrent(Location location)
 	{
-		controller.colorCell(location, Maze.CURRENT_COLOR);
+		maze.getCellAtLocation(location).setType(Cell.Type.CURRENT);
+		controller.update(location);
+		//controller.colorCell(location, Maze.CURRENT_COLOR);
 	}
 
 	/**
@@ -138,8 +151,9 @@ public abstract class MazeSolver
 	 */
 	public void markAsSolution(Location location)
 	{
-		maze.markAs(location, Maze.CellType.SOLUTION);
-		controller.colorCell(location, Maze.SOLUTION_COLOR);
+		maze.getCellAtLocation(location).setType(Cell.Type.SOLUTION);
+		controller.update(location);
+		//controller.colorCell(location, Maze.SOLUTION_COLOR);
 	}
 
 	/**
@@ -153,8 +167,9 @@ public abstract class MazeSolver
 	 */
 	public void markAsWaiting(Location location)
 	{
-		maze.markAs(location, Maze.CellType.WAITING);
-		controller.colorCell(location, Maze.WAITING_COLOR);
+		maze.getCellAtLocation(location).setType(Cell.Type.WAITING);
+		controller.update(location);
+		//controller.colorCell(location, Maze.WAITING_COLOR);
 	}
 
 	/**
@@ -169,8 +184,9 @@ public abstract class MazeSolver
 	 */
 	public void markAsVisited(Location location)
 	{
-		maze.markAs(location, Maze.CellType.VISITED);
-		controller.colorCell(location, Maze.VISITED_COLOR);
+		maze.getCellAtLocation(location).setType(Cell.Type.VISITED);
+		controller.update(location);
+		//controller.colorCell(location, Maze.VISITED_COLOR);
 	}
 
 	/**
@@ -211,7 +227,9 @@ public abstract class MazeSolver
 	 */
 	private void uncolor(Location location)
 	{
-		controller.colorCell(location, maze.getCellValueAt(location));
+		// TODO: uncolor a cell in the maze?
+		//controller.colorCell(location, maze.getCellValueAt(location));
+		controller.update(location);
 	}
 
 	/**
@@ -223,7 +241,7 @@ public abstract class MazeSolver
 	 */
 	private boolean isWaiting(Location location)
 	{
-		return maze.getCellValueAt(location) == Maze.CellType.WAITING;
+		return maze.getCellAtLocation(location).getType() == Cell.Type.WAITING;
 	}
 
 	/**

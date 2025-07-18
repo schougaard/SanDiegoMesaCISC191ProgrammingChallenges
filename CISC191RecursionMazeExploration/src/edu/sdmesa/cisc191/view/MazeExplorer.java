@@ -1,4 +1,9 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.view;
+
+import edu.sdmesa.cisc191.model.DepthFirstSolver;
+import edu.sdmesa.cisc191.model.Maze;
+import edu.sdmesa.cisc191.model.MazeGenerator;
+import edu.sdmesa.cisc191.model.MazeSolver;
 
 /**
  * Lead Author(s):
@@ -21,7 +26,7 @@ package edu.sdmesa.cisc191;
  */
 public class MazeExplorer
 {
-	private MazeGUI mazeGUI;			// the maze GUI
+	private MazePanel mazeGUI;			// the maze GUI
 	private ControlsGUI controlsGUI;	// the control panel GUI
 	private MazeExplorerGUI gui;		// the maze explorer GUI
 	private Maze ogMaze;				// the original maze
@@ -45,7 +50,7 @@ public class MazeExplorer
 	private void setup()
 	{
 		ogMaze = new Maze(maze);
-		mazeGUI = new MazeGUI(maze);
+		mazeGUI = new MazePanel(maze);
 		controller = new MazeController(maze, mazeGUI, this);
 		controlsGUI = new ControlsGUI(controller, this);
 		controller.setControlsGUI(controlsGUI);
@@ -83,19 +88,19 @@ public class MazeExplorer
 	}
 
 	/**
-	 * Gets the MazeGUI instance.
+	 * Gets the MazePanel instance.
 	 * @return the mazeGUI instance
 	 */
-	public MazeGUI getMazeGUI()
+	public MazePanel getMazeGUI()
 	{
 		return mazeGUI;
 	}
 
 	/**
-	 * Sets the MazeGUI instance.
+	 * Sets the MazePanel instance.
 	 * @param mazeGUI the mazeGUI instance
 	 */
-	public void setMazeGUI(MazeGUI mazeGUI)
+	public void setMazeGUI(MazePanel mazeGUI)
 	{
 		this.mazeGUI = mazeGUI;
 	}

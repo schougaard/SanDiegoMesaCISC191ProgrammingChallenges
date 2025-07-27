@@ -65,20 +65,10 @@ public class Maze
 		FRONTIER, // used for other algorithms like BFS, etc.
 		VISITED, // if this cell has been visited
 		CURRENT, // if we're currently on the cell
-		CHECKING, // if we're checking the cell
+		EVALUATING, // if we're evaluating/checking the cell
 		SOLUTION, // if this path is part of the solution
 		WAITING, // if this cell is waiting for a result
 	}
-
-	// TODO: remove, they should only be found in GUICell
-	// Everywhere else should use CellType
-	public final static Color WALL_COLOR = Color.black;
-	public final static Color PATH_COLOR = Color.white;
-	public final static Color VISITED_COLOR = Color.red;
-	public final static Color CURRENT_COLOR = Color.blue;
-	public final static Color SOLUTION_COLOR = Color.green;
-	public final static Color CHECKING_COLOR = Color.lightGray;
-	public final static Color WAITING_COLOR = Color.darkGray;
 
 	/**
 	 * A setter constructor.
@@ -322,7 +312,7 @@ public class Maze
 	 */
 	public LinkedList<Location> getSurroundingPossibleLocations(Location currentLocation)
 	{
-		LinkedList<Location> locations = currentLocation.getSourroundingLocations();
+		LinkedList<Location> locations = currentLocation.getSurroundingLocations();
 		// Should be .filter
 		for (Location location : locations)
 		{

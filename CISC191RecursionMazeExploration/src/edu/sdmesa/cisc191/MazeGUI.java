@@ -29,8 +29,7 @@ import javax.swing.SwingUtilities;
 public class MazeGUI extends JPanel
 {
 	// the grid of panels for maze
-	// TODO: use GUICell
-	private JPanel[][] grid;
+	private GUICell[][] grid;
 	
 	private Maze maze;
 	
@@ -52,14 +51,12 @@ public class MazeGUI extends JPanel
 		
 		// set up grid
 		setLayout(new GridLayout(height, width));
-		grid = new JPanel[height][width];
+		grid = new GUICell[height][width];
 		
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
-				// TODO: use GUICell
-				
-				// create a new JPanel to represent each cell in GUI
-				JPanel cell = new JPanel();
+				// create a new GUICell
+				GUICell cell = new GUICell(maze, new Location(row, col));
 				JLabel label = new JLabel("");
 				label.setForeground(Color.white);
 				cell.add(label);
@@ -81,7 +78,7 @@ public class MazeGUI extends JPanel
 	 */
 	public void updateCell(Maze maze, Location location)
 	{		
-		Color cellColor = getColorFromCellType(maze.getCellValueAt(location));
+		Color cellColor = GUICell.getColorFor(maze.getCellValueAt(location));
 		
 		invokeAndWait(() -> {
 			grid[location.getRow()][location.getColumn()].setBackground(cellColor);
@@ -117,34 +114,6 @@ public class MazeGUI extends JPanel
 	}
 	
 	/**
-	 * Gets the color from cell type.
-	 * @param cellType the cell type
-	 * @return the color corresponding to the given cell type.
-	 */
-	public Color getColorFromCellType(Maze.CellType cellType)
-	{
-		switch (cellType){
-			case WALL:
-				return Maze.WALL_COLOR;
-			case CHECKING:
-				return Maze.CHECKING_COLOR;
-			case CURRENT:
-				return Maze.CURRENT_COLOR;
-			case PATH:
-				return Maze.PATH_COLOR;
-			case SOLUTION:
-				return Maze.SOLUTION_COLOR;
-			case VISITED:
-				return Maze.VISITED_COLOR;
-			case WAITING:
-				return Maze.WAITING_COLOR;
-			case FRONTIER:
-			default:
-				return Color.pink;
-		}
-	}
-	
-	/**
 	 * A convenience method to color a cell with a color directly.
 	 * @param row cell row to color
 	 * @param col cell column to color
@@ -165,7 +134,7 @@ public class MazeGUI extends JPanel
 	 */
 	public void colorCell(Location location, Maze.CellType cellType)
 	{
-		colorCell(location, getColorFromCellType(cellType));
+		colorCell(location, GUICell.getColorFor(cellType));
 	}
 	
 	/**
@@ -216,18 +185,5 @@ public class MazeGUI extends JPanel
 	public void invokeAndWait(Runnable r)
 	{
 		SwingUtilities.invokeLater(r);
-//		try
-//		{
-//		}
-//		catch (InvocationTargetException e)
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		catch (InterruptedException e)
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 }

@@ -197,9 +197,9 @@ public class ControlsGUI extends JPanel
 	{
 		slider = new JSlider();
 		slider.setPreferredSize(new Dimension(400, 100));
-		slider.setMinimum(controller.minWait);
-		slider.setMaximum(controller.maxWait);
-		slider.setValue(controller.maxWait);
+		slider.setMinimum(MazeController.minWait);
+		slider.setMaximum(MazeController.maxWait);
+		slider.setValue(MazeController.maxWait);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 		slider.setMajorTickSpacing(100);

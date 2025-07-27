@@ -81,18 +81,6 @@ public class MazeController
 	}
 	
 	/**
-	 * Color a cell directly with a color
-	 * @param row the cell row to color
-	 * @param col the cell column to color
-	 * @param color the color
-	 */
-	public void colorCell(Location location, Color color) 
-	{
-		gui.colorCell(location, color);
-		waitForNextStep();
-	}
-	
-	/**
 	 * Color a cell with a cell type
 	 * @param row the cell row to color
 	 * @param col the cell column to color
@@ -100,7 +88,8 @@ public class MazeController
 	 */
 	public void colorCell(Location location, Maze.CellType cellType) 
 	{
-		colorCell(location, gui.getColorFromCellType(cellType));
+		gui.colorCell(location, GUICell.getColorFor(cellType));
+		waitForNextStep();
 	}
 	
 	/**

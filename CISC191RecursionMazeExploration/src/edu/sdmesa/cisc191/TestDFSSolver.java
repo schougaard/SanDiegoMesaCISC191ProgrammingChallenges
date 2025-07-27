@@ -109,7 +109,7 @@ class TestDFSSolver
 		Location l = maze.getEntranceLocation();
 		mazeExplorer.getController().nextStep();
 		Color colorAtEntrance = mazeGUI.getColorAt(l);
-		assertEquals(Maze.CURRENT_COLOR, colorAtEntrance);
+		assertEquals(GUICell.getColorFor(Maze.CellType.CURRENT), colorAtEntrance);
 		mazeExplorer.getController().reset();
 	}
 
@@ -127,7 +127,7 @@ class TestDFSSolver
 		assertTrue(mazeExplorer.getSolver().solveRecursive(l));
 		mazeGUI.waitForGUI();
 		Color colorAtExit = mazeGUI.getColorAt(l);
-		assertEquals(Maze.SOLUTION_COLOR, colorAtExit);
+		assertEquals(GUICell.getColorFor(Maze.CellType.SOLUTION), colorAtExit);
 
 		mazeExplorer.getSolver().setCleared(true);
 		mazeExplorer.getController().reset();
@@ -155,7 +155,7 @@ class TestDFSSolver
 		} while (solver.getCurrentLocation().equals(previousLocation));
 
 		Location oneUp = maze.getEntranceLocation().getLocationAbove();
-		assertEquals(Maze.CURRENT_COLOR, mazeGUI.getColorAt(oneUp));
+		assertEquals(GUICell.getColorFor(Maze.CellType.CURRENT), mazeGUI.getColorAt(oneUp));
 	}
 	
 	@Test
@@ -184,9 +184,10 @@ class TestDFSSolver
 
 		// the "current" point from the last test
 		Location l = maze.getEntranceLocation().getLocationAbove();
+		Color currentColor = GUICell.getColorFor(Maze.CellType.CURRENT);
 		
-		assertTrue(mazeGUI.getColorAt(l.getLocationAbove()).equals(Maze.CURRENT_COLOR) ||
-				mazeGUI.getColorAt(l.getLocationToRight()).equals(Maze.CURRENT_COLOR));
+		assertTrue(mazeGUI.getColorAt(l.getLocationAbove()).equals(currentColor) ||
+				mazeGUI.getColorAt(l.getLocationToRight()).equals(currentColor));
 	}
 
 	// @Test

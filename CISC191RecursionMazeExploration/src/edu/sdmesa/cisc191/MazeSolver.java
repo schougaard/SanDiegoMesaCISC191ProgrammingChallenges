@@ -56,9 +56,9 @@ public abstract class MazeSolver
 	 * @param row The row of the cell to be colored as checking.
 	 * @param col The column of the cell to be colored as checking.
 	 */
-	public void colorAsChecking(Location location)
+	public void colorAsEvaluating(Location location)
 	{
-		controller.colorCell(location, Maze.CHECKING_COLOR);
+		controller.colorCell(location, Maze.CellType.EVALUATING);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public abstract class MazeSolver
 	 */
 	public void colorAsCurrent(Location location)
 	{
-		controller.colorCell(location, Maze.CURRENT_COLOR);
+		controller.colorCell(location, Maze.CellType.CURRENT);
 	}
 
 	/**
@@ -106,7 +106,7 @@ public abstract class MazeSolver
 	 */
 	public boolean isPath(Location location)
 	{
-		colorAsChecking(location);
+		colorAsEvaluating(location);
 		if (ogMaze.isLocationOnPath(location) && !isWaiting(location))
 		{
 			return true;
@@ -139,7 +139,7 @@ public abstract class MazeSolver
 	public void markAsSolution(Location location)
 	{
 		maze.markAs(location, Maze.CellType.SOLUTION);
-		controller.colorCell(location, Maze.SOLUTION_COLOR);
+		controller.colorCell(location, Maze.CellType.SOLUTION);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public abstract class MazeSolver
 	public void markAsWaiting(Location location)
 	{
 		maze.markAs(location, Maze.CellType.WAITING);
-		controller.colorCell(location, Maze.WAITING_COLOR);
+		controller.colorCell(location, Maze.CellType.WAITING);
 	}
 
 	/**
@@ -170,7 +170,7 @@ public abstract class MazeSolver
 	public void markAsVisited(Location location)
 	{
 		maze.markAs(location, Maze.CellType.VISITED);
-		controller.colorCell(location, Maze.VISITED_COLOR);
+		controller.colorCell(location, Maze.CellType.VISITED);
 	}
 
 	/**

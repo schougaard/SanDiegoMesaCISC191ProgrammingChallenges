@@ -96,7 +96,7 @@ public class Location
 	/**
 	 * @return all valid locations surrounding this location 
 	 */
-	public LinkedList<Location> getSourroundingLocations()
+	public LinkedList<Location> getSurroundingLocations()
 	{
 		LinkedList<Location> locations = new LinkedList<Location>();
 		

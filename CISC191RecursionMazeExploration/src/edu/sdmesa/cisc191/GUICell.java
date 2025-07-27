@@ -56,18 +56,19 @@ public class GUICell extends JPanel
 	private final static Color VISITED_COLOR = Color.red;
 	private final static Color CURRENT_COLOR = Color.blue;
 	private final static Color SOLUTION_COLOR = Color.green;
-	private final static Color CHECKING_COLOR = Color.lightGray;
+	private final static Color EVALUATING_COLOR = Color.lightGray;
 	private final static Color WAITING_COLOR = Color.darkGray;
+	private final static Color FRONTIER_COLOR = Color.pink;
 
 	private final static Hashtable<CellType, Color> cellType2Color = new Hashtable<CellType, Color>();
 	static
 	{
 		cellType2Color.put(CellType.WALL, WALL_COLOR);
 		cellType2Color.put(CellType.PATH, PATH_COLOR);
-		cellType2Color.put(CellType.FRONTIER, Color.pink); // TODO: constant a color
+		cellType2Color.put(CellType.FRONTIER, FRONTIER_COLOR);
 		cellType2Color.put(CellType.VISITED, VISITED_COLOR);
 		cellType2Color.put(CellType.CURRENT, CURRENT_COLOR);
-		cellType2Color.put(CellType.CHECKING, CHECKING_COLOR);
+		cellType2Color.put(CellType.EVALUATING, EVALUATING_COLOR);
 		cellType2Color.put(CellType.SOLUTION, SOLUTION_COLOR);
 		cellType2Color.put(CellType.WAITING, WAITING_COLOR);
 	}
@@ -81,7 +82,7 @@ public class GUICell extends JPanel
 		label.setForeground(Color.white);
 		add(label);
 	}
-	
+
 	public void setText(String text)
 	{
 		label.setText(text);
@@ -89,12 +90,14 @@ public class GUICell extends JPanel
 
 	public void update()
 	{
-		// TODO: we should have a color for all states of a location (so that default should not be necessary)
-		setBackground(cellType2Color.getOrDefault(maze.getCellValueAt(location), Color.pink));
-		// TODO: Not good, there are two names that start with C
-		// Maybe replace checking with evaluating?
+		setBackground(cellType2Color.get(maze.getCellValueAt(location)));
 		label.setText(
 				String.valueOf(maze.getCellValueAt(location).name().charAt(0)));
+	}
+	
+	public static Color getColorFor(Maze.CellType t)
+	{
+		return cellType2Color.get(t);
 	}
 
 }

@@ -1,6 +1,5 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.view;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.Hashtable;
 
 import javax.swing.BoxLayout;
@@ -8,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+
+import edu.sdmesa.cisc191.controller.MazeController;
 
 /**
  * Lead Author(s):
@@ -27,7 +28,7 @@ import javax.swing.JSlider;
  * This class is the control panel GUI in the maze explorer app. It contains
  * the speed slider, control buttons, and other associated widgets.
  */
-public class ControlsGUI extends JPanel
+public class ControlPanel extends JPanel
 {
 	private MazeController controller;
 	private MazeExplorer exp;
@@ -38,7 +39,7 @@ public class ControlsGUI extends JPanel
 	private JLabel sliderLabel;
 	private JPanel buttonsPanel;
 	
-	public ControlsGUI(MazeController controller, MazeExplorer exp)
+	public ControlPanel(MazeController controller, MazeExplorer exp)
 	{
 		this.controller = controller;
 		this.exp = exp;

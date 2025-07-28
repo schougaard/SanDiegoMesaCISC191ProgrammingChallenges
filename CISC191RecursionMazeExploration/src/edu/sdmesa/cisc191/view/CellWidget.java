@@ -19,7 +19,7 @@
  *
  *         Version: 2025-07-15
  */
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.view;
 
 import java.awt.Color;
 import java.util.Hashtable;
@@ -27,24 +27,19 @@ import java.util.Hashtable;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.sdmesa.cisc191.Maze.CellType;
+import edu.sdmesa.cisc191.model.Cell;
 
 /**
- * Purpose: The responsibility of GUICell is to display a cell in the maze
+ * Purpose: The responsibility of CellWidget is to display the status of a cell in the maze
  *
  * GUICell is-a JPanel
  */
-public class GUICell extends JPanel
+public class CellWidget extends JPanel
 {
 	/**
-	 * A GUICell has-a location in a maze
+	 * A cell widget has-a cell in a maze
 	 */
-	private Location location;
-
-	/**
-	 * A GUICell has-a maze
-	 */
-	private Maze maze;
+	private Cell cell;
 
 	/**
 	 * A GUICell has-a label to show letters
@@ -60,44 +55,71 @@ public class GUICell extends JPanel
 	private final static Color WAITING_COLOR = Color.darkGray;
 	private final static Color FRONTIER_COLOR = Color.pink;
 
-	private final static Hashtable<CellType, Color> cellType2Color = new Hashtable<CellType, Color>();
+	private final static Hashtable<Cell.Type, Color> cellType2Color = new Hashtable<Cell.Type, Color>();
 	static
 	{
-		cellType2Color.put(CellType.WALL, WALL_COLOR);
-		cellType2Color.put(CellType.PATH, PATH_COLOR);
-		cellType2Color.put(CellType.FRONTIER, FRONTIER_COLOR);
-		cellType2Color.put(CellType.VISITED, VISITED_COLOR);
-		cellType2Color.put(CellType.CURRENT, CURRENT_COLOR);
-		cellType2Color.put(CellType.EVALUATING, EVALUATING_COLOR);
-		cellType2Color.put(CellType.SOLUTION, SOLUTION_COLOR);
-		cellType2Color.put(CellType.WAITING, WAITING_COLOR);
+		cellType2Color.put(Cell.Type.WALL, WALL_COLOR);
+		cellType2Color.put(Cell.Type.PATH, PATH_COLOR);
+		cellType2Color.put(Cell.Type.FRONTIER, FRONTIER_COLOR);
+		cellType2Color.put(Cell.Type.VISITED, VISITED_COLOR);
+		cellType2Color.put(Cell.Type.CURRENT, CURRENT_COLOR);
+		cellType2Color.put(Cell.Type.EVALUATING, EVALUATING_COLOR);
+		cellType2Color.put(Cell.Type.SOLUTION, SOLUTION_COLOR);
+		cellType2Color.put(Cell.Type.WAITING, WAITING_COLOR);
 	}
 
-	public GUICell(Maze initMaze, Location initLocation)
+	public CellWidget(Cell initCell)
 	{
-		maze = initMaze;
-		location = initLocation;
+		cell = initCell;
+
+		// when a CellWidget is created, associate the cell with itself.
+		cell.setCellWidget(this);
 
 		label = new JLabel("");
 		label.setForeground(Color.white);
 		add(label);
 	}
-
+	
+	/**
+	 * 
+	 * Purpose: Set direction, etc
+	 * @param text
+	 */
 	public void setText(String text)
 	{
 		label.setText(text);
 	}
+	
+	public void clear()
+	{
+		setBackground(Color.PINK);
+		setText("_");
+	}
 
 	public void update()
 	{
-		setBackground(cellType2Color.get(maze.getCellValueAt(location)));
+		setBackground(cellType2Color.get(cell.getType()));
 		label.setText(
-				String.valueOf(maze.getCellValueAt(location).name().charAt(0)));
+				String.valueOf(cell.getDirection().name().charAt(0)));
 	}
 	
-	public static Color getColorFor(Maze.CellType t)
+	public static Color getColorFor(Cell.Type t)
 	{
 		return cellType2Color.get(t);
 	}
 
+	public Color getColor()
+	{
+		return getBackground();
+	}
+
+	public Cell getCell()
+	{
+		return cell;
+	}
+
+	public void setCell(Cell cell)
+	{
+		this.cell = cell;
+	}
 }

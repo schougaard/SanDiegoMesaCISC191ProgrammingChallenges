@@ -1,10 +1,7 @@
-package edu.sdmesa.cisc191;
+package edu.sdmesa.cisc191.model;
 
-import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Lead Author(s):
@@ -53,31 +50,36 @@ public class Maze
 	/**
 	 * A maze has-many cells
 	 */
-	private CellType[][] cells;
-
+	private Cell[][] cells;
+	
+	
 	/**
-	 * Cells have different types
+	 * Create a maze with entry, exit and walls on the outer perimeter, except for entry and exit
 	 */
-	public static enum CellType
+	public Maze()
 	{
-		WALL, // if this cell represents a wall
-		PATH, // if this cell represents a path
-		FRONTIER, // used for other algorithms like BFS, etc.
-		VISITED, // if this cell has been visited
-		CURRENT, // if we're currently on the cell
-		EVALUATING, // if we're evaluating/checking the cell
-		SOLUTION, // if this path is part of the solution
-		WAITING, // if this cell is waiting for a result
+		cells = new Cell[HEIGHT][WIDTH];
+
+		for (int row = 0; row < HEIGHT; row++)
+		{
+			for (int col = 0; col < WIDTH; col++)
+			{
+				cells[row][col] = new Cell(new Location(row, col), Cell.Type.WALL);
+			}
+		}
+		getCellAtLocation(entranceLocation).setType(Cell.Type.PATH);
+		getCellAtLocation(exitLocation).setType(Cell.Type.PATH);
 	}
+
 
 	/**
 	 * A setter constructor.
 	 * 
 	 * @param maze the maze to set
 	 */
-	public Maze(CellType[][] maze)
+	public Maze(Cell[][] initCells)
 	{
-		this.cells = maze;
+		this.cells = initCells;
 	}
 
 	/**
@@ -87,17 +89,27 @@ public class Maze
 	 */
 	public Maze(Maze maze)
 	{
-		this(new CellType[HEIGHT][WIDTH]);
+		this(new Cell[HEIGHT][WIDTH]);
 
 		for (int row = 0; row < this.cells.length; row++)
 		{
 			for (int col = 0; col < this.cells[0].length; col++)
 			{
-				this.cells[row][col] = maze
-						.getCellValueAt(new Location(row, col));
+				cells[row][col] = new Cell(maze.cells[row][col]);
 			}
 		}
 	}
+
+	// /**
+	//  * A convenience method to print the maze grid.
+	//  */
+	// public void print()
+	// {
+	// 	System.out.println("-----------");
+	// 	for (int row = 0; row < HEIGHT; row++) {
+	// 		System.out.println(Arrays.toString(cells[row]));
+	// 	}
+	// }
 
 	/**
 	 * Gets the width of the maze.
@@ -125,25 +137,45 @@ public class Maze
 	 * @param location the location
 	 * @return the cell type
 	 */
-	public CellType getCellValueAt(Location location)
+	public Cell getCellAtLocation(Location location)
 	{
 		return cells[location.getRow()][location.getColumn()];
 	}
+	
+	/**
+	 * @return the location to the right
+	 * @throws IllegalArgumentException if there is no valid location to the right
+	 */
+	public Cell getCellToRight(Cell cell) throws IllegalArgumentException
+	{
+		return getCellAtLocation(cell.getLocation().getLocationToRight());
+	}
+	
+	/**
+	 * @return the location to the left
+	 * @throws IllegalArgumentException if there is no valid location to the left
+	 */
+	public Cell getCellToLeft(Cell cell) throws IllegalArgumentException
+	{
+		return getCellAtLocation(cell.getLocation().getLocationToLeft());
+	}
 
 	/**
-	 * Mark a cell as some cell type. Namely, set the value of a cell in a
-	 * 2D array to the specified value. If the operation was not successful,
-	 * (e.g., because the point is invalid), then nothing will be done and
-	 * the method will return false. Otherwise, return true.
-	 * 
-	 * @param location the location
-	 * @param cellType the cell type to set
-	 * @return whether the operation was successful
+	 * @return the location above
+	 * @throws IllegalArgumentException if there is no valid location above
 	 */
-	public boolean markAs(Location location, CellType cellType)
+	public Cell getCellAbove(Cell cell) throws IllegalArgumentException
 	{
-		cells[location.getRow()][location.getColumn()] = cellType;
-		return true;
+		return getCellAtLocation(cell.getLocation().getLocationAbove());
+	}
+	
+	/**
+	 * @return the location below
+	 * @throws IllegalArgumentException if there is no valid location below
+	 */
+	public Cell getCellBelow(Cell cell) throws IllegalArgumentException
+	{
+		return getCellAtLocation(cell.getLocation().getLocationBelow());
 	}
 
 	/**
@@ -154,18 +186,18 @@ public class Maze
 	 * @param point the point
 	 * @return the list of points
 	 */
-	public LinkedList<Location> getReachableCells(Location location)
+	public LinkedList<Cell> getReachableCells(Cell cell)
 	{
 		// TODO: see Location getSourroundingLocations
 		
-		LinkedList<Location> reachableCells = new LinkedList<>();
-		LinkedList<Location> directions = new LinkedList<>();
+		LinkedList<Cell> reachableCells = new LinkedList<>();
+		LinkedList<Cell> directions = new LinkedList<>();
 
 		// check each direction. Note how it's 2 units since each cell could be
 		// a wall as well
 		try
 		{
-			directions.add(location.getLocationToLeft().getLocationToLeft());
+			directions.add(getCellAtLocation(cell.getLocation().getLocationToLeft().getLocationToLeft()));
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -174,7 +206,7 @@ public class Maze
 
 		try
 		{
-			directions.add(location.getLocationToRight().getLocationToRight());
+			directions.add(getCellAtLocation(cell.getLocation().getLocationToRight().getLocationToRight()));
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -183,7 +215,7 @@ public class Maze
 
 		try
 		{
-			directions.add(location.getLocationAbove().getLocationAbove());
+			directions.add(getCellAtLocation(cell.getLocation().getLocationAbove().getLocationAbove()));
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -192,7 +224,7 @@ public class Maze
 
 		try
 		{
-			directions.add(location.getLocationBelow().getLocationBelow());
+			directions.add(getCellAtLocation(cell.getLocation().getLocationBelow().getLocationBelow()));
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -203,10 +235,10 @@ public class Maze
 		// Collections.shuffle(Arrays.asList(directions));
 
 		// check in each direction
-		for (Location direction : directions)
+		for (Cell direction : directions)
 		{
 			if (canBeAPath(direction)
-					&& getCellValueAt(direction) != Maze.CellType.PATH)
+					&& getCellAtLocation(direction.getLocation()).getType() != Cell.Type.PATH)
 			{
 				reachableCells.add(direction);
 			}
@@ -225,17 +257,18 @@ public class Maze
 	 * @param row the cell row
 	 * @param col the cell column
 	 * @return true if the cell can be a path; false otherwise
+	 * 
+	 * TODO: anything that is not a WALL can be a PATH???
+	 * Rename?
 	 */
-	public boolean canBeAPath(Location location)
+	public boolean canBeAPath(Cell cell)
 	{
-		int row = location.getRow();
-		int col = location.getColumn();
-
-		if (row == HEIGHT - 1 && col == 1) return true; // entrance
-		if (row == 0 && col == WIDTH - 2) return true; // exit
+		if (cell.getLocation().equals(entranceLocation)) return true;
+		if (cell.getLocation().equals(exitLocation)) return true;
 
 		// no borders besides exit and entrance can be a path
-		if (row == 0 || col == 0 || row == HEIGHT - 1 || col == WIDTH - 1)
+		// Outer perimeter should be walls
+		if (cell.getLocation().isOuterPerimeter())
 			return false;
 
 		return true;
@@ -245,7 +278,7 @@ public class Maze
 	public String toString()
 	{
 		String returnValue = "";
-		for (CellType[] row : cells)
+		for (Cell[] row : cells)
 		{
 			returnValue += Arrays.toString(row) + '\n';
 		}
@@ -257,9 +290,9 @@ public class Maze
 	 * 
 	 * @return the entrance location
 	 */
-	public Location getEntranceLocation()
+	public Cell getEntranceCell()
 	{
-		return entranceLocation;
+		return getCellAtLocation(entranceLocation);
 	}
 
 	/**
@@ -267,9 +300,9 @@ public class Maze
 	 * 
 	 * @return the exit location
 	 */
-	public Location getExitLocation()
+	public Cell getExitCell()
 	{
-		return exitLocation;
+		return getCellAtLocation(exitLocation);
 	}
 
 	/**
@@ -303,25 +336,31 @@ public class Maze
 	 */
 	public boolean isLocationOnPath(Location location)
 	{
-		return getCellValueAt(location) == CellType.PATH;
+		return getCellAtLocation(location).getType() == Cell.Type.PATH;
 	}
 	
 	/**
 	 * @param currentLocation
 	 * @return list of locations surrounding the current location that are not walls
 	 */
-	public LinkedList<Location> getSurroundingPossibleLocations(Location currentLocation)
+	public LinkedList<Cell> getSurroundingPossiblePaths(Location currentLocation)
 	{
-		LinkedList<Location> locations = currentLocation.getSurroundingLocations();
-		// Should be .filter
-		for (Location location : locations)
-		{
-			if (getCellValueAt(location) == CellType.WALL)
-			{
-				locations.remove(location);
-			}
-		}
+		LinkedList<Location> locations = currentLocation.getAdjacentLocations();
+		LinkedList<Cell> possibleCells = new LinkedList<>();
+		// TODO: Check. Should be .filter
+		locations.stream()
+			.filter(location -> getCellAtLocation(location).getType() == Cell.Type.PATH)
+			.forEach(location -> possibleCells.add(getCellAtLocation(location)));
+
+		// OLD CODE
+		// for (Location location : locations)
+		// {
+		// 	if (getCellAtLocation(location).getType() == Cell.Type.PATH)
+		// 	{
+		// 		possibleCells.add(getCellAtLocation(location));
+		// 	}
+		// }
 		
-		return locations;
+		return possibleCells;
 	}
 }

@@ -1,13 +1,13 @@
 package edu.sdmesa.cisc191;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
-
-import edu.gatech.cc.Picture;
-import edu.gatech.cc.PictureExplorer;
-import edu.gatech.cc.Pixel;
+import org.junit.platform.engine.discovery.DiscoverySelectors;
+import org.junit.platform.launcher.Launcher;
+import org.junit.platform.launcher.LauncherDiscoveryRequest;
+import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
+import org.junit.platform.launcher.core.LauncherFactory;
+import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
+import org.junit.platform.launcher.listeners.TestExecutionSummary;
+import org.junit.runner.JUnitCore;
 
 /**
  * Lead Author(s):
@@ -33,188 +33,42 @@ import edu.gatech.cc.Pixel;
  * 
  */
 
-public class TestLogic
-{
+public class TestLogic {
 
-	
-	/**
-	 * Check to see if the blue value of each pixel in an image has been set to 0
-	 */
-	@Test
-	void testZeroBlue()
-	{
+    public static void main(String[] args) {
+        LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
+            .selectors(DiscoverySelectors.selectClass(Tests.class))
+            .build();
 
-		/* Create two identical Picture objects from the same picture */
-		Picture studentSol = new Picture("bees.png");
-		Picture solution = new Picture("beesZeroBlue.png");
+        Launcher launcher = LauncherFactory.create();
 
-		/* apply the filter */
-		Logic.zeroBlue(studentSol);
- 
-		/* obtain the 2D Pixel array representation for both objects */
-		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
-		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
+        // Listener for live test logging
+        TestResultListener liveListener = new TestResultListener();
+        launcher.registerTestExecutionListeners(liveListener);
 
-		//the resulting student image should be pixel by pixel equivalent to the solution image
-		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
+        // Listener for summary stats (including success count)
+        SummaryGeneratingListener summaryListener = new SummaryGeneratingListener();
+        launcher.registerTestExecutionListeners(summaryListener);
 
-	}
+        // Run tests
+        launcher.execute(request);
 
-//	/*
-//	 * Checks to see if BW is applied to image by taking the average of all the
-//	 * pixels colors (red, green, blue) and see it that to be the value of each
-//	 * color channel
-//	 */
-//	@Test
-//	void testBW()
-//	{
-//
-//		/* Create two identical Picture objects from the same picture */
-//		Picture studentSol = new Picture("bees.png");
-//		Picture solution = new Picture("beesBlackAndWhite.png");
-//
-//		/* apply the filter */
-//		Logic.blackAndWhite(studentSol);
-// 
-//		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
-//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
-//
-//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
-//
-//
-//	}
-//
-//	/*
-//	 * Check to see if student code creates a negative of the original image
-//	 */
-//	@Test
-//	void testNegative()
-//	{
-//
-//
-//		/* Create two identical Picture objects from the same picture */
-//		Picture studentSol = new Picture("bees.png");
-//		Picture solution = new Picture("beesNegative.png");
-//
-//		/* apply the filter */
-//		Logic.negative(studentSol);
-// 
-//		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
-//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
-//
-//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
-//
-//	}
-//	
-//	
-//	
-//
-//	/*
-//	 * See canvas for more details on applying sunset tone to a picture
-//	 */
-//	@Test
-//	void testSunset()
-//	{
-//		/* Create two identical Picture objects from the same picture */
-//		Picture studentSol = new Picture("fireFall.png");
-//		Picture solution = new Picture("fireFallMakeSunset.png");
-//
-//		/* apply the filter */
-//		Logic.makeSunset(studentSol, 1.5, .9);
-// 
-//		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
-//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
-//
-//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
-//
-//	}
-//
-//	/*
-//	 * Checks to see if the image was flipped horizontally
-//	 */
-//	@Test
-//	void testFlipHor()
-//	{
-//
-//		/* Create two identical Picture objects from the same picture */
-//		Picture studentSol = new Picture("fireFall.png");
-//		Picture solution = new Picture("fireFallFlipHorizontal.png");
-//
-//		/* apply the filter */
-//		Logic.flipHorizontal(studentSol);
-// 
-//		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
-//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
-//
-//		//visit every row
-//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
-//		
-//	}
-//
-//	/*
-//	 * Checks to see if the image was flipped vertically
-//	 */
-//	@Test
-//	void testFlipVer()
-//	{
-//
-//		/* Create two identical Picture objects from the same picture */
-//		Picture studentSol = new Picture("fireFall.png");
-//		Picture solution = new Picture("fireFallFlipVertical.png");
-//
-//		/* apply the filter */
-//		Logic.flipVertical(studentSol);
-// 
-//		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol = studentSol.getPixels2D(); 		// student code
-//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
-//
-//		//visit every row
-//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
-//	}
-//
-//	/*
-//	 * Tests to see if blurring works for a 2x2 rectangular window.
-//	 */
-//	@Test
-//	void testBlur()
-//	{
-//		/* Create two identical Picture objects from the same picture */
-//		Picture studentSol = new Picture("fireFall.png");
-//		Picture solution = new Picture("fireFallBlur.png");
-//
-//		/* apply the filter */
-//		Logic.blur(studentSol);
-// 
-//		/* obtain the 2D Pixel array representation for both objects */
-//		Pixel[][] pixelsStudentSol	= studentSol.getPixels2D(); 	// student code
-//		Pixel[][] pixelsFilteredSol = solution.getPixels2D(); 		// filtered image
-//
-//		//visit every row
-//		assertTrue(compare(pixelsStudentSol, pixelsFilteredSol));
-//	}
-	
-	public static boolean compare(Pixel[][] pixelsStudentSol, Pixel[][] pixelsFilteredSol) {
-		//visit every row
-		for(int row = 0; row < pixelsStudentSol.length; row++)
-		{
-			//visit every column in the row
-			for(int col = 0; col < pixelsStudentSol[row].length; col++)
-			{
-				//Pixel values of student and solution should be the same
-				if(!pixelsStudentSol[row][col].getColor().equals(pixelsFilteredSol[row][col].getColor())) {
-					return false;
-				}
-			}
-		}
-		
-		return true;
-	}
+        // Output summary
+        TestExecutionSummary summary = summaryListener.getSummary();
 
+        System.out.println("------------------------------------------------");
+        System.out.println("Number of tests found     : " + summary.getTestsFoundCount());
+        System.out.println("Number of tests succeeded : " + summary.getTestsSucceededCount());
+        System.out.println("Number of tests failed    : " + summary.getTestsFailedCount());
+        System.out.println("Number of tests skipped   : " + summary.getTestsSkippedCount());
+        System.out.println("------------------------------------------------");
 
-
+        if (!summary.getFailures().isEmpty()) {
+            System.out.println("Failures:");
+            summary.getFailures().forEach(failure ->
+                System.out.println(" - " + failure.getTestIdentifier().getDisplayName() +
+                                   ": " + failure.getException().getMessage())
+            );
+        }
+    }
 }

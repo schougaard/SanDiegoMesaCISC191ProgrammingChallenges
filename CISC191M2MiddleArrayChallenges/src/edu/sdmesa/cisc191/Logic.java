@@ -87,5 +87,41 @@ public class Logic
 	}
 
 
+	public static void blur(DigitalPicture studentSol) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public static void flipHorizontal(DigitalPicture studentSol) {
+		// TODO Auto-generated method stub
+		studentSol.getPixels2D();
+	}
+
+
+	public static void flipVertical(DigitalPicture studentSol) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public static void negative(DigitalPicture studentSol) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public static void blackAndWhite(DigitalPicture studentSol) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public static void makeSunset(DigitalPicture studentSol, double d, double e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 }

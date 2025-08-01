@@ -25,5 +25,7 @@ package cisc191.sdmesa.edu;
 
 public class ElectricMountainBike
 {
-	// TODO: Implement and comment HAS-A relationships separately
+	// TODO: Implement and comment each HAS-A relationships separately
+	
+	
 }

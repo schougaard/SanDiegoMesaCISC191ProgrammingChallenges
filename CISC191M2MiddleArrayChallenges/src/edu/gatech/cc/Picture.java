@@ -83,6 +83,37 @@ public class Picture extends SimplePicture
 		return output;
 
 	}
+	
+	public boolean equals(Object other)
+	{
+		if (other == null) return false;
+		if (other == this) return true;
+		if (!(other instanceof Picture)) return false;
+		
+		Pixel[][] thesePixels = this.getPixels2D();
+		Pixel[][] otherPixels = ((Picture)other).getPixels2D();
+		
+		if (thesePixels.length != otherPixels.length) return false;
+		
+		// visit every row
+		for (int row = 0; row < thesePixels.length; row++)
+		{
+			if (thesePixels[row].length != otherPixels[row].length) return false;
+			
+			// visit every column in the row
+			for (int col = 0; col < thesePixels[row].length; col++)
+			{
+				// Pixel values of student and expectedPicture should be the same
+				if (!thesePixels[row][col].getColor()
+						.equals(otherPixels[row][col].getColor()))
+				{
+					System.out.println("Pixel at " + row + ", " + col + " differ: " + thesePixels[row][col].getColor() + " vs. " + otherPixels[row][col].getColor());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 	/** Method to set the blue to 0 */
 	public void zeroBlue()

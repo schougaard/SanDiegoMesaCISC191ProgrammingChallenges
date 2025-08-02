@@ -91,6 +91,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
 	/** The picture being explored */
 	private DigitalPicture picture;
+	
+	/* if using side by side */
+	private DigitalPicture pictureLeft;
+	private DigitalPicture pictureRight;
+
 
 	/** The image icon used to display the picture */
 	private ImageIcon scrollImageIcon;
@@ -118,6 +123,21 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		// create the window and set things up
 		createWindow();
 
+	}
+	
+	public PictureExplorer(DigitalPicture leftPicture, DigitalPicture rightPicture) {
+		this.pictureLeft = leftPicture; 
+		this.pictureRight  = rightPicture; 
+		this.picture = combinePictures(leftPicture, rightPicture);
+		zoomFactor = 1;
+		createWindow();
+	}
+	
+	public void openSep() {
+		if(pictureLeft != null && pictureRight != null) {
+			new PictureExplorer(pictureLeft).setTitle("Expected");;
+			new PictureExplorer(pictureRight).setTitle("Your Result");;
+		}
 	}
 
 	/**
@@ -151,6 +171,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		PictureExplorerFocusTraversalPolicy newPolicy = new PictureExplorerFocusTraversalPolicy();
 		pictureFrame.setFocusTraversalPolicy(newPolicy);
 		pictureFrame.setResizable(false);
+		pictureFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/**
@@ -413,6 +434,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		bValue.setFont(labelFont);
 		colorLabel.setFont(labelFont);
 		colorPanel.setPreferredSize(new Dimension(25, 25));
+		
+		
 
 		// add items to the color information panel
 		colorInfoPanel.add(rValue);
@@ -420,6 +443,13 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		colorInfoPanel.add(bValue);
 		colorInfoPanel.add(colorLabel);
 		colorInfoPanel.add(colorPanel);
+		//Button to open images separately 
+		if(pictureLeft != null ) {
+			JButton open = new JButton("Open in Separate Windows");
+			open.setActionCommand("openSep");
+			open.addActionListener(this);
+			colorInfoPanel.add(open);
+		}
 
 		return colorInfoPanel;
 	}
@@ -737,7 +767,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	 */
 	public void actionPerformed(ActionEvent a)
 	{
-
+		if(a.getActionCommand().equals("openSep")) {
+			this.openSep();
+		}
+		
 		if (a.getActionCommand().equals("Update"))
 		{
 			this.repaint();
@@ -837,52 +870,58 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 			return colValue;
 		}
 	}
+	
+	private DigitalPicture combinePictures(DigitalPicture pic1, DigitalPicture pic2) {
+		BufferedImage img1 = pic1.getBufferedImage();
+		BufferedImage img2 = pic2.getBufferedImage();
 
-	/**
-	 * Test Main. It will explore the beach
-	 */
-	public static void main(String args[])
-	{
-		Picture pix = new Picture("fireFall.png");
-		pix.explore();
+		int separatorWidth = 4;
+		int labelHeight = 30;
+		int padding = 10;
 
+		Font labelFont = new Font("SansSerif", Font.BOLD, 16);
+		Color labelColor = Color.BLACK;
+		Color separatorColor = Color.BLACK;
+
+		int combinedWidth = img1.getWidth() + separatorWidth + img2.getWidth();
+		int combinedHeight = Math.max(img1.getHeight(), img2.getHeight()) + labelHeight + padding;
+
+		BufferedImage combined = new BufferedImage(combinedWidth, combinedHeight, BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = combined.createGraphics();
+
+		// Fill background white
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, combinedWidth, combinedHeight);
+
+		// Draw labels
+		g.setFont(labelFont);
+		g.setColor(labelColor);
+		FontMetrics fm = g.getFontMetrics();
+
+		// Left label: "Solution"
+		String label1 = "Expected";
+		int label1X = (img1.getWidth() - fm.stringWidth(label1)) / 2;
+		g.drawString(label1, label1X, fm.getAscent() + padding);
+
+		// Right label: "Student Solution"
+		String label2 = "Your Result";
+		int label2X = img1.getWidth() + separatorWidth + (img2.getWidth() - fm.stringWidth(label2)) / 2;
+		g.drawString(label2, label2X, fm.getAscent() + padding);
+
+		// Draw left image
+		g.drawImage(img1, 0, labelHeight + padding, null);
+
+		// Draw separator
+		g.setColor(separatorColor);
+		g.fillRect(img1.getWidth(), labelHeight + padding, separatorWidth, combinedHeight - labelHeight - padding);
+
+		// Draw right image
+		g.drawImage(img2, img1.getWidth() + separatorWidth, labelHeight + padding, null);
+
+		g.dispose();
+
+		return new SimplePicture(combined);
 	}
 
-}
 
-class CustomButton extends JButton
-{
-	public CustomButton(String name)
-	{
-		super(name);
-		this.setBorderPainted(false);
-		this.setFocusPainted(false);
-		this.setContentAreaFilled(false);
-		switch (name)
-		{
-			case "B&W":
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "B&W2.png"));
-				break;
-			case "Zero Blue":
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconZeroBlue.png"));
-				break;
-			case "Negative":
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconNegative.png"));
-				break;
-			case "Blur":
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconBlur.jpg"));
-				break;
-			case "FlipVertical":
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorVertical.png"));
-				break;
-			case "FlipHorizontal":
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconMirrorHorizontal.png"));
-				break;
-			case "Sunset":
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + "iconSepia.png"));
-				break;
-			default:
-				this.setIcon(new ImageIcon(PictureExplorer.imageFolderName + name));
-		}
-	}
 }

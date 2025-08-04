@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.image.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.PipedOutputStream;
 import java.nio.file.FileSystems;
 
 import javax.swing.border.*;
@@ -108,6 +111,12 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
 	/** the number system to use, 0 means starting at 0, 1 means starting at 1 */
 	private int numberBase = 0;
+	
+	/** used for close button to force test to continue **/
+	PipedOutputStream out; 
+	
+	/** This is a test PictureExplorer used in JUnit **/
+	private boolean testing = false;
 
 	/**
 	 * Public constructor
@@ -125,6 +134,18 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
 	}
 	
+	public PictureExplorer(DigitalPicture picture, boolean testing)
+	{
+		// set the fields
+		this.picture = picture;
+		zoomFactor = 1;
+		this.testing = testing;
+
+		// create the window and set things up
+		createWindow();
+
+	}
+	
 	public PictureExplorer(DigitalPicture leftPicture, DigitalPicture rightPicture) {
 		this.pictureLeft = leftPicture; 
 		this.pictureRight  = rightPicture; 
@@ -133,10 +154,18 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		createWindow();
 	}
 	
+	public PictureExplorer(Picture solutionImage, Picture studentImage, PipedOutputStream out, String title) {
+		this(solutionImage, studentImage);
+		this.out = out;
+		this.setTitle(title);
+	}
+
 	public void openSep() {
 		if(pictureLeft != null && pictureRight != null) {
-			new PictureExplorer(pictureLeft).setTitle("Expected");;
-			new PictureExplorer(pictureRight).setTitle("Your Result");;
+			String title = pictureFrame.getTitle();
+			String filter =title.substring(title.indexOf("["), title.indexOf("]")+1);
+			new PictureExplorer(pictureLeft, true).setTitle("Expected - "+filter);
+			new PictureExplorer(pictureRight, true).setTitle("Your Result - "+filter);
 		}
 	}
 
@@ -171,7 +200,39 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		PictureExplorerFocusTraversalPolicy newPolicy = new PictureExplorerFocusTraversalPolicy();
 		pictureFrame.setFocusTraversalPolicy(newPolicy);
 		pictureFrame.setResizable(false);
-		pictureFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pictureFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		if(pictureLeft != null) {
+			//helper only for testing
+			pictureFrame.addWindowListener(new WindowAdapter() {
+			    @Override
+			    public void windowClosing(WindowEvent e) {
+					try {
+						out.write('\n');
+						
+						out.flush();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					pictureFrame.dispose();
+					
+			    }
+			});
+		} else if(testing){
+			pictureFrame.addWindowListener(new WindowAdapter() {
+			    @Override
+			    public void windowClosing(WindowEvent e) {
+					
+					pictureFrame.dispose();
+					
+			    }
+			});
+		} else {
+			pictureFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		
+		
 	}
 
 	/**
@@ -921,6 +982,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		g.dispose();
 
 		return new SimplePicture(combined);
+	}
+	
+	public void setDefaultExit() {
+		this.pictureFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 

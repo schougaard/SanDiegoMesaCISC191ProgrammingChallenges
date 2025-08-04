@@ -1,6 +1,9 @@
 package edu.sdmesa.cisc191;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+
 import javax.swing.SwingUtilities;
 
 import org.junit.jupiter.api.Test;
@@ -173,23 +176,30 @@ import edu.gatech.cc.PictureExplorer;
 	  * Helper method to show GUI and wait for user to close it
 	  */
 	 private void showGUIAndWait(Picture studentImage, Picture solutionImage, String filterName) {
-	     System.out.println("Images don't match! Opening GUI for comparison: " + filterName);
-	     
-	     SwingUtilities.invokeLater(() -> {
-	         PictureExplorer explorer = new PictureExplorer(solutionImage, studentImage);
-	         explorer.setTitle("FAILED - " + filterName + " Comparison (Expected vs Your Result)");
-	         System.out.println("GUI displayed. Close the window when you're done examining the differences.");
-	   	 });
+
 	     
 	     // a trick - system in will force test to wait
 	     try {
+		     PipedOutputStream out = new PipedOutputStream();
+		     PipedInputStream in = new PipedInputStream(out);
+		     System.setIn(in);  
+
+		     SwingUtilities.invokeLater(() -> {
+		    	 String title = "FAILED - [" + filterName + "] Comparison (Expected vs Your Result)";
+		         PictureExplorer explorer = new PictureExplorer(solutionImage, studentImage, out, title);
+		         System.out.println("GUI displayed. Close the window when you're done examining the differences.");
+		   	 });
+		     
+		     // In another thread or class:
 	         System.in.read();
+		     System.out.println("Images don't match! Opening GUI for comparison: " + filterName);
+
 	     } catch (Exception e) {
-	         System.err.println("Error reading input: " + e.getMessage());
+	    	 //You must pass the filters one-by-one. 
+	    	 System.err.println("Error reading input: " + e.getMessage());
 	     }
 	     
-	     System.out.println("Continuing with test failure...");
-	 }
+ 	 }
 	
 
 }

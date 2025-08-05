@@ -173,6 +173,6 @@ public class Location
 	@Override
 	public String toString()
 	{
-		return "Location at row: " + row + ", column: " + column;
+		return "(" + row + "," + column + ")";
 	}
 }

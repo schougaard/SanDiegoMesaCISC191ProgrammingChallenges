@@ -36,6 +36,7 @@ public class Cell
 	 */
 	private final Location location;
 
+	// TODO: remove this. Model should be independent of View. So View can be changed.
 	/**
 	 * A cell has-a CellWidget associated with it
 	 */
@@ -144,6 +145,11 @@ public class Cell
 	{
 		this.type = history.pop();
 	}
+	
+	public String toString()
+	{
+		return "(" + location + "," + type + "," + direction + ")";
+	}
 
 	/**
 	 * TODO: check? It might be easier to get the cell widget associated with a cell this way.
@@ -157,5 +163,15 @@ public class Cell
 	public CellWidget getCellWidget()
 	{
 		return cellWidget;
+	}
+	
+	public boolean equals(Object other)
+	{
+		if (this == other) return true;
+		if (other == null) return false;
+		if (!(other instanceof Cell)) return false;
+		
+		Cell otherCell = (Cell) other;
+		return this.location.equals(otherCell.location) && this.type.equals(otherCell.type) && this.direction.equals(otherCell.direction); 
 	}
 }

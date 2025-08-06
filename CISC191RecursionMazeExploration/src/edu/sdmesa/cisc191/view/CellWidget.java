@@ -22,6 +22,8 @@
 package edu.sdmesa.cisc191.view;
 
 import java.awt.Color;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Hashtable;
 
 import javax.swing.JLabel;
@@ -71,6 +73,8 @@ public class CellWidget extends JPanel
 	public CellWidget(Cell initCell)
 	{
 		cell = initCell;
+		// Update when the cell changes
+		cell.addPropertyChangeListener((dummyEvent) -> {update();});
 
 		label = new JLabel("");
 		label.setForeground(Color.white);
@@ -119,4 +123,5 @@ public class CellWidget extends JPanel
 	{
 		this.cell = cell;
 	}
+
 }

@@ -26,21 +26,26 @@ import edu.sdmesa.cisc191.model.Cell.Direction;
  */
 public abstract class MazeSolver
 {
+	/**
+	 * TODO: ???
+	 */
 	private boolean cleared = false;
 
+	/**
+	 * A maze solver has a maze to solve
+	 */
 	private Maze maze;
+	
+	/**
+	 * TODO: ???
+	 */
 	private Maze ogMaze;
-	
-	
-	// TODO: does not belong here, should be in the view
-	private MazeController controller;
 	
 	/**
 	 * The current location to take the next step from.
 	 * There is a PATH from the entrance to the currentLocation.
 	 */
-	private Location currentLocation;
-	
+	private Location currentLocation;	
 
 	/**
 	 * Constructor.
@@ -48,16 +53,14 @@ public abstract class MazeSolver
 	 * @param maze       the maze to solve
 	 * @param controller the controller to call for GUI and maze manipulation
 	 */
-	public MazeSolver(Maze maze, MazeController controller)
+	public MazeSolver(Maze maze)
 	{
 		this.maze = maze;
 		this.ogMaze = new Maze(maze);
-		this.controller = controller;
 	}
 
 	/**
-	 * Find a way from the entrance of the maze to the exit, if possible
-	 * 
+	 * Find a complete way from the entrance of the maze to the exit, if possible
 	 */
 	public void solve()
 	{
@@ -66,7 +69,7 @@ public abstract class MazeSolver
 	
 	/**
 	 * 
-	 * Find a way from the currentLocation to the exit of the maze
+	 * Find a complete way from the currentLocation to the exit of the maze
 	 * @param currentLocation
 	 * @return true if a way can be found
 	 */
@@ -84,7 +87,6 @@ public abstract class MazeSolver
 	public void markAsEvaluating(Location location)
 	{
 		maze.getCellAtLocation(location).setType(Cell.Type.EVALUATING);
-		controller.update(location);
 	}
 
 	/**
@@ -99,17 +101,6 @@ public abstract class MazeSolver
 	public void markAsCurrent(Location location)
 	{
 		maze.getCellAtLocation(location).setType(Cell.Type.CURRENT);
-		controller.update(location);
-	}
-
-	/**
-	 * Gets the maze controller object.
-	 * 
-	 * @return the maze controller
-	 */
-	public MazeController getMazeController()
-	{
-		return controller;
 	}
 
 	/**
@@ -169,7 +160,6 @@ public abstract class MazeSolver
 	public void markAsSolution(Location location)
 	{
 		maze.markAsSolution(location);
-		controller.update(location);
 	}
 
 	/**
@@ -184,7 +174,6 @@ public abstract class MazeSolver
 	public void markAsWaiting(Location location)
 	{
 		maze.markAsWaiting(location);
-		controller.update(location);
 	}
 
 	/**
@@ -200,17 +189,6 @@ public abstract class MazeSolver
 	public void markAsVisited(Location location)
 	{
 		maze.markAsVisited(location);
-		controller.update(location);
-	}
-
-	/**
-	 * Sets the maze controller.
-	 * 
-	 * @param controller the maze controller
-	 */
-	public void setController(MazeController controller)
-	{
-		this.controller = controller;
 	}
 
 	/**
@@ -241,7 +219,6 @@ public abstract class MazeSolver
 	private void unmark(Location location)
 	{
 		maze.unmark(location);
-		controller.update(location);
 	}
 
 	/**
@@ -253,7 +230,6 @@ public abstract class MazeSolver
 	public void setLabelLeft(Location location)
 	{
 		maze.setLabelLeft(location);
-		controller.update(location);
 	}
 
 	/**
@@ -265,7 +241,6 @@ public abstract class MazeSolver
 	public void setLabelRight(Location location)
 	{
 		maze.setLabelRight(location);
-		controller.update(location);
 	}
 
 	/**
@@ -277,7 +252,6 @@ public abstract class MazeSolver
 	public void setLabelUp(Location location)
 	{
 		maze.setLabelUp(location);
-		controller.update(location);
 	}
 
 	/**
@@ -289,7 +263,6 @@ public abstract class MazeSolver
 	public void setLabelDown(Location location)
 	{
 		maze.setLabelDown(location);
-		controller.update(location);
 	}
 
 	/**

@@ -1,43 +1,47 @@
-package edu.sdmesa.cisc191.model;
+/**
+* Lead Author(s):
+* @author a; student ID
+* @author Full name; student ID
+* <<Add additional lead authors here>>
+*
+* Other Contributors:
+* Full name; student ID or contact information if not in class
+* <<Add additional contributors (mentors, tutors, friends) here, with contact information>>
+*
+* References:
+* Morelli, R., & Walde, R. (2016).
+* Java, Java, Java: Object-Oriented Problem Solving
+* https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+*
+* <<Add more references here>>
+*
+* Version: 2025-08-06
+*/
+package edu.sdmesa.cisc191.view;
 
 import edu.sdmesa.cisc191.controller.MazeController;
+import edu.sdmesa.cisc191.model.Location;
+import edu.sdmesa.cisc191.model.Maze;
+import edu.sdmesa.cisc191.model.MazeSolver;
 
 /**
- * Lead Author(s):
- * 
- * @author
- * @author
- *         <<add additional lead authors here, with a full first and last name>>
- * 
- *         Other contributors:
- *         <<add additional contributors (mentors, tutors, friends) here, with
- *         contact information>>
- * 
- *         References:
- *         Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented
- *         Problem Solving.
- *         Retrieved from
- *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
- * 
- *         <<add more references here>>
- * 
- *         Version/date:
- * 
- *         Responsibilities of class:
- * 
+ * Purpose: The responsibility of GUIDepthFirstSolver is ...
+ *
+ * GUIDepthFirstSolver is-a ...
+ * GUIDepthFirstSolver is ...
  */
 
-// TODO: implement and remove all TODOs
+// TODO: should be MazeSolverGUI (or MazeSolverView) which has-a controller and has-a maze solver
 
-public class DepthFirstSolver extends MazeSolver
+public class GUIDepthFirstSolver extends MazeSolver
 {
-	//private MazeController controller;
 	
-	public DepthFirstSolver(Maze maze)
-	//public DepthFirstSolver(Maze maze, MazeController controller)
+	private MazeController controller;
+	
+	public GUIDepthFirstSolver(Maze maze, MazeController controller)
 	{
 		super(maze);
-		//this.controller = controller;
+		this.controller = controller;
 	}
 
 	/**
@@ -55,11 +59,11 @@ public class DepthFirstSolver extends MazeSolver
 
 		// set cleared flag when recursion is done
 		setCleared(true);
-//		if (!controller.isPaused())
-//		{
-//			controller.togglePause();
-//		}
-//		controller.mazeCleared();
+		if (!controller.isPaused())
+		{
+			controller.togglePause();
+		}
+		controller.mazeCleared();
 	}
 
 	/**
@@ -71,10 +75,20 @@ public class DepthFirstSolver extends MazeSolver
 	 */
 	public boolean solveRecursive(Location currentLocation)
 	{
-//		if (Thread.currentThread().isInterrupted())
-//		{
-//			return false;
-//		}
+		if (Thread.currentThread().isInterrupted())
+		{
+			return false;
+		}
+		
+		try
+		{
+			Thread.sleep(controller.getMillis());
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// mark as currently on this cell
 		setCurrentLocation(currentLocation);
@@ -106,6 +120,7 @@ public class DepthFirstSolver extends MazeSolver
 		}
 		catch (Exception e)
 		{
+
 		}
 
 		setLabelLeft(currentLocation);
@@ -127,6 +142,7 @@ public class DepthFirstSolver extends MazeSolver
 		}
 		catch (Exception e)
 		{
+
 		}
 
 		setLabelDown(currentLocation);
@@ -148,6 +164,7 @@ public class DepthFirstSolver extends MazeSolver
 		}
 		catch (Exception e)
 		{
+
 		}
 
 		setLabelUp(currentLocation);
@@ -166,9 +183,11 @@ public class DepthFirstSolver extends MazeSolver
 		}
 		catch (Exception e)
 		{
+
 		}
 		
 		markAsVisited(currentLocation);
 		return false;
 	}
+
 }

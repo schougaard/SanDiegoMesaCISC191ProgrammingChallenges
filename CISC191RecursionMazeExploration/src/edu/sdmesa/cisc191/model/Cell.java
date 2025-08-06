@@ -19,6 +19,9 @@
 */
 package edu.sdmesa.cisc191.model;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.Stack;
 
 import edu.sdmesa.cisc191.view.CellWidget;
@@ -35,6 +38,11 @@ public class Cell
 	 * A cell has-a location in the maze
 	 */
 	private final Location location;
+	
+	/**
+	 * A cell has many listeners
+	 */
+	private final ArrayList<PropertyChangeListener> propertyChangeListeners = new ArrayList<PropertyChangeListener>();
 	
 	/**
 	 * 
@@ -90,6 +98,11 @@ public class Cell
 		history = otherCell.history;
 	}
 	
+	public void addPropertyChangeListener(PropertyChangeListener listener)
+	{
+		propertyChangeListeners.add(listener);
+	}
+	
 	/**
 	 * @return the location
 	 */
@@ -112,6 +125,7 @@ public class Cell
 	public void setDirection(Direction direction)
 	{
 		this.direction = direction;
+		updatePropertyChangeListeners();
 	}
 
 	/**
@@ -129,6 +143,7 @@ public class Cell
 	{
 		history.add(this.type);
 		this.type = type;
+		updatePropertyChangeListeners();
 	}
 
 	/**
@@ -138,6 +153,7 @@ public class Cell
 	public void undoSetType()
 	{
 		this.type = history.pop();
+		updatePropertyChangeListeners();
 	}
 	
 	public String toString()
@@ -159,4 +175,13 @@ public class Cell
 		Cell otherCell = (Cell) other;
 		return this.location.equals(otherCell.location) && this.type.equals(otherCell.type) && this.direction.equals(otherCell.direction); 
 	}
+	
+	private void updatePropertyChangeListeners()
+	{
+		for(PropertyChangeListener listener: propertyChangeListeners)
+		{
+			listener.propertyChange(null); // null is good enough
+		}
+	}
+
 }

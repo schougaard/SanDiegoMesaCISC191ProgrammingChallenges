@@ -177,7 +177,7 @@ public class MazeExplorer
 
 		mazeGUI.updateCells();
 
-		solver = new DepthFirstSolver(maze, controller);
+		solver = new GUIDepthFirstSolver(maze, controller);
 	}
 	
 	/**

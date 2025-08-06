@@ -15,7 +15,8 @@ import edu.sdmesa.cisc191.Logic;
 
 /**
  * Displays a picture and lets you explore the picture by displaying the row,
- * column, red, green, and Logic.blur values of the pixel at the cursor when you click
+ * column, red, green, and Logic.blur values of the pixel at the cursor when you
+ * click
  * a mouse button or press and hold a mouse button while moving the cursor. It
  * also lets you zoom in or out. You can also type in a row and column value to
  * see the color at that location.
@@ -27,10 +28,12 @@ import edu.sdmesa.cisc191.Logic;
  * @author Keith McDermottt, gte047w@cc.gatech.edu
  * @author Barb Ericson ericson@cc.gatech.edu
  */
-public class PictureExplorer implements MouseMotionListener, ActionListener, MouseListener
+public class PictureExplorer
+		implements MouseMotionListener, ActionListener, MouseListener
 {
 	// Folder where images, icons are kept
-	public static final String imageFolderName = "images" + FileSystems.getDefault().getSeparator();
+	public static final String imageFolderName = "images"
+			+ FileSystems.getDefault().getSeparator();
 
 	// current indicies
 	/** row index */
@@ -94,11 +97,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
 	/** The picture being explored */
 	private DigitalPicture picture;
-	
+
 	/* if using side by side */
 	private DigitalPicture pictureLeft;
 	private DigitalPicture pictureRight;
-
 
 	/** The image icon used to display the picture */
 	private ImageIcon scrollImageIcon;
@@ -109,12 +111,14 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	/** the zoom factor (amount to zoom) */
 	private double zoomFactor;
 
-	/** the number system to use, 0 means starting at 0, 1 means starting at 1 */
+	/**
+	 * the number system to use, 0 means starting at 0, 1 means starting at 1
+	 */
 	private int numberBase = 0;
-	
+
 	/** used for close button to force test to continue **/
-	PipedOutputStream out; 
-	
+	PipedOutputStream out;
+
 	/** This is a test PictureExplorer used in JUnit **/
 	private boolean testing = false;
 
@@ -133,7 +137,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		createWindow();
 
 	}
-	
+
 	public PictureExplorer(DigitalPicture picture, boolean testing)
 	{
 		// set the fields
@@ -145,27 +149,36 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		createWindow();
 
 	}
-	
-	public PictureExplorer(DigitalPicture leftPicture, DigitalPicture rightPicture) {
-		this.pictureLeft = leftPicture; 
-		this.pictureRight  = rightPicture; 
+
+	public PictureExplorer(DigitalPicture leftPicture,
+			DigitalPicture rightPicture)
+	{
+		this.pictureLeft = leftPicture;
+		this.pictureRight = rightPicture;
 		this.picture = combinePictures(leftPicture, rightPicture);
 		zoomFactor = 1;
 		createWindow();
 	}
-	
-	public PictureExplorer(Picture solutionImage, Picture studentImage, PipedOutputStream out, String title) {
+
+	public PictureExplorer(Picture solutionImage, Picture studentImage,
+			PipedOutputStream out, String title)
+	{
 		this(solutionImage, studentImage);
 		this.out = out;
 		this.setTitle(title);
 	}
 
-	public void openSep() {
-		if(pictureLeft != null && pictureRight != null) {
+	public void openSep()
+	{
+		if (pictureLeft != null && pictureRight != null)
+		{
 			String title = pictureFrame.getTitle();
-			String filter =title.substring(title.indexOf("["), title.indexOf("]")+1);
-			new PictureExplorer(pictureLeft, true).setTitle("Expected - "+filter);
-			new PictureExplorer(pictureRight, true).setTitle("Your Result - "+filter);
+			String filter = title.substring(title.indexOf("["),
+					title.indexOf("]") + 1);
+			new PictureExplorer(pictureLeft, true)
+					.setTitle("Expected - " + filter);
+			new PictureExplorer(pictureRight, true)
+					.setTitle("Your Result - " + filter);
 		}
 	}
 
@@ -194,45 +207,60 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	{
 		pictureFrame = new JFrame(); // create the JFrame
 		pictureFrame.setResizable(true); // allow the user to resize it
-		pictureFrame.getContentPane().setLayout(new BorderLayout()); // use border layout
-		pictureFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // when close stop
+		pictureFrame.getContentPane().setLayout(new BorderLayout()); // use
+																		// border
+																		// layout
+		pictureFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // when
+																		// close
+																		// stop
 		pictureFrame.setTitle(picture.getTitle());
 		PictureExplorerFocusTraversalPolicy newPolicy = new PictureExplorerFocusTraversalPolicy();
 		pictureFrame.setFocusTraversalPolicy(newPolicy);
 		pictureFrame.setResizable(false);
 		pictureFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
-		if(pictureLeft != null) {
-			//helper only for testing
-			pictureFrame.addWindowListener(new WindowAdapter() {
-			    @Override
-			    public void windowClosing(WindowEvent e) {
-					try {
+
+		if (pictureLeft != null)
+		{
+			// helper only for testing
+			pictureFrame.addWindowListener(new WindowAdapter()
+			{
+				@Override
+				public void windowClosing(WindowEvent e)
+				{
+					try
+					{
 						out.write('\n');
-						
+
 						out.flush();
-					} catch (IOException e1) {
+					}
+					catch (IOException e1)
+					{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					pictureFrame.dispose();
-					
-			    }
+
+				}
 			});
-		} else if(testing){
-			pictureFrame.addWindowListener(new WindowAdapter() {
-			    @Override
-			    public void windowClosing(WindowEvent e) {
-					
+		}
+		else if (testing)
+		{
+			pictureFrame.addWindowListener(new WindowAdapter()
+			{
+				@Override
+				public void windowClosing(WindowEvent e)
+				{
+
 					pictureFrame.dispose();
-					
-			    }
+
+				}
 			});
-		} else {
+		}
+		else
+		{
 			pictureFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		
-		
+
 	}
 
 	/**
@@ -286,13 +314,12 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		imageDisplay = new ImageDisplay(bimg);
 		imageDisplay.addMouseMotionListener(this);
 		imageDisplay.addMouseListener(this);
-		imageDisplay.setToolTipText("Click a mouse button on a pixel to see the pixel information");
+		imageDisplay.setToolTipText(
+				"Click a mouse button on a pixel to see the pixel information");
 		scrollPane.setViewportView(imageDisplay);
 		pictureFrame.getContentPane().add(scrollPane, BorderLayout.CENTER);
- 
-	}
 
- 
+	}
 
 	/**
 	 * Creates the JFrame and sets everything up
@@ -324,8 +351,12 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	private void setUpNextAndPreviousButtons()
 	{
 		// create the image icons for the buttons
-		Icon prevIcon = new ImageIcon(PictureExplorer.imageFolderName + "leftArrow.gif", "previous index");
-		Icon nextIcon = new ImageIcon(PictureExplorer.imageFolderName + "rightArrow.gif", "next index");
+		Icon prevIcon = new ImageIcon(
+				PictureExplorer.imageFolderName + "leftArrow.gif",
+				"previous index");
+		Icon nextIcon = new ImageIcon(
+				PictureExplorer.imageFolderName + "rightArrow.gif",
+				"next index");
 		// create the arrow buttons
 		colPrevButton = new JButton(prevIcon);
 		colNextButton = new JButton(nextIcon);
@@ -334,7 +365,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
 		// set the tool tip text
 		colNextButton.setToolTipText("Click to go to the next column value");
-		colPrevButton.setToolTipText("Click to go to the previous column value");
+		colPrevButton
+				.setToolTipText("Click to go to the previous column value");
 		rowNextButton.setToolTipText("Click to go to the next row value");
 		rowPrevButton.setToolTipText("Click to go to the previous row value");
 
@@ -356,8 +388,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 			public void actionPerformed(ActionEvent evt)
 			{
 				colIndex--;
-				if (colIndex < 0)
-					colIndex = 0;
+				if (colIndex < 0) colIndex = 0;
 				displayPixelInformation(colIndex, rowIndex);
 			}
 		});
@@ -368,8 +399,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 			public void actionPerformed(ActionEvent evt)
 			{
 				rowIndex--;
-				if (rowIndex < 0)
-					rowIndex = 0;
+				if (rowIndex < 0) rowIndex = 0;
 				displayPixelInformation(colIndex, rowIndex);
 			}
 		});
@@ -495,8 +525,6 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		bValue.setFont(labelFont);
 		colorLabel.setFont(labelFont);
 		colorPanel.setPreferredSize(new Dimension(25, 25));
-		
-		
 
 		// add items to the color information panel
 		colorInfoPanel.add(rValue);
@@ -504,8 +532,9 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		colorInfoPanel.add(bValue);
 		colorInfoPanel.add(colorLabel);
 		colorInfoPanel.add(colorPanel);
-		//Button to open images separately 
-		if(pictureLeft != null ) {
+		// Button to open images separately
+		if (pictureLeft != null)
+		{
 			JButton open = new JButton("Open in Separate Windows");
 			open.setActionCommand("openSep");
 			open.addActionListener(this);
@@ -516,7 +545,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	}
 
 	/**
-	 * Creates the North JPanel with all the pixel location and color information
+	 * Creates the North JPanel with all the pixel location and color
+	 * information
 	 */
 	private void createInfoPanel()
 	{
@@ -525,7 +555,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		infoPanel.setLayout(new BorderLayout());
 
 		// create the font
-		Font largerFont = new Font(infoPanel.getFont().getName(), infoPanel.getFont().getStyle(), 14);
+		Font largerFont = new Font(infoPanel.getFont().getName(),
+				infoPanel.getFont().getStyle(), 14);
 
 		// create the pixel location panel
 		JPanel locationPanel = createLocationPanel(largerFont);
@@ -542,7 +573,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	}
 
 	/**
-	 * Method to check that the current position is in the viewing area and if not
+	 * Method to check that the current position is in the viewing area and if
+	 * not
 	 * scroll to center the current position if possible
 	 */
 	public void checkScroll()
@@ -566,26 +598,26 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 			int rectMaxY = rectMinY + rectHeight - 1;
 
 			// get the maximum possible x and y index
-			int macolIndexX = (int) (picture.getWidth() * zoomFactor) - rectWidth - 1;
-			int macolIndexY = (int) (picture.getHeight() * zoomFactor) - rectHeight - 1;
+			int macolIndexX = (int) (picture.getWidth() * zoomFactor)
+					- rectWidth - 1;
+			int macolIndexY = (int) (picture.getHeight() * zoomFactor)
+					- rectHeight - 1;
 
-			// calculate how to position the current position in the middle of the viewing
+			// calculate how to position the current position in the middle of
+			// the viewing
 			// area
 			int viewX = xPos - (int) (rectWidth / 2);
 			int viewY = yPos - (int) (rectHeight / 2);
 
 			// reposition the viewX and viewY if outside allowed values
-			if (viewX < 0)
-				viewX = 0;
-			else if (viewX > macolIndexX)
-				viewX = macolIndexX;
-			if (viewY < 0)
-				viewY = 0;
-			else if (viewY > macolIndexY)
-				viewY = macolIndexY;
+			if (viewX < 0) viewX = 0;
+			else if (viewX > macolIndexX) viewX = macolIndexX;
+			if (viewY < 0) viewY = 0;
+			else if (viewY > macolIndexY) viewY = macolIndexY;
 
 			// move the viewport upper left point
-			viewport.scrollRectToVisible(new Rectangle(viewX, viewY, rectWidth, rectHeight));
+			viewport.scrollRectToVisible(
+					new Rectangle(viewX, viewY, rectWidth, rectHeight));
 		}
 	}
 
@@ -606,7 +638,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		BufferedImage bimg = picture.getBufferedImage();
 
 		// set the scroll image icon to the new image
-		imageDisplay.setImage(bimg.getScaledInstance(width, height, Image.SCALE_DEFAULT));
+		imageDisplay.setImage(
+				bimg.getScaledInstance(width, height, Image.SCALE_DEFAULT));
 		imageDisplay.setCurrentX((int) (colIndex * zoomFactor));
 		imageDisplay.setCurrentY((int) (rowIndex * zoomFactor));
 		imageDisplay.revalidate();
@@ -645,7 +678,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	private boolean isLocationInPicture(int column, int row)
 	{
 		boolean result = false; // the default is false
-		if (column >= 0 && column < picture.getWidth() && row >= 0 && row < picture.getHeight())
+		if (column >= 0 && column < picture.getWidth() && row >= 0
+				&& row < picture.getHeight())
 			result = true;
 
 		return result;
@@ -668,7 +702,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 			x = x - numberBase;
 			y = Integer.parseInt(yString);
 			y = y - numberBase;
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 		}
 
@@ -702,9 +737,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 			rValue.setText("R: " + pixel.getRed());
 			gValue.setText("G: " + pixel.getGreen());
 			bValue.setText("B: " + pixel.getBlue());
-			colorPanel.setBackground(new Color(pixel.getRed(), pixel.getGreen(), pixel.getBlue()));
+			colorPanel.setBackground(new Color(pixel.getRed(), pixel.getGreen(),
+					pixel.getBlue()));
 
-		} else
+		}
+		else
 		{
 			clearInformation();
 		}
@@ -736,7 +773,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	}
 
 	/**
-	 * Method to clear the labels and current color and reset the current index to
+	 * Method to clear the labels and current color and reset the current index
+	 * to
 	 * -1
 	 */
 	private void clearInformation()
@@ -828,10 +866,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	 */
 	public void actionPerformed(ActionEvent a)
 	{
-		if(a.getActionCommand().equals("openSep")) {
+		if (a.getActionCommand().equals("openSep"))
+		{
 			this.openSep();
 		}
-		
+
 		if (a.getActionCommand().equals("Update"))
 		{
 			this.repaint();
@@ -891,29 +930,28 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 	/**
 	 * Class for establishing the focus for the textfields
 	 */
-	private class PictureExplorerFocusTraversalPolicy extends FocusTraversalPolicy
+	private class PictureExplorerFocusTraversalPolicy
+			extends FocusTraversalPolicy
 	{
 
 		/**
 		 * Method to get the next component for focus
 		 */
-		public Component getComponentAfter(Container focusCycleRoot, Component aComponent)
+		public Component getComponentAfter(Container focusCycleRoot,
+				Component aComponent)
 		{
-			if (aComponent.equals(colValue))
-				return rowValue;
-			else
-				return colValue;
+			if (aComponent.equals(colValue)) return rowValue;
+			else return colValue;
 		}
 
 		/**
 		 * Method to get the previous component for focus
 		 */
-		public Component getComponentBefore(Container focusCycleRoot, Component aComponent)
+		public Component getComponentBefore(Container focusCycleRoot,
+				Component aComponent)
 		{
-			if (aComponent.equals(colValue))
-				return rowValue;
-			else
-				return colValue;
+			if (aComponent.equals(colValue)) return rowValue;
+			else return colValue;
 		}
 
 		public Component getDefaultComponent(Container focusCycleRoot)
@@ -931,8 +969,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 			return colValue;
 		}
 	}
-	
-	private DigitalPicture combinePictures(DigitalPicture pic1, DigitalPicture pic2) {
+
+	private DigitalPicture combinePictures(DigitalPicture pic1,
+			DigitalPicture pic2)
+	{
 		BufferedImage img1 = pic1.getBufferedImage();
 		BufferedImage img2 = pic2.getBufferedImage();
 
@@ -945,9 +985,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 		Color separatorColor = Color.BLACK;
 
 		int combinedWidth = img1.getWidth() + separatorWidth + img2.getWidth();
-		int combinedHeight = Math.max(img1.getHeight(), img2.getHeight()) + labelHeight + padding;
+		int combinedHeight = Math.max(img1.getHeight(), img2.getHeight())
+				+ labelHeight + padding;
 
-		BufferedImage combined = new BufferedImage(combinedWidth, combinedHeight, BufferedImage.TYPE_INT_RGB);
+		BufferedImage combined = new BufferedImage(combinedWidth,
+				combinedHeight, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = combined.createGraphics();
 
 		// Fill background white
@@ -966,7 +1008,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
 		// Right label: "Student Solution"
 		String label2 = "Your Result";
-		int label2X = img1.getWidth() + separatorWidth + (img2.getWidth() - fm.stringWidth(label2)) / 2;
+		int label2X = img1.getWidth() + separatorWidth
+				+ (img2.getWidth() - fm.stringWidth(label2)) / 2;
 		g.drawString(label2, label2X, fm.getAscent() + padding);
 
 		// Draw left image
@@ -974,19 +1017,21 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
 		// Draw separator
 		g.setColor(separatorColor);
-		g.fillRect(img1.getWidth(), labelHeight + padding, separatorWidth, combinedHeight - labelHeight - padding);
+		g.fillRect(img1.getWidth(), labelHeight + padding, separatorWidth,
+				combinedHeight - labelHeight - padding);
 
 		// Draw right image
-		g.drawImage(img2, img1.getWidth() + separatorWidth, labelHeight + padding, null);
+		g.drawImage(img2, img1.getWidth() + separatorWidth,
+				labelHeight + padding, null);
 
 		g.dispose();
 
 		return new SimplePicture(combined);
 	}
-	
-	public void setDefaultExit() {
+
+	public void setDefaultExit()
+	{
 		this.pictureFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 
 }

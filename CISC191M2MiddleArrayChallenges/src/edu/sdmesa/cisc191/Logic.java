@@ -1,9 +1,7 @@
 package edu.sdmesa.cisc191;
 
 import java.awt.Color;
-
 import edu.gatech.cc.DigitalPicture;
-import edu.gatech.cc.Picture;
 import edu.gatech.cc.Pixel;
 
 /**
@@ -32,38 +30,6 @@ import edu.gatech.cc.Pixel;
  */
 public class Logic
 {
-
-	/*
-	 * Use the main method in this file to visually inspect the "filters" that
-	 * you are
-	 * applying to the image(s)! Please see the comment(s) for examples.
-	 */
-	public static void main(String[] arg)
-	{
-
-		// Create a myPicture object from the provided file name.
-		// If you use your own image, be sure to place it in the images folder
-		// of this project
-		DigitalPicture myPicture = new Picture("bees.png");
-		myPicture.setTitle("Original Image");
-
-		// Use the explore method of the object to view the picture.
-		myPicture.explore();
-
-		/*
-		 * Apply the filter then invoke explorer again to view the changes. :)
-		 * ---------------------------------------------------------------------
-		 * ---------------
-		 */
-
-		// Apply one of the filters then view the image again with explore!
-		zeroBlue(myPicture); // <----- Change this to one of the other filters
-								// that you have written
-		myPicture.setTitle("After Filter"); // change the title of the JFrame
-		myPicture.explore();
-
-	}
-
 	/**
 	 * Alters the picture so that each pixel's blue channel has been zeroed out.
 	 * All
@@ -75,54 +41,112 @@ public class Logic
 	{
 
 		// obtain a representation of the picture as a 2D array of Pixel objects
-		Pixel[][] pixel2D = picture.getPixels2D();
+		Pixel[][] pixels2D = picture.getPixels2D();
 
 		// Traverse the 2D array
-		for (int row = 0; row < pixel2D.length; row++)
+		for (int row = 0; row < pixels2D.length; row++)
 		{
-			for (int col = 0; col < pixel2D[row].length; col++)
+			for (int col = 0; col < pixels2D[row].length; col++)
 			{
 				// invoke the setBlue method on each Pixel object
-				pixel2D[row][col].setBlue(0);
+				pixels2D[row][col].setBlue(0);
 			}
 		}
 
 	}
-
-	public static void blur(DigitalPicture studentSol)
+	
+	/**
+	 * Purpose: Make the picture black & white, and gray
+	 * @param picture
+	 */
+	public static void blackAndWhite(DigitalPicture picture)
 	{
-		// TODO Auto-generated method stub
+		// TODO Implement this method
+
+	}
+	
+	/**
+	 * Purpose: Invert the colors of image
+	 * @param picture
+	 */
+	public static void negative(DigitalPicture picture)
+	{
+		// TODO Implement this method
+
+	}
+	
+	/**
+	 * Purpose: Simulate that the picture was taken at sunset
+	 * @param picture
+	 * @param redMultiplier Factor increase of the red (usually > 1)
+	 * @param greenBlueMultiplier Factor increase of green and blue (usually < 1)
+	 */
+	public static void makeSunset(DigitalPicture picture, double redMultiplier,
+			double greenBlueMultiplier)
+	{
+		// TODO Implement this method
 
 	}
 
-	public static void flipHorizontal(DigitalPicture studentSol)
+	/**
+	 * Purpose: Flip the image left to right (as used in many selfie cams)
+	 * @param picture
+	 */
+	public static void flipHorizontal(DigitalPicture picture)
 	{
-		// TODO Auto-generated method stub
-		studentSol.getPixels2D();
+		// TODO Implement this method
+		
 	}
 
-	public static void flipVertical(DigitalPicture studentSol)
+	/**
+	 * Purpose: Turn the picture up-side-down
+	 * @param picture
+	 */
+	public static void flipVertical(DigitalPicture picture)
 	{
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void negative(DigitalPicture studentSol)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void blackAndWhite(DigitalPicture studentSol)
-	{
-		// TODO Auto-generated method stub
+		// TODO Implement this method
 
 	}
 
-	public static void makeSunset(DigitalPicture studentSol, double d, double e)
+	/**
+	 * Purpose: Make the image less sharp
+	 * @param picture
+	 */
+	public static void blur(DigitalPicture picture)
 	{
-		// TODO Auto-generated method stub
+		// TODO Implement this method
 
 	}
+
+	/*
+	 * Use the main method in this file to visually inspect the "filters" that
+	 * you are
+	 * applying to the image(s)! Please see the comment(s) for examples.
+	 */
+//	public static void main(String[] arg)
+//	{
+//
+//		// Create a myPicture object from the provided file name.
+//		// If you use your own image, be sure to place it in the images folder
+//		// of this project
+//		DigitalPicture myPicture = new Picture("bees.png");
+//		myPicture.setTitle("Original Image");
+//
+//		// Use the explore method of the object to view the picture.
+//		myPicture.explore();
+//
+//		/*
+//		 * Apply the filter then invoke explorer again to view the changes. :)
+//		 * ---------------------------------------------------------------------
+//		 * ---------------
+//		 */
+//
+//		// Apply one of the filters then view the image again with explore!
+//		zeroBlue(myPicture); // <----- Change this to one of the other filters
+//								// that you have written
+//		myPicture.setTitle("After Filter"); // change the title of the JFrame
+//		myPicture.explore();
+//
+//	}
 
 }

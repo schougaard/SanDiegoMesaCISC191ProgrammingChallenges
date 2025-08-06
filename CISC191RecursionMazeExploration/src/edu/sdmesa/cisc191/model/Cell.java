@@ -35,12 +35,6 @@ public class Cell
 	 * A cell has-a location in the maze
 	 */
 	private final Location location;
-
-	// TODO: remove this. Model should be independent of View. So View can be changed.
-	/**
-	 * A cell has-a CellWidget associated with it
-	 */
-	private CellWidget cellWidget;
 	
 	/**
 	 * 
@@ -155,16 +149,7 @@ public class Cell
 	 * TODO: check? It might be easier to get the cell widget associated with a cell this way.
 	 * @param cellWidget
 	 */
-	public void setCellWidget(CellWidget cellWidget)
-	{
-		this.cellWidget = cellWidget;
-	}
 
-	public CellWidget getCellWidget()
-	{
-		return cellWidget;
-	}
-	
 	public boolean equals(Object other)
 	{
 		if (this == other) return true;

@@ -3,6 +3,8 @@ package edu.sdmesa.cisc191.model;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import edu.sdmesa.cisc191.model.Cell.Direction;
+
 /**
  * Lead Author(s):
  * 
@@ -50,7 +52,7 @@ public class Maze
 	/**
 	 * A maze has-many cells
 	 */
-	private Cell[][] cells;
+	private final Cell[][] cells;
 
 	/**
 	 * Create a maze with entry, exit and walls on the outer perimeter, except
@@ -294,6 +296,130 @@ public class Maze
 		if (cell.getLocation().isOuterPerimeter()) return false;
 
 		return true;
+	}
+	
+	/**
+	 * Color a cell as currently being checked to see if the cell is a path.
+	 * This does not set the internal state of the cell to anything else like
+	 * the methods that start with the word "mark." The cell will simply be
+	 * colored light gray.
+	 * 
+	 * @param row The row of the cell to be colored as checking.
+	 * @param col The column of the cell to be colored as checking.
+	 */
+	public void markAsEvaluating(Location location)
+	{
+		getCellAtLocation(location).setType(Cell.Type.EVALUATING);
+	}
+
+	/**
+	 * Color a cell as that we're currently on it. Think of it as where you
+	 * currently are in the maze. This does not set the internal state of the
+	 * cell to anything else like the methods that start with the word "mark."
+	 * The cell will simply be colored blue.
+	 * 
+	 * @param row The row of the cell to be colored as current.
+	 * @param col The column of the cell to be colored as current.
+	 */
+	public void markAsCurrent(Location location)
+	{
+		getCellAtLocation(location).setType(Cell.Type.CURRENT);
+	}
+	
+	/**
+	 * Mark a cell as the solution. This will internally change the state
+	 * of the cell from PATH to SOLUTION. The cell will also be colored
+	 * green.
+	 * 
+	 * @param row The row of the cell to set solution as.
+	 * @param col The column of the cell to set solution as.
+	 */
+	public void markAsSolution(Location location)
+	{
+		getCellAtLocation(location).setType(Cell.Type.SOLUTION);
+	}
+
+	/**
+	 * Mark a cell as waiting. Waiting means we've walked to that cell,
+	 * and is waiting to see if there are paths ahead that lead to the exit
+	 * or a dead end. This will internally change the state of the cell
+	 * from PATH to WAITING. The cell will also be colored dark gray.
+	 * 
+	 * @param row The row of the cell to set the waiting state as.
+	 * @param col The column of the cell to set the waiting state as.
+	 */
+	public void markAsWaiting(Location location)
+	{
+		getCellAtLocation(location).setType(Cell.Type.WAITING);
+	}
+
+	/**
+	 * Mark a cell as visited. Visited means we're done checking every
+	 * direction from that cell. It means no matter going up, left, right,
+	 * or down from that cell will lead us to a dead end. This will internally
+	 * change the state of the cell from PATH to VISITED. The cell will also
+	 * be colored red.
+	 * 
+	 * @param row The row of the cell to set the waiting state as.
+	 * @param col The column of the cell to set the waiting state as.
+	 */
+	public void markAsVisited(Location location)
+	{
+		getCellAtLocation(location).setType(Cell.Type.VISITED);
+	}
+	
+	/**
+	 * Unmarks the cell to the original type.
+	 * 
+	 * @param location the location of the cell to unmark.
+	 */
+	public void unmark(Location location)
+	{
+		getCellAtLocation(location).undoSetType();
+	}
+	
+	/**
+	 * Sets the text at row and col to "L".
+	 * 
+	 * @param row the row to set text at
+	 * @param col the column to set text at
+	 */
+	public void setLabelLeft(Location location)
+	{
+		getCellAtLocation(location).setDirection(Direction.LEFT);
+	}
+
+	/**
+	 * Sets the text at row and col to "R".
+	 * 
+	 * @param row the row to set text at
+	 * @param col the column to set text at
+	 */
+	public void setLabelRight(Location location)
+	{
+		getCellAtLocation(location).setDirection(Direction.RIGHT);
+	}
+
+	/**
+	 * Sets the text at row and col to "U".
+	 * 
+	 * @param row the row to set text at
+	 * @param col the column to set text at
+	 */
+	public void setLabelUp(Location location)
+	{
+		getCellAtLocation(location).setDirection(Direction.UP);
+	}
+
+	/**
+	 * Sets the text at row and col to "D".
+	 * 
+	 * @param row the row to set text at
+	 * @param col the column to set text at
+	 */
+	public void setLabelDown(Location location)
+	{
+		getCellAtLocation(location).setDirection(Direction.DOWN);
 	}
 
 	@Override

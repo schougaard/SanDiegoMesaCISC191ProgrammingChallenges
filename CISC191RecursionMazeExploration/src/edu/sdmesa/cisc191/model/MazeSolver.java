@@ -30,9 +30,17 @@ public abstract class MazeSolver
 
 	private Maze maze;
 	private Maze ogMaze;
+	
+	
 	// TODO: does not belong here, should be in the view
 	private MazeController controller;
+	
+	/**
+	 * The current location to take the next step from.
+	 * There is a PATH from the entrance to the currentLocation.
+	 */
 	private Location currentLocation;
+	
 
 	/**
 	 * Constructor.
@@ -47,8 +55,15 @@ public abstract class MazeSolver
 		this.controller = controller;
 	}
 
-	public abstract void solve();
-
+	/**
+	 * Find a way from the entrance of the maze to the exit, if possible
+	 * 
+	 */
+	public void solve()
+	{
+		solveRecursive(maze.entranceLocation);
+	}
+	
 	/**
 	 * 
 	 * Find a way from the currentLocation to the exit of the maze
@@ -153,7 +168,7 @@ public abstract class MazeSolver
 	 */
 	public void markAsSolution(Location location)
 	{
-		maze.getCellAtLocation(location).setType(Cell.Type.SOLUTION);
+		maze.markAsSolution(location);
 		controller.update(location);
 	}
 
@@ -168,7 +183,7 @@ public abstract class MazeSolver
 	 */
 	public void markAsWaiting(Location location)
 	{
-		maze.getCellAtLocation(location).setType(Cell.Type.WAITING);
+		maze.markAsWaiting(location);
 		controller.update(location);
 	}
 
@@ -184,7 +199,7 @@ public abstract class MazeSolver
 	 */
 	public void markAsVisited(Location location)
 	{
-		maze.getCellAtLocation(location).setType(Cell.Type.VISITED);
+		maze.markAsVisited(location);
 		controller.update(location);
 	}
 
@@ -225,7 +240,7 @@ public abstract class MazeSolver
 	 */
 	private void unmark(Location location)
 	{
-		maze.getCellAtLocation(location).undoSetType();
+		maze.unmark(location);
 		controller.update(location);
 	}
 
@@ -237,7 +252,7 @@ public abstract class MazeSolver
 	 */
 	public void setLabelLeft(Location location)
 	{
-		maze.getCellAtLocation(location).setDirection(Direction.LEFT);
+		maze.setLabelLeft(location);
 		controller.update(location);
 	}
 
@@ -249,7 +264,7 @@ public abstract class MazeSolver
 	 */
 	public void setLabelRight(Location location)
 	{
-		maze.getCellAtLocation(location).setDirection(Direction.RIGHT);
+		maze.setLabelRight(location);
 		controller.update(location);
 	}
 
@@ -261,7 +276,7 @@ public abstract class MazeSolver
 	 */
 	public void setLabelUp(Location location)
 	{
-		maze.getCellAtLocation(location).setDirection(Direction.UP);
+		maze.setLabelUp(location);
 		controller.update(location);
 	}
 
@@ -273,7 +288,7 @@ public abstract class MazeSolver
 	 */
 	public void setLabelDown(Location location)
 	{
-		maze.getCellAtLocation(location).setDirection(Direction.DOWN);
+		maze.setLabelDown(location);
 		controller.update(location);
 	}
 

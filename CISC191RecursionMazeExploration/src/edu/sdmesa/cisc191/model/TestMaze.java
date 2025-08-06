@@ -39,8 +39,14 @@ class TestMaze
 	void testMaze()
 	{
 		Maze maze = new Maze();
+		for (int row = 0; row < maze.getHeight(); row ++)
+		{
+			for (int col = 0; col < maze.getWidth(); col++)
+			{
+				assertNotNull(maze.getCellAtLocation(new Location(row, col)));
+			}
+		} 
 		System.out.println(maze);
-		fail("Not yet implemented");
 	}
 
 	/**
@@ -67,7 +73,7 @@ class TestMaze
 	@Test
 	void testGetWidth()
 	{
-		fail("Not yet implemented");
+		assertEquals(19, new Maze().getWidth());
 	}
 
 	/**
@@ -76,7 +82,7 @@ class TestMaze
 	@Test
 	void testGetHeight()
 	{
-		fail("Not yet implemented");
+		assertEquals(19, new Maze().getWidth());
 	}
 
 	/**
@@ -87,45 +93,45 @@ class TestMaze
 	{
 		Maze maze = new Maze();
 		System.out.println(maze);
-		assertEquals(maze.getCellAtLocation(new Location(0,0)), new Cell(new Location(0,0), Cell.Type.WALL));
-		assertEquals(maze.getCellAtLocation(new Location(maze.getHeight()-1,1)), new Cell(new Location(maze.getHeight()-1,1), Cell.Type.PATH));
+		assertEquals(new Cell(new Location(0,0), Cell.Type.WALL), maze.getCellAtLocation(new Location(0,0)));
+		assertEquals(new Cell(new Location(maze.getHeight()-1,1), Cell.Type.PATH), maze.getCellAtLocation(new Location(maze.getHeight()-1,1)));
 	}
 
-	/**
-	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellToRight(edu.sdmesa.cisc191.model.Cell)}.
-	 */
-	@Test
-	void testGetCellToRight()
-	{
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellToLeft(edu.sdmesa.cisc191.model.Cell)}.
-	 */
-	@Test
-	void testGetCellToLeft()
-	{
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellAbove(edu.sdmesa.cisc191.model.Cell)}.
-	 */
-	@Test
-	void testGetCellAbove()
-	{
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellBelow(edu.sdmesa.cisc191.model.Cell)}.
-	 */
-	@Test
-	void testGetCellBelow()
-	{
-		fail("Not yet implemented");
-	}
+//	/**
+//	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellToRight(edu.sdmesa.cisc191.model.Cell)}.
+//	 */
+//	@Test
+//	void testGetCellToRight()
+//	{
+//		fail("Not yet implemented");
+//	}
+//
+//	/**
+//	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellToLeft(edu.sdmesa.cisc191.model.Cell)}.
+//	 */
+//	@Test
+//	void testGetCellToLeft()
+//	{
+//		fail("Not yet implemented");
+//	}
+//
+//	/**
+//	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellAbove(edu.sdmesa.cisc191.model.Cell)}.
+//	 */
+//	@Test
+//	void testGetCellAbove()
+//	{
+//		fail("Not yet implemented");
+//	}
+//
+//	/**
+//	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getCellBelow(edu.sdmesa.cisc191.model.Cell)}.
+//	 */
+//	@Test
+//	void testGetCellBelow()
+//	{
+//		fail("Not yet implemented");
+//	}
 
 	/**
 	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getReachableCells(edu.sdmesa.cisc191.model.Cell)}.
@@ -145,14 +151,14 @@ class TestMaze
 		fail("Not yet implemented");
 	}
 
-	/**
-	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#toString()}.
-	 */
-	@Test
-	void testToString()
-	{
-		fail("Not yet implemented");
-	}
+//	/**
+//	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#toString()}.
+//	 */
+//	@Test
+//	void testToString()
+//	{
+//		fail("Not yet implemented");
+//	}
 
 	/**
 	 * Test method for {@link edu.sdmesa.cisc191.model.Maze#getEntranceCell()}.
@@ -161,7 +167,7 @@ class TestMaze
 	void testGetEntranceCell()
 	{
 		Maze maze = new Maze();
-		assertEquals(maze.getEntranceCell(), new Cell(new Location(maze.getHeight()-1,1), Cell.Type.PATH));
+		assertEquals(new Cell(new Location(maze.getHeight()-1,1), Cell.Type.PATH), maze.getEntranceCell());
 	}
 
 	/**
@@ -172,7 +178,7 @@ class TestMaze
 	{
 		Maze maze = new Maze();
 		// TODO: why -2?
-		assertEquals(maze.getExitCell(), new Cell(new Location(0, maze.getWidth()-2), Cell.Type.PATH));
+		assertEquals(new Cell(new Location(0, maze.getWidth()-2), Cell.Type.PATH), maze.getExitCell());
 	}
 
 	/**
@@ -181,7 +187,8 @@ class TestMaze
 	@Test
 	void testIsExit()
 	{
-		fail("Not yet implemented");
+		Maze maze = new Maze();
+		assertTrue(maze.isExit(new Location(0, maze.getWidth()-2)));
 	}
 
 	/**
@@ -190,7 +197,8 @@ class TestMaze
 	@Test
 	void testIsEntrance()
 	{
-		fail("Not yet implemented");
+		Maze maze = new Maze();
+		assertTrue(maze.isEntrance(new Location(maze.getHeight()-1, 1)));
 	}
 
 	/**

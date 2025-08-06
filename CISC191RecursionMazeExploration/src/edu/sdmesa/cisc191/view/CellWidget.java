@@ -72,9 +72,6 @@ public class CellWidget extends JPanel
 	{
 		cell = initCell;
 
-		// when a CellWidget is created, associate the cell with itself.
-		cell.setCellWidget(this);
-
 		label = new JLabel("");
 		label.setForeground(Color.white);
 		add(label);

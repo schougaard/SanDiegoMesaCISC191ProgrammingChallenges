@@ -1,7 +1,7 @@
 package edu.sdmesa.cisc191.model;
 
-import edu.sdmesa.cisc191.controller.MazeController;
-import edu.sdmesa.cisc191.model.Cell.Direction;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 /**
  * Lead Author(s):
@@ -26,26 +26,40 @@ import edu.sdmesa.cisc191.model.Cell.Direction;
  */
 public abstract class MazeSolver
 {
+	public final static int minWait = 1;
+	public final static int maxWait = 1000;
+	public static int pauseMillis = maxWait;
+
 	/**
-	 * TODO: ???
+	 * A maze solver has many listeners
+	 */
+	private final ArrayList<PropertyChangeListener> propertyChangeListeners = new ArrayList<PropertyChangeListener>();
+
+	/**
+	 * A maze solver has a state of whether the maze is cleared
 	 */
 	private boolean cleared = false;
+
+	/**
+	 * A maze solver can be paused
+	 */
+	private boolean paused = true;
 
 	/**
 	 * A maze solver has a maze to solve
 	 */
 	private Maze maze;
-	
+
 	/**
-	 * TODO: ???
+	 * A maze solver has an original maze to return to
 	 */
 	private Maze ogMaze;
-	
+
 	/**
 	 * The current location to take the next step from.
 	 * There is a PATH from the entrance to the currentLocation.
 	 */
-	private Location currentLocation;	
+	private Location currentLocation;
 
 	/**
 	 * Constructor.
@@ -60,16 +74,18 @@ public abstract class MazeSolver
 	}
 
 	/**
-	 * Find a complete way from the entrance of the maze to the exit, if possible
+	 * Find a complete way from the entrance of the maze to the exit, if
+	 * possible
 	 */
 	public void solve()
 	{
 		solveRecursive(maze.entranceLocation);
 	}
-	
+
 	/**
 	 * 
 	 * Find a complete way from the currentLocation to the exit of the maze
+	 * 
 	 * @param currentLocation
 	 * @return true if a way can be found
 	 */
@@ -87,6 +103,7 @@ public abstract class MazeSolver
 	public void markAsEvaluating(Location location)
 	{
 		maze.getCellAtLocation(location).setType(Cell.Type.EVALUATING);
+		waitForNextStep();
 	}
 
 	/**
@@ -101,6 +118,7 @@ public abstract class MazeSolver
 	public void markAsCurrent(Location location)
 	{
 		maze.getCellAtLocation(location).setType(Cell.Type.CURRENT);
+		waitForNextStep();
 	}
 
 	/**
@@ -122,13 +140,16 @@ public abstract class MazeSolver
 	 * @param col The column of the cell to check
 	 * @return true if the cell is a path; false if not.
 	 */
-	public boolean isPath(Location location)
+	public boolean isTraversable(Location location)
 	{
-		// need to store og type; otherwise will be overridden by evaluating
-		Cell.Type ogType = maze.getCellAtLocation(location).getType();
-
+		// this sets the cell type to EVALUATING.
 		markAsEvaluating(location);
-		if (ogMaze.isLocationOnPath(location) && ogType != Cell.Type.WAITING)
+
+		// if the location is a path and its last cell type was not WAITING;
+		// otherwise, if it was a WAITING cell, then it's not a traversable
+		// path.
+		if (ogMaze.isLocationOnPath(location) && maze
+				.getCellAtLocation(location).lastType() != Cell.Type.WAITING)
 		{
 			return true;
 		}
@@ -160,6 +181,7 @@ public abstract class MazeSolver
 	public void markAsSolution(Location location)
 	{
 		maze.markAsSolution(location);
+		waitForNextStep();
 	}
 
 	/**
@@ -174,6 +196,7 @@ public abstract class MazeSolver
 	public void markAsWaiting(Location location)
 	{
 		maze.markAsWaiting(location);
+		waitForNextStep();
 	}
 
 	/**
@@ -189,6 +212,7 @@ public abstract class MazeSolver
 	public void markAsVisited(Location location)
 	{
 		maze.markAsVisited(location);
+		waitForNextStep();
 	}
 
 	/**
@@ -199,6 +223,11 @@ public abstract class MazeSolver
 	public void setCleared(boolean value)
 	{
 		cleared = value;
+	}
+
+	public boolean getCleared()
+	{
+		return cleared;
 	}
 
 	/**
@@ -219,6 +248,7 @@ public abstract class MazeSolver
 	private void unmark(Location location)
 	{
 		maze.unmark(location);
+		waitForNextStep();
 	}
 
 	/**
@@ -280,5 +310,101 @@ public abstract class MazeSolver
 	{
 		this.currentLocation = currentLocation;
 		markAsCurrent(this.currentLocation);
+	}
+
+	/**
+	 * Proceed to the next step by notifying the thread that it can.
+	 */
+	public synchronized void nextStep()
+	{
+		notify();
+	}
+
+	public synchronized void waitForNextStep()
+	{
+		if (pauseMillis == 0)
+		{
+			return;
+		}
+
+		// if playing, then wait for a little
+		if (!isPaused())
+		{
+			sleep(pauseMillis);
+		}
+		else
+		{
+			try
+			{
+				wait();
+			}
+			catch (InterruptedException e)
+			{
+				// preserve the interrupted status
+				Thread.currentThread().interrupt();
+			}
+		}
+	}
+
+	/**
+	 * Make this thread sleep for a specified amount of time.
+	 * 
+	 * @param millis the time to wait in milliseconds
+	 */
+	private void sleep(int millis)
+	{
+		try
+		{
+			Thread.sleep(millis);
+		}
+		catch (InterruptedException e)
+		{
+			System.out.println("Sleep interrupt");
+			// e.printStackTrace();
+		}
+	}
+
+	public void pause()
+	{
+		paused = true;
+	}
+
+	public void unpause()
+	{
+		paused = false;
+		nextStep();
+	}
+
+	public boolean isPaused()
+	{
+		return paused;
+	}
+
+	public void togglePause()
+	{
+		if (isPaused())
+		{
+			unpause();
+		}
+		else
+		{
+			pause();
+		}
+	}
+
+	public void addPropertyChangeListener(PropertyChangeListener listener)
+	{
+		propertyChangeListeners.add(listener);
+	}
+
+	/**
+	 * Emit a maze cleared event.
+	 */
+	public void emitMazeClearedEvent()
+	{
+		for (PropertyChangeListener listener : propertyChangeListeners)
+		{
+			listener.propertyChange(null); // null is good enough
+		}
 	}
 }

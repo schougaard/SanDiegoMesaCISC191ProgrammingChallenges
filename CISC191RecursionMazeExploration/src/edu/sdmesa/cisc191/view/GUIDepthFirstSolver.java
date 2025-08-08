@@ -1,25 +1,26 @@
 /**
-* Lead Author(s):
-* @author a; student ID
-* @author Full name; student ID
-* <<Add additional lead authors here>>
-*
-* Other Contributors:
-* Full name; student ID or contact information if not in class
-* <<Add additional contributors (mentors, tutors, friends) here, with contact information>>
-*
-* References:
-* Morelli, R., & Walde, R. (2016).
-* Java, Java, Java: Object-Oriented Problem Solving
-* https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
-*
-* <<Add more references here>>
-*
-* Version: 2025-08-06
-*/
+ * Lead Author(s):
+ * 
+ * @author a; student ID
+ * @author Full name; student ID
+ *         <<Add additional lead authors here>>
+ *
+ *         Other Contributors:
+ *         Full name; student ID or contact information if not in class
+ *         <<Add additional contributors (mentors, tutors, friends) here, with
+ *         contact information>>
+ *
+ *         References:
+ *         Morelli, R., & Walde, R. (2016).
+ *         Java, Java, Java: Object-Oriented Problem Solving
+ *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ *
+ *         <<Add more references here>>
+ *
+ *         Version: 2025-08-06
+ */
 package edu.sdmesa.cisc191.view;
 
-import edu.sdmesa.cisc191.controller.MazeController;
 import edu.sdmesa.cisc191.model.Location;
 import edu.sdmesa.cisc191.model.Maze;
 import edu.sdmesa.cisc191.model.MazeSolver;
@@ -31,17 +32,14 @@ import edu.sdmesa.cisc191.model.MazeSolver;
  * GUIDepthFirstSolver is ...
  */
 
-// TODO: should be MazeSolverGUI (or MazeSolverView) which has-a controller and has-a maze solver
+// TODO: should be MazeSolverGUI (or MazeSolverView) which has-a controller and
+// has-a maze solver
 
 public class GUIDepthFirstSolver extends MazeSolver
 {
-	
-	private MazeController controller;
-	
-	public GUIDepthFirstSolver(Maze maze, MazeController controller)
+	public GUIDepthFirstSolver(Maze maze)
 	{
 		super(maze);
-		this.controller = controller;
 	}
 
 	/**
@@ -56,14 +54,8 @@ public class GUIDepthFirstSolver extends MazeSolver
 		solveRecursive(startLocation);
 
 		/////// DO NOT TOUCH ANY LINES BELOW
-
-		// set cleared flag when recursion is done
 		setCleared(true);
-		if (!controller.isPaused())
-		{
-			controller.togglePause();
-		}
-		controller.mazeCleared();
+		emitMazeClearedEvent();
 	}
 
 	/**
@@ -79,16 +71,6 @@ public class GUIDepthFirstSolver extends MazeSolver
 		{
 			return false;
 		}
-		
-		try
-		{
-			Thread.sleep(controller.getMillis());
-		}
-		catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		// mark as currently on this cell
 		setCurrentLocation(currentLocation);
@@ -102,90 +84,66 @@ public class GUIDepthFirstSolver extends MazeSolver
 		}
 
 		setLabelRight(currentLocation);
-		try
+		if (currentLocation.hasLocationToRight()
+				&& isTraversable(currentLocation.getLocationToRight()))
 		{
-			if (isPath(currentLocation.getLocationToRight()))
+			markAsWaiting(currentLocation);
+			if (solveRecursive(currentLocation.getLocationToRight()))
 			{
-				markAsWaiting(currentLocation);
-				if (solveRecursive(currentLocation.getLocationToRight()))
-				{
-					markAsSolution(currentLocation);
-					return true;
-				}
-				else
-				{
-					setCurrentLocation(currentLocation);
-				}
+				markAsSolution(currentLocation);
+				return true;
 			}
-		}
-		catch (Exception e)
-		{
-
-		}
-
-		setLabelLeft(currentLocation);
-		try
-		{
-			if (isPath(currentLocation.getLocationToLeft()))
+			else
 			{
-				markAsWaiting(currentLocation);
-				if (solveRecursive(currentLocation.getLocationToLeft()))
-				{
-					markAsSolution(currentLocation);
-					return true;
-				}
-				else
-				{
-					setCurrentLocation(currentLocation);
-				}
-			}
-		}
-		catch (Exception e)
-		{
-
-		}
-
-		setLabelDown(currentLocation);
-		try
-		{
-			if (isPath(currentLocation.getLocationBelow()))
-			{
-				markAsWaiting(currentLocation);
-				if (solveRecursive(currentLocation.getLocationBelow()))
-				{
-					markAsSolution(currentLocation);
-					return true;
-				}
-				else
-				{
-					setCurrentLocation(currentLocation);
-				}
-			}
-		}
-		catch (Exception e)
-		{
-
-		}
-
-		setLabelUp(currentLocation);
-		try
-		{
-			if (isPath(currentLocation.getLocationAbove()))
-			{
-				markAsWaiting(currentLocation);
-				if (solveRecursive(currentLocation.getLocationAbove()))
-				{
-					markAsSolution(currentLocation);
-					return true;
-				}
 				setCurrentLocation(currentLocation);
 			}
 		}
-		catch (Exception e)
-		{
 
+		setLabelLeft(currentLocation);
+		if (currentLocation.hasLocationToLeft()
+				&& isTraversable(currentLocation.getLocationToLeft()))
+		{
+			markAsWaiting(currentLocation);
+			if (solveRecursive(currentLocation.getLocationToLeft()))
+			{
+				markAsSolution(currentLocation);
+				return true;
+			}
+			else
+			{
+				setCurrentLocation(currentLocation);
+			}
 		}
-		
+
+		setLabelDown(currentLocation);
+		if (currentLocation.hasLocationBelow()
+				&& isTraversable(currentLocation.getLocationBelow()))
+		{
+			markAsWaiting(currentLocation);
+			if (solveRecursive(currentLocation.getLocationBelow()))
+			{
+				markAsSolution(currentLocation);
+				return true;
+			}
+			else
+			{
+				setCurrentLocation(currentLocation);
+			}
+		}
+
+		setLabelUp(currentLocation);
+		if (currentLocation.hasLocationAbove()
+				&& isTraversable(currentLocation.getLocationAbove()))
+		{
+			markAsWaiting(currentLocation);
+			if (solveRecursive(currentLocation.getLocationAbove()))
+			{
+				markAsSolution(currentLocation);
+				return true;
+			}
+			setCurrentLocation(currentLocation);
+		}
+
 		markAsVisited(currentLocation);
 		return false;
 	}

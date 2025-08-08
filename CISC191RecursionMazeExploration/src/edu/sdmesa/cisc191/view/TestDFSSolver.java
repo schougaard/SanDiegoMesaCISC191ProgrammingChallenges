@@ -3,24 +3,17 @@ package edu.sdmesa.cisc191.view;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Color;
-import java.awt.Point;
-import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import edu.sdmesa.cisc191.model.Cell;
-import edu.sdmesa.cisc191.model.DepthFirstSolver;
 import edu.sdmesa.cisc191.model.Location;
 import edu.sdmesa.cisc191.model.Maze;
-import edu.sdmesa.cisc191.model.MazeGenerator;
 import edu.sdmesa.cisc191.model.MazeSolver;
-import edu.sdmesa.cisc191.model.MazeGenerator.Algorithm;
 
 /**
  * Lead Author(s):
@@ -114,10 +107,10 @@ class TestDFSSolver
 		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 		Maze maze = mazeExplorer.getMaze();
 		Cell l = maze.getEntranceCell();
-		mazeExplorer.getController().nextStep();
+		mazeExplorer.getSolver().nextStep();
 		Color colorAtEntrance = mazeGUI.getCellWidgetAtLocation(maze.entranceLocation).getColor();
 		assertEquals(CellWidget.getColorFor(Cell.Type.CURRENT), colorAtEntrance);
-		mazeExplorer.getController().reset();
+		mazeExplorer.reset();
 	}
 
 	// Checks the base case where, if called on the exit point, the method
@@ -128,23 +121,24 @@ class TestDFSSolver
 		Maze maze = mazeExplorer.getMaze();
 		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 		Location l = maze.getExitCell().getLocation();
-		mazeExplorer.getController().setMillis(0);
-		mazeExplorer.getController().togglePause(); // unpause
+		MazeSolver.pauseMillis = 0;
+		mazeExplorer.getSolver().togglePause(); // unpause
 
-		assertTrue(((DepthFirstSolver)(mazeExplorer.getSolver())).solveRecursive(l));
+		assertTrue(((GUIDepthFirstSolver)(mazeExplorer.getSolver())).solveRecursive(l));
 		mazeGUI.waitForGUI();
 		Color colorAtExit = mazeGUI.getCellWidgetAtLocation(maze.entranceLocation).getColor();
 		assertEquals(CellWidget.getColorFor(Cell.Type.SOLUTION), colorAtExit);
 
 		mazeExplorer.getSolver().setCleared(true);
-		mazeExplorer.getController().reset();
+		mazeExplorer.reset();
 	}
 
 	@Test
 	void testCheckUpFromEntrance1() throws InterruptedException
 	{
 		mazeExplorer.getSolver().setCleared(true);
-		mazeExplorer.getController().reset();
+		mazeExplorer.reset();
+		MazeSolver.pauseMillis = MazeSolver.maxWait;
 		
 		Maze maze = mazeExplorer.getMaze();
 		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
@@ -154,11 +148,11 @@ class TestDFSSolver
 		mazeExplorer.runSolver();
 
 		// take however many steps needed for the current cell to change
-		mazeExplorer.getController().nextStep();
+		mazeExplorer.getSolver().nextStep();
 		Cell previousCell = maze.getCellAtLocation(solver.getCurrentLocation());
 		
 		do {
-			mazeExplorer.getController().nextStep();
+			mazeExplorer.getSolver().nextStep();
 		} while (maze.getCellAtLocation(solver.getCurrentLocation()).equals(previousCell));
 
 		Cell oneUp = maze.getCellAbove(maze.getEntranceCell());
@@ -171,13 +165,14 @@ class TestDFSSolver
 	{
 		// currently paused from test 3
 		mazeExplorer.getSolver().setCleared(true);
-		mazeExplorer.getController().reset();
+		mazeExplorer.reset();
+		MazeSolver.pauseMillis = MazeSolver.maxWait;
 		
 		Maze maze = mazeExplorer.getMaze();
 		MazePanel mazeGUI = mazeExplorer.getMazeGUI();
 		
 		mazeExplorer.runSolver();
-		mazeExplorer.getController().nextStep();
+		mazeExplorer.getSolver().nextStep();
 		
 		MazeSolver solver = mazeExplorer.getSolver();
 		
@@ -186,14 +181,13 @@ class TestDFSSolver
 		for (int i = 0; i < 2; i++) {
 			Cell previousCell = maze.getCellAtLocation(solver.getCurrentLocation());
 			do {
-				mazeExplorer.getController().nextStep();
+				mazeExplorer.getSolver().nextStep();
 			} while (mazeGUI.getCellWidgetAtLocation(solver.getCurrentLocation()).equals(previousCell));
 		}
 
 		// the "current" point from the last test
 		Cell l = maze.getCellAbove(maze.getEntranceCell());
 		
-		// TODO: try refactoring this with the getCellWidget/getCell calls
 		Location aboveCellLoc = maze.getCellAbove(l).getLocation();
 		Location rightCellLoc = maze.getCellToRight(l).getLocation();
 		

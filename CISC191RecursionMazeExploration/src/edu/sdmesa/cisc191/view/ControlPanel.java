@@ -1,4 +1,5 @@
 package edu.sdmesa.cisc191.view;
+
 import java.awt.Dimension;
 import java.util.Hashtable;
 
@@ -8,20 +9,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-import edu.sdmesa.cisc191.controller.MazeController;
+import edu.sdmesa.cisc191.model.MazeSolver;
 
 /**
  * Lead Author(s):
+ * 
  * @author Alex Chow
  * 
- * Other contributors:
- * None
+ *         Other contributors:
+ *         None
  * 
- * References:
- * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
- * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
- *  
- * Version/date: 1.0
+ *         References:
+ *         Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented
+ *         Problem Solving.
+ *         Retrieved from
+ *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * 
+ *         Version/date: 1.0
  */
 
 /**
@@ -30,20 +34,19 @@ import edu.sdmesa.cisc191.controller.MazeController;
  */
 public class ControlPanel extends JPanel
 {
-	private MazeController controller;
 	private MazeExplorer exp;
+
 	private JSlider slider;
 	private JButton stepButton;
 	private JButton pauseButton;
 	private JButton resetButton;
 	private JLabel sliderLabel;
 	private JPanel buttonsPanel;
-	
-	public ControlPanel(MazeController controller, MazeExplorer exp)
+
+	public ControlPanel(MazeExplorer exp)
 	{
-		this.controller = controller;
 		this.exp = exp;
-		
+
 		setup();
 	}
 
@@ -51,17 +54,29 @@ public class ControlPanel extends JPanel
 	 * The main set up helper method.
 	 */
 	private void setup()
-	{		
+	{
 		BoxLayout mainContainer = new BoxLayout(this, BoxLayout.Y_AXIS);
 		setLayout(mainContainer);
-		
-		setupSliderLabel();		
+
+		setupSliderLabel();
 		setupSlider();
-		setupStepButton();		
+		setupStepButton();
 		setupPauseButton();
 		setupResetButton();
-		
-		setupButtonsPanel();		
+
+		setupButtonsPanel();
+
+		setupMazeCleared();
+	}
+
+	private void setupMazeCleared()
+	{
+		// when the maze is cleared, disable step and pause buttons
+		exp.getSolver().addPropertyChangeListener((mazeClearedEvent) -> {
+			disableButton(stepButton);
+			disableButton(pauseButton);
+			enableButton(resetButton);
+		});
 	}
 
 	/**
@@ -71,7 +86,7 @@ public class ControlPanel extends JPanel
 	{
 		buttonsPanel = new JPanel();
 		add(buttonsPanel);
-		
+
 		buttonsPanel.add(stepButton);
 		buttonsPanel.add(pauseButton);
 		buttonsPanel.add(resetButton);
@@ -84,16 +99,18 @@ public class ControlPanel extends JPanel
 	{
 		resetButton = new JButton("Reset");
 		resetButton.addActionListener(e -> {
-			controller.reset();
+			exp.reset();
+			setupMazeCleared();
 			exp.runSolver();
-			reset();
+			resetGUI();
+			updatePauseGUI();
 		});
 	}
-	
+
 	/**
 	 * The callback function that resets the GUI as necessary.
 	 */
-	private void reset()
+	private void resetGUI()
 	{
 		disableButton(resetButton);
 		enableButton(pauseButton);
@@ -107,18 +124,26 @@ public class ControlPanel extends JPanel
 	{
 		pauseButton = new JButton("Play");
 		pauseButton.addActionListener(e -> {
-			controller.togglePause();
+			exp.getSolver().togglePause();
+			updatePauseGUI();
 		});
 	}
-	
+
 	/**
 	 * Updates the button to say pause or play at the GUI level.
 	 */
-	public void togglePause()
+	public void updatePauseGUI()
 	{
-		if (controller.isPaused()) {
+		if (exp.getSolver().isPaused())
+		{
+			enableButton(resetButton);
+			enableButton(stepButton);
 			pauseButton.setText("Play");
-		} else {
+		}
+		else
+		{
+			disableButton(resetButton);
+			disableButton(stepButton);
 			pauseButton.setText("Pause");
 		}
 	}
@@ -130,7 +155,7 @@ public class ControlPanel extends JPanel
 	{
 		stepButton = new JButton("Step");
 		stepButton.addActionListener(e -> {
-			controller.nextStep();
+			exp.getSolver().nextStep();
 		});
 	}
 
@@ -139,13 +164,15 @@ public class ControlPanel extends JPanel
 	 */
 	private void setupSliderLabel()
 	{
-		sliderLabel = new JLabel("Automatically step every " + controller.getMillis() + " milliseconds");
+		sliderLabel = new JLabel("Automatically step every "
+				+ MazeSolver.pauseMillis + " milliseconds");
 		sliderLabel.setAlignmentX(CENTER_ALIGNMENT);
 		add(sliderLabel);
 	}
-	
+
 	/**
 	 * Disables a JButton.
+	 * 
 	 * @param button the button to disable
 	 */
 	public void disableButton(JButton button)
@@ -153,9 +180,10 @@ public class ControlPanel extends JPanel
 		if (button == null) return;
 		button.setEnabled(false);
 	}
-	
+
 	/**
 	 * Enables a JButton.
+	 * 
 	 * @param button the button to enable
 	 */
 	public void enableButton(JButton button)
@@ -163,9 +191,10 @@ public class ControlPanel extends JPanel
 		if (button == null) return;
 		button.setEnabled(true);
 	}
-	
+
 	/**
 	 * Returns the step button.
+	 * 
 	 * @return the step button
 	 */
 	public JButton getStepButton()
@@ -175,6 +204,7 @@ public class ControlPanel extends JPanel
 
 	/**
 	 * Returns the pause button.
+	 * 
 	 * @return the pause button
 	 */
 	public JButton getPauseButton()
@@ -184,13 +214,14 @@ public class ControlPanel extends JPanel
 
 	/**
 	 * Returns the reset button.
+	 * 
 	 * @return the reset button
 	 */
 	public JButton getResetButton()
 	{
 		return resetButton;
 	}
-	
+
 	/**
 	 * The helper method to set up the speed slider.
 	 */
@@ -198,21 +229,23 @@ public class ControlPanel extends JPanel
 	{
 		slider = new JSlider();
 		slider.setPreferredSize(new Dimension(400, 100));
-		slider.setMinimum(MazeController.minWait);
-		slider.setMaximum(MazeController.maxWait);
-		slider.setValue(MazeController.maxWait);
+		slider.setMinimum(MazeSolver.minWait);
+		slider.setMaximum(MazeSolver.maxWait);
+		slider.setValue(MazeSolver.pauseMillis);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 		slider.setMajorTickSpacing(100);
 		slider.addChangeListener(e -> {
-			controller.setMillis(slider.getValue());
-			sliderLabel.setText("Automatically step every " + controller.getMillis() + " milliseconds");
+			MazeSolver.pauseMillis = slider.getValue();
+			sliderLabel.setText("Automatically step every "
+					+ MazeSolver.pauseMillis + " milliseconds");
 		});
-		
+
 		Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
-		labelTable.put( 1, new JLabel("1") );
-		for (int i = 1; i <= 10; i++) {
-			labelTable.put( i * 100, new JLabel((i * 100) + "") );
+		labelTable.put(1, new JLabel("1"));
+		for (int i = 1; i <= 10; i++)
+		{
+			labelTable.put(i * 100, new JLabel((i * 100) + ""));
 		}
 		slider.setLabelTable(labelTable);
 		add(slider);

@@ -145,17 +145,15 @@ public class MazeGenerator
 		// "0"
 		// means nothing there. We start out with the maze being all 1s.
 		Maze maze = new Maze();
+		setToAllWalls(maze);
+
 		ArrayList<Cell> frontierList = new ArrayList<>();
 
 		// 2. Start from a random cell in the maze. Mark it as a passage (0),
 		// and add the cell to the "frontier" list (the list of candidate cells
 		// to be picked in next iterations of this while loop)
 		Cell startCell = maze.getCellAbove(maze.getEntranceCell());
-		// second-to-last
-																			// row,
-																			// 2nd
-																			// from
-		startCell.setType(Cell.Type.PATH);																	// left
+		startCell.setType(Cell.Type.PATH); // left
 		frontierList.add(startCell);
 
 		// 3. While there are frontier cells in the list:
@@ -178,7 +176,8 @@ public class MazeGenerator
 
 				// then bridge the two cells together by carving a path in
 				// between them
-				getCellBetween(maze, frontierCell, cellToBeMarked).setType(Cell.Type.PATH);
+				getCellBetween(maze, frontierCell, cellToBeMarked)
+						.setType(Cell.Type.PATH);
 			}
 
 			// we only remove the frontier path if it can't be expanded
@@ -191,24 +190,44 @@ public class MazeGenerator
 				// otherwise, add all frontier cells to frontier list
 				frontierList.addAll(cellsToBeMarked);
 			}
+
 		}
 
 		return maze;
 	}
 
 	/**
-	 * A helper method to get cell in between two points.
+	 * A helper method to set all cells in a maze to a wall.
+	 * For Prim's algorithm's purposes.
 	 * 
-	 * @param a first point
-	 * @param b second point
-	 * @return the middle point
+	 * @param maze the maze
+	 */
+	private static void setToAllWalls(Maze maze)
+	{
+		for (int row = 0; row < maze.getHeight(); row++)
+		{
+			for (int col = 0; col < maze.getWidth(); col++)
+			{
+				maze.getCellAtLocation(new Location(row, col))
+						.setType(Cell.Type.WALL);
+			}
+		}
+	}
+
+	/**
+	 * A helper method to get cell in between two cells.
+	 * 
+	 * @param maze the maze
+	 * @param a    first cell
+	 * @param b    second cell
+	 * @return the middle cell
 	 */
 	private static Cell getCellBetween(Maze maze, Cell a, Cell b)
 	{
-		return maze.getCellAtLocation(
-				new Location(
-						(a.getLocation().getRow() + b.getLocation().getRow()) / 2,
-						(a.getLocation().getColumn() + b.getLocation().getColumn()) / 2));
+		return maze.getCellAtLocation(new Location(
+				(a.getLocation().getRow() + b.getLocation().getRow()) / 2,
+				(a.getLocation().getColumn() + b.getLocation().getColumn())
+						/ 2));
 	}
 
 	/**

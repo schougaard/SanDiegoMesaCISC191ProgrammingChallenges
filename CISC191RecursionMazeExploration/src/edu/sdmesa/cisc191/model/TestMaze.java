@@ -82,7 +82,7 @@ class TestMaze
 	@Test
 	void testGetHeight()
 	{
-		assertEquals(19, new Maze().getWidth());
+		assertEquals(19, new Maze().getHeight());
 	}
 
 	/**
@@ -177,7 +177,8 @@ class TestMaze
 	void testGetExitCell()
 	{
 		Maze maze = new Maze();
-		// TODO: why -2?
+		
+		// width - 2 since the exit is 2 away from the width of the maze
 		assertEquals(new Cell(new Location(0, maze.getWidth()-2), Cell.Type.PATH), maze.getExitCell());
 	}
 

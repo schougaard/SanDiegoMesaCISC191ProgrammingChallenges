@@ -22,8 +22,6 @@
 package edu.sdmesa.cisc191.view;
 
 import java.awt.Color;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.Hashtable;
 
 import javax.swing.JLabel;

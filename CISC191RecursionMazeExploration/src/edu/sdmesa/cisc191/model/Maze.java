@@ -118,16 +118,16 @@ public class Maze
 		}
 	}
 
-	// /**
-	// * A convenience method to print the maze grid.
-	// */
-	// public void print()
-	// {
-	// System.out.println("-----------");
-	// for (int row = 0; row < HEIGHT; row++) {
-	// System.out.println(Arrays.toString(cells[row]));
-	// }
-	// }
+	 /**
+	 * A convenience method to print the maze grid.
+	 */
+	 public void print()
+	 {
+	 System.out.println("-----------");
+	 for (int row = 0; row < HEIGHT; row++) {
+	 System.out.println(Arrays.toString(cells[row]));
+	 }
+	 }
 
 	/**
 	 * Gets the width of the maze.
@@ -208,8 +208,6 @@ public class Maze
 	 */
 	public LinkedList<Cell> getReachableCells(Cell cell)
 	{
-		// TODO: see Location getSourroundingLocations
-
 		LinkedList<Cell> reachableCells = new LinkedList<>();
 		LinkedList<Cell> directions = new LinkedList<>();
 
@@ -497,7 +495,6 @@ public class Maze
 	{
 		LinkedList<Location> locations = currentLocation.getAdjacentLocations();
 		LinkedList<Cell> possibleCells = new LinkedList<>();
-		// TODO: Check. Should be .filter
 		locations.stream()
 				.filter(location -> getCellAtLocation(location)
 						.getType() == Cell.Type.PATH)

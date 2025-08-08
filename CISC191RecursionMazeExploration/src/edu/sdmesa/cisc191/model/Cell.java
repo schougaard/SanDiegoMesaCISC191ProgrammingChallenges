@@ -79,7 +79,7 @@ public class Cell
 	}
 	
 	/**
-	 * A cell has-a type, some are fixed (WALL), some change
+	 * A cell has-a type, some are fixed (e.g., WALL), some change
 	 */
 	private Type type;
 	
@@ -156,15 +156,20 @@ public class Cell
 		updatePropertyChangeListeners();
 	}
 	
+	/**
+	 * Get the last cell type it was set to.
+	 * 
+	 * @return the last cell type it was set to
+	 */
+	public Cell.Type lastType()
+	{
+		return history.peek();
+	}
+	
 	public String toString()
 	{
 		return "(" + location + "," + type + "," + direction + ")";
 	}
-
-	/**
-	 * TODO: check? It might be easier to get the cell widget associated with a cell this way.
-	 * @param cellWidget
-	 */
 
 	public boolean equals(Object other)
 	{

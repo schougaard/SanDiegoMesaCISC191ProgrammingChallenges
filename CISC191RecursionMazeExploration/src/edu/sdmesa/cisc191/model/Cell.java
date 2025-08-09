@@ -20,21 +20,16 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * Purpose: The responsibility of Cell is track type and direction for a location in a maze.
- * Type can be wall, path, solution, etc.
+ * Purpose: The responsibility of Cell is track status and direction for a location in a maze.
+ * status can be wall, path, solution, etc.
  * Direction is the direction taken from the location: none, up, down, left, right.
  */
-public class Cell
+public abstract class Cell
 {
 	/**
 	 * A cell has-a location in the maze
 	 */
 	private final Location location;
-	
-	/**
-	 * A cell has many listeners so the GUI can listen in on changes and update accordingly
-	 */
-	private final ArrayList<PropertyChangeListener> propertyChangeListeners = new ArrayList<PropertyChangeListener>();
 	
 	/**
 	 * 
@@ -45,18 +40,9 @@ public class Cell
 		NONE, LEFT, RIGHT, UP, DOWN;
 	}
 	
-	/**
-	 * A cell may have a search direction.
-	 */
-	private Direction direction = Direction.NONE;
-	
-	/**
-	 * Cells have different types (meaning state, that can change)
-	 */
-	public static enum Type
+	public static enum Status
 	{
-		WALL, // if this cell represents a wall
-		PATH, // if this cell represents a path (part of a possible solution)
+		NOT_STARTED, 
 		FRONTIER, // used for other algorithms like BFS, etc.
 		VISITED, // if this cell has been visited
 		CURRENT, // if the cell that the algorithm is currently considering
@@ -65,63 +51,9 @@ public class Cell
 		WAITING, // if this cell is waiting for a result
 	}
 	
-	/**
-	 * A cell may have a history of types that it was marked.
-	 */
-	private Stack<Cell.Type> typeHistory;
-	
-	// TODO: should we factor this out into:
-	// Type is immutable
-//	public static enum Type
-//	{
-//		WALL, // if this cell represents a wall
-//		PATH // if this cell represents a path (part of a possible solution)
-//	}
-//	
-//	public static enum Status
-//	{
-//		FRONTIER, // used for other algorithms like BFS, etc.
-//		VISITED, // if this cell has been visited
-//		CURRENT, // if the cell that the algorithm is currently considering
-//		EVALUATING, // if we're checking the cell
-//		SOLUTION, // if this path is part of the solution
-//		WAITING, // if this cell is waiting for a result
-//	}
-//	private Stack<Cell.Status> statusHistory;
-	
-	/**
-	 * A cell has-a type, some are fixed (e.g., WALL), some change
-	 */
-	private Type type;
-	
-	public Cell(Location initLocation, Cell.Type initType)
+	public Cell(Location initLocation)
 	{
 		location = initLocation;
-		type = initType;
-		typeHistory = new Stack<Cell.Type>();
-	}
-	
-	public Cell(Cell otherCell)
-	{
-		location = otherCell.location;
-		type = otherCell.type;
-		direction = otherCell.direction;
-		
-		// History belongs to a specific cell in a specific maze (and Stacks are mutable) so we need a deep copy
-		typeHistory = new Stack<Cell.Type>();
-		for(Cell.Type type: typeHistory)
-		{
-			typeHistory.push(type);
-		}
-	}
-	
-	/**
-	 * Purpose: register a listener that gets called when the cell changes
-	 * @param listener the listener to be called
-	 */
-	public void addPropertyChangeListener(PropertyChangeListener listener)
-	{
-		propertyChangeListeners.add(listener);
 	}
 	
 	/**
@@ -131,65 +63,47 @@ public class Cell
 	{
 		return location;
 	}
-
+	
+	public abstract boolean isPath();
+	
+	public abstract void addPropertyChangeListener(PropertyChangeListener listener);
+	
 	/**
 	 * @return the direction
 	 */
-	public Direction getDirection()
-	{
-		return direction;
-	}
+	public abstract Direction getDirection();
 
 	/**
 	 * @param direction the direction to set
 	 */
-	public void setDirection(Direction direction)
-	{
-		this.direction = direction;
-		updatePropertyChangeListeners();
-	}
+	public abstract void setDirection(Direction direction);
 
 	/**
-	 * @return the type
+	 * @return the status
 	 */
-	public Type getType()
-	{
-		return type;
-	}
+	public abstract Status getStatus();
 
 	/**
-	 * @param type the type to set
+	 * @param status the status to set
 	 */
-	public void setType(Type type)
-	{
-		typeHistory.add(this.type);
-		this.type = type;
-		updatePropertyChangeListeners();
-	}
+	public abstract void setStatus(Status status);
 
 	/**
-	 * Represents an undo action in terms of setting the type.
-	 * Set to the last type it was set to.
+	 * Represents an undo action in terms of setting the status.
+	 * Set to the last status it was set to.
 	 */
-	public void undoSetType()
-	{
-		this.type = typeHistory.pop();
-		updatePropertyChangeListeners();
-	}
+	public abstract void undoSetStatus();
 	
 	/**
-	 * Get the last cell type it was set to.
+	 * Get the last cell status it was set to.
 	 * 
-	 * @return the last cell type it was set to
+	 * @return the last cell status it was set to
 	 */
-	public Cell.Type lastType()
-	{
-		return typeHistory.peek();
-	}
+	public abstract Cell.Status lastStatus();
 	
 	public String toString()
 	{
-		return "(" + location + "," + type + "," + direction + ")";
+		return "(" + location + "," + getStatus() + "," + getDirection() + ")";
 	}
 
 	public boolean equals(Object other)
@@ -200,19 +114,8 @@ public class Cell
 		
 		Cell otherCell = (Cell) other;
 		// Not testing history
-		return this.location.equals(otherCell.location) && this.type.equals(otherCell.type) && this.direction.equals(otherCell.direction); 
+		return this.location.equals(otherCell.location) && this.getStatus().equals(otherCell.getStatus()) && this.getDirection().equals(otherCell.getDirection()); 
 	}
-	
-	/**
-	 * Purpose: call propertyChange on all registered PropertyChangeListeners
-	 * @see addPropertyChangeListener(PropertyChangeListener listener)
-	 */
-	private void updatePropertyChangeListeners()
-	{
-		for(PropertyChangeListener listener: propertyChangeListeners)
-		{
-			listener.propertyChange(null); // null is good enough
-		}
-	}
+
 
 }

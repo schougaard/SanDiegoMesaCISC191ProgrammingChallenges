@@ -39,7 +39,10 @@ public class MazeExplorer
 
 	public MazeExplorer()
 	{
-		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM);
+		//maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM);
+		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.RANDOM);
+		// = new Maze();
+		System.out.println(maze);
 		setup();
 	}
 
@@ -160,8 +163,11 @@ public class MazeExplorer
 			for (int col = 0; col < maze.getWidth(); col++)
 			{
 				Location loc = new Location(row, col);
-				maze.getCellAtLocation(loc)
-						.setType(ogMaze.getCellAtLocation(loc).getType());
+				if (ogMaze.getCellAtLocation(loc).isPath())
+				{
+					maze.getCellAtLocation(loc)
+							.setStatus(ogMaze.getCellAtLocation(loc).getStatus());
+				}
 			}
 		}
 

@@ -85,8 +85,8 @@ class TestMaze
 	{
 		Maze maze = new Maze();
 		System.out.println(maze);
-		assertEquals(new Cell(new Location(0,0), Cell.Type.WALL), maze.getCellAtLocation(new Location(0,0)));
-		assertEquals(new Cell(new Location(maze.getHeight()-1,1), Cell.Type.PATH), maze.getCellAtLocation(new Location(maze.getHeight()-1,1)));
+		assertEquals(new Wall(new Location(0,0)), maze.getCellAtLocation(new Location(0,0)));
+		assertEquals(new Path(new Location(maze.getHeight()-1,1)), maze.getCellAtLocation(new Location(maze.getHeight()-1,1)));
 	}
 
 //	/**
@@ -159,7 +159,7 @@ class TestMaze
 	void testGetEntranceCell()
 	{
 		Maze maze = new Maze();
-		assertEquals(new Cell(new Location(maze.getHeight()-1,1), Cell.Type.PATH), maze.getEntranceCell());
+		assertEquals(new Path(new Location(maze.getHeight()-1,1)), maze.getEntranceCell());
 	}
 
 	/**
@@ -171,7 +171,7 @@ class TestMaze
 		Maze maze = new Maze();
 		
 		// width - 2 since the exit is 2 away from the width of the maze
-		assertEquals(new Cell(new Location(0, maze.getWidth()-2), Cell.Type.PATH), maze.getExitCell());
+		assertEquals(new Path(new Location(0, maze.getWidth()-2)), maze.getExitCell());
 	}
 
 	/**

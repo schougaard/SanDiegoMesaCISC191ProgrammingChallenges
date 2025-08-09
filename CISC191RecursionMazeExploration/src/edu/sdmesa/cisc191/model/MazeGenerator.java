@@ -99,8 +99,9 @@ public class MazeGenerator
 		}
 
 		// carve out the entrance and exit
-		maze.getEntranceCell().setType(Cell.Type.PATH);
-		maze.getExitCell().setType(Cell.Type.PATH);
+		// Mazes are intitialized with walls and entrance and exit
+//		maze.getEntranceCell().setType(Cell.Type.PATH);
+//		maze.getExitCell().setType(Cell.Type.PATH);
 
 		return maze;
 	}
@@ -115,19 +116,25 @@ public class MazeGenerator
 	 */
 	private static Maze generateMazeRandom(int width, int height, int seed)
 	{
-		Cell[][] mazeData = new Cell[height][width];
+		Cell[][] cells = new Cell[height][width];
 
 		for (int row = 0; row < height; row++)
 		{
 			for (int col = 0; col < width; col++)
 			{
-				mazeData[row][col] = (int) (Math.random() * 10) < 3
-						? new Cell(new Location(row, col), Cell.Type.WALL)
-						: new Cell(new Location(row, col), Cell.Type.PATH);
+				cells[row][col] = (int) (Math.random() * 10) < 3
+						? new Wall(new Location(row, col))
+						: new Path(new Location(row, col));
 			}
 		}
 
-		Maze maze = new Maze(mazeData);
+		// Openings in the wall
+		cells[Maze.entranceLocation.getRow()][Maze.entranceLocation
+				.getColumn()] = new Path(Maze.entranceLocation);
+		cells[Maze.exitLocation.getRow()][Maze.exitLocation.getColumn()] = new Path(
+				Maze.exitLocation);
+		
+		Maze maze = new Maze(cells);
 
 		return maze;
 	}
@@ -147,51 +154,53 @@ public class MazeGenerator
 		Maze maze = new Maze();
 		setToAllWalls(maze);
 
-		ArrayList<Cell> frontierList = new ArrayList<>();
+		ArrayList<Location> frontierList = new ArrayList<>();
 
 		// 2. Start from a random cell in the maze. Mark it as a passage (0),
 		// and add the cell to the "frontier" list (the list of candidate cells
 		// to be picked in next iterations of this while loop)
-		Cell startCell = maze.getCellAbove(maze.getEntranceCell());
-		startCell.setType(Cell.Type.PATH); // left
-		frontierList.add(startCell);
+		Location startLocation = maze.entranceLocation.getLocationAbove();
+		maze.makeLocationPath(startLocation);
+		frontierList.add(startLocation);
 
 		// 3. While there are frontier cells in the list:
-		while (!frontierList.isEmpty())
+		do
 		{
 			// 3.1 Pick a random wall from the list. If the frontier cell can
 			// expand,
 			// then get the cells that the frontier cell can expand to.
-			Cell frontierCell = pickRandomFromList(frontierList);
-			LinkedList<Cell> cellsToBeMarked = maze
-					.getReachableCells(frontierCell);
+			Location frontierLocation = pickRandomFromList(frontierList);
+			LinkedList<Location> locationsToBeMarked = frontierLocation
+					.getAdjacentLocations();
 
 			// 3.2. For each cell to be marked, mark them as passage (0).
 			// In reality, it would probably only pick one cell at a time,
 			// so this is poorly named.
-			for (Cell cellToBeMarked : cellsToBeMarked)
+			for (Location locationToBeMarked : locationsToBeMarked)
 			{
 				// first mark the reachable cell
-				cellToBeMarked.setType(Cell.Type.PATH);
+				maze.makeLocationPath(locationToBeMarked);
+				
+				System.out.println(locationToBeMarked);
 
 				// then bridge the two cells together by carving a path in
 				// between them
-				getCellBetween(maze, frontierCell, cellToBeMarked)
-						.setType(Cell.Type.PATH);
+				Location inbetweenLocation = getLocationBetween(maze, frontierLocation, locationToBeMarked);
+				maze.makeLocationPath(inbetweenLocation);
 			}
 
 			// we only remove the frontier path if it can't be expanded
-			if (cellsToBeMarked.isEmpty())
+			if (locationsToBeMarked.isEmpty())
 			{
-				frontierList.remove(frontierCell);
+				frontierList.remove(frontierLocation);
 			}
 			else
 			{
 				// otherwise, add all frontier cells to frontier list
-				frontierList.addAll(cellsToBeMarked);
+				frontierList.addAll(locationsToBeMarked);
 			}
 
-		}
+		} while (!frontierList.isEmpty());
 
 		return maze;
 	}
@@ -203,15 +212,16 @@ public class MazeGenerator
 	 * @param maze the maze
 	 */
 	private static void setToAllWalls(Maze maze)
-	{
-		for (int row = 0; row < maze.getHeight(); row++)
-		{
-			for (int col = 0; col < maze.getWidth(); col++)
-			{
-				maze.getCellAtLocation(new Location(row, col))
-						.setType(Cell.Type.WALL);
-			}
-		}
+	{ 
+		// Mazes come with walls on the perimeter these days...
+//		for (int row = 0; row < maze.getHeight(); row++)
+//		{
+//			for (int col = 0; col < maze.getWidth(); col++)
+//			{
+//				maze.getCellAtLocation(new Location(row, col))
+//						.setType(Cell.Type.WALL);
+//			}
+//		}
 	}
 
 	/**
@@ -222,12 +232,11 @@ public class MazeGenerator
 	 * @param b    second cell
 	 * @return the middle cell
 	 */
-	private static Cell getCellBetween(Maze maze, Cell a, Cell b)
+	private static Location getLocationBetween(Maze maze, Location a, Location b)
 	{
-		return maze.getCellAtLocation(new Location(
-				(a.getLocation().getRow() + b.getLocation().getRow()) / 2,
-				(a.getLocation().getColumn() + b.getLocation().getColumn())
-						/ 2));
+		return new Location(
+				(a.getRow() + b.getRow()) / 2,
+				(a.getColumn() + b.getColumn()) / 2);
 	}
 
 	/**

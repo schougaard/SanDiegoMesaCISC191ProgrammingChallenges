@@ -102,7 +102,7 @@ public abstract class MazeSolver
 	 */
 	public void markAsEvaluating(Location location)
 	{
-		maze.getCellAtLocation(location).setType(Cell.Type.EVALUATING);
+		maze.getCellAtLocation(location).setStatus(Cell.Status.EVALUATING);
 		waitForNextStep();
 	}
 
@@ -117,7 +117,7 @@ public abstract class MazeSolver
 	 */
 	public void markAsCurrent(Location location)
 	{
-		maze.getCellAtLocation(location).setType(Cell.Type.CURRENT);
+		maze.getCellAtLocation(location).setStatus(Cell.Status.CURRENT);
 		waitForNextStep();
 	}
 
@@ -149,7 +149,8 @@ public abstract class MazeSolver
 		// otherwise, if it was a WAITING cell, then it's not a traversable
 		// path.
 		if (ogMaze.isLocationOnPath(location) && maze
-				.getCellAtLocation(location).lastType() != Cell.Type.WAITING)
+				.getCellAtLocation(location).isPath() && maze
+				.getCellAtLocation(location).lastStatus() != Cell.Status.WAITING)
 		{
 			return true;
 		}

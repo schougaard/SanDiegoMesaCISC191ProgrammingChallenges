@@ -42,12 +42,12 @@ public class Maze
 	/**
 	 * A maze has-an entrance, where the path through the maze starts
 	 */
-	public final Location entranceLocation = new Location(HEIGHT - 1, 1);
+	public final static Location entranceLocation = new Location(HEIGHT - 1, 1);
 
 	/**
 	 * A maze has-an exit, where the path through the maze ends
 	 */
-	public final Location exitLocation = new Location(0, WIDTH - 2);
+	public final static Location exitLocation = new Location(0, WIDTH - 2);
 
 	/**
 	 * A maze has-many cells
@@ -62,32 +62,36 @@ public class Maze
 	{
 		cells = new Cell[HEIGHT][WIDTH];
 
-		// Most are paths
-		for (int row = 1; row < HEIGHT-1; row++)
-		{
-			for (int col = 1; col < WIDTH-1; col++)
-			{
-				cells[row][col] = new Cell(new Location(row, col), Cell.Type.PATH);
-			}
-		}
-		
-		// Some are walls
+		// Outer wall
 		for (int row = 0; row < HEIGHT; row++)
 		{
-			cells[row][0] = new Cell(new Location(row, 0), Cell.Type.WALL);
-			cells[row][WIDTH - 1] = new Cell(new Location(row, WIDTH - 1),
-					Cell.Type.WALL);
+			cells[row][0] = new Wall(new Location(row, 0));
+			cells[row][WIDTH - 1] = new Wall(new Location(row, WIDTH - 1));
 		}
 		for (int col = 0; col < WIDTH; col++)
 		{
-			cells[0][col] = new Cell(new Location(0, col), Cell.Type.WALL);
-			cells[HEIGHT - 1][col] = new Cell(new Location(HEIGHT - 1, col),
-					Cell.Type.WALL);
+			cells[0][col] = new Wall(new Location(0, col));
+			cells[HEIGHT - 1][col] = new Wall(new Location(HEIGHT - 1, col));
 
 		}
+
+		// Most are paths
+		for (int row = 1; row < HEIGHT - 1; row++)
+		{
+			for (int col = 1; col < WIDTH - 1; col++)
+			{
+				if (cells[row][col] == null)
+				{
+					cells[row][col] = new Path(new Location(row, col));
+				}
+			}
+		}
+
 		// Openings in the wall
-		getCellAtLocation(entranceLocation).setType(Cell.Type.PATH);
-		getCellAtLocation(exitLocation).setType(Cell.Type.PATH);
+		cells[entranceLocation.getRow()][entranceLocation
+				.getColumn()] = new Path(entranceLocation);
+		cells[exitLocation.getRow()][exitLocation.getColumn()] = new Path(
+				exitLocation);
 	}
 
 	/**
@@ -113,21 +117,33 @@ public class Maze
 		{
 			for (int col = 0; col < this.cells[0].length; col++)
 			{
-				cells[row][col] = new Cell(maze.cells[row][col]);
+				if (maze.cells[row][col] == null)
+				{
+					cells[row][col] = null;
+				}
+				else if (maze.cells[row][col].isPath())
+				{
+					cells[row][col] = new Path((Path) maze.cells[row][col]);
+				}
+				else
+				{
+					cells[row][col] = new Wall((Wall) maze.cells[row][col]);
+				}
 			}
 		}
 	}
 
-	 /**
+	/**
 	 * A convenience method to print the maze grid.
 	 */
-	 public void print()
-	 {
-	 System.out.println("-----------");
-	 for (int row = 0; row < HEIGHT; row++) {
-	 System.out.println(Arrays.toString(cells[row]));
-	 }
-	 }
+	public void print()
+	{
+		System.out.println("-----------");
+		for (int row = 0; row < HEIGHT; row++)
+		{
+			System.out.println(Arrays.toString(cells[row]));
+		}
+	}
 
 	/**
 	 * Gets the width of the maze.
@@ -158,6 +174,40 @@ public class Maze
 	public Cell getCellAtLocation(Location location)
 	{
 		return cells[location.getRow()][location.getColumn()];
+	}
+
+	/**
+	 * Note not public.
+	 * Purpose:
+	 * 
+	 * @param location
+	 * @param cell
+	 */
+	private void setCellAtLocation(Location location, Cell cell)
+	{
+		cells[location.getRow()][location.getColumn()] = cell;
+	}
+
+	/**
+	 * Facade
+	 * Purpose:
+	 * 
+	 * @param location
+	 */
+	void makeLocationPath(Location location)
+	{
+		cells[location.getRow()][location.getColumn()] = new Path(location);
+	}
+
+	/**
+	 * Facade
+	 * Purpose:
+	 * 
+	 * @param location
+	 */
+	void makeLocationWall(Location location)
+	{
+		cells[location.getRow()][location.getColumn()] = new Wall(location);
 	}
 
 	/**
@@ -206,7 +256,7 @@ public class Maze
 	 * @param point the point
 	 * @return the list of points
 	 */
-	public LinkedList<Cell> getReachableCells(Cell cell)
+	public LinkedList<Cell> getReachableCells(Location location)
 	{
 		LinkedList<Cell> reachableCells = new LinkedList<>();
 		LinkedList<Cell> directions = new LinkedList<>();
@@ -215,18 +265,8 @@ public class Maze
 		// a wall as well
 		try
 		{
-			directions.add(getCellAtLocation(cell.getLocation()
-					.getLocationToLeft().getLocationToLeft()));
-		}
-		catch (IllegalArgumentException e)
-		{
-			// e.printStackTrace();
-		}
-
-		try
-		{
-			directions.add(getCellAtLocation(cell.getLocation()
-					.getLocationToRight().getLocationToRight()));
+			directions.add(getCellAtLocation(
+					location.getLocationToLeft().getLocationToLeft()));
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -236,7 +276,7 @@ public class Maze
 		try
 		{
 			directions.add(getCellAtLocation(
-					cell.getLocation().getLocationAbove().getLocationAbove()));
+					location.getLocationToRight().getLocationToRight()));
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -246,7 +286,17 @@ public class Maze
 		try
 		{
 			directions.add(getCellAtLocation(
-					cell.getLocation().getLocationBelow().getLocationBelow()));
+					location.getLocationAbove().getLocationAbove()));
+		}
+		catch (IllegalArgumentException e)
+		{
+			// e.printStackTrace();
+		}
+
+		try
+		{
+			directions.add(getCellAtLocation(
+					location.getLocationBelow().getLocationBelow()));
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -261,7 +311,7 @@ public class Maze
 		{
 			if (canBeAPath(direction)
 					&& getCellAtLocation(direction.getLocation())
-							.getType() != Cell.Type.PATH)
+							.isPath() == true)
 			{
 				reachableCells.add(direction);
 			}
@@ -278,7 +328,7 @@ public class Maze
 	 * - If the cell is on the border
 	 * 
 	 * @param row the cell row
-	 * @param col the cell column
+	 * @param col the cell columnType
 	 * @return true if the cell can be a path; false otherwise
 	 * 
 	 *         TODO: anything that is not a WALL can be a PATH???
@@ -295,7 +345,7 @@ public class Maze
 
 		return true;
 	}
-	
+
 	/**
 	 * Color a cell as currently being checked to see if the cell is a path.
 	 * This does not set the internal state of the cell to anything else like
@@ -307,7 +357,7 @@ public class Maze
 	 */
 	public void markAsEvaluating(Location location)
 	{
-		getCellAtLocation(location).setType(Cell.Type.EVALUATING);
+		getCellAtLocation(location).setStatus(Cell.Status.EVALUATING);
 	}
 
 	/**
@@ -321,9 +371,9 @@ public class Maze
 	 */
 	public void markAsCurrent(Location location)
 	{
-		getCellAtLocation(location).setType(Cell.Type.CURRENT);
+		getCellAtLocation(location).setStatus(Cell.Status.CURRENT);
 	}
-	
+
 	/**
 	 * Mark a cell as the solution. This will internally change the state
 	 * of the cell from PATH to SOLUTION. The cell will also be colored
@@ -334,7 +384,7 @@ public class Maze
 	 */
 	public void markAsSolution(Location location)
 	{
-		getCellAtLocation(location).setType(Cell.Type.SOLUTION);
+		getCellAtLocation(location).setStatus(Cell.Status.SOLUTION);
 	}
 
 	/**
@@ -348,7 +398,7 @@ public class Maze
 	 */
 	public void markAsWaiting(Location location)
 	{
-		getCellAtLocation(location).setType(Cell.Type.WAITING);
+		getCellAtLocation(location).setStatus(Cell.Status.WAITING);
 	}
 
 	/**
@@ -363,9 +413,9 @@ public class Maze
 	 */
 	public void markAsVisited(Location location)
 	{
-		getCellAtLocation(location).setType(Cell.Type.VISITED);
+		getCellAtLocation(location).setStatus(Cell.Status.VISITED);
 	}
-	
+
 	/**
 	 * Unmarks the cell to the original type.
 	 * 
@@ -373,9 +423,9 @@ public class Maze
 	 */
 	public void unmark(Location location)
 	{
-		getCellAtLocation(location).undoSetType();
+		getCellAtLocation(location).undoSetStatus();
 	}
-	
+
 	/**
 	 * Sets the text at row and col to "L".
 	 * 
@@ -482,7 +532,7 @@ public class Maze
 	 */
 	public boolean isLocationOnPath(Location location)
 	{
-		return getCellAtLocation(location).getType() == Cell.Type.PATH;
+		return getCellAtLocation(location) != null && getCellAtLocation(location).isPath();
 	}
 
 	/**
@@ -496,8 +546,7 @@ public class Maze
 		LinkedList<Location> locations = currentLocation.getAdjacentLocations();
 		LinkedList<Cell> possibleCells = new LinkedList<>();
 		locations.stream()
-				.filter(location -> getCellAtLocation(location)
-						.getType() == Cell.Type.PATH)
+				.filter(location -> getCellAtLocation(location).isPath())
 				.forEach(location -> possibleCells
 						.add(getCellAtLocation(location)));
 

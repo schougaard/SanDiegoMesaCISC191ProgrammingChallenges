@@ -55,19 +55,17 @@ public class CellWidget extends JPanel
 	private final static Color WAITING_COLOR = Color.darkGray;
 	private final static Color FRONTIER_COLOR = Color.pink;
 
-	private final static Hashtable<Cell.Type, Color> cellType2Color = new Hashtable<Cell.Type, Color>();
+	private final static Hashtable<Cell.Status, Color> cellType2Color = new Hashtable<Cell.Status, Color>();
 	static
 	{
-		cellType2Color.put(Cell.Type.WALL, WALL_COLOR);
-		cellType2Color.put(Cell.Type.PATH, PATH_COLOR);
-		cellType2Color.put(Cell.Type.FRONTIER, FRONTIER_COLOR);
-		cellType2Color.put(Cell.Type.VISITED, VISITED_COLOR);
-		cellType2Color.put(Cell.Type.CURRENT, CURRENT_COLOR);
-		cellType2Color.put(Cell.Type.EVALUATING, EVALUATING_COLOR);
-		cellType2Color.put(Cell.Type.SOLUTION, SOLUTION_COLOR);
-		cellType2Color.put(Cell.Type.WAITING, WAITING_COLOR);
+		cellType2Color.put(Cell.Status.FRONTIER, FRONTIER_COLOR);
+		cellType2Color.put(Cell.Status.VISITED, VISITED_COLOR);
+		cellType2Color.put(Cell.Status.CURRENT, CURRENT_COLOR);
+		cellType2Color.put(Cell.Status.EVALUATING, EVALUATING_COLOR);
+		cellType2Color.put(Cell.Status.SOLUTION, SOLUTION_COLOR);
+		cellType2Color.put(Cell.Status.WAITING, WAITING_COLOR);
 	}
-
+	
 	public CellWidget(Cell initCell)
 	{
 		cell = initCell;
@@ -75,11 +73,38 @@ public class CellWidget extends JPanel
 		cell.addPropertyChangeListener((dummyEvent) -> {
 			update();
 		});
-
 		label = new JLabel("");
-		label.setForeground(Color.white);
+		if (initCell.isPath())
+		{
+			setBackground(PATH_COLOR);
+		}
+		else
+		{
+			setBackground(WALL_COLOR);
+			label.setText("#");
+		}
 		add(label);
 	}
+
+//	public CellWidget(Path pathCell)
+//	{
+//		cell = pathCell;
+//		// Update when the cell changes
+//		pathCell.addPropertyChangeListener((dummyEvent) -> {
+//			update();
+//		});
+//		label = new JLabel("");
+//		label.setForeground(PATH_COLOR);
+//		add(label);
+//	}
+//	
+//	public CellWidget(Wall wallCell)
+//	{
+//		cell = wallCell;
+//		label = new JLabel("");
+//		label.setForeground(WALL_COLOR);
+//		add(label);
+//	}
 
 	/**
 	 * 
@@ -100,11 +125,14 @@ public class CellWidget extends JPanel
 
 	public void update()
 	{
-		setBackground(cellType2Color.get(cell.getType()));
-		label.setText(String.valueOf(cell.getDirection().name().charAt(0)));
+		if (cell.isPath())
+		{
+			setBackground(cellType2Color.get(cell.getStatus()));
+			label.setText(String.valueOf(cell.getDirection().name().charAt(0)));
+		}
 	}
 
-	public static Color getColorFor(Cell.Type t)
+	public static Color getColorFor(Cell.Status t)
 	{
 		return cellType2Color.get(t);
 	}

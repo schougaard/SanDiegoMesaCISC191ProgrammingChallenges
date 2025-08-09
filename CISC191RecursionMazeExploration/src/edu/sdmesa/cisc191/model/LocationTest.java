@@ -25,20 +25,15 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Purpose: The reponsibility of LocationTest is ...
- *
- * LocationTest is-a ...
- * LocationTest is ...
- */
 class LocationTest
 {
 
 	/**
 	 * Test method for {@link edu.sdmesa.cisc191.model.Location#Location(int, int)}.
+	 * @throws IllegalLocationException 
 	 */
 	@Test
-	void testLocation()
+	void testLocation() throws IllegalLocationException
 	{
 		Location location = new Location(2, 3);
 		assertEquals(2, location.getRow());
@@ -47,9 +42,10 @@ class LocationTest
 
 	/**
 	 * Test method for {@link edu.sdmesa.cisc191.model.Location#getLocationToRight()}.
+	 * @throws IllegalLocationException 
 	 */
 	@Test
-	void testGetLocationToRight()
+	void testGetLocationToRight() throws IllegalLocationException
 	{
 		Location location = new Location(2, 3).getLocationToRight();
 		assertEquals(2, location.getRow());
@@ -136,9 +132,10 @@ class LocationTest
 
 	/**
 	 * Test method for {@link edu.sdmesa.cisc191.model.Location#equals(java.lang.Object)}.
+	 * @throws IllegalLocationException 
 	 */
 	@Test
-	void testEqualsObject()
+	void testEqualsObject() throws IllegalLocationException
 	{
 		assertTrue(new Location(2, 4).equals(new Location(2, 4)));
 		assertFalse(new Location(2, 4).equals(new Location(1, 4)));
@@ -147,9 +144,10 @@ class LocationTest
 
 	/**
 	 * Test method for {@link edu.sdmesa.cisc191.model.Location#toString()}.
+	 * @throws IllegalLocationException 
 	 */
 	@Test
-	void testToString()
+	void testToString() throws IllegalLocationException
 	{
 		assertEquals("(2,4)", new Location(2, 4).toString());
 	}

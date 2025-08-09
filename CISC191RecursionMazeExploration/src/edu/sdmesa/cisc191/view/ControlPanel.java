@@ -34,18 +34,18 @@ import edu.sdmesa.cisc191.model.MazeSolver;
  */
 public class ControlPanel extends JPanel
 {
-	private MazeExplorer exp;
+	private MazeExplorer mazeExplorer;
 
+	private JLabel sliderLabel;
 	private JSlider slider;
 	private JButton stepButton;
 	private JButton pauseButton;
 	private JButton resetButton;
-	private JLabel sliderLabel;
 	private JPanel buttonsPanel;
 
-	public ControlPanel(MazeExplorer exp)
+	public ControlPanel(MazeExplorer givenMazeExplorer)
 	{
-		this.exp = exp;
+		this.mazeExplorer = givenMazeExplorer;
 
 		setup();
 	}
@@ -72,7 +72,7 @@ public class ControlPanel extends JPanel
 	private void setupMazeCleared()
 	{
 		// when the maze is cleared, disable step and pause buttons
-		exp.getSolver().addPropertyChangeListener((mazeClearedEvent) -> {
+		mazeExplorer.getSolver().addPropertyChangeListener((mazeClearedEvent) -> {
 			disableButton(stepButton);
 			disableButton(pauseButton);
 			enableButton(resetButton);
@@ -99,9 +99,9 @@ public class ControlPanel extends JPanel
 	{
 		resetButton = new JButton("Reset");
 		resetButton.addActionListener(e -> {
-			exp.reset();
+			mazeExplorer.reset();
 			setupMazeCleared();
-			exp.runSolver();
+			mazeExplorer.runSolver();
 			resetGUI();
 			updatePauseGUI();
 		});
@@ -124,17 +124,39 @@ public class ControlPanel extends JPanel
 	{
 		pauseButton = new JButton("Play");
 		pauseButton.addActionListener(e -> {
-			exp.getSolver().togglePause();
+			mazeExplorer.getSolver().togglePause();
 			updatePauseGUI();
 		});
 	}
 
 	/**
+	 * The helper method to set up the step button.
+	 */
+	private void setupStepButton()
+	{
+		stepButton = new JButton("Step");
+		stepButton.addActionListener(e -> {
+			mazeExplorer.getSolver().nextStep();
+		});
+	}
+	
+	/**
+	 * The helper method to set up the slider label.
+	 */
+	private void setupSliderLabel()
+	{
+		sliderLabel = new JLabel("Automatically step every "
+				+ MazeSolver.pauseMillis + " milliseconds");
+		sliderLabel.setAlignmentX(CENTER_ALIGNMENT);
+		add(sliderLabel);
+	}
+	
+	/**
 	 * Updates the button to say pause or play at the GUI level.
 	 */
 	public void updatePauseGUI()
 	{
-		if (exp.getSolver().isPaused())
+		if (mazeExplorer.getSolver().isPaused())
 		{
 			enableButton(resetButton);
 			enableButton(stepButton);
@@ -148,27 +170,6 @@ public class ControlPanel extends JPanel
 		}
 	}
 
-	/**
-	 * The helper method to set up the step button.
-	 */
-	private void setupStepButton()
-	{
-		stepButton = new JButton("Step");
-		stepButton.addActionListener(e -> {
-			exp.getSolver().nextStep();
-		});
-	}
-
-	/**
-	 * The helper method to set up the slider label.
-	 */
-	private void setupSliderLabel()
-	{
-		sliderLabel = new JLabel("Automatically step every "
-				+ MazeSolver.pauseMillis + " milliseconds");
-		sliderLabel.setAlignmentX(CENTER_ALIGNMENT);
-		add(sliderLabel);
-	}
 
 	/**
 	 * Disables a JButton.

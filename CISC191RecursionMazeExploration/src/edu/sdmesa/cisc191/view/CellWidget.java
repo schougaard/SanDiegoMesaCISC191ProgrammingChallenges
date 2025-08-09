@@ -1,9 +1,8 @@
 /**
  * Lead Author(s):
  * 
- * @author a; student ID
- * @author Full name; student ID
- *         <<Add additional lead authors here>>
+ * @author Alex Chow
+ * @author Allan Schougaard
  *
  *         Other Contributors:
  *         Full name; student ID or contact information if not in class
@@ -30,7 +29,8 @@ import javax.swing.JPanel;
 import edu.sdmesa.cisc191.model.Cell;
 
 /**
- * Purpose: The responsibility of CellWidget is to display the status of a cell in the maze
+ * Purpose: The responsibility of CellWidget is to display the status of a cell
+ * in the maze
  *
  * GUICell is-a JPanel
  */
@@ -72,23 +72,26 @@ public class CellWidget extends JPanel
 	{
 		cell = initCell;
 		// Update when the cell changes
-		cell.addPropertyChangeListener((dummyEvent) -> {update();});
+		cell.addPropertyChangeListener((dummyEvent) -> {
+			update();
+		});
 
 		label = new JLabel("");
 		label.setForeground(Color.white);
 		add(label);
 	}
-	
+
 	/**
 	 * 
 	 * Purpose: Set direction, etc
+	 * 
 	 * @param text
 	 */
 	public void setText(String text)
 	{
 		label.setText(text);
 	}
-	
+
 	public void clear()
 	{
 		setBackground(Color.PINK);
@@ -98,10 +101,9 @@ public class CellWidget extends JPanel
 	public void update()
 	{
 		setBackground(cellType2Color.get(cell.getType()));
-		label.setText(
-				String.valueOf(cell.getDirection().name().charAt(0)));
+		label.setText(String.valueOf(cell.getDirection().name().charAt(0)));
 	}
-	
+
 	public static Color getColorFor(Cell.Type t)
 	{
 		return cellType2Color.get(t);

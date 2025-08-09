@@ -6,9 +6,7 @@ import java.util.LinkedList;
  * Lead Author(s):
  * 
  * @author Alex Chow
- * 
- *         Other contributors:
- *         Allan Schougaard
+ * @author Allan Schougaard
  * 
  *         References:
  *         Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented
@@ -16,7 +14,7 @@ import java.util.LinkedList;
  *         Retrieved from
  *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
- *         Version/date: 1.0
+ *         Version/date: 1.1
  */
 
 /**
@@ -47,19 +45,14 @@ public class Location
 	 * @throws IllegalArgumentException if initRow or initColumn are either
 	 *                                  negative or beyond the index in a given
 	 *                                  direction
+	 * @throws IllegalLocationException
 	 */
-	public Location(int initRow, int initColumn) throws IllegalArgumentException
+	public Location(int initRow, int initColumn) throws IllegalLocationException
 	{
-		if (initRow < 0 || initRow >= Maze.HEIGHT)
+		if (initRow < 0 || initRow >= Maze.HEIGHT || initColumn < 0
+				|| initColumn >= Maze.WIDTH)
 		{
-			throw new IllegalArgumentException(
-					"Row must be between 0 and " + Maze.HEIGHT + "!");
-		}
-
-		if (initColumn < 0 || initColumn >= Maze.WIDTH)
-		{
-			throw new IllegalArgumentException(
-					"Column must be between 0 and " + Maze.WIDTH + "!");
+			throw new IllegalLocationException(initRow, initColumn);
 		}
 
 		row = initRow;
@@ -73,12 +66,12 @@ public class Location
 			getLocationToRight();
 			return true;
 		}
-		catch (IllegalArgumentException e)
+		catch (IllegalLocationException e)
 		{
 			return false;
 		}
 	}
-	
+
 	public boolean hasLocationToLeft()
 	{
 		try
@@ -86,7 +79,7 @@ public class Location
 			getLocationToLeft();
 			return true;
 		}
-		catch (IllegalArgumentException e)
+		catch (IllegalLocationException e)
 		{
 			return false;
 		}
@@ -99,7 +92,7 @@ public class Location
 			getLocationAbove();
 			return true;
 		}
-		catch (IllegalArgumentException e)
+		catch (IllegalLocationException e)
 		{
 			return false;
 		}
@@ -112,10 +105,26 @@ public class Location
 			getLocationBelow();
 			return true;
 		}
-		catch (IllegalArgumentException e)
+		catch (IllegalLocationException e)
 		{
 			return false;
 		}
+	}
+
+	/**
+	 * Purpose: Determine if the location does not neighbors on one or more
+	 * sides
+	 * 
+	 * @return true if the location is on the outer edge of the maze
+	 */
+	public boolean isOuterPerimeter()
+	{
+		return !hasLocationToRight() || !hasLocationToLeft()
+				|| !hasLocationAbove() || !hasLocationBelow();
+
+		// Alternative implementation:
+		// return row == 0 || column == 0 || row == Maze.HEIGHT - 1
+		// || column == Maze.WIDTH - 1;
 	}
 
 	/**
@@ -123,7 +132,7 @@ public class Location
 	 * @throws IllegalArgumentException if there is no valid location to the
 	 *                                  right
 	 */
-	public Location getLocationToRight() throws IllegalArgumentException
+	public Location getLocationToRight() throws IllegalLocationException
 	{
 		return new Location(row, column + 1);
 	}
@@ -133,7 +142,7 @@ public class Location
 	 * @throws IllegalArgumentException if there is no valid location to the
 	 *                                  left
 	 */
-	public Location getLocationToLeft() throws IllegalArgumentException
+	public Location getLocationToLeft() throws IllegalLocationException
 	{
 		return new Location(row, column - 1);
 	}
@@ -142,7 +151,7 @@ public class Location
 	 * @return the location above
 	 * @throws IllegalArgumentException if there is no valid location above
 	 */
-	public Location getLocationAbove() throws IllegalArgumentException
+	public Location getLocationAbove() throws IllegalLocationException
 	{
 		return new Location(row - 1, column);
 	}
@@ -151,58 +160,28 @@ public class Location
 	 * @return the location below
 	 * @throws IllegalArgumentException if there is no valid location below
 	 */
-	public Location getLocationBelow() throws IllegalArgumentException
+	public Location getLocationBelow() throws IllegalLocationException
 	{
 		return new Location(row + 1, column);
 	}
 
-	public boolean isOuterPerimeter()
-	{
-		return row == 0 || column == 0 || row == Maze.HEIGHT - 1
-				|| column == Maze.WIDTH - 1;
-	}
-
 	/**
-	 * @return all possible locations surrounding this location
+	 * @return all locations within the maze surrounding this location
 	 */
 	public LinkedList<Location> getAdjacentLocations()
 	{
 		LinkedList<Location> locations = new LinkedList<Location>();
-
 		try
 		{
-			locations.add(getLocationToLeft());
+			if (hasLocationToLeft()) locations.add(getLocationToLeft());
+			if (hasLocationToRight()) locations.add(getLocationToRight());
+			if (hasLocationAbove()) locations.add(getLocationAbove());
+			if (hasLocationBelow()) locations.add(getLocationBelow());
 		}
-		catch (IllegalArgumentException e)
+		catch (IllegalLocationException e)
 		{
-			// Ignore
-		}
-
-		try
-		{
-			locations.add(getLocationAbove());
-		}
-		catch (IllegalArgumentException e)
-		{
-			// Ignore
-		}
-
-		try
-		{
-			locations.add(getLocationToRight());
-		}
-		catch (IllegalArgumentException e)
-		{
-			// Ignore
-		}
-
-		try
-		{
-			locations.add(getLocationBelow());
-		}
-		catch (IllegalArgumentException e)
-		{
-			// Ignore
+			// This should never happen
+			e.printStackTrace();
 		}
 
 		return locations;

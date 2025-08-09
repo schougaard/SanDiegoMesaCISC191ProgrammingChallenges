@@ -1,11 +1,9 @@
 /**
 * Lead Author(s):
-* @author a; student ID
-* @author Full name; student ID
-* <<Add additional lead authors here>>
+* @author Alex Chow
+* @author Allan Schougaard
 *
 * Other Contributors:
-* Full name; student ID or contact information if not in class
 * <<Add additional contributors (mentors, tutors, friends) here, with contact information>>
 *
 * References:
@@ -23,12 +21,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Purpose: The reponsibility of TestMaze is ...
- *
- * TestMaze is-a ...
- * TestMaze is ...
- */
 class TestMaze
 {
 

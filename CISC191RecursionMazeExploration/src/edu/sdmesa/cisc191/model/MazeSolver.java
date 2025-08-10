@@ -3,6 +3,8 @@ package edu.sdmesa.cisc191.model;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
+import edu.sdmesa.cisc191.model.cell.Cell;
+
 /**
  * Lead Author(s):
  * 

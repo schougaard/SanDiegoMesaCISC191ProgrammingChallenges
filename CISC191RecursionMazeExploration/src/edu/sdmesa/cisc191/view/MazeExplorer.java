@@ -2,8 +2,9 @@ package edu.sdmesa.cisc191.view;
 
 import edu.sdmesa.cisc191.model.Location;
 import edu.sdmesa.cisc191.model.Maze;
-import edu.sdmesa.cisc191.model.MazeGenerator;
 import edu.sdmesa.cisc191.model.MazeSolver;
+import edu.sdmesa.cisc191.model.cell.Cell;
+import edu.sdmesa.cisc191.model.mazegenerator.MazeGeneratorFactory;
 
 /**
  * Lead Author(s):
@@ -39,8 +40,9 @@ public class MazeExplorer
 
 	public MazeExplorer()
 	{
-		//maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM);
-		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.RANDOM);
+		maze = MazeGeneratorFactory
+				.generateMaze(MazeGeneratorFactory.Algorithm.PRIM);
+		// maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.RANDOM);
 		// = new Maze();
 		System.out.println(maze);
 		setup();
@@ -48,7 +50,8 @@ public class MazeExplorer
 
 	public MazeExplorer(int seed)
 	{
-		maze = MazeGenerator.generateMaze(MazeGenerator.Algorithm.PRIM, seed);
+		maze = MazeGeneratorFactory
+				.generateMaze(MazeGeneratorFactory.Algorithm.PRIM, seed);
 		setup();
 	}
 
@@ -165,8 +168,11 @@ public class MazeExplorer
 				Location loc = new Location(row, col);
 				if (ogMaze.getCellAtLocation(loc).isPath())
 				{
-					maze.getCellAtLocation(loc)
-							.setStatus(ogMaze.getCellAtLocation(loc).getStatus());
+					// reset both the status and direction
+					Cell cell = maze.getCellAtLocation(loc);
+					cell.setStatus(ogMaze.getCellAtLocation(loc).getStatus());
+					cell.setDirection(
+							ogMaze.getCellAtLocation(loc).getDirection());
 				}
 			}
 		}

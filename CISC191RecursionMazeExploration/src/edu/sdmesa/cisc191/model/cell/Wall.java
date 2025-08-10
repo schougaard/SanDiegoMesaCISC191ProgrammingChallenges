@@ -19,9 +19,11 @@
  *
  *         Version: 2025-08-09
  */
-package edu.sdmesa.cisc191.model;
+package edu.sdmesa.cisc191.model.cell;
 
 import java.beans.PropertyChangeListener;
+
+import edu.sdmesa.cisc191.model.Location;
 
 /**
  * Purpose: The responsibility of Wall is to be a Cell that never changes.

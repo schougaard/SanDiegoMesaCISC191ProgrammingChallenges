@@ -21,6 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.sdmesa.cisc191.model.cell.Path;
+import edu.sdmesa.cisc191.model.cell.Wall;
+
 class TestMaze
 {
 

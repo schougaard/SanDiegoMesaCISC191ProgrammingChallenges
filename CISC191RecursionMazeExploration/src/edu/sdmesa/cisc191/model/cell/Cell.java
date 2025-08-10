@@ -13,11 +13,13 @@
 *
 * Version: 2025-07-17
 */
-package edu.sdmesa.cisc191.model;
+package edu.sdmesa.cisc191.model.cell;
 
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Stack;
+
+import edu.sdmesa.cisc191.model.Location;
 
 /**
  * Purpose: The responsibility of Cell is track status and direction for a location in a maze.

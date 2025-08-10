@@ -26,7 +26,7 @@ import java.util.Hashtable;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.sdmesa.cisc191.model.Cell;
+import edu.sdmesa.cisc191.model.cell.Cell;
 
 /**
  * Purpose: The responsibility of CellWidget is to display the status of a cell

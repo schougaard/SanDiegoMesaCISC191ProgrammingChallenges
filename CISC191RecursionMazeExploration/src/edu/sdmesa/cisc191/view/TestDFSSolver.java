@@ -10,11 +10,11 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import edu.sdmesa.cisc191.model.Cell;
 import edu.sdmesa.cisc191.model.Location;
 import edu.sdmesa.cisc191.model.Maze;
 import edu.sdmesa.cisc191.model.MazeSolver;
-import edu.sdmesa.cisc191.model.Path;
+import edu.sdmesa.cisc191.model.cell.Cell;
+import edu.sdmesa.cisc191.model.cell.Path;
 
 /**
  * Lead Author(s):

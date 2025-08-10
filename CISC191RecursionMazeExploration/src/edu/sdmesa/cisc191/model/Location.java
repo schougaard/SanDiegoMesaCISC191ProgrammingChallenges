@@ -49,8 +49,7 @@ public class Location
 	 */
 	public Location(int initRow, int initColumn) throws IllegalLocationException
 	{
-		if (initRow < 0 || initRow >= Maze.HEIGHT || initColumn < 0
-				|| initColumn >= Maze.WIDTH)
+		if (!isValidLocation(initRow, initColumn))
 		{
 			throw new IllegalLocationException(initRow, initColumn);
 		}
@@ -61,54 +60,71 @@ public class Location
 
 	public boolean hasLocationToRight()
 	{
-		try
-		{
-			getLocationToRight();
-			return true;
-		}
-		catch (IllegalLocationException e)
-		{
-			return false;
-		}
+		return isValidLocation(row, column + 1);
 	}
 
 	public boolean hasLocationToLeft()
 	{
-		try
-		{
-			getLocationToLeft();
-			return true;
-		}
-		catch (IllegalLocationException e)
-		{
-			return false;
-		}
+		return isValidLocation(row, column - 1);
 	}
 
 	public boolean hasLocationAbove()
 	{
-		try
-		{
-			getLocationAbove();
-			return true;
-		}
-		catch (IllegalLocationException e)
-		{
-			return false;
-		}
+		return isValidLocation(row - 1, column);
 	}
 
 	public boolean hasLocationBelow()
 	{
-		try
-		{
-			getLocationBelow();
-			return true;
-		}
-		catch (IllegalLocationException e)
-		{
-			return false;
-		}
+		return isValidLocation(row + 1, column);
+	}
+
+	/**
+	 * Checks if there is a location amount units to the right of this location.
+	 *  
+	 * @param amount the number of units to the right of this location to check
+	 * @return if there is such a location
+	 */
+	public boolean hasLocationToRight(int amount)
+	{
+		return isValidLocation(row, column + amount);
+	}
+
+	/**
+	 * Checks if there is a location amount units to the left of this location.
+	 *  
+	 * @param amount the number of units to the left of this location to check
+	 * @return if there is such a location
+	 */
+	public boolean hasLocationToLeft(int amount)
+	{
+		return isValidLocation(row, column - amount);
+	}
+
+	/**
+	 * Checks if there is a location amount units above this location.
+	 *  
+	 * @param amount the number of units above this location to check
+	 * @return if there is such a location
+	 */
+	public boolean hasLocationAbove(int amount)
+	{
+		return isValidLocation(row - amount, column);
+	}
+
+	/**
+	 * Checks if there is a location amount units below this location.
+	 *  
+	 * @param amount the number of units below this location to check
+	 * @return if there is such a location
+	 */
+	public boolean hasLocationBelow(int amount)
+	{
+		return isValidLocation(row + amount, column);
+	}
+
+	public static boolean isValidLocation(int row, int col)
+	{
+		return row >= 0 && row < Maze.HEIGHT && col >= 0 && col < Maze.WIDTH;
 	}
 
 	/**
@@ -121,10 +137,6 @@ public class Location
 	{
 		return !hasLocationToRight() || !hasLocationToLeft()
 				|| !hasLocationAbove() || !hasLocationBelow();
-
-		// Alternative implementation:
-		// return row == 0 || column == 0 || row == Maze.HEIGHT - 1
-		// || column == Maze.WIDTH - 1;
 	}
 
 	/**

@@ -19,11 +19,13 @@
  *
  *         Version: 2025-08-09
  */
-package edu.sdmesa.cisc191.model;
+package edu.sdmesa.cisc191.model.cell;
 
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Stack;
+
+import edu.sdmesa.cisc191.model.Location;
 
 /**
  * Purpose: The reponsibility of Path is ...

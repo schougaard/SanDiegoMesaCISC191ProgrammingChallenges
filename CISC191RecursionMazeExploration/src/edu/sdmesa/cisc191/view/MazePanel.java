@@ -8,9 +8,9 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import edu.sdmesa.cisc191.model.Cell;
 import edu.sdmesa.cisc191.model.Location;
 import edu.sdmesa.cisc191.model.Maze;
+import edu.sdmesa.cisc191.model.cell.Cell;
 
 /**
  * Lead Author(s):

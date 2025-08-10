@@ -3,7 +3,10 @@ package edu.sdmesa.cisc191.model;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import edu.sdmesa.cisc191.model.Cell.Direction;
+import edu.sdmesa.cisc191.model.cell.Cell;
+import edu.sdmesa.cisc191.model.cell.Path;
+import edu.sdmesa.cisc191.model.cell.Wall;
+import edu.sdmesa.cisc191.model.cell.Cell.Direction;
 
 /**
  * Lead Author(s):
@@ -192,9 +195,11 @@ public class Maze
 	 * Facade
 	 * Purpose:
 	 * 
+	 * Note: I changed it to public (it was default) due to the new MazeGenerator package
+	 * 
 	 * @param location
 	 */
-	void makeLocationPath(Location location)
+	public void makeLocationPath(Location location)
 	{
 		cells[location.getRow()][location.getColumn()] = new Path(location);
 	}
@@ -203,9 +208,11 @@ public class Maze
 	 * Facade
 	 * Purpose:
 	 * 
+	 * Note: I changed it to public (it was default) due to the new MazeGenerator package
+	 * 
 	 * @param location
 	 */
-	void makeLocationWall(Location location)
+	public void makeLocationWall(Location location)
 	{
 		cells[location.getRow()][location.getColumn()] = new Wall(location);
 	}
@@ -249,104 +256,8 @@ public class Maze
 	}
 
 	/**
-	 * A helper method to get a list of reachable cells from a point
-	 * in a maze.
+	 * TODO: need this?
 	 * 
-	 * @param cells the maze
-	 * @param point the point
-	 * @return the list of points
-	 */
-	public LinkedList<Cell> getReachableCells(Location location)
-	{
-		LinkedList<Cell> reachableCells = new LinkedList<>();
-		LinkedList<Cell> directions = new LinkedList<>();
-
-		// check each direction. Note how it's 2 units since each cell could be
-		// a wall as well
-		try
-		{
-			directions.add(getCellAtLocation(
-					location.getLocationToLeft().getLocationToLeft()));
-		}
-		catch (IllegalArgumentException e)
-		{
-			// e.printStackTrace();
-		}
-
-		try
-		{
-			directions.add(getCellAtLocation(
-					location.getLocationToRight().getLocationToRight()));
-		}
-		catch (IllegalArgumentException e)
-		{
-			// e.printStackTrace();
-		}
-
-		try
-		{
-			directions.add(getCellAtLocation(
-					location.getLocationAbove().getLocationAbove()));
-		}
-		catch (IllegalArgumentException e)
-		{
-			// e.printStackTrace();
-		}
-
-		try
-		{
-			directions.add(getCellAtLocation(
-					location.getLocationBelow().getLocationBelow()));
-		}
-		catch (IllegalArgumentException e)
-		{
-			// e.printStackTrace();
-		}
-
-		// shuffle to make random paths
-		// Collections.shuffle(Arrays.asList(directions));
-
-		// check in each direction
-		for (Cell direction : directions)
-		{
-			if (canBeAPath(direction)
-					&& getCellAtLocation(direction.getLocation())
-							.isPath() == true)
-			{
-				reachableCells.add(direction);
-			}
-		}
-
-		return reachableCells;
-	}
-
-	/**
-	 * Returns whether the cell at the specified point can be marked as a
-	 * path. Takes row and column as parameters. The checks are:
-	 * - Validity (within borders?)
-	 * - If the cell is a designated entrance or exit cell
-	 * - If the cell is on the border
-	 * 
-	 * @param row the cell row
-	 * @param col the cell columnType
-	 * @return true if the cell can be a path; false otherwise
-	 * 
-	 *         TODO: anything that is not a WALL can be a PATH???
-	 *         Rename?
-	 */
-	public boolean canBeAPath(Cell cell)
-	{
-		if (cell.getLocation().equals(entranceLocation)) return true;
-		if (cell.getLocation().equals(exitLocation)) return true;
-
-		// no borders besides exit and entrance can be a path
-		// Outer perimeter should be walls
-		if (cell.getLocation().isOuterPerimeter()) return false;
-
-		return true;
-	}
-
-	/**
 	 * Color a cell as currently being checked to see if the cell is a path.
 	 * This does not set the internal state of the cell to anything else like
 	 * the methods that start with the word "mark." The cell will simply be
@@ -361,6 +272,8 @@ public class Maze
 	}
 
 	/**
+	 * TODO: need this?
+	 * 
 	 * Color a cell as that we're currently on it. Think of it as where you
 	 * currently are in the maze. This does not set the internal state of the
 	 * cell to anything else like the methods that start with the word "mark."
@@ -375,6 +288,8 @@ public class Maze
 	}
 
 	/**
+	 * TODO: need this?
+	 * 
 	 * Mark a cell as the solution. This will internally change the state
 	 * of the cell from PATH to SOLUTION. The cell will also be colored
 	 * green.
@@ -388,6 +303,8 @@ public class Maze
 	}
 
 	/**
+	 * TODO: need this?
+	 * 
 	 * Mark a cell as waiting. Waiting means we've walked to that cell,
 	 * and is waiting to see if there are paths ahead that lead to the exit
 	 * or a dead end. This will internally change the state of the cell
@@ -402,6 +319,8 @@ public class Maze
 	}
 
 	/**
+	 * TODO: need this?
+	 * 
 	 * Mark a cell as visited. Visited means we're done checking every
 	 * direction from that cell. It means no matter going up, left, right,
 	 * or down from that cell will lead us to a dead end. This will internally
@@ -536,6 +455,7 @@ public class Maze
 	}
 
 	/**
+	 * TODO: delete?
 	 * @param currentLocation
 	 * @return list of locations surrounding the current location that are not
 	 *         walls

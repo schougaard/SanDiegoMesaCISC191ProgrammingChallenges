@@ -22,6 +22,8 @@
 package edu.sdmesa.cisc191.model.cell;
 
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.Stack;
 
 import edu.sdmesa.cisc191.model.Location;
 
@@ -30,6 +32,19 @@ import edu.sdmesa.cisc191.model.Location;
  */
 public class Wall extends Cell
 {
+	/**
+	 * A cell has many listeners so the GUI can listen in on changes and update
+	 * accordingly
+	 */
+	private final ArrayList<PropertyChangeListener> propertyChangeListeners = new ArrayList<PropertyChangeListener>();
+	
+	/**
+	 * A Wall still has a status--being evaluated.
+	 */
+	private Cell.Status status = Status.INVALID;
+
+	private final Stack<Cell.Status> statusHistory = new Stack<Cell.Status>();
+	
 	/**
 	 * Purpose:
 	 * 
@@ -43,6 +58,13 @@ public class Wall extends Cell
 	public Wall(Wall otherWall)
 	{
 		this(otherWall.getLocation());
+		status = otherWall.status;
+		
+		// History belongs to a specific cell in a specific maze (and Stacks are mutable) so we need a deep copy
+		for(Cell.Status status: statusHistory)
+		{
+			statusHistory.push(status);
+		}
 	}
 
 	public String toString()
@@ -76,19 +98,22 @@ public class Wall extends Cell
 	@Override
 	public Status getStatus()
 	{
-		throw new RuntimeException("Walls don't have status");
+		return status;
 	}
 
 	@Override
 	public void setStatus(Status status)
 	{
-		throw new RuntimeException("Walls don't have status");
+		statusHistory.add(this.status);
+		this.status = status;
+		updatePropertyChangeListeners();
 	}
 
 	@Override
 	public void undoSetStatus()
 	{
-		throw new RuntimeException("Walls don't have status");
+		this.status = statusHistory.pop();
+		updatePropertyChangeListeners();
 	}
 
 	@Override
@@ -105,7 +130,20 @@ public class Wall extends Cell
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener)
 	{
-		// Walls never change so nothing to do
+		propertyChangeListeners.add(listener);
+	}
+	
+	/**
+	 * Purpose: call propertyChange on all registered PropertyChangeListeners
+	 * 
+	 * @see addPropertyChangeListener(PropertyChangeListener listener)
+	 */
+	private void updatePropertyChangeListeners()
+	{
+		for (PropertyChangeListener listener : propertyChangeListeners)
+		{
+			listener.propertyChange(null); // null is good enough
+		}
 	}
 
 }

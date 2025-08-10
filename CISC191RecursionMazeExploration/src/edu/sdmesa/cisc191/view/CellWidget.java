@@ -47,6 +47,7 @@ public class CellWidget extends JPanel
 	private JLabel label;
 
 	private final static Color WALL_COLOR = Color.black;
+	private final static Color INVALID_COLOR = WALL_COLOR;
 	private final static Color PATH_COLOR = Color.white;
 	private final static Color VISITED_COLOR = Color.red;
 	private final static Color CURRENT_COLOR = Color.blue;
@@ -58,6 +59,7 @@ public class CellWidget extends JPanel
 	private final static Hashtable<Cell.Status, Color> cellType2Color = new Hashtable<Cell.Status, Color>();
 	static
 	{
+		cellType2Color.put(Cell.Status.INVALID, INVALID_COLOR);
 		cellType2Color.put(Cell.Status.FRONTIER, FRONTIER_COLOR);
 		cellType2Color.put(Cell.Status.VISITED, VISITED_COLOR);
 		cellType2Color.put(Cell.Status.CURRENT, CURRENT_COLOR);
@@ -65,7 +67,7 @@ public class CellWidget extends JPanel
 		cellType2Color.put(Cell.Status.SOLUTION, SOLUTION_COLOR);
 		cellType2Color.put(Cell.Status.WAITING, WAITING_COLOR);
 	}
-	
+
 	public CellWidget(Cell initCell)
 	{
 		cell = initCell;
@@ -86,25 +88,25 @@ public class CellWidget extends JPanel
 		add(label);
 	}
 
-//	public CellWidget(Path pathCell)
-//	{
-//		cell = pathCell;
-//		// Update when the cell changes
-//		pathCell.addPropertyChangeListener((dummyEvent) -> {
-//			update();
-//		});
-//		label = new JLabel("");
-//		label.setForeground(PATH_COLOR);
-//		add(label);
-//	}
-//	
-//	public CellWidget(Wall wallCell)
-//	{
-//		cell = wallCell;
-//		label = new JLabel("");
-//		label.setForeground(WALL_COLOR);
-//		add(label);
-//	}
+	// public CellWidget(Path pathCell)
+	// {
+	// cell = pathCell;
+	// // Update when the cell changes
+	// pathCell.addPropertyChangeListener((dummyEvent) -> {
+	// update();
+	// });
+	// label = new JLabel("");
+	// label.setForeground(PATH_COLOR);
+	// add(label);
+	// }
+	//
+	// public CellWidget(Wall wallCell)
+	// {
+	// cell = wallCell;
+	// label = new JLabel("");
+	// label.setForeground(WALL_COLOR);
+	// add(label);
+	// }
 
 	/**
 	 * 
@@ -129,6 +131,10 @@ public class CellWidget extends JPanel
 		{
 			setBackground(cellType2Color.get(cell.getStatus()));
 			label.setText(String.valueOf(cell.getDirection().name().charAt(0)));
+		}
+		else
+		{
+			setBackground(cellType2Color.get(cell.getStatus()));
 		}
 	}
 

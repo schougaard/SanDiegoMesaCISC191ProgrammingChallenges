@@ -44,6 +44,7 @@ public abstract class Cell
 	
 	public static enum Status
 	{
+		INVALID,
 		NOT_STARTED, 
 		FRONTIER, // used for other algorithms like BFS, etc.
 		VISITED, // if this cell has been visited

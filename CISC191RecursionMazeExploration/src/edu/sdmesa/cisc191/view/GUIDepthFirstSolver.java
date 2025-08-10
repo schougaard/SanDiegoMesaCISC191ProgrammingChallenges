@@ -85,9 +85,6 @@ public class GUIDepthFirstSolver extends MazeSolver
 
 		setLabelRight(currentLocation);
 		if (currentLocation.hasLocationToRight()
-				&& getMaze()
-						.getCellAtLocation(currentLocation.getLocationToRight())
-						.isPath()
 				&& isTraversable(currentLocation.getLocationToRight()))
 		{
 			markAsWaiting(currentLocation);
@@ -104,9 +101,6 @@ public class GUIDepthFirstSolver extends MazeSolver
 
 		setLabelLeft(currentLocation);
 		if (currentLocation.hasLocationToLeft()
-				&& getMaze()
-				.getCellAtLocation(currentLocation.getLocationToLeft())
-				.isPath()
 				&& isTraversable(currentLocation.getLocationToLeft()))
 		{
 			markAsWaiting(currentLocation);
@@ -123,9 +117,6 @@ public class GUIDepthFirstSolver extends MazeSolver
 
 		setLabelDown(currentLocation);
 		if (currentLocation.hasLocationBelow()
-				&& getMaze()
-				.getCellAtLocation(currentLocation.getLocationBelow())
-				.isPath()
 				&& isTraversable(currentLocation.getLocationBelow()))
 		{
 			markAsWaiting(currentLocation);
@@ -142,9 +133,6 @@ public class GUIDepthFirstSolver extends MazeSolver
 
 		setLabelUp(currentLocation);
 		if (currentLocation.hasLocationAbove()
-				&& getMaze()
-				.getCellAtLocation(currentLocation.getLocationAbove())
-				.isPath()
 				&& isTraversable(currentLocation.getLocationAbove()))
 		{
 			markAsWaiting(currentLocation);

@@ -26,8 +26,7 @@ public enum LearningOutcome
 	LO6("M7 GUI"),
 	LO7("M8 Exceptions"),
 	LO8("M9 File I/O"),
-	LO9("M10 Recursion"),
-	LO10("M11 Multithreading");
+	LO9("M10 Recursion");
 	
 	// A learning outcome has a title for presentation
 	private final String title;

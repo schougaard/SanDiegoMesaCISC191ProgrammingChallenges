@@ -45,9 +45,9 @@ public class Grader
 	public String calculateCurrentGrade()
 	{
 		int[] levelCountTable = calculateAchievementLevelCountTable();
-		int numberOfCompleted = 10 - levelCountTable[Achievement.NOT_YET.getlevel()];
+		int numberOfCompleted = 9 - levelCountTable[Achievement.NOT_YET.getlevel()];
 		
-		if (numberOfCompleted == 10)
+		if (numberOfCompleted == 9)
 		{
 			return calculateFinalGrade();
 		}
@@ -87,14 +87,14 @@ public class Grader
 	{
 		int[] levelCountTable = calculateAchievementLevelCountTable();
 		
-		if (levelCountTable[Achievement.SENIOR_DEVELOPER.getlevel()] >= 8 &&
+		if (levelCountTable[Achievement.SENIOR_DEVELOPER.getlevel()] >= 7 &&
 			levelCountTable[Achievement.INTERN.getlevel()] == 0 &&
 			levelCountTable[Achievement.NOT_YET.getlevel()] == 0)
 		{
 			return "A";
 		}
 		else if (levelCountTable[Achievement.SENIOR_DEVELOPER.getlevel()] + 
-			     levelCountTable[Achievement.MIDDLE_DEVELOPER.getlevel()] >= 8 &&
+			     levelCountTable[Achievement.MIDDLE_DEVELOPER.getlevel()] >= 7 &&
 				 levelCountTable[Achievement.INTERN.getlevel()] == 0 &&
 				 levelCountTable[Achievement.NOT_YET.getlevel()] == 0)
 		{
@@ -102,7 +102,7 @@ public class Grader
 		}
 		else if (levelCountTable[Achievement.SENIOR_DEVELOPER.getlevel()] + 
 				 levelCountTable[Achievement.MIDDLE_DEVELOPER.getlevel()] + 
-				 levelCountTable[Achievement.JUNIOR_DEVELOPER.getlevel()] >= 10)
+				 levelCountTable[Achievement.JUNIOR_DEVELOPER.getlevel()] >= 9)
 		{
 			return "C";
 		}

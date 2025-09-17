@@ -210,29 +210,29 @@ class TestAdvancedClasses
 //		
 //		// Model that a bike shop has-many cycles
 //	    // Make sure the bike shop can have at least 10 bikes.
-//		assertTrue(0, shop.getNumberOfBikesInInventory());
+//		assertEquals(0, shop.getNumberOfBikesInInventory());
 //		
 //		ElectricMountainBike conveyance1 = new ElectricMountainBike("BigMountainBike");
 //		shop.addToInventory(conveyance1);
-//		assertTrue(1, shop.getNumberOfBikesInInventory());
+//		assertEquals(1, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance1.toString()));
 //		
 //		Unicycle conveyance2 = new Unicycle("Looney");
 //		shop.addToInventory(conveyance2);
-//		assertTrue(2, shop.getNumberOfBikesInInventory());
+//		assertEquals(2, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance2.toString()));
 //		assertTrue(shop.toString().contains(conveyance1.toString()));
 //		
 //		Unicycle conveyance3 = new Bicycle("Tooney");
 //		shop.addToInventory(conveyance3);
-//		assertTrue(3, shop.getNumberOfBikesInInventory());
+//		assertEquals(3, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance3.toString()));
 //		assertTrue(shop.toString().contains(conveyance2.toString()));
 //		assertTrue(shop.toString().contains(conveyance1.toString()));
 //		
 //		Unicycle conveyance4 = new ElectricMountainBike("SmallMountainBike");
 //		shop.addToInventory(conveyance4);
-//		assertTrue(4, shop.getNumberOfBikesInInventory());
+//		assertEquals(4, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance4.toString()));
 //		assertTrue(shop.toString().contains(conveyance3.toString()));
 //		assertTrue(shop.toString().contains(conveyance2.toString()));
@@ -240,4 +240,5 @@ class TestAdvancedClasses
 //	}
 
 }
+
 

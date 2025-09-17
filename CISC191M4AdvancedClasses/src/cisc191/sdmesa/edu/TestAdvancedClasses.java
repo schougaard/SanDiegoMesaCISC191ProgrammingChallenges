@@ -217,20 +217,20 @@ class TestAdvancedClasses
 //		assertEquals(1, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance1.toString()));
 //		
-//		Unicycle conveyance2 = new Unicycle("Looney");
+//		Cycle conveyance2 = new Unicycle("Looney");
 //		shop.addToInventory(conveyance2);
 //		assertEquals(2, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance2.toString()));
 //		assertTrue(shop.toString().contains(conveyance1.toString()));
 //		
-//		Unicycle conveyance3 = new Bicycle("Tooney");
+//		Cycle conveyance3 = new Bicycle("Tooney");
 //		shop.addToInventory(conveyance3);
 //		assertEquals(3, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance3.toString()));
 //		assertTrue(shop.toString().contains(conveyance2.toString()));
 //		assertTrue(shop.toString().contains(conveyance1.toString()));
 //		
-//		Unicycle conveyance4 = new ElectricMountainBike("SmallMountainBike");
+//		Cycle conveyance4 = new ElectricMountainBike("SmallMountainBike");
 //		shop.addToInventory(conveyance4);
 //		assertEquals(4, shop.getNumberOfBikesInInventory());
 //		assertTrue(shop.toString().contains(conveyance4.toString()));
@@ -240,5 +240,6 @@ class TestAdvancedClasses
 //	}
 
 }
+
 
 

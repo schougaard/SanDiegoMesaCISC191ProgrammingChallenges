@@ -165,7 +165,7 @@ class TestDataStructures
 //		producer.produce("Top bun");
 //		
 //		assertEquals("Top bun", consumer.consume());
-//		assertEquals("Buttom bun", consumer.consume());
+//		assertEquals("Bottom bun", consumer.consume());
 //		assertEquals(true, stack.isEmpty());
 //		
 //		assertNull(consumer.consume());

@@ -67,7 +67,7 @@ class IOTest
 //	void testReadDateTimeApi()  throws InterruptedException
 //	{
 //		final String API_URL = "https://timeapi.io/api/time/current/zone?timeZone=utc";
-//		final String TIMESTAMP_FORMAT = "YYYY-MM-DDThh:mm:ss.tttttt"; //-hh:mm";
+//		final String TIMESTAMP_FORMAT = "YYYY-MM-DDThh:mm:ss.ttttttt"; //-hh:mm";
 //	
 //		// In this test you will "read" the current time from a time server on the internet.
 //		// You can see that the server responds with by entering the URL in a browser

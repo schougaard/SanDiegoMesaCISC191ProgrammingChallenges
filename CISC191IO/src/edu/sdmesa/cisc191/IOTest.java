@@ -67,7 +67,7 @@ class IOTest
 //	void testReadDateTimeApi()  throws InterruptedException
 //	{
 //		final String API_URL = "https://timeapi.io/api/time/current/zone?timeZone=utc";
-//		final String TIMESTAMP_FORMAT = "YYYY-MM-DDThh:mm:ss.ttttttt"; //-hh:mm";
+//		final String TIMESTAMP_FORMAT = "YYYY-MM-DDThh:mm:ss.tttttt"; //-hh:mm";
 //	
 //		// In this test you will "read" the current time from a time server on the internet.
 //		// You can see that the server responds with by entering the URL in a browser
@@ -77,9 +77,12 @@ class IOTest
 //		// Hint: read  URL: https://docs.oracle.com/javase/tutorial//networking/urls/readingURL.html
 //		// Hint: use  URL url = new URI(api).toURL();
 //		// Hint: use String's indexOf("\"dateTime\":\", 0)
+//			
+//		
 //		assertTrue(dateTimeBefore.startsWith("202"));
 //		assertTrue(dateTimeBefore.contains("T"));
-//	    	assertTrue(dateTimeBefore.length() == TIMESTAMP_FORMAT.length());
+//		//total length should differ by 1 at most based on the seconds
+//	    assertTrue(Math.abs(dateTimeBefore.length() - TIMESTAMP_FORMAT.length())<=1);
 //	
 //		// Wait a second
 //		Thread.sleep(1000);  // throws InterruptedException

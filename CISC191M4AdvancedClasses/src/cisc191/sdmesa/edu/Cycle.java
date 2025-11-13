@@ -35,10 +35,8 @@ public abstract class Cycle
 	// A cycle has a unique frame number, that is *immutable*;
 	// How are you going to make it immutable, so that it only gets one final number? 
 	// (Hint: did you see the hint?)
-	private int frameNumber;
-	
-	// A cycle has a make, that is immutable
 	// TODO:
+	
 	
 	public Cycle(String newMake)
 	{

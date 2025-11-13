@@ -72,14 +72,15 @@ class TestAdvancedClasses
     @Order(1)
 	void testAbstractInheritance1()
 	{
-		Cycle cycle = new Unicycle("Uni1");
+		Cycle cycle = new Unicycle("Uni");
 		assertEquals("Uni1", cycle.getMake());
 		assertEquals(1, cycle.getNumberOfWheels());
-		assertEquals(1, cycle.getFrameNumber());
+		assertEquals("Uni1", cycle.getFrameNumber());
 		cycle.setColor(Color.RED);
 		assertEquals(Color.RED, cycle.getColor());
 	}
 
+	// Hint:
 	// Where is the best class to implement color, so you do not have to repeat code in multiple classes?
 	
 //	@Order(2)
@@ -89,14 +90,14 @@ class TestAdvancedClasses
 //		Cycle bike = new Bicycle("Tooney");
 //		assertEquals("Tooney", bike.getMake());
 //		assertEquals(2, bike.getNumberOfWheels());
-//		assertEquals(2, bike.getFrameNumber());
+//		assertEquals("Tooney1", bike.getFrameNumber());
 //		bike.setColor(Color.GREEN);
 //		assertEquals(Color.GREEN, bike.getColor());
 //		
 //		Cycle eBike = new ElectricMountainBike("EMB");
 //		assertEquals("EMB", eBike.getMake());
 //		assertEquals(2, eBike.getNumberOfWheels());
-//		assertEquals(3, eBike.getFrameNumber());
+//		assertEquals("EMB2", eBike.getFrameNumber());
 //		eBike.setColor(Color.RED);
 //		assertEquals(Color.RED, eBike.getColor());
 //	}
@@ -108,12 +109,12 @@ class TestAdvancedClasses
 //		Cycle cycle1 = new Unicycle("Uni");
 //		cycle1.setColor(Color.RED);
 //		int cycle1FrameNumber = cycle1.getFrameNumber();
-//		assertEquals("Uni (" + cycle1FrameNumber +")", cycle1.toString());
+//		assertEquals("Uni2 " + Color.RED, cycle1.toString());
 //		
 //		Cycle cycle2 = new Unicycle("Uni"); 
 //		cycle2.setColor(Color.BLUE);
 //		int cycle2FrameNumber = cycle2.getFrameNumber();
-//		assertEquals("Uni (" + cycle2FrameNumber +")", cycle2.toString());
+//		assertEquals("Uni3" + Color.BLUE, cycle2.toString());
 //
 //		assertNotEquals(cycle1.toString(), cycle2.toString());
 //	}
@@ -166,7 +167,7 @@ class TestAdvancedClasses
 //		assertEquals(1, conveyance.getGear());
 //	}
 //	
-//  	@Order(6)
+//  @Order(6)private int frameNumber;
 //	@Test
 //	void testMovable()
 //	{
@@ -180,11 +181,17 @@ class TestAdvancedClasses
 //		assertEquals(1, conveyance.getSpeed());
 //		conveyance.speedUp();
 //		assertEquals(2, conveyance.getSpeed());
+//	    conveyance.speedUp();
+//	    assertEquals(3, conveyance.getSpeed());
+//      conveyance.slowDown();
+//      assertEquals(1, conveyance.getSpeed());
+//      conveyance.slowDown();
+//      assertEquals(0, conveyance.getSpeed());
 //	}
 //
-//  	@Order(7)
+//  @Order(7)
 //	@Test
-//	void testElectric()
+//	void testChargable()
 //	{
 //		Chargeable conveyance = new ElectricMountainBike("EMBC");
 //		// Test that conveyance is-a Cycle
@@ -193,11 +200,11 @@ class TestAdvancedClasses
 //		
 //		assertEquals(0, conveyance.getCharge());
 //		conveyance.chargeTo(80);
-//		assertEquals(80, conveyance.getCharge());
-//		conveyance.speedUp();
-//		assertEquals(79, conveyance.getCharge());
-//		conveyance.speedUp();
-//		assertEquals(78, conveyance.getCharge());
+//	    assertEquals(80, conveyance.getCharge());
+//	    conveyance.chargeTo(100);
+//      assertEquals(100, conveyance.getCharge());
+//      conveyance.chargeTo(120);
+//      assertEquals(100, conveyance.getCharge());
 //	}
 //	
 //	@Order(8)	

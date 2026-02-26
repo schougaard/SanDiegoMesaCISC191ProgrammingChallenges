@@ -114,7 +114,7 @@ class TestAdvancedClasses
 //		Cycle cycle2 = new Unicycle("Uni"); 
 //		cycle2.setColor(Color.BLUE);
 //		int cycle2FrameNumber = cycle2.getFrameNumber();
-//		assertEquals("Uni3" + Color.BLUE, cycle2.toString());
+//		assertEquals("Uni3 " + Color.BLUE, cycle2.toString());
 //
 //		assertNotEquals(cycle1.toString(), cycle2.toString());
 //	}
@@ -247,6 +247,7 @@ class TestAdvancedClasses
 //	}
 
 }
+
 
 
 

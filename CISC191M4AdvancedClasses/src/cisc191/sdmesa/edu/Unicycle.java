@@ -23,8 +23,19 @@ package cisc191.sdmesa.edu;
 
  // TODO: Implement and comment all IS-A (inheritance) relationships
  
-public class Unicycle
+public class Unicycle extends Cycle
 {
 	// TODO: Implement and comment HAS-A relationships separately
+	
+	/**
+	 * Purpose: 
+	 * @param string
+	 */
+	public Unicycle(String newMake)
+	{
+		// TODO Auto-generated constructor stub
+		super(newMake);
+		
+	}
 	
 }

@@ -126,7 +126,7 @@ class TestAdvancedClasses
 //		Cycle cycle2 = new Unicycle("Uni");
 //		cycle2.setColor(Color.BLUE);
 //		
-//		// Cycles are "equal" if their frame numbers are the same
+//		// Cycles are "equal" if their frame "numbers" are the same
 //		assertTrue(cycle1.equals(cycle1));
 //		assertFalse(cycle1.equals(cycle2));
 //		assertFalse(cycle2.equals(cycle1));
@@ -165,7 +165,7 @@ class TestAdvancedClasses
 //		assertEquals(1, conveyance.getGear());
 //	}
 //	
-//  @Order(6)private int frameNumber;
+//  @Order(6)
 //	@Test
 //	void testMovable()
 //	{

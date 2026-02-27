@@ -73,7 +73,7 @@ class TestAdvancedClasses
 	void testAbstractInheritance1()
 	{
 		Cycle cycle = new Unicycle("Uni");
-		assertEquals("Uni1", cycle.getMake());
+		assertEquals("Uni", cycle.getMake());
 		assertEquals(1, cycle.getNumberOfWheels());
 		assertEquals("Uni1", cycle.getFrameNumber());
 		cycle.setColor(Color.RED);
@@ -90,14 +90,14 @@ class TestAdvancedClasses
 //		Cycle bike = new Bicycle("Tooney");
 //		assertEquals("Tooney", bike.getMake());
 //		assertEquals(2, bike.getNumberOfWheels());
-//		assertEquals("Tooney1", bike.getFrameNumber());
+//		assertEquals("Tooney2", bike.getFrameNumber());
 //		bike.setColor(Color.GREEN);
 //		assertEquals(Color.GREEN, bike.getColor());
 //		
 //		Cycle eBike = new ElectricMountainBike("EMB");
 //		assertEquals("EMB", eBike.getMake());
 //		assertEquals(2, eBike.getNumberOfWheels());
-//		assertEquals("EMB2", eBike.getFrameNumber());
+//		assertEquals("EMB3", eBike.getFrameNumber());
 //		eBike.setColor(Color.RED);
 //		assertEquals(Color.RED, eBike.getColor());
 //	}
@@ -108,13 +108,11 @@ class TestAdvancedClasses
 //	{
 //		Cycle cycle1 = new Unicycle("Uni");
 //		cycle1.setColor(Color.RED);
-//		int cycle1FrameNumber = cycle1.getFrameNumber();
-//		assertEquals("Uni2 " + Color.RED, cycle1.toString());
+//		assertEquals("Uni4 " + Color.RED, cycle1.toString());
 //		
 //		Cycle cycle2 = new Unicycle("Uni"); 
 //		cycle2.setColor(Color.BLUE);
-//		int cycle2FrameNumber = cycle2.getFrameNumber();
-//		assertEquals("Uni3 " + Color.BLUE, cycle2.toString());
+//		assertEquals("Uni5 " + Color.BLUE, cycle2.toString());
 //
 //		assertNotEquals(cycle1.toString(), cycle2.toString());
 //	}
@@ -247,6 +245,7 @@ class TestAdvancedClasses
 //	}
 
 }
+
 
 
 

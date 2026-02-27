@@ -3,5 +3,5 @@
 # San Diego Mesa College CISC 191 Programming Challenges
 Programming challenges for San Diego Community College District CISC 191 Intermediate Java classes.
 
-Created by Professor Dr. Tasha Frankie and Professor Allan Schougaard, San Diego Mesa College.
+Created by Professor Dr. Tasha Frankie and Professor Allan Schougaard, [San Diego Mesa College](https://sdmesa.edu).
 With contributions from Professors: Dom David, Dan Sullivan, and Alex Chow

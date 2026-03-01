@@ -45,7 +45,7 @@ public class M1Challenge
 	public static int multiply(int a, int b)
 	{
 		// TODO: change this to make the tests pass
-		return -11111;
+		return -11111; 
 	}
 	
 	/**

@@ -68,7 +68,7 @@ import org.junit.jupiter.api.Test;
  * 
  */
 
-class TestM1Challenge
+class TestM1Challenge 
 {
 
 	@Test // This indicates that the next method is a test method

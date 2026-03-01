@@ -180,41 +180,40 @@ class TestM1Challenge
 //		assertEquals(1, min(array6));
 //	}
 //
-	@Test
-	void testSum()
-	{
-		double[] array0 = {};
-		assertEquals(0, sum(array0));
-		
-		double[] array1 = {1};
-		assertEquals(1, sum(array1));
-		
-		double[] array2 = {1.1, 2.2, 3.3};
-		assertEquals(1.1+2.2+3.3, sum(array2));
-
-		double[] array3 = {-1, -2, 3};
-		assertEquals(-1+(-2)+3, sum(array3));
-
-		double[] array4 = {-1, -2, -3};
-		assertEquals(-1+(-2)+(-3), sum(array4));
-	}
+//	@Test
+//	void testSum()
+//	{
+//		double[] array0 = {};
+//		assertEquals(0, sum(array0));
+//		
+//		double[] array1 = {1};
+//		assertEquals(1, sum(array1));
+//		
+//		double[] array2 = {1.1, 2.2, 3.3};
+//		assertEquals(1.1+2.2+3.3, sum(array2));
 //
-	@Test
-	void testAverage()
-	{
-		double[] array1 = {17};
-		assertEquals(17.0, average(array1));
-		
-              // hint: can you use sum?
-		double[] array2 = {2, 3};
-		assertEquals((2+3)/2.0, average(array2));
-
-		double[] array3 = {-1, -2, 3};
-		assertEquals((-1+(-2)+3)/3.0, average(array3));
-
-		double[] array4 = {-1, -2, -3};
-		assertEquals((-1+(-2)+(-3))/3.0, average(array4));
-	}
-
+//		double[] array3 = {-1, -2, 3};
+//		assertEquals(-1+(-2)+3, sum(array3));
+//
+//		double[] array4 = {-1, -2, -3};
+//		assertEquals(-1+(-2)+(-3), sum(array4));
+//	}
+//
+//	@Test
+//	void testAverage()
+//	{
+//		double[] array1 = {17};
+//		assertEquals(17.0, average(array1));
+//		
+//        // hint: can you use sum?
+//		double[] array2 = {2, 3};
+//		assertEquals((2+3)/2.0, average(array2));
+//
+//		double[] array3 = {-1, -2, 3};
+//		assertEquals((-1+(-2)+3)/3.0, average(array3));
+//
+//		double[] array4 = {-1, -2, -3};
+//		assertEquals((-1+(-2)+(-3))/3.0, average(array4));
+//	}
 
 }

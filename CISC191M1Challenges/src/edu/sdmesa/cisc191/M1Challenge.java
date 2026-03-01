@@ -83,28 +83,6 @@ public class M1Challenge
 		// TODO: change this method to make the tests pass
 		return -99999;
 	}
-
-	/**
-	 * Purpose: 
-	 * @param array0
-	 * @return
-	 */
-	public static double sum(double[] array)
-	{
-		double sum = 0;
-		for(double d: array)
-		{
-			sum += d;
-		}
-		// TODO Auto-generated method stub
-		//return 1;
-		return sum;
-	}
-	
-	public static double average(double[] array)
-	{
-		return sum(array)/array.length;
-	}
 	
 	// Use this template for the other methods
 	/**
@@ -115,6 +93,7 @@ public class M1Challenge
 	 */
 //	public static ??? ???(???[] array)
 //	{
+//      // What is going on here?
 //		return ???;
 //	}
 

@@ -185,6 +185,16 @@ class TestBeginningClasses
 //		// Owner changes name
 //		owner.setName("Alexandra Smith");
 //	    assertEquals("Alexandra Smith", boat.getOwner().getName());
+//	    
+//	    Boat copyBoat = new Boat(boat);
+//	    assertEquals("Alexandra Smith", copyBoat.getOwner().getName());
+//	    
+//	    // Alexandra Smith (Keaton) changes name again
+//	    owner.setName("Alex Smith");
+//	    // Since they own both boats, the name of the owners both change
+//	    assertEquals("Alex Smith", boat.getOwner().getName());
+//	    assertEquals("Alex Smith", copyBoat.getOwner().getName());
+//	    // So how deep a copy does the copy constructor make?
 //	}	
 //
 //	@Test
@@ -196,11 +206,20 @@ class TestBeginningClasses
 //		boat.setOwner(owner);
 //		boat.setCaptain(captain);
 //		assertEquals("Cappy Tain", boat.getCaptain().getName());
+//		
+//		Boat copyBoat = new Boat(boat);
 //		// Captain changes name
 //		captain.setName("Haddock");
 //		assertEquals("Haddock", boat.getCaptain().getName());
+//		// Same captain for both boats
+//		assertEquals("Haddock", copyBoat.getCaptain().getName());
 //		// Owner stays the same
 //		assertEquals("Alexandra Keaton", boat.getOwner().getName());
+//		// Copy boat gets a new captain
+//		copyBoat.setCaptain(new Person("Kaptain Cap", "617-555-1212", "02114"));
+//		assertEquals("Kaptain Cap", copyBoat.getCaptain().getName());
+//	    // but since it is a copy the original does not change
+//		assertEquals("Haddock", boat.getCaptain().getName());
 //	}	
 //
 //	@Test

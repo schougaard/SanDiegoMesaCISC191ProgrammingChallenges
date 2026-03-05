@@ -180,8 +180,11 @@ class TestAdvancedClasses
 //		conveyance.speedUp();
 //		assertEquals(2, conveyance.getSpeed());
 //	    conveyance.speedUp();
-//	    assertEquals(3, conveyance.getSpeed());
+//	    conveyance.speedUp();
+//	    conveyance.speedUp();
+//	    assertEquals(5, conveyance.getSpeed());
 //      conveyance.slowDown();
+//	    assertEquals(3, conveyance.getSpeed());
 //      conveyance.slowDown();
 //      assertEquals(1, conveyance.getSpeed());
 //      conveyance.slowDown();
@@ -246,6 +249,7 @@ class TestAdvancedClasses
 //	}
 
 }
+
 
 
 

@@ -44,14 +44,14 @@ class TestObjectOrientedDesign
 //   void testOptions()
 //   {
 //      Option moonroof = new Option("Moonroof");
-//      assertEquals("Moonroof", moonroof.getDetails());
+//      assertEquals("Moonroof", moonroof.getDescription());
 //      Option leather = new Option("Leather");
-//      assertEquals("Leather", leather.getDetails());
+//      assertEquals("Leather", leather.getDescription());
 //      Option[] options = { moonroof, leather };
 //      Vehicle vehicle = new Vehicle("BMW", 90000, 10995, 4, options);
 //
-//      assertEquals("Moonroof", vehicle.getOptions()[0].getDetails());
-//      assertEquals("Leather", vehicle.getOptions()[1].getDetails());
+//      assertEquals("Moonroof", vehicle.getOptions()[0].getDescription());
+//      assertEquals("Leather", vehicle.getOptions()[1].getDescription());
 //   }
 
 //   @Test
@@ -150,33 +150,35 @@ class TestObjectOrientedDesign
 //      car.chargeUp(100);
 //      assertEquals(100, car.getBatteryCharge());
 //   }
+   
+// @Test
+// void testHybridCarIsCombustibleAndChargeable()
+// {
+//    // A hybrid car is a car that has two methods of propulsion; in this case gas and electric.
+//	  // Hint: is it a GasCar that also IS Chargeable? or an ElectricCar that also IS Combustible?
+//
+//    HybridCar car = new HybridCar("Toyota", 1000, 63995, 4, null, 2);
+//    car.tankUp();
+//    assertEquals(50, car.getFuelLevel());
+//    car.chargeUp();
+//    assertEquals(100, car.getBatteryCharge());
+//
+//    Combustible combustible = car;
+//    assertEquals(50, combustible.getFuelLevel());
+//    Chargeable chargeable = car;
+//    assertEquals(100, chargeable.getBatteryCharge());
+// }
 
 //   @Test
-//   void testHybridCar()
+//   void testHybridCarIsACar()
 //   {
 //      HybridCar car = new HybridCar("Toyota", 1000, 63995, 4, null, 2);
-// 		// Hint: is it a GasCar that is also chargeable? or an ElectricCar that is also combustible?
 //
 //      assertEquals("Toyota", car.getManufacturerName());
 //      assertEquals(1000, car.getMilesOnVehicle());
 //      assertEquals(63995, car.getPrice());
 //      assertEquals(4, car.getNumberOfSeats());
 //      assertEquals(2, car.getNumberOfDoors());
-//   }
-
-//   @Test
-//   void testHybridCarIsCombustibleAndChargeable()
-//   {
-//      HybridCar car = new HybridCar("Toyota", 1000, 63995, 4, null, 2);
-//      car.tankUp();
-//      assertEquals(50, car.getFuelLevel());
-//      car.chargeUp();
-//      assertEquals(100, car.getBatteryCharge());
-//
-//      Combustible combustible = car;
-//      assertEquals(50, combustible.getFuelLevel());
-//      Chargeable chargeable = car;
-//      assertEquals(100, chargeable.getBatteryCharge());
 //   }
 
 }

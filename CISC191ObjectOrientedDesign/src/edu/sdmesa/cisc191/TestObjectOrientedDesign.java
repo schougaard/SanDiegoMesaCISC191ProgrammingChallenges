@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
  * Test class and methods to support an Object Oriented design
  */
 
-class TestObjectOrientedDesign
+class TestObjectOrientedDesign 
 {
 
    @Test

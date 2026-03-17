@@ -80,7 +80,7 @@ class M2TestArrayChallenge
 		assertEquals(false, contains(array2, 'c'));
 	}
 
- //To remove //: select line(s) and type Ctrl-/ 
+//To remove //: select line(s) and type Ctrl-/ 
 
 //	/**
 //	 * find returns the first index of a value in an array,
@@ -182,7 +182,6 @@ class M2TestArrayChallenge
 //	/**
 //	 * The bubbleUp method would do one pass of an array in the Bubble sort algorithm
 //	 * See: Section Step-by-step example in https://en.wikipedia.org/wiki/Bubble_sort
-//	 * The bubbleUp method does one pass of an array
 //   * Hint: use swapElements
 //	 */
 //	@Test
@@ -320,13 +319,27 @@ class M2TestArrayChallenge
 //	}
 //	
 //	@Test
+//	void testGetRow()
+//	{
+//		int[][] matrix = {{1, 2, 3}, 
+//						  {4, 5, 6},
+//						  {7, 8, 9}};
+//
+//		// Use rowIndex as parameter name 
+//		assertTrue(arrayElementsEqual(new int[] {1, 2, 3}, getRow(matrix, 0)));
+//		assertTrue(arrayElementsEqual(new int[] {4, 5, 6}, getRow(matrix, 1)));
+//		assertTrue(arrayElementsEqual(new int[] {7, 8, 9}, getRow(matrix, 2)));
+//	}
+//
+//	@Test
 //	void testGetElement()
 //	{
 //		int[][] matrix = {{1, 2, 3}, 
 //						  {4, 5, 6},
 //						  {7, 8, 9}};
 //
-//      // Use row and column for parameter names
+//      // Use rowIndex and columnIndex for parameter names
+//      // Hint: can you use getRow?
 //		assertEquals(1, getElement(matrix, 0, 0));
 //		assertEquals(2, getElement(matrix, 0, 1));
 //		assertEquals(4, getElement(matrix, 1, 0));
@@ -338,6 +351,7 @@ class M2TestArrayChallenge
 //		int[][] matrix1 = {{1, 2, 3}, 
 //						   {4, 5, 6},
 //						   {7, 8, 9}};
+//      // Hint: can you use getRow?
 //      // Hint: have you implemented a method that can do the sum?
 //		assertEquals(1+2+3, addRow(matrix1, 0));
 //		assertEquals(4+5+6, addRow(matrix1, 1));
@@ -354,7 +368,7 @@ class M2TestArrayChallenge
 //	@Test
 //	void testAddColumn()
 //	{
-//		// Assume that the input arrays are not ragged
+//		// Assume that the input arrays are not ragged (have same row length)
 //		int[][] matrix1 = {{1, 2, 3}, 
 //				  		   {4, 5, 6},
 //				  		   {7, 8, 9}};
@@ -396,8 +410,8 @@ class M2TestArrayChallenge
 //	{
 //	    // Assume that the input arrays are square
 //
-//		int[][] array0 = {};
-//		assertEquals(0, addRightToLeftDiagonal(array0));
+//		int[][] array0 = {{8}};
+//		assertEquals(8, addRightToLeftDiagonal(array0));
 //		
 //		int[][] matrix1 = {{1, 2, 3}, 
 //				   		   {4, 5, 6},
@@ -410,11 +424,38 @@ class M2TestArrayChallenge
 //						   {13, 14, 15, 20}};
 //		assertEquals(4+7+10+13, addRightToLeftDiagonal(matrix2));		
 //	}
+//	
+//	@Test
+//	void testAddAll()
+//	{
+//		// Use rowIndex and columnIndex for index variable names
+//		
+//		int[][] matrix3 = {{1, 2, 3}, 
+//						   {4, 5, 6},
+//						   {7, 8, 9}};
+//		assertEquals(1+2+3+4+5+6+7+8+9, addAll(matrix3));
 //
+//		// Beware: this array is ragged!
+//		
+//		int[][] matrix2 = {{1, 2, 3}, 
+//						   {4, 5},
+//						   {6},
+//				           {7, 8, 9, 10}};
+//		assertEquals(1+2+3+4+5+6+7+8+9+10, addAll(matrix2));
+//		
+//		// Now for some strange arrays...
+//		
+//		int[][] array0 = {};
+//		assertEquals(0, addAll(array0));
+//		
+//		int[][] array1 = {{}};
+//		assertEquals(0, addAll(array1));
+//	}
+//	
 //	@Test
 //	void testAddLastRowElement()
 //	{
-//		// Use row and column (if needed) for index variable names
+//		// Use rowIndex and columnIndex (if needed) for index variable names
 //
 //		int[][] matrix2 = {{1,   2,  3,  4}, 
 //				           {5,   6,  7},
@@ -423,19 +464,4 @@ class M2TestArrayChallenge
 //		assertEquals(4+7+10+16, addLastRowElement(matrix2));			
 //	}
 //
-//	@Test
-//	void testAddAll()
-//	{
-//		int[][] array0 = {};
-//		assertEquals(0, addAll(array0));
-//
-//  	// Use row and column for index variable names
-//
-//		int[][] matrix2 = {{1,   2,  3,  4}, 
-//				           {5,   6,  7},
-//				           {9,  10},
-//				           {13, 14, 15, 16}};
-//		assertEquals(1+2+3+4+5+6+7+9+10+13+14+15+16, addAll(matrix2));
-//	}
-
 }

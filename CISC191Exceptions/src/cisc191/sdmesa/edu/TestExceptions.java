@@ -67,6 +67,7 @@ class TestExceptions
 
 		// The following statement checks that the call to setBillAmount throws an
 		// IllegalArgumentException
+		// IllegalArgumentException is a run-time exception and therefore not checked
 		assertThrows(IllegalArgumentException.class, () -> {
 			bill.setBillAmount(0);
 		});
@@ -101,6 +102,7 @@ class TestExceptions
 //
 //		CheckoutBill bill2 = new CheckoutBill();
 //		bill2.setBillAmount(200);
+//		// IllegalStateException is a run-time exception and therefore not checked
 //		assertThrows(IllegalStateException.class, () -> {
 //			bill2.calculateTotalBill();
 //		});
@@ -115,7 +117,7 @@ class TestExceptions
 //	@Test
 //	void testMain()
 //	{
-//      // main should not allow the program to crash
+//      // main never allow the program to crash, no matter which Exception is thrown
 //		assertDoesNotThrow(() -> {
 //			CheckoutBill.main(null);
 //		});
@@ -139,7 +141,7 @@ class TestExceptions
 //	void testBankAccountDepositException() throws Exception
 //	{
 //		InvalidAmountException invalidAmountException = new InvalidAmountException(123.45);
-//		// Test that invalidAmountException is-an Exception
+//		// Test that invalidAmountException is-an Exception; Exceptions are checked exceptions
 //		assertTrue(invalidAmountException instanceof Exception);
 //		
 //		BankAccount account = new BankAccount();

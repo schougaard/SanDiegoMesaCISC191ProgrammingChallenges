@@ -69,13 +69,13 @@ class TestDataStructures
 //		assertEquals(true, list.isEmpty());
 //		listProducer.produce("1st");
 //		// Insert at index
-//		listProducer.produce(1, "3rd");
-//		listProducer.produce(1, "2nd");
+//		listProducer.produceAtIndex(1, "3rd");
+//		listProducer.produceAtIndex(1, "2nd");
 //
 //		// Consume (and remove) the 1st element on the list
 //		assertEquals("1st", listConsumer.consume());
 //
-//		listProducer.produce(1, "4th");
+//		listProducer.produceAtIndex(1, "4th");
 //		listProducer.produce("5th");
 //
 //		assertEquals("2nd", listConsumer.consume());
@@ -116,7 +116,7 @@ class TestDataStructures
 //	@Test
 //	public void testQueue()
 //	{
-//		// In this scenario we are simulating a food ordering system
+//		// In this scenario we are simulating a food ordering system: First come, first serve
 //		
 //		Queue<String> queue = new LinkedList<String>();
 //		Producer<String> producer = new StringQueueProducer(queue);
@@ -174,7 +174,7 @@ class TestDataStructures
 //	@Test
 //	public void testPalindrome()
 //	{
-//		// In this scenario, use a queue and a stack 
+//		// In this scenario, use two data structures that work in "opposite" directions, 
 //		// to see if a word is a palindrome: https://en.wikipedia.org/wiki/Palindrome
 //		
 //		char[] lol = {'l', 'o', 'l'};
@@ -185,38 +185,45 @@ class TestDataStructures
 //		assertFalse(Palindrome.isPalindrome(cabc));
 //		char[] racecar = "racecar".toCharArray();
 //		assertTrue(Palindrome.isPalindrome(racecar));
-//
+//		char[] empty = "".toCharArray();
+//		assertTrue(Palindrome.isPalindrome(empty));
 //	}
 //	
 //	@Test
 //	public void testPhoneDirectory()
 //	{
-//		// This challenge is to implement a phone book that has-many name-phone number relations
+//		// This challenge is to implement a phone book that has-many contacts with their phone numbers
+//      // Hint: which data structure allows you to retrieve an element based on a String?
 //		PhoneDirectory directory = new PhoneDirectory();
-//		directory.setNumberForPerson("Alice", 1111);	
-//		assertEquals(1111, directory.findNumberForPerson("Alice"));
-//		assertEquals(null, directory.findNumberForPerson("Bob"));
+//		directory.setNumberForContact("Alice", 1111);	
+//		assertEquals(1111, directory.findNumberForContact("Alice"));
+//		assertEquals(null, directory.findNumberForContact("Bob"));
 //				
-//		directory.setNumberForPerson("Bob", 2222);	
-//		assertEquals(1111, directory.findNumberForPerson("Alice"));
-//		assertEquals(2222, directory.findNumberForPerson("Bob"));
+//		directory.setNumberForContact("Bob", 2222);	
+//		assertEquals(1111, directory.findNumberForContact("Alice"));
+//		assertEquals(2222, directory.findNumberForContact("Bob"));
 //		
-//		directory.setNumberForPerson("Bob's cell", 3333);	
-//		assertEquals(1111, directory.findNumberForPerson("Alice"));
-//		assertEquals(2222, directory.findNumberForPerson("Bob"));
-//		assertEquals(3333, directory.findNumberForPerson("Bob's cell"));
+//		directory.setNumberForContact("Bob's cell", 3333);	
+//		assertEquals(1111, directory.findNumberForContact("Alice"));
+//		assertEquals(2222, directory.findNumberForContact("Bob"));
+//		assertEquals(3333, directory.findNumberForContact("Bob's cell"));
 //
-//		directory.setNumberForPerson("Bob", 4444);	
-//		assertEquals(1111, directory.findNumberForPerson("Alice"));
-//		assertEquals(4444, directory.findNumberForPerson("Bob"));
-//		assertEquals(3333, directory.findNumberForPerson("Bob's cell"));
+//		directory.setNumberForContact("Bob", 4444);	
+//		assertEquals(1111, directory.findNumberForContact("Alice"));
+//		assertEquals(4444, directory.findNumberForContact("Bob"));
+//		assertEquals(3333, directory.findNumberForContact("Bob's cell"));
 //
-//	    directory.forget("Bob");	
-//	    assertEquals(null, directory.findNumberForPerson("Bob"));
-//	    assertEquals(1111, directory.findNumberForPerson("Alice"));
-//	    assertEquals(3333, directory.findNumberForPerson("Bob's cell"));
+//	    directory.forgetContact("Bob");	
+//	    assertEquals(null, directory.findNumberForContact("Bob"));
+//	    assertEquals(1111, directory.findNumberForContact("Alice"));
+//	    assertEquals(3333, directory.findNumberForContact("Bob's cell"));
+//
+//    	directory.forgetContact("Bob's cell");	
+//    	assertEquals(null, directory.findNumberForContact("Bob"));
+//    	assertEquals(1111, directory.findNumberForContact("Alice"));
+//    	assertEquals(null, directory.findNumberForContact("Bob's cell"));
 //	    
-//	    assertNull(directory.findNumberForPerson("Xavier"));
+//	    assertNull(directory.findNumberForContact("Xavier"));
 //	}
 //	
 //	@Test
@@ -224,19 +231,19 @@ class TestDataStructures
 //	{
 //		// In this scenario we are creating an Internet search engine
 //		// which returns multiple results for each search keyword.
-//		// This implies that a search engine has many search results.
+//		// This implies that a search engine has-many search results.
 //		// Hint: this requires multiple data structures collaborating
 //		SearchEngine goggles = new SearchEngine();
 //		
-//		goggles.add("ice cream", "http://mothersicecream.com");
+//		goggles.addSearchResult("ice cream", "http://mothersicecream.com");
 //		assertTrue(goggles.search("ice cream") instanceof List);
 //		assertEquals(1, goggles.search("ice cream").size());
-//		goggles.add("ice cream", "http://notyourmothersicecream.com");
+//		goggles.addSearchResult("ice cream", "http://notyourmothersicecream.com");
 //		assertEquals(2, goggles.search("ice cream").size());
 //		
-//		goggles.add("car", "http://foundontheroaddead.com");
-//		goggles.add("car", "http://cashanddrive.com");
-//		goggles.add("car", "http://fancycar.com");
+//		goggles.addSearchResult("car", "http://foundontheroaddead.com");
+//		goggles.addSearchResult("car", "http://cashanddrive.com");
+//		goggles.addSearchResult("car", "http://fancycar.com");
 //		
 //		assertTrue(goggles.search("ice cream").contains("http://notyourmothersicecream.com"));
 //		assertTrue(goggles.search("ice cream").contains("http://mothersicecream.com"));
@@ -244,14 +251,13 @@ class TestDataStructures
 //		assertFalse(goggles.search("ice cream").contains("http://fancycar.com"));
 //		assertFalse(goggles.search("ice cream").contains("http://cashanddrive.com"));
 //		
-//		assertEquals(3, goggles.search("car").size());
 //		assertTrue(goggles.search("car").contains("http://foundontheroaddead.com"));
 //		assertTrue(goggles.search("car").contains("http://fancycar.com"));
 //		assertTrue(goggles.search("car").contains("http://cashanddrive.com"));
 //		assertFalse(goggles.search("car").contains("http://notyourmothersicecream.com"));
 //		assertFalse(goggles.search("car").contains("http://mothersicecream.com"));
 //
-//		// If there are not search results for a given keyword, the engine returns an empty list
+//		// If there are no search results for a given keyword, the engine returns an empty list
 //		assertNotNull(goggles.search("404"));
 //		assertTrue(goggles.search("404") instanceof List);
 //		assertTrue(goggles.search("404").isEmpty());
@@ -259,7 +265,7 @@ class TestDataStructures
 //		// Make sure malicious hackers cannot break your search engine
 //		// so do not hand out your data structures.
 //		// Hint: think of Harbor
-//		// Hint: use a list constructor
+//		// Pro Tip: use a list constructor
 //		goggles.search("car").clear();
 //		assertEquals(3, goggles.search("car").size());	
 //	}

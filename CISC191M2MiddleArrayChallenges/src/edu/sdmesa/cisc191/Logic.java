@@ -49,7 +49,7 @@ public class Logic
 			for (int col = 0; col < pixels2D[row].length; col++)
 			{
 				// invoke the setBlue method on each Pixel object
-				pixels2D[row][col].setBlue(0);
+				// pixels2D[row][col].setBlue(0);
 			}
 		}
 
@@ -59,7 +59,7 @@ public class Logic
 	 * Purpose: Make the picture black & white, and gray
 	 * @param picture
 	 */
-	public static void blackAndWhite(DigitalPicture picture)
+	public static void makeGrayScale(DigitalPicture picture)
 	{
 		// TODO Implement this method
 
@@ -69,7 +69,7 @@ public class Logic
 	 * Purpose: Invert the colors of image
 	 * @param picture
 	 */
-	public static void negative(DigitalPicture picture)
+	public static void makeNegative(DigitalPicture picture)
 	{
 		// TODO Implement this method
 

@@ -188,7 +188,7 @@ public class Tests
 //		/* apply the filter */
 //		Logic.blur(studentPicture);
 //		
-//		// Testing the top, left pixel is a mix of the three pixels that around it and itself
+//		// Testing the top, left pixel is a mix of the three pixels that are around it and itself
 //		Assertions.assertEquals((originalPicture.getPixels2D()[0][0].getRed() + originalPicture.getPixels2D()[0][1].getRed() + 
 //								 originalPicture.getPixels2D()[1][0].getRed() + originalPicture.getPixels2D()[1][1].getRed())/4, 
 //								 studentPicture.getPixels2D()[0][0].getRed());		

@@ -6,7 +6,7 @@ package edu.sdmesa.cisc191;
  * @author Allan Schougaard 
  * 
  * Other contributors:
- * None
+ * Alex Chow
  * 
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.

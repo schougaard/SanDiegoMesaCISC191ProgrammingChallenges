@@ -1,7 +1,5 @@
 package edu.sdmesa.cisc191;
 
-import javax.swing.JButton;
-
 /**
  * Lead Author(s):
  * @author 
@@ -25,7 +23,6 @@ import javax.swing.JButton;
 
 public class FishingButton
 {
-
 	/**
 	 * TODO
 	 * @param row
@@ -34,6 +31,6 @@ public class FishingButton
 	public FishingButton(int row, int column)
 	{
 		// TODO
+		
 	}
-
 }

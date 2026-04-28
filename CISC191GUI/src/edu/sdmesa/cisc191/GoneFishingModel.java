@@ -91,4 +91,13 @@ public class GoneFishingModel
 	{
 		return fishRemaining == 0;
 	}
+	
+	/**
+	 * TODO
+	 * @return
+	 */
+	public boolean isGameOver()
+	{
+		return fishWin() || playerWins();
+	}
 }

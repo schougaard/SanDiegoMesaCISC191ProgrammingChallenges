@@ -87,19 +87,3 @@ public class GoneFishingController
 		return false;
 	}
 }
-
-// public class GoneFishingController
-// {
-// /**
-// * TODO
-// *
-// * @param goneFishingModel
-// * @param goneFishingView
-// */
-// public GoneFishingController(GoneFishingModel goneFishingModel,
-// GoneFishingView goneFishingView)
-// {
-// // TODO
-// }
-//
-// }

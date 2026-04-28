@@ -2,17 +2,22 @@ package edu.sdmesa.cisc191;
 
 /**
  * Lead Author(s):
+ * 
  * @author Tasha Frankie
  * @author Allan Schougaard
  * 
- * Responsibilities of class:
+ *         Other contributors:
+ *         Alex Chow
  * 
- * Model and track the non-visual game play
+ *         Responsibilities of class:
+ * 
+ *         Model and track the non-visual game play
  */
 
 import java.util.Random;
 
-// TODO: comment each method and each line of code to show you understand how it works
+// TODO: comment each method and each line of code to show you understand how it
+// works
 
 public class GoneFishingModel
 {
@@ -41,6 +46,7 @@ public class GoneFishingModel
 
 	/**
 	 * TODO
+	 * 
 	 * @param row
 	 * @param column
 	 * @return
@@ -58,6 +64,7 @@ public class GoneFishingModel
 
 	/**
 	 * TODO
+	 * 
 	 * @return
 	 */
 	public int getTriesRemaining()
@@ -67,6 +74,7 @@ public class GoneFishingModel
 
 	/**
 	 * TODO
+	 * 
 	 * @return
 	 */
 	public int getFishRemaining()
@@ -76,6 +84,7 @@ public class GoneFishingModel
 
 	/**
 	 * TODO
+	 * 
 	 * @return
 	 */
 	public boolean fishWin()
@@ -85,10 +94,21 @@ public class GoneFishingModel
 
 	/**
 	 * TODO
+	 * 
 	 * @return
 	 */
 	public boolean playerWins()
 	{
 		return fishRemaining == 0;
+	}
+
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 */
+	public boolean isGameOver()
+	{
+		return fishWin() || playerWins();
 	}
 }

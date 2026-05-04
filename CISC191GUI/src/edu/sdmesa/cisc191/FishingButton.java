@@ -8,6 +8,7 @@ package edu.sdmesa.cisc191;
  *         <<add additional lead authors here, with a full first and last name>>
  * 
  *         Other contributors:
+ *         Alex Chow, Allan Schougaard
  *         <<add additional contributors (mentors, tutors, friends) here, with
  *         contact information>>
  * 
@@ -28,14 +29,28 @@ package edu.sdmesa.cisc191;
 public class FishingButton
 {
 	/**
-	 * TODO
+	 * Create a fishing button at a given location
 	 * 
-	 * @param row
-	 * @param column
+	 * @param row of the button's location
+	 * @param column column of the button's location
 	 */
 	public FishingButton(int row, int column)
 	{
 		// TODO
-
 	}
+	
+	/**
+	 * Reveals what the button/location contains; used when button is clicked.
+	 * A fishing button can only be revealed once.
+	 * 
+	 * @param isFish if true, the button should show a fish; otherwise nothing.
+	 */
+	public void reveal(boolean isFish)
+	{
+		// TODO
+		
+		// Hint: setEnabled(false)
+	}
+	
+	// TODO: implement accessors for row and column
 }

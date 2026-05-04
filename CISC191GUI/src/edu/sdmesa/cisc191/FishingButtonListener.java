@@ -8,6 +8,7 @@ package edu.sdmesa.cisc191;
  *         <<add additional lead authors here, with a full first and last name>>
  * 
  *         Other contributors:
+ *         Alex Chow, Allan Schougaard
  *         <<add additional contributors (mentors, tutors, friends) here, with
  *         contact information>>
  * 
@@ -21,19 +22,19 @@ package edu.sdmesa.cisc191;
  * 
  *         Version/date:
  * 
- *         Responsibilities of class:
+ *         Responsibilities of class: to respond when a FishingButton is clicked
  * 
  */
+
+// TODO: FishingButtonListener is-an ActionListener
 public class FishingButtonListener
 {
 	public FishingButtonListener(GoneFishingController controller,
 			FishingButton button)
 	{
-
+		// TODO
 	}
 
-	// TODO
-	// Hint: You should override actionPerformed here, and then call the
-	// appropriate method on the controller to update the model and view.
+	// TODO: Override actionPerformed here to call the appropriate method on the controller.
 
 }

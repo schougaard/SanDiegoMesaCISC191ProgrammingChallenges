@@ -30,55 +30,26 @@ import javax.swing.JFrame;
 public class GoneFishingView extends JFrame
 {
 	/**
-	 * TODO
+	 * Create GUI for game
 	 * 
-	 * @param model
+	 * @param goneFishingModel used to update the GUI
 	 */
-	public GoneFishingView()
+	public GoneFishingView(GoneFishingModel goneFishingModel)
 	{
-		// TODO
+		// TODO: create and layout all the needed widgets with their listeners
 
+		// In the end do:
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
 	}
 
 	/**
-	 * TODO
-	 * Hint: This will be called by the controller's constructor, when the
-	 * controller object is created.
-	 * 
-	 * @param controller
+	 * Update the GUI based on the data in the model
 	 */
-	public void setController(GoneFishingController controller)
-	{
-		// TODO
-		// Hint: On top of just setting the controller, you may also want to set
-		// up any listeners for all the buttons here.
-
-	}
-
-	/**
-	 * TODO
-	 */
-	public void updateUI()
+	public void updateGUI()
 	{
 		// TODO
 
-	}
-
-	/**
-	 * Starts the game
-	 * 
-	 * @param args not used
-	 */
-	public static void main(String[] args)
-	{
-		GoneFishingModel model = new GoneFishingModel();
-		GoneFishingView view = new GoneFishingView();
-
-		// the view should be hooked up to the controller inside the
-		// controller's constructor
-		new GoneFishingController(model, view);
 	}
 }

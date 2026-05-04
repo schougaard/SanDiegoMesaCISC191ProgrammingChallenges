@@ -10,27 +10,33 @@ package edu.sdmesa.cisc191;
  *         Alex Chow
  * 
  *         Responsibilities of class:
- * 
- *         Model and track the non-visual game play
+ * 	       Virtually model the data of the game
  */
 
 import java.util.Random;
+
+// DIRECTIONS: Comment this code
 
 // TODO: comment each method and each line of code to show you understand how it
 // works
 
 public class GoneFishingModel
 {
+	// TODO: comment the code
+	
 	public static final int DIMENSION = 6;
-	private boolean[][] grid = new boolean[DIMENSION][DIMENSION];
+	private boolean[][] fishGrid = new boolean[DIMENSION][DIMENSION];
 	private int triesRemaining = 30;
 	private int fishRemaining = 10;
 
 	/**
-	 * TODO
+	 * Creates a model for the game that tracks fish, tries and fish remaining
+	 * and determines if the game is over.
 	 */
 	public GoneFishingModel()
 	{
+		// TODO: comment the code
+		
 		Random randomNumberGenerator = new Random();
 		for (int fishCounter = 0; fishCounter < fishRemaining; fishCounter++)
 		{
@@ -39,76 +45,91 @@ public class GoneFishingModel
 			{
 				row = randomNumberGenerator.nextInt(DIMENSION);
 				column = randomNumberGenerator.nextInt(DIMENSION);
-			} while (grid[row][column]);
-			grid[row][column] = true;
+			} while (fishGrid[row][column]);
+			fishGrid[row][column] = true;
 		}
 	}
 
 	/**
-	 * TODO
+	 * Check to see if there is a fish at a given location
 	 * 
-	 * @param row
-	 * @param column
-	 * @return
+	 * @param row the row of the location
+	 * @param column the column of the location
+	 * @return true if the there is a fish at the location; false if not.
 	 */
 	public boolean fishAt(int row, int column)
 	{
-		triesRemaining--;
-		boolean foundFish = grid[row][column];
-		if (foundFish)
+		// TODO: comment the code
+		
+		if (isGameOver())
 		{
-			fishRemaining--;
+			throw new IllegalStateException("You cannot fish after the game is over");
 		}
-		return foundFish;
+		else
+		{
+			triesRemaining--;
+			boolean foundFish = fishGrid[row][column];
+			if (foundFish)
+			{
+				fishRemaining--;
+			}
+			return foundFish;
+		}
 	}
 
 	/**
-	 * TODO
-	 * 
-	 * @return
+	 * @return the number of tries (clicks) the user has left
 	 */
 	public int getTriesRemaining()
 	{
+		// TODO: comment the code
+		
 		return triesRemaining;
 	}
 
 	/**
-	 * TODO
-	 * 
-	 * @return
+	 * @return the number of fish left the in the fame
 	 */
 	public int getFishRemaining()
 	{
+		// TODO: comment the code
+
 		return fishRemaining;
 	}
 
 	/**
-	 * TODO
+	 * Determines if the fish has won the game
 	 * 
-	 * @return
+	 * @return true if the fish has own; false if not.
 	 */
 	public boolean fishWin()
 	{
+		// TODO: comment the code
+
 		return triesRemaining == 0 && fishRemaining > 0;
 	}
 
 	/**
-	 * TODO
+	 * Determines if the player has won the game
 	 * 
-	 * @return
+	 * @return true if the player has won; false if not.
 	 */
 	public boolean playerWins()
 	{
+		// TODO: comment the code
+
 		return fishRemaining == 0;
 	}
 
 	/**
-	 * TODO
+	 * Determines if the game has ended.
 	 * 
-	 * @return
+	 * @return true if the game is over; false if not.
 	 */
 	public boolean isGameOver()
 	{
+		// TODO: comment the code
+
 		return fishWin() || playerWins();
 	}
 }

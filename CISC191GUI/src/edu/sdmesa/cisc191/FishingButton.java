@@ -53,4 +53,5 @@ public class FishingButton
 	}
 	
 	// TODO: implement accessors for row and column
+	
 }

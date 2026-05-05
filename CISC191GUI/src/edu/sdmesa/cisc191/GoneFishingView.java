@@ -32,9 +32,8 @@ public class GoneFishingView extends JFrame
 	/**
 	 * Create GUI for game
 	 * 
-	 * @param goneFishingModel used to update the GUI
 	 */
-	public GoneFishingView(GoneFishingModel goneFishingModel)
+	public GoneFishingView()
 	{
 		// TODO: create and layout all the needed widgets with their listeners
 
@@ -45,11 +44,25 @@ public class GoneFishingView extends JFrame
 	}
 
 	/**
-	 * Update the GUI based on the data in the model
+	 * Show the number of fish remaining in the game
+	 * 
+	 * @param fishRemaining
 	 */
-	public void updateGUI()
+	public void showRemainingFish(int fishRemaining)
 	{
 		// TODO
-
+	}
+	
+	// TODO: implement showRemainingTries
+	
+	
+	public void showPlayerWins()
+	{
+		// TODO
+	}
+	
+	public void showFishWin()
+	{
+		// TODO
 	}
 }

@@ -46,10 +46,8 @@ public class GoneFishingController
 	public void onFishingButtonClicked(FishingButton button)
 	{
 		// TODO: What should happen when a fishing button is clicked?
-		// Hint: The controller first reveals the button, then tells the model what happened 
+		// Hint: The controller first performs the fishing (in model), then reveals the button,
 		// and then finally tells the view to update itself to reflect the current state of the model.
 
 	}
-
-
 }

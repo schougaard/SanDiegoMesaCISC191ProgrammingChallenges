@@ -86,7 +86,8 @@ class TestGoneFishing
 		assertEquals(2, button.getColumn());
 	    button.reveal(true);
 	    button.reveal(false);
-		// Check that button can be clicked
+		// Compiler won't complain below if your button can be clicked,
+	    // whether or not it's enabled
 		button.doClick();
 	}
 	
@@ -94,9 +95,10 @@ class TestGoneFishing
 //	void testGoneFishingView()
 //	{
 //		GoneFishingModel model = new GoneFishingModel();
-//		GoneFishingView view = new GoneFishingView(model);
+//		GoneFishingView view = new GoneFishingView();
 //		model.fishAt(0, 0);
-//		view.updateGUI();
+//		view.showRemainingFish(model.getFishRemaining());
+//		view.showRemainingTries(model.getTriesRemaining());
 //	    assertTrue(view instanceof JFrame);
 //	}
 //
@@ -104,7 +106,7 @@ class TestGoneFishing
 //	void testGoneFishingController()
 //	{
 //		GoneFishingModel model = new GoneFishingModel();
-//		GoneFishingView view = new GoneFishingView(model);
+//		GoneFishingView view = new GoneFishingView();
 //		GoneFishingController controller = 
 //				new GoneFishingController(model, view);
 //		
@@ -119,7 +121,7 @@ class TestGoneFishing
 //	void testGoneFishingButtonListener()
 //	{
 //		GoneFishingModel model = new GoneFishingModel();
-//		GoneFishingView view = new GoneFishingView(model);
+//		GoneFishingView view = new GoneFishingView();
 //		GoneFishingController controller = 
 //				new GoneFishingController(model, view);
 //		FishingButton fishingButton = new FishingButton(1, 2);
@@ -138,7 +140,7 @@ class TestGoneFishing
 //	void testTriesAndFishRemaining()
 //	{
 //		GoneFishingModel model = new GoneFishingModel();
-//		GoneFishingView view = new GoneFishingView(model);
+//		GoneFishingView view = new GoneFishingView();
 //		GoneFishingController controller = new GoneFishingController(model, view);
 //		
 //		int triesRemaining = model.getTriesRemaining();
@@ -153,7 +155,7 @@ class TestGoneFishing
 //					// Manually inject buttons with listeners
 //					FishingButton button = new FishingButton(i, j);
 //					FishingButtonListener listener = new FishingButtonListener(controller, button);
-//					// Click a button, use a try
+//					// Click a button, use up one try
 //					button.doClick();
 //					triesRemaining--;
 //					assertEquals(triesRemaining, model.getTriesRemaining());
@@ -171,7 +173,7 @@ class TestGoneFishing
 //	void testGoneFishingButtonShouldntBeClickedTwice()
 //	{
 //		GoneFishingModel model = new GoneFishingModel();
-//		GoneFishingView view = new GoneFishingView(model);
+//		GoneFishingView view = new GoneFishingView();
 //		GoneFishingController controller = new GoneFishingController(
 //				model, view
 //		);
@@ -182,7 +184,7 @@ class TestGoneFishing
 //		// Simulate a click
 //		fishingButton.doClick();
 //		int triesAfterFirstClick = model.getTriesRemaining();
-//		// Simlate a click on the same button
+//		// Simulate a click on the same button
 //		fishingButton.doClick();
 //		int triesAfterSecondClick = model.getTriesRemaining();
 //		// Second click should not change anything

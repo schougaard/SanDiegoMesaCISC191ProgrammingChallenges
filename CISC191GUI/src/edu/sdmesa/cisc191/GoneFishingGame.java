@@ -14,7 +14,7 @@
 *
 * <<Add more references here>>
 *
-* Version: 2026-05-03
+* Version: 2026-05-04
 */
 package edu.sdmesa.cisc191;
 
@@ -37,7 +37,7 @@ public class GoneFishingGame
 		try
 		{
 			model = new GoneFishingModel();
-			view = new GoneFishingView(model);
+			view = new GoneFishingView();
 			
 			// This will start the game by showing the window
 			new GoneFishingController(model, view);
